@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import web3ModalSetup from "./../helpers/web3ModalSetup";
 import Web3 from "web3";
 import {
-  getAbi,
+  getBurgerHouseContract,
   getTokenAbi,
   REFERRAL_PERCENT,
   WITHDRAW_FEE,
@@ -41,7 +41,7 @@ const httpProvider = new Web3.providers.HttpProvider(RPC_URL)
 const web3NoAccount = new Web3(httpProvider)
 const isAddress = web3NoAccount.utils.isAddress
 const tokenAbiNoAccount = getTokenAbi(web3NoAccount)
-const AbiNoAccount = getAbi(web3NoAccount)
+const AbiNoAccount = getBurgerHouseContract(web3NoAccount)
 
 const displayRemainTime = (seconds) => {
   if (seconds > 0) {
@@ -141,7 +141,7 @@ const Interface = () => {
     const short = shortenAddr(acc);
 
     setWeb3(new Web3(provider));
-    setAbi(getAbi(new Web3(provider)));
+    setAbi(getBurgerHouseContract(new Web3(provider)));
     setTokenAbi(getTokenAbi(new Web3(provider)));
     // setAccounts([acc]);
     setCurAcount(acc);

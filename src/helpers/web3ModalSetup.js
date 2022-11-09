@@ -17,8 +17,6 @@ const web3ModalSetup = () =>
           infuraId: process.env.REACT_APP_INFURA_ID, // required
           rpc: {
             [MAINNET]: RPC_URL
-            //  56: "https://bsc-dataseed.binance.org",
-            //4002: "https://rpc.testnet.fantom.network/",
           },
         },
       },
