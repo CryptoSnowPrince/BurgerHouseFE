@@ -252,6 +252,16 @@
                 "type": "uint256"
             },
             {
+                "internalType": "uint256",
+                "name": "invested",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "withdrawn",
+                "type": "uint256"
+            },
+            {
                 "internalType": "address",
                 "name": "ref",
                 "type": "address"
@@ -264,16 +274,6 @@
             {
                 "internalType": "uint256",
                 "name": "refCoins",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "invested",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "withdrawn",
                 "type": "uint256"
             }
         ],

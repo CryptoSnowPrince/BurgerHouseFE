@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Web3Modal from "web3modal";
-import { RPC_URL, MAINNET } from "../Abi";
+import { RPC_URL, MAINNET } from "../constant";
 dotenv.config();
 
 /**
