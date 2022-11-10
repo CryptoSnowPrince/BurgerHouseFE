@@ -1,6 +1,6 @@
 import BurgerHouse_ABI from './abi.json'
 
-export const PUBLIC_URL = "https://dapp-frontend-prince.web.app/"
+export const PUBLIC_URL = "https://dapp-frontend-prince.web.app"
 
 export const COIN_PRICE = 0.00002; // 1 coin = 0.00002 BNB
 export const CASH_PRICE = 0.0000002; // 100 cash = 0.00002 BNB

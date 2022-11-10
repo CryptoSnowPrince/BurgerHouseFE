@@ -86,6 +86,9 @@ const Home = () => {
 
   const [blockTimestamp, setBlockTimestamp] = useState(0)
 
+  const [showBuyCoins, setShowBuyCoins] = useState(false)
+  const [showGetBNB, setShowGetBNB] = useState(false)
+
   useEffect(() => {
     const referral = window.localStorage.getItem("REFERRAL")
 
@@ -350,6 +353,10 @@ const Home = () => {
     }
   };
 
+  const addCoins = async (e) => {
+
+  }
+
   return (
     <>
       <div class="section-open">
@@ -361,10 +368,12 @@ const Home = () => {
                 <div class="menu-bar">
                   <div class="menu-bar-coin"></div>
                   <div class="menu-bar-value menu-bar-money-value">0.00</div>
+                  <button type="button" class="menu-bar-btn-plus" onClick={() => setShowBuyCoins(true)} />
                 </div>
                 <div class="menu-bar">
                   <div class="menu-bar-gas"></div>
                   <div class="menu-bar-value menu-bar-money-value">0.00</div>
+                  <button type="button" class="menu-bar-btn-minus" onClick={() => setShowBuyCoins(true)} />
                 </div>
                 <div class="menu-bar fc-bar">
                   <div class="menu-bar-money"></div>
@@ -496,6 +505,44 @@ const Home = () => {
           }
         </div >
       </div >
+
+      <div class="popup-wrapper popup-buy popup-exchange" id="buyCoins" style={{ display: showBuyCoins ? "block" : "none" }}>
+        <div class="popup-box-1">
+          <div class="popup-buy-header">Purchase of Farm Cash</div>
+
+          <div class="popup-buy-text-container">
+            <div class="popup-buy-text-ticker">
+              <div class="popup-buy-currency-icon"></div>
+              COIN
+            </div>
+            <div class="popup-buy-text-balance">Balance: 0.00</div>
+          </div>
+          <div class="popup-buy-input-wrapper">
+            <input style={{ fontSize: "20px" }} name="coin" type="number" inputmode="decimal" placeholder="0.0" class="popup-buy-input popup-buy-input-coin" />
+          </div>
+          <div class="popup-buy-arrow">
+            <i class="fa-solid fa-arrow-down"></i>
+          </div>
+          <div class="popup-buy-text-container" style={{ marginTop: "0px" }}>
+            <div class="popup-buy-text-ticker">
+              <div class="popup-buy-coin-icon"></div>
+              FARM CASH
+            </div>
+          </div>
+          <div class="popup-buy-input-wrapper">
+            <input style={{ fontSize: "20px" }} type="number" inputmode="decimal" placeholder="0" class="popup-buy-input popup-buy-input-cash" />
+          </div>
+          <div class="popup-buy-rate-text">
+            1 COIN For 1.33 Farm Cash (FC)
+          </div>
+          <div class="container">
+            <div class="alert alert-warning" role="alert">
+              Not enough coins
+            </div>
+          </div>
+        </div>
+        <button type="button" class="popup-btn-close popup-btn-close-3" onClick={() => setShowBuyCoins(false)} />
+      </div>
 
       <div class="modal" id="upgradeHouse">
         <div class="modal-dialog">
