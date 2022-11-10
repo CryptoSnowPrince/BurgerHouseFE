@@ -373,7 +373,7 @@ const Home = () => {
                 <div class="menu-bar">
                   <div class="menu-bar-gas"></div>
                   <div class="menu-bar-value menu-bar-money-value">0.00</div>
-                  <button type="button" class="menu-bar-btn-minus" onClick={() => setShowBuyCoins(true)} />
+                  <button type="button" class="menu-bar-btn-minus" onClick={() => setShowGetBNB(true)} />
                 </div>
                 <div class="menu-bar fc-bar">
                   <div class="menu-bar-money"></div>
@@ -542,6 +542,52 @@ const Home = () => {
           </div>
         </div>
         <button type="button" class="popup-btn-close popup-btn-close-3" onClick={() => setShowBuyCoins(false)} />
+      </div>
+
+      <div class="popup-wrapper popup-payout" style={{ display: showGetBNB ? "block" : "none" }}>
+        <div class="popup-box-exchange popup-box">
+          <div class="popup-profit-header sell-header">Sell Farm Cash</div>
+
+          <div class="popup-buy-text-container">
+            <div class="popup-buy-text-ticker">
+              FC
+            </div>
+            <div class="popup-buy-text-balance popup-sell-input-max">Max: 0.00</div>
+          </div>
+          <div class="popup-buy-input-wrapper">
+            <input style={{ fontSize: "20px" }} name="cash" type="number" id="sell_input_cash" inputmode="decimal" placeholder="0.0" class="popup-buy-input popup-sell-input-cash" />
+          </div>
+
+          <div class="popup-buy-text-container computation">
+            <div class="popup-buy-text-ticker">
+              5% TAX
+            </div>
+            <div class="popup-buy-text-balance popup-sell-input-tax"></div>
+          </div>
+
+          <div class="popup-buy-text-container computation">
+            <div class="popup-buy-text-ticker">
+              PHP
+            </div>
+            <div class="popup-buy-text-balance popup-sell-input-php"></div>
+          </div>
+
+          <div class="popup-buy-text-container">
+            <div class="popup-buy-text-ticker">
+              Mode of Payment
+            </div>
+          </div>
+          <div class="popup-buy-input-wrapper">
+            <input style={{ fontSize: "20px" }} name="mop" type="text" placeholder="gcash or bank details" class="popup-buy-input popup-sell-input-mop" />
+          </div>
+          <div id="sell_fc_alert"></div>
+          <div class="container">
+            <div class="alert alert-warning" role="alert">
+              Not enough cash
+            </div>
+          </div>
+        </div>
+        <button type="button" class="popup-btn-close" onClick={() => setShowGetBNB(false)} />
       </div>
 
       <div class="modal" id="upgradeHouse">
