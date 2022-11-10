@@ -86,7 +86,7 @@ body {
 
 
 div.login-action {
-  position: relative;
+  position: absolute;
   bottom: 10%;
   left: 50%;
   transform: translate(-50%, calc(-50% + 10px));
@@ -531,7 +531,7 @@ div.barn-action {
   color: #000;
   top: 2px;
   font-size: 19px;
-  position: relative;
+  position: absolute;
   left: 50%;
   transform: translate(-50%);
   font-weight: 500 !important;
@@ -687,7 +687,7 @@ div.barn-action {
 }
 
 .popup-upgrade-mini-box-text {
-  position: relative;
+  position: absolute;
   top: 9px;
   left: 35px;
   font-size: 15px;
@@ -698,7 +698,7 @@ div.barn-action {
 
 .popup-upgrade-mini-box-added {
   color: #000;
-  position: relative;
+  position: absolute;
   width: 80px;
   height: 10px;
   right: 23px;

@@ -34,6 +34,24 @@ const displayRemainTime = (seconds) => {
   return `0H : 0M`
 }
 
+const price =
+  [
+    [500, 1500, 4500, 13500, 40500, 120000, 365000, 1000000],
+    [625, 1800, 5600, 16800, 50600, 150000, 456000, 1200000],
+    [780, 2300, 7000, 21000, 63200, 187000, 570000, 1560000],
+    [970, 3000, 8700, 26000, 79000, 235000, 713000, 2000000],
+    [1200, 3600, 11000, 33000, 98800, 293000, 890000, 2500000],
+  ]
+
+const yeild =
+  [
+    [123, 390, 1197, 3585, 11250, 34200, 108600, 312000],
+    [156, 471, 1494, 4590, 14100, 42900, 136500, 379500],
+    [195, 603, 1875, 5760, 17700, 53700, 171600, 501000],
+    [246, 792, 2340, 7140, 22200, 68100, 217500, 649500],
+    [309, 954, 2985, 9015, 27900, 86100, 274500, 825000],
+  ]
+
 const Home = () => {
   const isMobile = window.matchMedia("only screen and (max-width: 1000px)").matches;
 
@@ -91,7 +109,7 @@ const Home = () => {
     }
     setIsConnected(false);
 
-    window.location.reload();
+    // window.location.reload();
   };
   const loadWeb3Modal = useCallback(async () => {
     // console.log("Connecting Wallet...");
@@ -227,44 +245,6 @@ const Home = () => {
     }
   };
 
-  // const refWithdraw = async (e) => {
-  //   try {
-  //     e.preventDefault();
-  //     if (pendingTx) {
-  //       setPendingMessage("Pending...")
-  //       return
-  //     }
-
-  //     if (referralReward <= 0) {
-  //       setPendingMessage("No Next Referral Rewards!")
-  //       return
-  //     }
-
-  //     setPendingTx(true)
-  //     if (isConnected && burgerHouseContract) {
-  //       //  console.log("success")
-  //       setPendingMessage("Referral Rewards withdrawing...")
-  //       await burgerHouseContract.methods.withdrawReferral().send({
-  //         from: curAcount,
-  //       }).then((txHash) => {
-  //         console.log(txHash)
-  //         const txHashString = `${txHash.transactionHash}`
-  //         const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
-  //         setPendingMessage(`Withdraw Successfully! txHash is ${msgString}`);
-  //       }).catch((err) => {
-  //         console.log(err)
-  //         setPendingMessage(`Withdraw Failed because ${err.message}`);
-  //       });
-
-  //     } else {
-  //       // console.log("connect wallet");
-  //     }
-  //     setPendingTx(false)
-  //   } catch (error) {
-  //     setPendingTx(false)
-  //   }
-  // };
-
   const closeBar = async (e) => {
     e.preventDefault();
     setPendingMessage('');
@@ -374,138 +354,183 @@ const Home = () => {
     <>
       <div class="section-open">
         <div class="logo-desktop"></div>
-        {/* <div class="menu-fixed-left">
-          <div class="menu-bars">
-            <div class="menu-bar">
-              <div class="menu-bar-coin"></div>
-              <div class="menu-bar-value menu-bar-money-value">0.00</div>
+        {isConnected &&
+          <>
+            <div class="menu-fixed-left">
+              <div class="menu-bars">
+                <div class="menu-bar">
+                  <div class="menu-bar-coin"></div>
+                  <div class="menu-bar-value menu-bar-money-value">0.00</div>
+                </div>
+                <div class="menu-bar">
+                  <div class="menu-bar-gas"></div>
+                  <div class="menu-bar-value menu-bar-money-value">0.00</div>
+                </div>
+                <div class="menu-bar fc-bar">
+                  <div class="menu-bar-money"></div>
+                  <div class="menu-bar-value menu-bar-money-value">0.00</div>
+                </div>
+                <div class="menu-bar fc-bar ls-bar">
+                  <div class="menu-bar-market"></div>
+                  <div class="menu-bar-value menu-bar-money-value">0.00</div>
+                </div>
+                <div class="menu-bar">
+                  <div class="menu-bar-peso"></div>
+                  <div class="menu-bar-value menu-bar-money-value">1 CASH = ₱ 0.75</div>
+                </div>
+                <div class="menu-bar">
+                  <div class="menu-bar-exchange"></div>
+                  <div class="menu-bar-value menu-bar-money-value sell-allotment" id="allotment_amount">₱ 2,500,000</div>
+                </div>
+              </div>
             </div>
-            <div class="menu-bar">
-              <div class="menu-bar-gas"></div>
-              <div class="menu-bar-value menu-bar-money-value">0.00</div>
-            </div>
-            <div class="menu-bar fc-bar">
-              <div class="menu-bar-money"></div>
-              <div class="menu-bar-value menu-bar-money-value">0.00</div>
-            </div>
-            <div class="menu-bar fc-bar ls-bar">
-              <div class="menu-bar-market"></div>
-              <div class="menu-bar-value menu-bar-money-value">0.00</div>
-            </div>
-            <div class="menu-bar">
-              <div class="menu-bar-peso"></div>
-              <div class="menu-bar-value menu-bar-money-value">1 CASH = ₱ 0.75</div>
-            </div>
-            <div class="menu-bar">
-              <div class="menu-bar-exchange"></div>
-              <div class="menu-bar-value menu-bar-money-value sell-allotment" id="allotment_amount">₱ 2,500,000</div>
-            </div>
-          </div>
-        </div>
-        <div class="menu-fixed-right">
-          <div class="menu-btns">
-            <button class="menu-btn-red" id="send_cash" data-bs-placement="right" data-bs-toggle="tooltip" title="Send FC/LC">
-              <i class="fa fa-money-bill-wave"></i>
-            </button>
-            <button class="menu-btn menu-btn-leaderboard" data-bs-placement="right" data-bs-toggle="tooltip" title="Leaderboard">
-              <i class="fa fa-trophy"></i>
-            </button>
-            <button class="menu-btn menu-btn-affiliate" data-bs-placement="right" data-bs-toggle="tooltip" title="Affiliate"  >
-              <i class="fa fa-users"></i>
-            </button>
-            <button class="menu-btn menu-btn-transactions" data-bs-placement="right" data-bs-toggle="tooltip" title="Transactions">
-              <i class="fa fa-cubes"></i>
-            </button>
-            <button class="menu-btn menu-btn-logs" data-bs-placement="right" data-bs-toggle="tooltip" title="Logs">
-              <i class="fa fa-money-check"></i>
-            </button>
+            <div class="menu-fixed-right">
+              <div class="menu-btns">
+                <button class="menu-btn-red" id="send_cash" data-bs-placement="right" data-bs-toggle="tooltip" title="Send FC/LC">
+                  <i class="fa fa-money-bill-wave"></i>
+                </button>
+                <button class="menu-btn menu-btn-leaderboard" data-bs-placement="right" data-bs-toggle="tooltip" title="Leaderboard">
+                  <i class="fa fa-trophy"></i>
+                </button>
+                <button class="menu-btn menu-btn-affiliate" data-bs-placement="right" data-bs-toggle="tooltip" title="Affiliate"  >
+                  <i class="fa fa-users"></i>
+                </button>
+                <button class="menu-btn menu-btn-transactions" data-bs-placement="right" data-bs-toggle="tooltip" title="Transactions">
+                  <i class="fa fa-cubes"></i>
+                </button>
+                <button class="menu-btn menu-btn-logs" data-bs-placement="right" data-bs-toggle="tooltip" title="Logs">
+                  <i class="fa fa-money-check"></i>
+                </button>
 
-            <button class="menu-btn menu-btn-logout" data-bs-placement="right" data-bs-toggle="tooltip" title="Logout"  >
-              <i class="fa fa-sign-out"></i>
-            </button>
-          </div>
-        </div> */}
-        <div class="ranch trees">
-          <div class="barns">
-            <div class="barn">
-              <div class="barn-1 barn-grey-100"></div>
-              <div class="barn-action">
-                <button class="btn-red btn-buy-barn" data-toggle="modal" data-target="#RAFModal">
-                  <div class="farm-coin" >&nbsp;</div>
-                  500
+                <button class="menu-btn menu-btn-logout" data-bs-placement="right" data-bs-toggle="tooltip" title="Logout" onClick={logoutOfWeb3Modal} >
+                  <i class="fa fa-sign-out"></i>
                 </button>
               </div>
             </div>
-            <div class="barn">
-              <div class="barn-2 barn-grey-100"></div>
-              <div class="barn-action">
-                <button class="btn-red btn-buy-barn">
-                  <div class="farm-coin">&nbsp;</div>
-                  1500
-                </button>
-              </div>
+          </>
+        }
+        < div class="ranch trees">
+          {isConnected ?
+            <>
+              <div class="barns">
+                <div class="barn">
+                  <div class="barn-1 barn-grey-100"></div>
+                  <div class="barn-action">
+                    <button class="btn-red btn-buy-barn" data-toggle="modal" data-target="#upgradeHouse">
+                      <div class="farm-coin" >&nbsp;</div>
+                      500
+                    </button>
+                  </div>
+                </div>
+                <div class="barn">
+                  <div class="barn-2 barn-grey-100"></div>
+                  <div class="barn-action">
+                    <button class="btn-red btn-buy-barn">
+                      <div class="farm-coin">&nbsp;</div>
+                      1500
+                    </button>
+                  </div>
+                </div>
+                <div class="barn">
+                  <div class="barn-3 barn-grey-100"></div>
+                  <div class="barn-action">
+                    <button class="btn-red btn-buy-barn">
+                      <div class="farm-coin">&nbsp;</div>
+                      4500
+                    </button>
+                  </div>
+                </div>
+                <div class="barn">
+                  <div class="barn-4 barn-grey-100"></div>
+                  <div class="barn-action">
+                    <button class="btn-red btn-buy-barn">
+                      <div class="farm-coin">&nbsp;</div>
+                      13.5K
+                    </button>
+                  </div>
+                </div>
+              </div >
+              <div class="barns">
+                <div class="barn">
+                  <div class="barn-5 barn-grey-100"></div>
+                  <div class="barn-action">
+                    <button class="btn-red btn-buy-barn">
+                      <div class="farm-coin">&nbsp;</div>
+                      40.5K
+                    </button>
+                  </div>
+                </div>
+                <div class="barn">
+                  <div class="barn-6 barn-grey-100"></div>
+                  <div class="barn-action">
+                    <button class="btn-red btn-buy-barn">
+                      <div class="farm-coin">&nbsp;</div>
+                      120K
+                    </button>
+                  </div>
+                </div>
+                <div class="barn">
+                  <div class="barn-7 barn-grey-100"></div>
+                  <div class="barn-action">
+                    <button class="btn-red btn-buy-barn">
+                      <div class="farm-coin">&nbsp;</div>
+                      365K
+                    </button>
+                  </div>
+                </div>
+                <div class="barn">
+                  <div class="barn-8 barn-grey-100"></div>
+                  <div class="barn-action">
+                    <button class="btn-red btn-buy-barn">
+                      <div class="farm-coin">&nbsp;</div>
+                      1M
+                    </button>
+                  </div>
+                </div>
+              </div >
+            </>
+            :
+            <div className="login-action">
+              <button type="button" class="btn-green btn-login" onClick={loadWeb3Modal}>Connect</button>
             </div>
-            <div class="barn">
-              <div class="barn-3 barn-grey-100"></div>
-              <div class="barn-action">
-                <button class="btn-red btn-buy-barn">
-                  <div class="farm-coin">&nbsp;</div>
-                  4500
-                </button>
-              </div>
-            </div>
-            <div class="barn">
-              <div class="barn-4 barn-grey-100"></div>
-              <div class="barn-action">
-                <button class="btn-red btn-buy-barn">
-                  <div class="farm-coin">&nbsp;</div>
-                  13.5K
-                </button>
-              </div>
-            </div>
-          </div >
-          <div class="barns">
-            <div class="barn">
-              <div class="barn-5 barn-grey-100"></div>
-              <div class="barn-action">
-                <button class="btn-red btn-buy-barn">
-                  <div class="farm-coin">&nbsp;</div>
-                  40.5K
-                </button>
-              </div>
-            </div>
-            <div class="barn">
-              <div class="barn-6 barn-grey-100"></div>
-              <div class="barn-action">
-                <button class="btn-red btn-buy-barn">
-                  <div class="farm-coin">&nbsp;</div>
-                  120K
-                </button>
-              </div>
-            </div>
-            <div class="barn">
-              <div class="barn-7 barn-grey-100"></div>
-              <div class="barn-action">
-                <button class="btn-red btn-buy-barn">
-                  <div class="farm-coin">&nbsp;</div>
-                  365K
-                </button>
-              </div>
-            </div>
-            <div class="barn">
-              <div class="barn-8 barn-grey-100"></div>
-              <div class="barn-action">
-                <button class="btn-red btn-buy-barn">
-                  <div class="farm-coin">&nbsp;</div>
-                  1M
-                </button>
-              </div>
-            </div>
-          </div >
+          }
         </div >
       </div >
 
-      <div class="modal" id="RAFModal">
+      <div class="modal" id="upgradeHouse">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">upgradeHouse</h4>
+              <button type="button" class="btn-close" data-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+              <div class="popup-upgrade-box">
+                <div class="popup-upgrade-mini-box">
+                  <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Level</div>
+                  <div class="popup-upgrade-mini-box-added">1</div>
+                </div>
+                <div class="popup-upgrade-mini-box">
+                  <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Slots</div>
+                  <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">2</div>
+                </div>
+                <div class="popup-upgrade-mini-box">
+                  <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Amount</div>
+                  <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">100</div>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                  <button class="btn-red btn-upgrade" onClick={unStake}>
+                    <div class="farm-coin" >&nbsp;</div>
+                    500
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal" id="referral">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -787,118 +812,118 @@ const Home = () => {
         </div>
       </div>
 
-      {/* <div class="popup-wrapper popup-barn-1">
-            <div class="popup-box-1 popup-box">
-              <div class="popup-profit-header">BASIC BARN</div>
-              <div class="container">
-                <div class="popup-upgrade-box">
-                  <div class="popup-upgrade-mini-box">
-                    <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Level</div>
-                    <div class="popup-upgrade-mini-box-added">1</div>
-                  </div>
-                  <div class="popup-upgrade-mini-box">
-                    <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Slots</div>
-                    <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">2</div>
-                  </div>
-                  <div class="popup-upgrade-mini-box">
-                    <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Amount</div>
-                    <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">100</div>
-                  </div>
-                </div>
+      {/* <div class="popup-wrapper popup-barn-1" id="hello">
+        <div class="popup-box-1 popup-box">
+          <div class="popup-profit-header">BASIC BARN</div>
+          <div class="container">
+            <div class="popup-upgrade-box">
+              <div class="popup-upgrade-mini-box">
+                <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Level</div>
+                <div class="popup-upgrade-mini-box-added">1</div>
               </div>
-              <div class="popup-profit-figure"></div>
-              <div class="container">
-                <div class="alert alert-warning" role="alert">
-                  Not enough coins
-                </div>
+              <div class="popup-upgrade-mini-box">
+                <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Slots</div>
+                <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">2</div>
+              </div>
+              <div class="popup-upgrade-mini-box">
+                <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Amount</div>
+                <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">100</div>
               </div>
             </div>
-            <button type="button" class="popup-btn-close"></button>
           </div>
-          <div class="popup-wrapper popup-barn-2">
-            <div class="popup-box-2 popup-box">
-              <div class="popup-profit-header">MEDIUM BARN</div>
-              <div class="container">
-                <div class="popup-upgrade-box">
-                  <div class="popup-upgrade-mini-box">
-                    <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Level</div>
-                    <div class="popup-upgrade-mini-box-added">1</div>
-                  </div>
-                  <div class="popup-upgrade-mini-box">
-                    <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Slots</div>
-                    <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">20</div>
-                  </div>
-                  <div class="popup-upgrade-mini-box">
-                    <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Amount</div>
-                    <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">1K</div>
-                  </div>
-                </div>
-              </div>
-              <div class="popup-profit-figure"></div>
-              <div class="container">
-                <div class="alert alert-warning" role="alert">
-                  Not enough coins
-                </div>
-              </div>
+          <div class="popup-profit-figure"></div>
+          <div class="container">
+            <div class="alert alert-warning" role="alert">
+              Not enough coins
             </div>
-            <button type="button" class="popup-btn-close"></button>
           </div>
-          <div class="popup-wrapper popup-barn-3">
-            <div class="popup-box-3 popup-box">
-              <div class="popup-profit-header">LARGE BARN</div>
-              <div class="container">
-                <div class="popup-upgrade-box">
-                  <div class="popup-upgrade-mini-box">
-                    <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Level</div>
-                    <div class="popup-upgrade-mini-box-added">1</div>
-                  </div>
-                  <div class="popup-upgrade-mini-box">
-                    <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Slots</div>
-                    <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">60</div>
-                  </div>
-                  <div class="popup-upgrade-mini-box">
-                    <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Amount</div>
-                    <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">2K</div>
-                  </div>
-                </div>
+        </div>
+        <button type="button" class="popup-btn-close"></button>
+      </div> */}
+      {/* <div class="popup-wrapper popup-barn-2">
+        <div class="popup-box-2 popup-box">
+          <div class="popup-profit-header">MEDIUM BARN</div>
+          <div class="container">
+            <div class="popup-upgrade-box">
+              <div class="popup-upgrade-mini-box">
+                <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Level</div>
+                <div class="popup-upgrade-mini-box-added">1</div>
               </div>
-              <div class="popup-profit-figure"></div>
-              <div class="container">
-                <div class="alert alert-warning" role="alert">
-                  Not enough coins
-                </div>
+              <div class="popup-upgrade-mini-box">
+                <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Slots</div>
+                <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">20</div>
+              </div>
+              <div class="popup-upgrade-mini-box">
+                <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Amount</div>
+                <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">1K</div>
               </div>
             </div>
-            <button type="button" class="popup-btn-close"></button>
           </div>
-          <div class="popup-wrapper popup-barn-4">
-            <div class="popup-box-4 popup-box">
-              <div class="popup-profit-header">GRAND BARN</div>
-              <div class="container">
-                <div class="popup-upgrade-box">
-                  <div class="popup-upgrade-mini-box">
-                    <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Level</div>
-                    <div class="popup-upgrade-mini-box-added">1</div>
-                  </div>
-                  <div class="popup-upgrade-mini-box">
-                    <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Slots</div>
-                    <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">120</div>
-                  </div>
-                  <div class="popup-upgrade-mini-box">
-                    <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Amount</div>
-                    <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">3K</div>
-                  </div>
-                </div>
+          <div class="popup-profit-figure"></div>
+          <div class="container">
+            <div class="alert alert-warning" role="alert">
+              Not enough coins
+            </div>
+          </div>
+        </div>
+        <button type="button" class="popup-btn-close"></button>
+      </div>
+      <div class="popup-wrapper popup-barn-3">
+        <div class="popup-box-3 popup-box">
+          <div class="popup-profit-header">LARGE BARN</div>
+          <div class="container">
+            <div class="popup-upgrade-box">
+              <div class="popup-upgrade-mini-box">
+                <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Level</div>
+                <div class="popup-upgrade-mini-box-added">1</div>
               </div>
-              <div class="popup-profit-figure"></div>
-              <div class="container">
-                <div class="alert alert-warning" role="alert">
-                  Not enough coins
-                </div>
+              <div class="popup-upgrade-mini-box">
+                <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Slots</div>
+                <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">60</div>
+              </div>
+              <div class="popup-upgrade-mini-box">
+                <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Amount</div>
+                <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">2K</div>
               </div>
             </div>
-            <button type="button" class="popup-btn-close"></button>
-          </div> */}
+          </div>
+          <div class="popup-profit-figure"></div>
+          <div class="container">
+            <div class="alert alert-warning" role="alert">
+              Not enough coins
+            </div>
+          </div>
+        </div>
+        <button type="button" class="popup-btn-close"></button>
+      </div>
+      <div class="popup-wrapper popup-barn-4">
+        <div class="popup-box-4 popup-box">
+          <div class="popup-profit-header">GRAND BARN</div>
+          <div class="container">
+            <div class="popup-upgrade-box">
+              <div class="popup-upgrade-mini-box">
+                <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Level</div>
+                <div class="popup-upgrade-mini-box-added">1</div>
+              </div>
+              <div class="popup-upgrade-mini-box">
+                <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Slots</div>
+                <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">120</div>
+              </div>
+              <div class="popup-upgrade-mini-box">
+                <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Amount</div>
+                <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">3K</div>
+              </div>
+            </div>
+          </div>
+          <div class="popup-profit-figure"></div>
+          <div class="container">
+            <div class="alert alert-warning" role="alert">
+              Not enough coins
+            </div>
+          </div>
+        </div>
+        <button type="button" class="popup-btn-close"></button>
+      </div> */}
       {/* <div class="loading" style="display:none;">Loading&#8230;</div> */}
 
       {/* <div class="popup-wrapper popup-buy popup-exchange" style="display: none;">
