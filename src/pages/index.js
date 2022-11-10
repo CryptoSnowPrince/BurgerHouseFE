@@ -1,39 +1,16 @@
 import { useCallback, useEffect, useState } from "react";
-import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
-import { styled } from '@mui/material/styles';
 import web3ModalSetup from "./../helpers/web3ModalSetup";
 import Web3 from "web3";
 import {
   getBurgerHouseContract,
-  // REFERRAL_PERCENT,
-  // WITHDRAW_FEE,
-  // DENOMINATOR,
-  // DENOMINATOR_PERCENT,
-  // DECIMALS,
-  // EPOCH_LENGTH,
-  // BurgerHouse,
-  // START_TIME,
   RPC_URL,
   MAINNET,
   ADMIN_ACCOUNT,
   ADMIN_ACCOUNT1,
   REF_PREFIX,
-  // TREASURY,
-  // WITHDRAW_TIME
 } from "../constant";
 
 const web3Modal = web3ModalSetup();
-
-const LightTooltip = styled(({ className, ...props }) => (
-  <Tooltip {...props} classes={{ popper: className }} />
-))(({ theme }) => ({
-  [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: 'rgba(255, 255, 255, 0.8)',
-    boxShadow: theme.shadows[1],
-    fontSize: 14,
-  },
-}));
 
 const httpProvider = new Web3.providers.HttpProvider(RPC_URL)
 const web3NoAccount = new Web3(httpProvider)
@@ -349,6 +326,7 @@ const Home = () => {
   };
 
   const unStake = async (e) => {
+    console.log('[PRINCE](unStake)')
     try {
       e.preventDefault();
       if (pendingTx) {
@@ -395,7 +373,6 @@ const Home = () => {
   return (
     <>
       {/* <div class="loading" style="display:none;">Loading&#8230;</div> */}
-
 
       {/* <div class="popup-wrapper popup-buy popup-exchange" style="display: none;">
         <form action="https://happyfarmer.app/exchange" method="post" role="form" >
@@ -986,7 +963,7 @@ const Home = () => {
             <div class="barn">
               <div class="barn-1 barn-grey-100"></div>
               <div class="barn-action">
-                <button class="btn-red btn-buy-barn">
+                <button class="btn-red btn-buy-barn" onClick={unStake}>
                   <div class="farm-coin">&nbsp;</div>
                   500
                 </button>
@@ -1060,38 +1037,6 @@ const Home = () => {
           </div >
         </div >
       </div >
-
-      {/* <nav className="navbar navbar-expand-sm navbar-dark" style={{ marginTop: "30px" }}>
-        <div className="container"
-          style={{
-            justifyContent: isMobile ? 'space-around' : 'space-between',
-            flexDirection: isMobile ? 'column' : 'row'
-          }}>
-          <div style={{ width: "200px" }}></div>
-          <button className="btn btn-primary btn-lg btnd btn-custom"
-            style={{ color: "#fff", width: "155px", fontWeight: "bold" }}
-            disabled={pendingTx}
-            onClick={isConnected ? logoutOfWeb3Modal : loadWeb3Modal}>
-            <i className="fas fa-wallet" style={{ marginRight: "12px", color: "white" }}>
-            </i>
-            {connButtonText}
-          </button>
-        </div>
-      </nav>
-      <div className="container">
-        {
-          pendingMessage !== '' ?
-            <>
-              <center>
-                <div className="alert alert-warning alert-dismissible" style={{ width: isMobile ? '270px' : '100%' }}>
-                  <p onClick={closeBar} className="badge bg-dark" style={{ float: "right", cursor: "pointer" }}>X</p>
-                  {pendingMessage}
-                </div>
-              </center>
-            </> : <></>
-        }
-      </div> */}
-      < br />
     </>);
 }
 
