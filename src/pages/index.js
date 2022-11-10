@@ -394,14 +394,638 @@ const Home = () => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-sm navbar-dark" style={{ marginTop: "30px" }}>
+      {/* <div class="loading" style="display:none;">Loading&#8230;</div> */}
+      <div class="logo-desktop"></div>
+      <div class="menu-fixed-left">
+        <div class="menu-bars">
+          <div class="menu-bar">
+            <div class="menu-bar-coin"></div>
+            <div class="menu-bar-value menu-bar-money-value">0.00</div>
+          </div>
+          <div class="menu-bar">
+            <div class="menu-bar-gas"></div>
+            <div class="menu-bar-value menu-bar-money-value">0.00</div>
+          </div>
+          <div class="menu-bar fc-bar">
+            <div class="menu-bar-money"></div>
+            <div class="menu-bar-value menu-bar-money-value">0.00</div>
+          </div>
+          <div class="menu-bar fc-bar ls-bar">
+            <div class="menu-bar-market"></div>
+            <div class="menu-bar-value menu-bar-money-value">0.00</div>
+          </div>
+          <div class="menu-bar">
+            <div class="menu-bar-peso"></div>
+            <div class="menu-bar-value menu-bar-money-value">1 CASH = ₱ 0.75</div>
+          </div>
+          <div class="menu-bar">
+            <div class="menu-bar-exchange"></div>
+            <div class="menu-bar-value menu-bar-money-value sell-allotment" id="allotment_amount">₱ 2,500,000</div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-fixed-right">
+        <div class="menu-btns">
+          <button class="menu-btn-red" id="send_cash" data-bs-placement="right" data-bs-toggle="tooltip" title="Send FC/LC">
+            <i class="fa fa-money-bill-wave"></i>
+          </button>
+          <button class="menu-btn menu-btn-leaderboard" data-bs-placement="right" data-bs-toggle="tooltip" title="Leaderboard">
+            <i class="fa fa-trophy"></i>
+          </button>
+          <button class="menu-btn menu-btn-affiliate" data-bs-placement="right" data-bs-toggle="tooltip" title="Affiliate"  >
+            <i class="fa fa-users"></i>
+          </button>
+          <button class="menu-btn menu-btn-transactions" data-bs-placement="right" data-bs-toggle="tooltip" title="Transactions">
+            <i class="fa fa-cubes"></i>
+          </button>
+          <button class="menu-btn menu-btn-logs" data-bs-placement="right" data-bs-toggle="tooltip" title="Logs">
+            <i class="fa fa-money-check"></i>
+          </button>
+
+          <button class="menu-btn menu-btn-logout" data-bs-placement="right" data-bs-toggle="tooltip" title="Logout"  >
+            <i class="fa fa-sign-out"></i>
+          </button>
+        </div>
+
+      </div>
+
+      {/* <div class="popup-wrapper popup-buy popup-exchange" style="display: none;">
+        <form action="https://happyfarmer.app/exchange" method="post" role="form" >
+          <div class="popup-box-1">
+            <div class="popup-buy-header">Purchase of Farm Cash</div>
+
+            <div class="popup-buy-text-container">
+              <div class="popup-buy-text-ticker">
+                <div class="popup-buy-currency-icon"></div>
+                COIN
+              </div>
+              <div class="popup-buy-text-balance">Balance: 0.00</div>
+            </div>
+            <div class="popup-buy-input-wrapper">
+              <input style="font-size: 20px" name="coin" type="number" inputmode="decimal" placeholder="0.0" class="popup-buy-input popup-buy-input-coin" />
+            </div>
+            <div class="popup-buy-arrow">
+              <i class="fa-solid fa-arrow-down"></i>
+            </div>
+            <div class="popup-buy-text-container" style="margin-top: 0px">
+              <div class="popup-buy-text-ticker">
+                <div class="popup-buy-coin-icon"></div>
+                FARM CASH
+              </div>
+            </div>
+            <div class="popup-buy-input-wrapper">
+              <input style="font-size:  20px" type="number" inputmode="decimal" placeholder="0" class="popup-buy-input popup-buy-input-cash" />
+            </div>
+            <div class="popup-buy-rate-text">
+              1 COIN For 1.33 Farm Cash (FC)
+            </div>
+            <div class="container">
+              <div class="alert alert-warning" role="alert">
+                Not enough coins
+              </div>
+            </div>
+          </div>
+        </form>
+        <button type="button" class="popup-btn-close popup-btn-close-3"></button>
+      </div>
+
+      <div class="popup-wrapper popup-payout" style="display: none;">
+        <div class="popup-box-exchange popup-box">
+          <form id="form_sell_fc" action="https://happyfarmer.app/sell" method="post">
+            <div class="popup-profit-header sell-header">Sell Farm Cash</div>
+
+            <div class="popup-buy-text-container">
+              <div class="popup-buy-text-ticker">
+                FC
+              </div>
+              <div class="popup-buy-text-balance popup-sell-input-max">Max: 0.00</div>
+            </div>
+            <div class="popup-buy-input-wrapper">
+              <input style="font-size: 20px" name="cash" type="number" id="sell_input_cash" inputmode="decimal" placeholder="0.0" class="popup-buy-input popup-sell-input-cash" />
+            </div>
+
+            <div class="popup-buy-text-container computation">
+              <div class="popup-buy-text-ticker">
+                5% TAX
+              </div>
+              <div class="popup-buy-text-balance popup-sell-input-tax"></div>
+            </div>
+
+            <div class="popup-buy-text-container computation">
+              <div class="popup-buy-text-ticker">
+                PHP
+              </div>
+              <div class="popup-buy-text-balance popup-sell-input-php"></div>
+            </div>
+
+            <div class="popup-buy-text-container">
+              <div class="popup-buy-text-ticker">
+                Mode of Payment
+              </div>
+            </div>
+            <div class="popup-buy-input-wrapper">
+              <input style="font-size: 20px" name="mop" type="text" placeholder="gcash or bank details" class="popup-buy-input popup-sell-input-mop" />
+            </div>
+            <div id="sell_fc_alert"></div>
+            <div class="container">
+              <div class="alert alert-warning" role="alert">
+                Not enough cash
+              </div>
+            </div>
+          </form>
+        </div>
+        <button type="button" class="popup-btn-close"></button>
+      </div>
+
+      <div class="modal" id="RAFModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Affiliates</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+              <div class="popup-partners-input-wrapper">
+                <input class="popup-partners-input" readonly="readonly" value="https://happyfarmer.app/register?ref_id=1667231961" />
+              </div>
+              <div class="popup-partners-description">
+                Get <div class="popup-partners-money-icon"></div>20% FC of total purchased animals of your partner
+              </div>
+              <div class="popup-partners-users-bar">
+                <div class="popup-partners-users-bar-icon"></div>
+                <div class="popup-partners-users-bar-text">+ 0</div>
+              </div>
+
+              <div class="popup-buy-header">Latest 10 Referral</div>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Registered</th>
+                    <th scope="col">Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal" id="transactionModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Transactions</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Value</th>
+                    <th scope="col">Peso</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal" id="logsModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Latest 10 Transactions</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Transaction</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal" id="transferModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Send Coins</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+
+              <form action="https://happyfarmer.app/transfer-coins" method="post">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Mobile Number</label>
+                  <input type="text" class="form-control" name="mobile_number" placeholder="Mobile Number" />
+                  <div id="emailHelp" class="form-text">Please enter valid mobile number.</div>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Coins</label>
+                  <input type="text" name="amount" class="form-control" placeholder="Coins" />
+                  <div id="emailHelp" class="form-text">Please enter coins amount.</div>
+                </div>
+                <div class="container">
+                  <div class="alert alert-warning" role="alert">
+                    Not enough coins
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal" id="transferGasModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Send Gas</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+
+              <form action="https://happyfarmer.app/transfer-gas" method="post">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Mobile Number</label>
+                  <input type="text" class="form-control" name="mobile_number" placeholder="Mobile Number" />
+                  <div id="emailHelp" class="form-text">Please enter valid mobile number.</div>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Gas</label>
+                  <input type="text" name="amount" class="form-control" placeholder="Gas amount" />
+                  <div id="emailHelp" class="form-text">Please enter gas amount.</div>
+                </div>
+                <div class="container">
+                  <div class="alert alert-warning" role="alert">
+                    Not enough gas
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal" id="sendCashModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Send Cash</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+
+              <form action="https://happyfarmer.app/transfer-cash" method="post">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Mobile Number</label>
+                  <input type="text" class="form-control" name="mobile_number" placeholder="Mobile Number" />
+                  <div id="emailHelp" class="form-text">Please enter valid mobile number.</div>
+                </div>
+                <div class="mb-3 radio-picker">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="type" value="fc" checked />
+                    <label class="form-check-label">
+                      Send FARM CASH
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="type" value="lc" />
+                    <label class="form-check-label">
+                      Send LIVESTOCK CASH
+                    </label>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Amount</label>
+                  <input type="text" name="amount" id="send_amount" class="form-control" placeholder="Coins" />
+                  <div id="emailHelp" class="form-text">Please enter cash amount.</div>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Gas Fee</label>
+                  <input type="text" name="gas" id="send_gas_amount" class="form-control" placeholder="Gas fee" readonly />
+                </div>
+                <button type="submit" class="btn-red">Send</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal" id="leaderBoardModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">LEADERBOARD</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Darlynne</td>
+                    <td>43.5K</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>richel gonzales</td>
+                    <td>41.7K</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>RANDEX</td>
+                    <td>41.5K</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">4</th>
+                    <td>Sarry Gin Boy O. Bengil</td>
+                    <td>39.6K</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">5</th>
+                    <td>Esteban Jr</td>
+                    <td>35.2K</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">6</th>
+                    <td>Roan</td>
+                    <td>33.4K</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">7</th>
+                    <td>CryptoCritic</td>
+                    <td>25.6K</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">8</th>
+                    <td>Jomar lopez</td>
+                    <td>24.6K</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">9</th>
+                    <td>Sherwin Bagulaya</td>
+                    <td>24.3K</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">10</th>
+                    <td>Jone Estabillo</td>
+                    <td>17.9K</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">11</th>
+                    <td>jehdee</td>
+                    <td>15.5K</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">12</th>
+                    <td>Michael Tangco</td>
+                    <td>15.2K</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">13</th>
+                    <td>Michael Ignacio</td>
+                    <td>13.5K</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">14</th>
+                    <td>BienReyes28</td>
+                    <td>12.8K</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">15</th>
+                    <td>Jenny lyn</td>
+                    <td>12.4K</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="popup-wrapper popup-payout-ls" style="display: none;">
+        <div class="popup-box-exchange popup-box">
+          <form id="form_sell_ls" action="https://happyfarmer.app/sell-ls" method="post">
+            <div class="popup-profit-header sell-header">Sell Livestock Cash</div>
+
+            <div class="popup-buy-text-container">
+              <div class="popup-buy-text-ticker">
+                Livestock Amount
+              </div>
+              <div class="popup-buy-text-balance popup-sell-input-max">Max: 0.00</div>
+            </div>
+            <div class="popup-buy-input-wrapper">
+              <input style="font-size: 20px" name="cash" type="number" id="sell_input_cash" inputmode="decimal" placeholder="0.0" class="popup-buy-input popup-sell-input-ls" />
+            </div>
+
+            <div class="popup-buy-text-container computation">
+              <div class="popup-buy-text-ticker">
+                5% TAX
+              </div>
+              <div class="popup-buy-text-balance popup-sell-input-tax"></div>
+            </div>
+
+            <div class="popup-buy-text-container computation">
+              <div class="popup-buy-text-ticker">
+                PHP
+              </div>
+              <div class="popup-buy-text-balance popup-sell-input-php"></div>
+            </div>
+
+            <div class="popup-buy-text-container">
+              <div class="popup-buy-text-ticker">
+                Mode of Payment
+              </div>
+            </div>
+            <div class="popup-buy-input-wrapper">
+              <input style="font-size: 20px" name="mop" type="text" placeholder="gcash or bank details" class="popup-buy-input popup-sell-input-mop" />
+            </div>
+            <div id="sell_lc_alert"></div>
+            <div class="container">
+              <div class="alert alert-warning" role="alert">
+                Not enough cash
+              </div>
+            </div>
+          </form>
+        </div>
+        <button type="button" class="popup-btn-close"></button>
+      </div>
+
+      <div class="section-open">
+        <div class="ranch">
+          <div class="trees"></div>
+          <div class="popup-wrapper popup-barn-1" style="display: none;">
+            <div class="popup-box-1 popup-box">
+              <div class="popup-profit-header">BASIC BARN</div>
+              <div class="container">
+                <div class="popup-upgrade-box">
+                  <div class="popup-upgrade-mini-box">
+                    <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Level</div>
+                    <div class="popup-upgrade-mini-box-added">1</div>
+                  </div>
+                  <div class="popup-upgrade-mini-box">
+                    <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Slots</div>
+                    <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">2</div>
+                  </div>
+                  <div class="popup-upgrade-mini-box">
+                    <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Amount</div>
+                    <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">100</div>
+                  </div>
+                </div>
+              </div>
+              <div class="popup-profit-figure"></div>
+              <div class="container">
+                <div class="alert alert-warning" role="alert">
+                  Not enough coins
+                </div>
+              </div>
+            </div>
+            <button type="button" class="popup-btn-close"></button>
+          </div>
+          <div class="popup-wrapper popup-barn-2" style="display: none;">
+            <div class="popup-box-2 popup-box">
+              <div class="popup-profit-header">MEDIUM BARN</div>
+              <div class="container">
+                <div class="popup-upgrade-box">
+                  <div class="popup-upgrade-mini-box">
+                    <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Level</div>
+                    <div class="popup-upgrade-mini-box-added">1</div>
+                  </div>
+                  <div class="popup-upgrade-mini-box">
+                    <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Slots</div>
+                    <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">20</div>
+                  </div>
+                  <div class="popup-upgrade-mini-box">
+                    <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Amount</div>
+                    <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">1K</div>
+                  </div>
+                </div>
+              </div>
+              <div class="popup-profit-figure"></div>
+              <div class="container">
+                <div class="alert alert-warning" role="alert">
+                  Not enough coins
+                </div>
+              </div>
+            </div>
+            <button type="button" class="popup-btn-close"></button>
+          </div>
+          <div class="popup-wrapper popup-barn-3" style="display: none;">
+            <div class="popup-box-3 popup-box">
+              <div class="popup-profit-header">LARGE BARN</div>
+              <div class="container">
+                <div class="popup-upgrade-box">
+                  <div class="popup-upgrade-mini-box">
+                    <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Level</div>
+                    <div class="popup-upgrade-mini-box-added">1</div>
+                  </div>
+                  <div class="popup-upgrade-mini-box">
+                    <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Slots</div>
+                    <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">60</div>
+                  </div>
+                  <div class="popup-upgrade-mini-box">
+                    <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Amount</div>
+                    <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">2K</div>
+                  </div>
+                </div>
+              </div>
+              <div class="popup-profit-figure"></div>
+              <div class="container">
+                <div class="alert alert-warning" role="alert">
+                  Not enough coins
+                </div>
+              </div>
+            </div>
+            <button type="button" class="popup-btn-close"></button>
+          </div>
+          <div class="popup-wrapper popup-barn-4" style="display: none;">
+            <div class="popup-box-4 popup-box">
+              <div class="popup-profit-header">GRAND BARN</div>
+              <div class="container">
+                <div class="popup-upgrade-box">
+                  <div class="popup-upgrade-mini-box">
+                    <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Level</div>
+                    <div class="popup-upgrade-mini-box-added">1</div>
+                  </div>
+                  <div class="popup-upgrade-mini-box">
+                    <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Slots</div>
+                    <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">120</div>
+                  </div>
+                  <div class="popup-upgrade-mini-box">
+                    <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Amount</div>
+                    <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">3K</div>
+                  </div>
+                </div>
+              </div>
+              <div class="popup-profit-figure"></div>
+              <div class="container">
+                <div class="alert alert-warning" role="alert">
+                  Not enough coins
+                </div>
+              </div>
+            </div>
+            <button type="button" class="popup-btn-close"></button>
+          </div>
+
+          <div class="barns">
+            <div class="barn">
+              <div class=" barn-1 barn-grey-100" style="background-image: url('https://happyfarmer.app/assets/img/barns/barn_1.webp'); bottom: 0px; filter: grayscale(100%);"></div>
+              <div class="barn-action">
+                <button class="btn-red btn-buy-barn" data-code="1">
+                  <div class="farm-coin">&nbsp;</div>
+                  100                </button>
+              </div>
+            </div>
+            <div class="barn">
+              <div class=" barn-2 barn-grey-100" style="background-image: url('https://happyfarmer.app/assets/img/barns/barn_2.webp'); bottom: 0px; filter: grayscale(100%);"></div>
+              <div class="barn-action">
+                <button class="btn-red btn-buy-barn" data-code="2">
+                  <div class="farm-coin">&nbsp;</div>
+                  1K                </button>
+              </div>
+            </div>
+            <div class="barn">
+              <div class=" barn-3 barn-grey-100" style="background-image: url('https://happyfarmer.app/assets/img/barns/barn_3.webp'); bottom: 0px; filter: grayscale(100%);"></div>
+              <div class="barn-action">
+                <button class="btn-red btn-buy-barn" data-code="3">
+                  <div class="farm-coin">&nbsp;</div>
+                  2K                </button>
+              </div>
+            </div>
+            <div class="barn">
+              <div class=" barn-4 barn-grey-100" style="background-image: url('https://happyfarmer.app/assets/img/barns/barn_4.webp'); bottom: 0px; filter: grayscale(100%);"></div>
+              <div class="barn-action">
+                <button class="btn-red btn-buy-barn" data-code="4">
+                  <div class="farm-coin">&nbsp;</div>
+                  3K                </button>
+              </div>
+            </div>
+          </div >
+        </div >
+      </div > */}
+      {/* <nav className="navbar navbar-expand-sm navbar-dark" style={{ marginTop: "30px" }}>
         <div className="container"
           style={{
             justifyContent: isMobile ? 'space-around' : 'space-between',
             flexDirection: isMobile ? 'column' : 'row'
           }}>
           <div style={{ width: "200px" }}></div>
-          {/* <div style={{ width: "200px", height: "140px" }}></div> */}
           <button className="btn btn-primary btn-lg btnd btn-custom"
             style={{ color: "#fff", width: "155px", fontWeight: "bold" }}
             disabled={pendingTx}
@@ -424,312 +1048,8 @@ const Home = () => {
               </center>
             </> : <></>
         }
-        {/* <div className="row">
-          <div className="col-sm-3">
-            <div className="card">
-              <div className="card-body">
-                <center>
-                  <h4 className="subtitle">TREASURY</h4>
-                  <h4 className="value-text">{Number(treasuryAmount).toFixed(2)} BUSD</h4>
-                </center>
-              </div>
-            </div>
-          </div>
-          <div className="col-sm-3">
-            <div className="card">
-              <div className="card-body">
-                <center>
-                  <h4 className="subtitle">CURRENT APY</h4>
-                  <h4 className="value-text">{curAPY / DENOMINATOR_PERCENT * 12}%</h4>
-                </center>
-              </div>
-            </div>
-          </div>
-          <div className="col-sm-3">
-            <div className="card">
-              <div className="card-body">
-                <center>
-                  <h4 className="subtitle">CURRENT EPOCH</h4>
-                  <h4 className="value-text">{curEpoch}</h4>
-                </center>
-              </div>
-            </div>
-          </div>
-          <div className="col-sm-3">
-            <div className="card">
-              <div className="card-body">
-                <center>
-                  <h4 className="subtitle">CLAIM YIELD FEE</h4>
-                  <h4 className="value-text">{WITHDRAW_FEE / DENOMINATOR_PERCENT}%</h4>
-                </center>
-              </div>
-            </div>
-          </div>
-        </div> */}
-      </div>
-      <br />
-      {/* <div className="container">
-        <div className="row">
-          <div className="col-sm-4">
-            <div className="card cardDino">
-              <div className="card-body">
-                <h4 className="subtitle-normal" style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                  <b>BANK</b>
-                  <b style={{ color: "rgb(254 222 91)" }}>{Number(totalAmount).toFixed(2)} BUSD</b>
-                </h4>
-                <hr />
-                <table className="table">
-                  <tbody>
-                    <tr>
-                      <td><h5 className="content-text"><b>WALLET</b></h5></td>
-                      <td style={{ textAlign: "right", width: "160px" }}><h5 className="value-text">{Number(userBalance).toFixed(2)} BUSD</h5></td>
-                    </tr>
-                    <tr>
-                      <td><h5 className="content-text"><b>DEPOSITED</b></h5></td>
-                      <td style={{ textAlign: "right" }}><h5 className="value-text">{Number(userDepositedAmount).toFixed(2)} BUSD</h5></td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <input
-                          type="number"
-                          placeholder="100 BUSD"
-                          min={0}
-                          className="form-control input-box"
-                          value={depositValue}
-                          step={10}
-                          onChange={(e) => setDepositValue(e.target.value)}
-                        />
-                      </td>
-                      <td style={{ textAlign: "right" }}>
-                        <button className="btn btn-primary btn-lg btn-custom" style={{ width: "123px" }}
-                          onClick={Number.isNaN(parseFloat(depositValue)) || userApprovedAmount > parseFloat(depositValue) ? deposit : approve}
-                          disabled={pendingTx}
-                        >
-                          {Number.isNaN(parseFloat(depositValue)) || userApprovedAmount > parseFloat(depositValue) ? 'DEPOSIT' : 'APPROVE'}
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <br />
-            <div className="card">
-              <div className="card-body">
-                <h4 className="subtitle-normal"><b>REFERRAL REWARDS  {REFERRAL_PERCENT / DENOMINATOR_PERCENT}%</b></h4>
-                <hr />
-                <table className="table">
-                  <tbody>
-                    <tr>
-                      <td><h5 className="content-text">BUSD REWARDS</h5></td>
-                      <td style={{ textAlign: "right" }}><h5 className="value-text">{Number(referralReward).toFixed(2)} BUSD</h5></td>
-                    </tr>
-                    <tr>
-                      <td><h5 className="content-text">TOTAL</h5></td>
-                      <td style={{ textAlign: "right" }}><h5 className="value-text">{Number(refTotalWithdraw).toFixed(2)} BUSD</h5></td>
-                    </tr>
-                  </tbody>
-                </table>
-                <center> <button className="btn btn-primary btn-lg btn-custom" onClick={refWithdraw} disabled={referralReward <= 0 || pendingTx}>WITHDRAW REWARDS</button> </center>
-              </div>
-            </div>
-          </div>
-          <div className="col-sm-4">
-            <div className="card cardDino">
-              <div className="card-body">
-                <h4 className="subtitle-normal"><b>CLAIM REWARDS</b></h4>
-                <hr />
-                <table className="table">
-                  <tbody>
-                    <tr>
-                      <td><h5 className="content-text">TOTAL</h5></td>
-                      <td style={{ textAlign: "right" }}>
-                        <h5 className="value-text">
-                          {Number(web3NoAccount.utils.fromWei(houseInfo && Object.keys(houseInfo).length > 0 ? houseInfo[5] : "0", DECIMALS)).toFixed(3)} BUSD
-                        </h5>
-                      </td>
-                    </tr>
-                    
-                    <tr>
-                      <td><h5 className="content-text">LAST CLAIM</h5></td>
-                      <td style={{ textAlign: "right" }}>
-                        <h5 className="value-text">{Number(web3NoAccount.utils.fromWei(houseInfo && Object.keys(houseInfo).length > 0 ? houseInfo[4] : "0", DECIMALS)).toFixed(3)} BUSD</h5>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><h5 className="content-text">ESTIMATED NEXT CLAIM</h5></td>
-                      <td style={{ textAlign: "right" }}><h5 className="value-text">{Number(nextWithdraw).toFixed(3)} BUSD</h5></td>
-                    </tr>
-                  </tbody>
-                </table>
-                <center>
-                  <button className="btn btn-primary btn-lg btn-custom" onClick={ClaimNow} disabled={pendingTx || nextWithdraw <= 0}>CLAIM</button>
-                </center>
-              </div>
-            </div>
-            <br />
-            <div className="card" style={{ marginTop: "58px" }}>
-              <div className="card-body">
-                <h4 className="subtitle-normal"><b>REFERRAL LINK</b></h4>
-                <hr />
-                <form>
-                  <span className="content-text13">Share your referral link to earn {REFERRAL_PERCENT / DENOMINATOR_PERCENT}% of BUSD </span>
-                  <br />
-                  <LightTooltip
-                    PopperProps={{
-                      disablePortal: true,
-                    }}
-                    open={isTooltipDisplayed}
-                    disableFocusListener
-                    disableHoverListener
-                    disableTouchListener
-                    title={`Copied! ${refLink}`}
-                    followCursor
-                  >
-                    <input type="text"
-                      className="form-control input-box" readOnly
-                      style={{ marginTop: "10px", fontSize: "15px" }}
-                      value={refLink}
-                      onClick={() => {
-                        if (navigator.clipboard) {
-                          navigator.clipboard.writeText(refLink)
-                          setIsTooltipDisplayed(true);
-                          setTimeout(() => {
-                            setIsTooltipDisplayed(false);
-                          }, 5000);
-                        }
-                      }} />
-                  </LightTooltip>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div className="col-sm-4">
-            <div className="card">
-              <div className="card-body">
-                <h4 className="subtitle-normal">
-                  <b>WITHDRAW</b>
-                </h4>
-                <hr />
-                <table className="table">
-                  <tbody>
-                    <tr>
-                      <td><h5 className="content-text">{withdrawState ? "Opening..." : "Remain Time:"}</h5></td>
-                      <td style={{ textAlign: "right" }}>
-                        <h5 className="value-text">
-                          {displayRemainTime(remainTime)}
-                        </h5>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <h6 className="content-text" style={{ lineHeight: "20px" }}>
-                          <b>ENABLE</b><br /><span className="value-text">{Number(enabledAmount).toFixed(2)} BUSD</span>
-                        </h6>
-                      </td>
-                      <td style={{ textAlign: "right", width: "160px" }} >
-                        <h6 className="content-text" style={{ lineHeight: "20px" }}>
-                          <b>REQUESTED</b><br />
-                          <span className="value-text">
-                            {Number(web3NoAccount.utils.fromWei(houseInfo && Object.keys(houseInfo).length > 0 ? houseInfo[0] : "0", DECIMALS)).toFixed(2)} BUSD
-                          </span>
-                        </h6>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <input
-                          type="number"
-                          placeholder="100 BUSD"
-                          min={0}
-                          className="form-control input-box"
-                          value={withdrawRequestValue}
-                          step={10}
-                          onChange={(e) => setWithdrawRequestValue(e.target.value)}
-                        />
-                      </td>
-                      <td style={{ textAlign: "right" }}>
-                        <button className="btn btn-primary btn-lg btn-custom" style={{ width: "123px" }}
-                          onClick={withdrawRequest}
-                          disabled={pendingTx}
-                        >
-                          REQUEST
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <input
-                          type="number"
-                          placeholder="100 BUSD"
-                          min={0}
-                          className="form-control input-box"
-                          value={withdrawValue}
-                          step={10}
-                          onChange={(e) => setWithdrawValue(e.target.value)}
-                        />
-                      </td>
-                      <td style={{ textAlign: "right" }}>
-                        <button className="btn btn-primary btn-lg btn-custom" style={{ width: "123px" }}
-                          onClick={unStake}
-                          disabled={
-                            pendingTx ||
-                            !withdrawState ||
-                            Number.isNaN(withdrawValue) ||
-                            parseFloat(withdrawValue) > enabledAmount ||
-                            parseFloat(web3NoAccount.utils.fromWei(houseInfo && Object.keys(houseInfo).length > 0 ? houseInfo[0] : "0", DECIMALS))
-                          }
-                        >
-                          WITHDRAW
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-        <br />
-        <div className="row">
-          <div className="col-sm-12">
-            <div className="card">
-              <div className="card-header" style={{ border: "none" }}>
-                <h3 className="subtitle-normal">RETURN CALCULATOR</h3>
-              </div>
-              <div className="card-body" style={{ paddingTop: "0.6rem" }}>
-                <div className="row">
-                  <div className="col-sm-6">
-                    <input
-                      type="number"
-                      placeholder="100 BUSD"
-                      className="form-control input-box"
-                      value={calculate}
-                      step={10}
-                      onChange={(e) => setCalculator(e.target.value)}
-                    />
-                    <br />
-                    <p className="content-text18">Amount of returns calculated on the basis of deposit amount.
-                      <br />
-                      <b>Note:</b> Min deposit is 20 BUSD & max deposit is 25,000 BUSD.
-                    </p>
-                  </div>
-                  <div className="col-sm-6" style={{ textAlign: "right" }}>
-                    <h3 className="subtitle-normal" style={{ fontSize: "16px" }}>ROI</h3>
-                    <p className="content-text">
-                      DAILY RETURN: <span className="value-text">{Number(calculate * curAPY / DENOMINATOR / 30).toFixed(3)} BUSD</span> <br />
-                      WEEKLY RETURN: <span className="value-text">{Number(calculate * curAPY / DENOMINATOR / 4.286).toFixed(3)} BUSD</span>  <br />
-                      MONTHLY RETURN: <span className="value-text">{Number(calculate * curAPY / DENOMINATOR).toFixed(3)} BUSD</span>  <br />
-                      Anual RETURN: <span className="value-text">{Number(calculate * curAPY / DENOMINATOR * 12).toFixed(3)} BUSD</span> </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <br />
-        <br />
       </div> */}
+      < br />
     </>);
 }
 
