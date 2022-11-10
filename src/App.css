@@ -11,20 +11,20 @@ body {
 }
 
 .section-open {
-  background: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/barns/background.png) repeat-x;
+  background: url(https://dapp-frontend-prince.web.app/img/background.png) repeat-x;
   background-size: contain;
   background-position: bottom;
 }
 
 .section-clean {
-  background: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/barns/barn_clean.jpg) repeat-x;
+  background: url(https://dapp-frontend-prince.web.app/img/barn_clean.jpg) repeat-x;
   background-size: cover;
   background-position: bottom;
   height: 100vh;
 }
 
 .section-dirty {
-  background: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/barns/barn_dirty.jpg) repeat-x;
+  background: url(https://dapp-frontend-prince.web.app/img/barn_dirty.jpg) repeat-x;
   background-size: cover;
   background-position: bottom;
   height: 100vh;
@@ -43,7 +43,7 @@ body {
 }
 
 .fence-b {
-  position: absolute;
+  position: relative;
   background-repeat: repeat-x;
   width: 100%;
   height: 120px;
@@ -53,7 +53,7 @@ body {
 
 
 .fence-l {
-  position: absolute;
+  position: relative;
   background-repeat: repeat-y;
   width: 100px;
   height: 90%;
@@ -86,7 +86,7 @@ body {
 
 
 div.login-action {
-  position: absolute;
+  position: relative;
   bottom: 10%;
   left: 50%;
   transform: translate(-50%, calc(-50% + 10px));
@@ -96,7 +96,7 @@ div.login-action {
 }
 
 .btn-green {
-  background: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/btn_green.png) no-repeat;
+  background: url(https://dapp-frontend-prince.web.app/img/btn_green.png) no-repeat;
   cursor: pointer;
   border: none;
   background-size: contain;
@@ -127,7 +127,7 @@ input.form-input {
 
 
 .btn-red {
-  background: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/btn_red.png) no-repeat;
+  background: url(https://dapp-frontend-prince.web.app/img/btn_red.png) no-repeat;
   cursor: pointer;
   border: none;
   background-size: contain;
@@ -148,7 +148,7 @@ input.form-input {
 
 
 .btn-upgrade {
-  background: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/btn-upgrade.png) no-repeat;
+  background: url(https://dapp-frontend-prince.web.app/img/btn-upgrade.png) no-repeat;
   cursor: pointer;
   border: none;
   background-size: contain;
@@ -177,7 +177,7 @@ button:hover,
 
 .popup-box-1,
 .popup-box {
-  position: absolute;
+  position: relative;
   left: 50%;
   top: 50%;
   transform: translate(-50%, calc(-50% + 10px));
@@ -193,7 +193,7 @@ button:hover,
 .popup-btn-close {
   background: transparent;
   border: 0;
-  position: absolute;
+  position: relative;
   display: block;
   transition: transform 75ms linear;
   background-image: url(data:image/png;base64,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);
@@ -257,25 +257,37 @@ button:hover,
 .barn-1 {
   top: 0px;
   width: 196px;
+  background-image: url('https://happyfarmer.app/assets/img/barns/barn_1.webp');
+  bottom: 0px;
+  filter: grayscale(100%);
 }
 
 .barn-2 {
   top: 0px;
   width: 280px;
+  background-image: url('https://happyfarmer.app/assets/img/barns/barn_2.webp');
+  bottom: 0px;
+  filter: grayscale(100%);
 }
 
 .barn-3 {
   top: 0px;
   width: 330px;
+  background-image: url('https://happyfarmer.app/assets/img/barns/barn_3.webp');
+  bottom: 0px;
+  filter: grayscale(100%);
 }
 
 .barn-4 {
   top: 0px;
   width: 380px;
+  background-image: url('https://happyfarmer.app/assets/img/barns/barn_4.webp');
+  bottom: 0px;
+  filter: grayscale(100%);
 }
 
 .barns {
-  position: absolute;
+  position: relative;
   top: 76%;
   left: 50%;
   transform: translate(-50%, calc(-50% + 10px));
@@ -290,7 +302,7 @@ button:hover,
 
 .barn-btn-add>div:first-child,
 .barn-btn-upgrade>div:first-child {
-  position: absolute;
+  position: relative;
   width: 20px;
   height: 20px;
   left: calc(50% - 36px);
@@ -303,7 +315,7 @@ button:hover,
 
 
 div.farm-cash {
-  background-image: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/farm-cash.png);
+  background-image: url(https://dapp-frontend-prince.web.app/img/farm-cash.png);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -314,7 +326,7 @@ div.farm-cash {
 
 
 div.farm-coin {
-  background-image: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/farm-coin.png);
+  background-image: url(https://dapp-frontend-prince.web.app/img/farm-coin.png);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -339,14 +351,14 @@ div.barn-action {
   width: 100%;
   background-color: #90e763;
   height: 113px;
-  position: absolute;
+  position: relative;
   top: 76%;
   height: 500px;
   z-index: 1;
 }
 
 .trees {
-  background: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/barns/trees.png) no-repeat;
+  background: url(https://dapp-frontend-prince.web.app/img/trees.png) no-repeat;
   width: 100%;
   background-repeat: repeat-x;
   background-size: contain;
@@ -370,8 +382,6 @@ div.barn-action {
   width: 250px;
   z-index: 4;
 }
-
-
 
 .menu-fixed-left .menu-btns {
   display: block;
@@ -413,7 +423,7 @@ div.barn-action {
   width: 52px;
   height: 54px;
   background-color: transparent;
-  background-image: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/btn-sml-red.png);
+  background-image: url(https://dapp-frontend-prince.web.app/img/btn-sml-red.png);
   background-size: contain;
   background-repeat: no-repeat;
   transition: transform 75ms linear;
@@ -426,7 +436,7 @@ div.barn-action {
   width: 52px;
   height: 54px;
   background-color: transparent;
-  background-image: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/barns/btn_chicken.png);
+  background-image: url(https://dapp-frontend-prince.web.app/img/btn_chicken.png);
   background-size: contain;
   background-repeat: no-repeat;
   transition: transform 75ms linear;
@@ -439,7 +449,7 @@ div.barn-action {
   width: 52px;
   height: 54px;
   background-color: transparent;
-  background-image: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/barns/btn_rabbit.png);
+  background-image: url(https://dapp-frontend-prince.web.app/img/btn_rabbit.png);
   background-size: contain;
   background-repeat: no-repeat;
   transition: transform 75ms linear;
@@ -452,7 +462,7 @@ div.barn-action {
   width: 52px;
   height: 54px;
   background-color: transparent;
-  background-image: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/barns/btn_hog.png);
+  background-image: url(https://dapp-frontend-prince.web.app/img/btn_hog.png);
   background-size: contain;
   background-repeat: no-repeat;
   transition: transform 75ms linear;
@@ -465,7 +475,7 @@ div.barn-action {
   width: 52px;
   height: 54px;
   background-color: transparent;
-  background-image: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/barns/btn_sheep.png);
+  background-image: url(https://dapp-frontend-prince.web.app/img/barns/btn_sheep.png);
   background-size: contain;
   background-repeat: no-repeat;
   transition: transform 75ms linear;
@@ -491,17 +501,17 @@ div.barn-action {
   color: #000;
   top: 2px;
   font-size: 19px;
-  position: absolute;
+  position: relative;
   left: 50%;
   transform: translate(-50%);
   font-weight: 500 !important;
 }
 
 .menu-bar-money {
-  position: absolute;
+  position: relative;
   width: 50px;
   height: 32px;
-  background-image: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/farm-cash.png);
+  background-image: url(https://dapp-frontend-prince.web.app/img/farm-cash.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -510,10 +520,10 @@ div.barn-action {
 }
 
 .menu-bar-market {
-  position: absolute;
+  position: relative;
   width: 50px;
   height: 32px;
-  background-image: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/market.png);
+  background-image: url(https://dapp-frontend-prince.web.app/img/market.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -522,10 +532,10 @@ div.barn-action {
 }
 
 .menu-bar-coin {
-  position: absolute;
+  position: relative;
   width: 50px;
   height: 32px;
-  background-image: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/farm-coin.png);
+  background-image: url(https://dapp-frontend-prince.web.app/img/farm-coin.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -534,10 +544,10 @@ div.barn-action {
 }
 
 .menu-bar-gas {
-  position: absolute;
+  position: relative;
   width: 50px;
   height: 32px;
-  background-image: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/gas-coin.png);
+  background-image: url(https://dapp-frontend-prince.web.app/img/gas-coin.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -546,10 +556,10 @@ div.barn-action {
 }
 
 .menu-bar-renovate {
-  position: absolute;
+  position: relative;
   width: 50px;
   height: 32px;
-  background-image: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/barns/paint-roller.png);
+  background-image: url(https://dapp-frontend-prince.web.app/img/paint-roller.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -558,10 +568,10 @@ div.barn-action {
 }
 
 .menu-bar-slots {
-  position: absolute;
+  position: relative;
   width: 50px;
   height: 32px;
-  background-image: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/barns/animal.png);
+  background-image: url(https://dapp-frontend-prince.web.app/img/animal.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -570,10 +580,10 @@ div.barn-action {
 }
 
 .menu-bar-exchange {
-  position: absolute;
+  position: relative;
   width: 50px;
   height: 32px;
-  background-image: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/exchange.png);
+  background-image: url(https://dapp-frontend-prince.web.app/img/exchange.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -582,10 +592,10 @@ div.barn-action {
 }
 
 .menu-bar-peso {
-  position: absolute;
+  position: relative;
   width: 50px;
   height: 32px;
-  background-image: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/peso.png);
+  background-image: url(https://dapp-frontend-prince.web.app/img/peso.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -611,7 +621,7 @@ div.barn-action {
 .menu-bar-per-hour {
   text-shadow: #000 -1px -1px 0, #000 0 -1.5px 0, #000 1px -1px 0, #000 1.5px 0 0, #000 1px 1px 0, #000 0 2px 0, #000 -1px 1px 0, #000 -1.5px 0 0;
   font-size: 16px;
-  position: absolute;
+  position: relative;
   left: 50%;
   top: 40px;
   transform: translate(-50%);
@@ -640,14 +650,14 @@ div.barn-action {
 .popup-upgrade-mini-box-header {
   color: #fdf611;
   font-size: 16px;
-  position: absolute;
+  position: relative;
   left: 10px;
   top: -6px;
   text-shadow: 0em 0.1em #000, 0.038em 0.092em #000, 0.071em 0.071em #000, 0.092em 0.038em #000, 0.1em 0em #000, 0.092em -0.038em #000, 0.071em -0.071em #000, 0.038em -0.092em #000, 0em -0.1em #000, -0.038em -0.092em #000, -0.071em -0.071em #000, -0.092em -0.038em #000, -0.1em 0em #000, -0.092em 0.038em #000, -0.071em 0.071em #000, -0.038em 0.092em #000;
 }
 
 .popup-upgrade-mini-box-text {
-  position: absolute;
+  position: relative;
   top: 9px;
   left: 35px;
   font-size: 15px;
@@ -658,7 +668,7 @@ div.barn-action {
 
 .popup-upgrade-mini-box-added {
   color: #000;
-  position: absolute;
+  position: relative;
   width: 80px;
   height: 10px;
   right: 23px;
@@ -678,10 +688,10 @@ div.barn-action {
 .logo-desktop,
 .logo,
 .logo-barn {
-  position: absolute;
+  position: relative;
   width: 100%;
   height: 200px;
-  background-image: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/logo.webp);
+  background-image: url(https://dapp-frontend-prince.web.app/img/logo.webp);
   background-size: auto;
   background-repeat: no-repeat;
   background-position: center;
@@ -702,10 +712,10 @@ div.barn-action {
 .menu-bar-btn-minus {
   background: transparent;
   border: 0;
-  position: absolute;
+  position: relative;
   width: 27px;
   height: 33px;
-  background-image: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/plus.png);
+  background-image: url(https://dapp-frontend-prince.web.app/img/plus.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -716,7 +726,7 @@ div.barn-action {
 }
 
 .menu-bar-btn-minus {
-  background-image: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/minus.png);
+  background-image: url(https://dapp-frontend-prince.web.app/img/minus.png);
 }
 
 .fc-add {
@@ -778,7 +788,7 @@ div.barn-action {
 }
 
 .popup-partners-users-bar-icon {
-  background-image: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/gamer.png);
+  background-image: url(https://dapp-frontend-prince.web.app/img/gamer.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -809,7 +819,7 @@ div.barn-action {
 
 .popup-partners-coin-icon {
   display: inline-block;
-  background-image: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/farm-coin.png);
+  background-image: url(https://dapp-frontend-prince.web.app/img/farm-coin.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -821,7 +831,7 @@ div.barn-action {
 
 .popup-partners-money-icon {
   display: inline-block;
-  background-image: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/farm-cash.png);
+  background-image: url(https://dapp-frontend-prince.web.app/img/farm-cash.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -833,7 +843,7 @@ div.barn-action {
 
 .popup-partners-livestock-icon {
   display: inline-block;
-  background-image: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/market.png);
+  background-image: url(https://dapp-frontend-prince.web.app/img/market.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -845,7 +855,7 @@ div.barn-action {
 
 .popup-partners-gas-icon {
   display: inline-block;
-  background-image: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/gas-coin.png);
+  background-image: url(https://dapp-frontend-prince.web.app/img/gas-coin.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -884,7 +894,7 @@ div.barn-action {
 }
 
 .popup-buy-currency-icon {
-  background-image: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/farm-coin.png);
+  background-image: url(https://dapp-frontend-prince.web.app/img/farm-coin.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -954,7 +964,7 @@ div.barn-action {
 }
 
 .popup-buy-coin-icon {
-  background-image: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/farm-cash.png);
+  background-image: url(https://dapp-frontend-prince.web.app/img/farm-cash.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -1119,13 +1129,13 @@ div.barn-action {
 
 .collect-action {
   bottom: 0%;
-  position: absolute;
+  position: relative;
   left: 45%;
 }
 
 .section-animals {
   top: 0%;
-  position: absolute;
+  position: relative;
   width: 100%;
   height: 100vh;
 }
@@ -1201,7 +1211,7 @@ div.barn-action {
 }
 
 .popup-profit-money-bar-icon {
-  background-image: url(https://happyfarmercdn.s3.ap-southeast-1.amazonaws.com/assets/img/farm-cash.png);
+  background-image: url(https://dapp-frontend-prince.web.app/img/farm-cash.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -1224,7 +1234,7 @@ div.barn-action {
 
 .panels {
   width: 100%;
-  position: absolute;
+  position: relative;
   padding: 0px 10px !important;
 }
 
@@ -1305,7 +1315,7 @@ table.table {
 }
 
 .alert {
-  position: absolute;
+  position: relative;
   right: 0;
   margin: 10px;
   border: 2px #684D03 solid;
@@ -1316,7 +1326,7 @@ table.table {
 }
 
 .promotional-video {
-  position: absolute;
+  position: relative;
   top: 32%;
   width: 447px;
   height: auto;

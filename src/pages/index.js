@@ -395,59 +395,7 @@ const Home = () => {
   return (
     <>
       {/* <div class="loading" style="display:none;">Loading&#8230;</div> */}
-      <div class="logo-desktop"></div>
-      <div class="menu-fixed-left">
-        <div class="menu-bars">
-          <div class="menu-bar">
-            <div class="menu-bar-coin"></div>
-            <div class="menu-bar-value menu-bar-money-value">0.00</div>
-          </div>
-          <div class="menu-bar">
-            <div class="menu-bar-gas"></div>
-            <div class="menu-bar-value menu-bar-money-value">0.00</div>
-          </div>
-          <div class="menu-bar fc-bar">
-            <div class="menu-bar-money"></div>
-            <div class="menu-bar-value menu-bar-money-value">0.00</div>
-          </div>
-          <div class="menu-bar fc-bar ls-bar">
-            <div class="menu-bar-market"></div>
-            <div class="menu-bar-value menu-bar-money-value">0.00</div>
-          </div>
-          <div class="menu-bar">
-            <div class="menu-bar-peso"></div>
-            <div class="menu-bar-value menu-bar-money-value">1 CASH = ₱ 0.75</div>
-          </div>
-          <div class="menu-bar">
-            <div class="menu-bar-exchange"></div>
-            <div class="menu-bar-value menu-bar-money-value sell-allotment" id="allotment_amount">₱ 2,500,000</div>
-          </div>
-        </div>
-      </div>
-      <div class="menu-fixed-right">
-        <div class="menu-btns">
-          <button class="menu-btn-red" id="send_cash" data-bs-placement="right" data-bs-toggle="tooltip" title="Send FC/LC">
-            <i class="fa fa-money-bill-wave"></i>
-          </button>
-          <button class="menu-btn menu-btn-leaderboard" data-bs-placement="right" data-bs-toggle="tooltip" title="Leaderboard">
-            <i class="fa fa-trophy"></i>
-          </button>
-          <button class="menu-btn menu-btn-affiliate" data-bs-placement="right" data-bs-toggle="tooltip" title="Affiliate"  >
-            <i class="fa fa-users"></i>
-          </button>
-          <button class="menu-btn menu-btn-transactions" data-bs-placement="right" data-bs-toggle="tooltip" title="Transactions">
-            <i class="fa fa-cubes"></i>
-          </button>
-          <button class="menu-btn menu-btn-logs" data-bs-placement="right" data-bs-toggle="tooltip" title="Logs">
-            <i class="fa fa-money-check"></i>
-          </button>
 
-          <button class="menu-btn menu-btn-logout" data-bs-placement="right" data-bs-toggle="tooltip" title="Logout"  >
-            <i class="fa fa-sign-out"></i>
-          </button>
-        </div>
-
-      </div>
 
       {/* <div class="popup-wrapper popup-buy popup-exchange" style="display: none;">
         <form action="https://happyfarmer.app/exchange" method="post" role="form" >
@@ -865,12 +813,63 @@ const Home = () => {
           </form>
         </div>
         <button type="button" class="popup-btn-close"></button>
-      </div>
+      </div> */}
 
       <div class="section-open">
-        <div class="ranch">
-          <div class="trees"></div>
-          <div class="popup-wrapper popup-barn-1" style="display: none;">
+        <div class="logo-desktop"></div>
+        <div class="menu-fixed-left">
+          <div class="menu-bars">
+            <div class="menu-bar">
+              <div class="menu-bar-coin"></div>
+              <div class="menu-bar-value menu-bar-money-value">0.00</div>
+            </div>
+            <div class="menu-bar">
+              <div class="menu-bar-gas"></div>
+              <div class="menu-bar-value menu-bar-money-value">0.00</div>
+            </div>
+            <div class="menu-bar fc-bar">
+              <div class="menu-bar-money"></div>
+              <div class="menu-bar-value menu-bar-money-value">0.00</div>
+            </div>
+            <div class="menu-bar fc-bar ls-bar">
+              <div class="menu-bar-market"></div>
+              <div class="menu-bar-value menu-bar-money-value">0.00</div>
+            </div>
+            <div class="menu-bar">
+              <div class="menu-bar-peso"></div>
+              <div class="menu-bar-value menu-bar-money-value">1 CASH = ₱ 0.75</div>
+            </div>
+            <div class="menu-bar">
+              <div class="menu-bar-exchange"></div>
+              <div class="menu-bar-value menu-bar-money-value sell-allotment" id="allotment_amount">₱ 2,500,000</div>
+            </div>
+          </div>
+        </div>
+        <div class="menu-fixed-right">
+          <div class="menu-btns">
+            <button class="menu-btn-red" id="send_cash" data-bs-placement="right" data-bs-toggle="tooltip" title="Send FC/LC">
+              <i class="fa fa-money-bill-wave"></i>
+            </button>
+            <button class="menu-btn menu-btn-leaderboard" data-bs-placement="right" data-bs-toggle="tooltip" title="Leaderboard">
+              <i class="fa fa-trophy"></i>
+            </button>
+            <button class="menu-btn menu-btn-affiliate" data-bs-placement="right" data-bs-toggle="tooltip" title="Affiliate"  >
+              <i class="fa fa-users"></i>
+            </button>
+            <button class="menu-btn menu-btn-transactions" data-bs-placement="right" data-bs-toggle="tooltip" title="Transactions">
+              <i class="fa fa-cubes"></i>
+            </button>
+            <button class="menu-btn menu-btn-logs" data-bs-placement="right" data-bs-toggle="tooltip" title="Logs">
+              <i class="fa fa-money-check"></i>
+            </button>
+
+            <button class="menu-btn menu-btn-logout" data-bs-placement="right" data-bs-toggle="tooltip" title="Logout"  >
+              <i class="fa fa-sign-out"></i>
+            </button>
+          </div>
+        </div>
+        <div class="ranch trees">
+          <div class="popup-wrapper popup-barn-1">
             <div class="popup-box-1 popup-box">
               <div class="popup-profit-header">BASIC BARN</div>
               <div class="container">
@@ -898,7 +897,7 @@ const Home = () => {
             </div>
             <button type="button" class="popup-btn-close"></button>
           </div>
-          <div class="popup-wrapper popup-barn-2" style="display: none;">
+          <div class="popup-wrapper popup-barn-2">
             <div class="popup-box-2 popup-box">
               <div class="popup-profit-header">MEDIUM BARN</div>
               <div class="container">
@@ -926,7 +925,7 @@ const Home = () => {
             </div>
             <button type="button" class="popup-btn-close"></button>
           </div>
-          <div class="popup-wrapper popup-barn-3" style="display: none;">
+          <div class="popup-wrapper popup-barn-3">
             <div class="popup-box-3 popup-box">
               <div class="popup-profit-header">LARGE BARN</div>
               <div class="container">
@@ -954,7 +953,7 @@ const Home = () => {
             </div>
             <button type="button" class="popup-btn-close"></button>
           </div>
-          <div class="popup-wrapper popup-barn-4" style="display: none;">
+          <div class="popup-wrapper popup-barn-4">
             <div class="popup-box-4 popup-box">
               <div class="popup-profit-header">GRAND BARN</div>
               <div class="container">
@@ -985,40 +984,83 @@ const Home = () => {
 
           <div class="barns">
             <div class="barn">
-              <div class=" barn-1 barn-grey-100" style="background-image: url('https://happyfarmer.app/assets/img/barns/barn_1.webp'); bottom: 0px; filter: grayscale(100%);"></div>
+              <div class="barn-1 barn-grey-100"></div>
               <div class="barn-action">
-                <button class="btn-red btn-buy-barn" data-code="1">
+                <button class="btn-red btn-buy-barn">
                   <div class="farm-coin">&nbsp;</div>
-                  100                </button>
+                  100
+                </button>
               </div>
             </div>
             <div class="barn">
-              <div class=" barn-2 barn-grey-100" style="background-image: url('https://happyfarmer.app/assets/img/barns/barn_2.webp'); bottom: 0px; filter: grayscale(100%);"></div>
+              <div class="barn-2 barn-grey-100"></div>
               <div class="barn-action">
-                <button class="btn-red btn-buy-barn" data-code="2">
+                <button class="btn-red btn-buy-barn">
                   <div class="farm-coin">&nbsp;</div>
-                  1K                </button>
+                  1K
+                </button>
               </div>
             </div>
             <div class="barn">
-              <div class=" barn-3 barn-grey-100" style="background-image: url('https://happyfarmer.app/assets/img/barns/barn_3.webp'); bottom: 0px; filter: grayscale(100%);"></div>
+              <div class="barn-3 barn-grey-100"></div>
               <div class="barn-action">
-                <button class="btn-red btn-buy-barn" data-code="3">
+                <button class="btn-red btn-buy-barn">
                   <div class="farm-coin">&nbsp;</div>
-                  2K                </button>
+                  2K
+                </button>
               </div>
             </div>
             <div class="barn">
-              <div class=" barn-4 barn-grey-100" style="background-image: url('https://happyfarmer.app/assets/img/barns/barn_4.webp'); bottom: 0px; filter: grayscale(100%);"></div>
+              <div class="barn-4 barn-grey-100"></div>
               <div class="barn-action">
-                <button class="btn-red btn-buy-barn" data-code="4">
+                <button class="btn-red btn-buy-barn">
                   <div class="farm-coin">&nbsp;</div>
-                  3K                </button>
+                  3K
+                </button>
+              </div>
+            </div>
+          </div >
+          <div class="barns">
+            <div class="barn">
+              <div class="barn-1 barn-grey-100"></div>
+              <div class="barn-action">
+                <button class="btn-red btn-buy-barn">
+                  <div class="farm-coin">&nbsp;</div>
+                  100
+                </button>
+              </div>
+            </div>
+            <div class="barn">
+              <div class="barn-2 barn-grey-100"></div>
+              <div class="barn-action">
+                <button class="btn-red btn-buy-barn">
+                  <div class="farm-coin">&nbsp;</div>
+                  1K
+                </button>
+              </div>
+            </div>
+            <div class="barn">
+              <div class="barn-3 barn-grey-100"></div>
+              <div class="barn-action">
+                <button class="btn-red btn-buy-barn">
+                  <div class="farm-coin">&nbsp;</div>
+                  2K
+                </button>
+              </div>
+            </div>
+            <div class="barn">
+              <div class="barn-4 barn-grey-100"></div>
+              <div class="barn-action">
+                <button class="btn-red btn-buy-barn">
+                  <div class="farm-coin">&nbsp;</div>
+                  3K
+                </button>
               </div>
             </div>
           </div >
         </div >
-      </div > */}
+      </div >
+
       {/* <nav className="navbar navbar-expand-sm navbar-dark" style={{ marginTop: "30px" }}>
         <div className="container"
           style={{
