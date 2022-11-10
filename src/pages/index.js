@@ -869,7 +869,7 @@ const Home = () => {
           </div>
         </div>
         <div class="ranch trees">
-          <div class="popup-wrapper popup-barn-1">
+          {/* <div class="popup-wrapper popup-barn-1">
             <div class="popup-box-1 popup-box">
               <div class="popup-profit-header">BASIC BARN</div>
               <div class="container">
@@ -980,7 +980,7 @@ const Home = () => {
               </div>
             </div>
             <button type="button" class="popup-btn-close"></button>
-          </div>
+          </div> */}
 
           <div class="barns">
             <div class="barn">
@@ -988,7 +988,7 @@ const Home = () => {
               <div class="barn-action">
                 <button class="btn-red btn-buy-barn">
                   <div class="farm-coin">&nbsp;</div>
-                  100
+                  500
                 </button>
               </div>
             </div>
@@ -997,7 +997,7 @@ const Home = () => {
               <div class="barn-action">
                 <button class="btn-red btn-buy-barn">
                   <div class="farm-coin">&nbsp;</div>
-                  1K
+                  1500
                 </button>
               </div>
             </div>
@@ -1006,7 +1006,7 @@ const Home = () => {
               <div class="barn-action">
                 <button class="btn-red btn-buy-barn">
                   <div class="farm-coin">&nbsp;</div>
-                  2K
+                  4500
                 </button>
               </div>
             </div>
@@ -1015,45 +1015,45 @@ const Home = () => {
               <div class="barn-action">
                 <button class="btn-red btn-buy-barn">
                   <div class="farm-coin">&nbsp;</div>
-                  3K
+                  13.5K
                 </button>
               </div>
             </div>
           </div >
           <div class="barns">
             <div class="barn">
-              <div class="barn-1 barn-grey-100"></div>
+              <div class="barn-5 barn-grey-100"></div>
               <div class="barn-action">
                 <button class="btn-red btn-buy-barn">
                   <div class="farm-coin">&nbsp;</div>
-                  100
+                  40.5K
                 </button>
               </div>
             </div>
             <div class="barn">
-              <div class="barn-2 barn-grey-100"></div>
+              <div class="barn-6 barn-grey-100"></div>
               <div class="barn-action">
                 <button class="btn-red btn-buy-barn">
                   <div class="farm-coin">&nbsp;</div>
-                  1K
+                  120K
                 </button>
               </div>
             </div>
             <div class="barn">
-              <div class="barn-3 barn-grey-100"></div>
+              <div class="barn-7 barn-grey-100"></div>
               <div class="barn-action">
                 <button class="btn-red btn-buy-barn">
                   <div class="farm-coin">&nbsp;</div>
-                  2K
+                  365K
                 </button>
               </div>
             </div>
             <div class="barn">
-              <div class="barn-4 barn-grey-100"></div>
+              <div class="barn-8 barn-grey-100"></div>
               <div class="barn-action">
                 <button class="btn-red btn-buy-barn">
                   <div class="farm-coin">&nbsp;</div>
-                  3K
+                  1M
                 </button>
               </div>
             </div>

@@ -133,7 +133,7 @@ input.form-input {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  padding: 10px 20px;
+  padding: 10px 10px;
   font-size: 19px;
   line-height: initial;
   color: ivory;
@@ -235,7 +235,7 @@ button:hover,
 }
 
 .barn {
-  margin: 10px;
+  margin: 5px;
 }
 
 .barn div {
@@ -244,7 +244,7 @@ button:hover,
   background-position: center bottom;
   overflow: hidden;
   text-align: center;
-  height: 220px;
+  height: 120px;
 }
 
 .barn .barn-grey-0:hover,
@@ -253,42 +253,73 @@ button:hover,
   transform: scale(1.1);
 }
 
-
 .barn-1 {
   top: 0px;
-  width: 196px;
-  background-image: url('https://happyfarmer.app/assets/img/barns/barn_1.webp');
+  width: 230px;
+  background-image: url('https://dapp-frontend-prince.web.app/img/house1.webp');
   bottom: 0px;
   filter: grayscale(100%);
 }
 
 .barn-2 {
   top: 0px;
-  width: 280px;
-  background-image: url('https://happyfarmer.app/assets/img/barns/barn_2.webp');
+  width: 260px;
+  background-image: url('https://dapp-frontend-prince.web.app/img/house2.webp');
   bottom: 0px;
   filter: grayscale(100%);
 }
 
 .barn-3 {
   top: 0px;
-  width: 330px;
-  background-image: url('https://happyfarmer.app/assets/img/barns/barn_3.webp');
+  width: 290px;
+  background-image: url('https://dapp-frontend-prince.web.app/img/house3.webp');
   bottom: 0px;
   filter: grayscale(100%);
 }
 
 .barn-4 {
   top: 0px;
-  width: 380px;
-  background-image: url('https://happyfarmer.app/assets/img/barns/barn_4.webp');
+  width: 320px;
+  background-image: url('https://dapp-frontend-prince.web.app/img/house4.webp');
+  bottom: 0px;
+  filter: grayscale(100%);
+}
+
+.barn-5 {
+  top: 0px;
+  width: 260px;
+  background-image: url('https://dapp-frontend-prince.web.app/img/house5.webp');
+  bottom: 0px;
+  filter: grayscale(100%);
+}
+
+.barn-6 {
+  top: 0px;
+  width: 290px;
+  background-image: url('https://dapp-frontend-prince.web.app/img/house6.webp');
+  bottom: 0px;
+  filter: grayscale(100%);
+}
+
+.barn-7 {
+  top: 0px;
+  width: 320px;
+  background-image: url('https://dapp-frontend-prince.web.app/img/house7.webp');
+  bottom: 0px;
+  filter: grayscale(100%);
+}
+
+.barn-8 {
+  top: 0px;
+  width: 350px;
+  background-image: url('https://dapp-frontend-prince.web.app/img/house8.webp');
   bottom: 0px;
   filter: grayscale(100%);
 }
 
 .barns {
   position: relative;
-  top: 76%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, calc(-50% + 10px));
   overflow: hidden;
@@ -297,6 +328,8 @@ button:hover,
   z-index: 2;
   width: 100%;
   overflow-x: scroll;
+  display: flex;
+  justify-content: center;
 }
 
 
@@ -362,11 +395,8 @@ div.barn-action {
   width: 100%;
   background-repeat: repeat-x;
   background-size: contain;
-  background-position: bottom;
-  height: 113px;
-  position: relative;
-  top: 0%;
-  height: 100vh;
+  background-position: top;
+  height: 75vh;
   z-index: 0;
 }
 
