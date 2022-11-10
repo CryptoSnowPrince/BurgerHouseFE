@@ -372,102 +372,145 @@ const Home = () => {
 
   return (
     <>
-      {/* <div class="loading" style="display:none;">Loading&#8230;</div> */}
-
-      {/* <div class="popup-wrapper popup-buy popup-exchange" style="display: none;">
-        <form action="https://happyfarmer.app/exchange" method="post" role="form" >
-          <div class="popup-box-1">
-            <div class="popup-buy-header">Purchase of Farm Cash</div>
-
-            <div class="popup-buy-text-container">
-              <div class="popup-buy-text-ticker">
-                <div class="popup-buy-currency-icon"></div>
-                COIN
-              </div>
-              <div class="popup-buy-text-balance">Balance: 0.00</div>
+      <div class="section-open">
+        <div class="logo-desktop"></div>
+        {/* <div class="menu-fixed-left">
+          <div class="menu-bars">
+            <div class="menu-bar">
+              <div class="menu-bar-coin"></div>
+              <div class="menu-bar-value menu-bar-money-value">0.00</div>
             </div>
-            <div class="popup-buy-input-wrapper">
-              <input style="font-size: 20px" name="coin" type="number" inputmode="decimal" placeholder="0.0" class="popup-buy-input popup-buy-input-coin" />
+            <div class="menu-bar">
+              <div class="menu-bar-gas"></div>
+              <div class="menu-bar-value menu-bar-money-value">0.00</div>
             </div>
-            <div class="popup-buy-arrow">
-              <i class="fa-solid fa-arrow-down"></i>
+            <div class="menu-bar fc-bar">
+              <div class="menu-bar-money"></div>
+              <div class="menu-bar-value menu-bar-money-value">0.00</div>
             </div>
-            <div class="popup-buy-text-container" style="margin-top: 0px">
-              <div class="popup-buy-text-ticker">
-                <div class="popup-buy-coin-icon"></div>
-                FARM CASH
-              </div>
+            <div class="menu-bar fc-bar ls-bar">
+              <div class="menu-bar-market"></div>
+              <div class="menu-bar-value menu-bar-money-value">0.00</div>
             </div>
-            <div class="popup-buy-input-wrapper">
-              <input style="font-size:  20px" type="number" inputmode="decimal" placeholder="0" class="popup-buy-input popup-buy-input-cash" />
+            <div class="menu-bar">
+              <div class="menu-bar-peso"></div>
+              <div class="menu-bar-value menu-bar-money-value">1 CASH = ₱ 0.75</div>
             </div>
-            <div class="popup-buy-rate-text">
-              1 COIN For 1.33 Farm Cash (FC)
-            </div>
-            <div class="container">
-              <div class="alert alert-warning" role="alert">
-                Not enough coins
-              </div>
+            <div class="menu-bar">
+              <div class="menu-bar-exchange"></div>
+              <div class="menu-bar-value menu-bar-money-value sell-allotment" id="allotment_amount">₱ 2,500,000</div>
             </div>
           </div>
-        </form>
-        <button type="button" class="popup-btn-close popup-btn-close-3"></button>
-      </div>
-
-      <div class="popup-wrapper popup-payout" style="display: none;">
-        <div class="popup-box-exchange popup-box">
-          <form id="form_sell_fc" action="https://happyfarmer.app/sell" method="post">
-            <div class="popup-profit-header sell-header">Sell Farm Cash</div>
-
-            <div class="popup-buy-text-container">
-              <div class="popup-buy-text-ticker">
-                FC
-              </div>
-              <div class="popup-buy-text-balance popup-sell-input-max">Max: 0.00</div>
-            </div>
-            <div class="popup-buy-input-wrapper">
-              <input style="font-size: 20px" name="cash" type="number" id="sell_input_cash" inputmode="decimal" placeholder="0.0" class="popup-buy-input popup-sell-input-cash" />
-            </div>
-
-            <div class="popup-buy-text-container computation">
-              <div class="popup-buy-text-ticker">
-                5% TAX
-              </div>
-              <div class="popup-buy-text-balance popup-sell-input-tax"></div>
-            </div>
-
-            <div class="popup-buy-text-container computation">
-              <div class="popup-buy-text-ticker">
-                PHP
-              </div>
-              <div class="popup-buy-text-balance popup-sell-input-php"></div>
-            </div>
-
-            <div class="popup-buy-text-container">
-              <div class="popup-buy-text-ticker">
-                Mode of Payment
-              </div>
-            </div>
-            <div class="popup-buy-input-wrapper">
-              <input style="font-size: 20px" name="mop" type="text" placeholder="gcash or bank details" class="popup-buy-input popup-sell-input-mop" />
-            </div>
-            <div id="sell_fc_alert"></div>
-            <div class="container">
-              <div class="alert alert-warning" role="alert">
-                Not enough cash
-              </div>
-            </div>
-          </form>
         </div>
-        <button type="button" class="popup-btn-close"></button>
-      </div>
+        <div class="menu-fixed-right">
+          <div class="menu-btns">
+            <button class="menu-btn-red" id="send_cash" data-bs-placement="right" data-bs-toggle="tooltip" title="Send FC/LC">
+              <i class="fa fa-money-bill-wave"></i>
+            </button>
+            <button class="menu-btn menu-btn-leaderboard" data-bs-placement="right" data-bs-toggle="tooltip" title="Leaderboard">
+              <i class="fa fa-trophy"></i>
+            </button>
+            <button class="menu-btn menu-btn-affiliate" data-bs-placement="right" data-bs-toggle="tooltip" title="Affiliate"  >
+              <i class="fa fa-users"></i>
+            </button>
+            <button class="menu-btn menu-btn-transactions" data-bs-placement="right" data-bs-toggle="tooltip" title="Transactions">
+              <i class="fa fa-cubes"></i>
+            </button>
+            <button class="menu-btn menu-btn-logs" data-bs-placement="right" data-bs-toggle="tooltip" title="Logs">
+              <i class="fa fa-money-check"></i>
+            </button>
+
+            <button class="menu-btn menu-btn-logout" data-bs-placement="right" data-bs-toggle="tooltip" title="Logout"  >
+              <i class="fa fa-sign-out"></i>
+            </button>
+          </div>
+        </div> */}
+        <div class="ranch trees">
+          <div class="barns">
+            <div class="barn">
+              <div class="barn-1 barn-grey-100"></div>
+              <div class="barn-action">
+                <button class="btn-red btn-buy-barn" data-toggle="modal" data-target="#RAFModal">
+                  <div class="farm-coin" >&nbsp;</div>
+                  500
+                </button>
+              </div>
+            </div>
+            <div class="barn">
+              <div class="barn-2 barn-grey-100"></div>
+              <div class="barn-action">
+                <button class="btn-red btn-buy-barn">
+                  <div class="farm-coin">&nbsp;</div>
+                  1500
+                </button>
+              </div>
+            </div>
+            <div class="barn">
+              <div class="barn-3 barn-grey-100"></div>
+              <div class="barn-action">
+                <button class="btn-red btn-buy-barn">
+                  <div class="farm-coin">&nbsp;</div>
+                  4500
+                </button>
+              </div>
+            </div>
+            <div class="barn">
+              <div class="barn-4 barn-grey-100"></div>
+              <div class="barn-action">
+                <button class="btn-red btn-buy-barn">
+                  <div class="farm-coin">&nbsp;</div>
+                  13.5K
+                </button>
+              </div>
+            </div>
+          </div >
+          <div class="barns">
+            <div class="barn">
+              <div class="barn-5 barn-grey-100"></div>
+              <div class="barn-action">
+                <button class="btn-red btn-buy-barn">
+                  <div class="farm-coin">&nbsp;</div>
+                  40.5K
+                </button>
+              </div>
+            </div>
+            <div class="barn">
+              <div class="barn-6 barn-grey-100"></div>
+              <div class="barn-action">
+                <button class="btn-red btn-buy-barn">
+                  <div class="farm-coin">&nbsp;</div>
+                  120K
+                </button>
+              </div>
+            </div>
+            <div class="barn">
+              <div class="barn-7 barn-grey-100"></div>
+              <div class="barn-action">
+                <button class="btn-red btn-buy-barn">
+                  <div class="farm-coin">&nbsp;</div>
+                  365K
+                </button>
+              </div>
+            </div>
+            <div class="barn">
+              <div class="barn-8 barn-grey-100"></div>
+              <div class="barn-action">
+                <button class="btn-red btn-buy-barn">
+                  <div class="farm-coin">&nbsp;</div>
+                  1M
+                </button>
+              </div>
+            </div>
+          </div >
+        </div >
+      </div >
 
       <div class="modal" id="RAFModal">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title">Affiliates</h4>
-              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              <button type="button" class="btn-close" data-dismiss="modal"></button>
             </div>
             <div class="modal-body">
               <div class="popup-partners-input-wrapper">
@@ -502,7 +545,7 @@ const Home = () => {
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title">Transactions</h4>
-              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              <button type="button" class="btn-close" data-dismiss="modal"></button>
             </div>
             <div class="modal-body">
               <table class="table">
@@ -527,7 +570,7 @@ const Home = () => {
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title">Latest 10 Transactions</h4>
-              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              <button type="button" class="btn-close" data-dismiss="modal"></button>
             </div>
             <div class="modal-body">
               <table class="table">
@@ -550,7 +593,7 @@ const Home = () => {
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title">Send Coins</h4>
-              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              <button type="button" class="btn-close" data-dismiss="modal"></button>
             </div>
             <div class="modal-body">
 
@@ -581,7 +624,7 @@ const Home = () => {
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title">Send Gas</h4>
-              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              <button type="button" class="btn-close" data-dismiss="modal"></button>
             </div>
             <div class="modal-body">
 
@@ -612,7 +655,7 @@ const Home = () => {
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title">Send Cash</h4>
-              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              <button type="button" class="btn-close" data-dismiss="modal"></button>
             </div>
             <div class="modal-body">
 
@@ -657,7 +700,7 @@ const Home = () => {
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title">LEADERBOARD</h4>
-              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              <button type="button" class="btn-close" data-dismiss="modal"></button>
             </div>
             <div class="modal-body">
               <table class="table">
@@ -744,109 +787,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div class="popup-wrapper popup-payout-ls" style="display: none;">
-        <div class="popup-box-exchange popup-box">
-          <form id="form_sell_ls" action="https://happyfarmer.app/sell-ls" method="post">
-            <div class="popup-profit-header sell-header">Sell Livestock Cash</div>
-
-            <div class="popup-buy-text-container">
-              <div class="popup-buy-text-ticker">
-                Livestock Amount
-              </div>
-              <div class="popup-buy-text-balance popup-sell-input-max">Max: 0.00</div>
-            </div>
-            <div class="popup-buy-input-wrapper">
-              <input style="font-size: 20px" name="cash" type="number" id="sell_input_cash" inputmode="decimal" placeholder="0.0" class="popup-buy-input popup-sell-input-ls" />
-            </div>
-
-            <div class="popup-buy-text-container computation">
-              <div class="popup-buy-text-ticker">
-                5% TAX
-              </div>
-              <div class="popup-buy-text-balance popup-sell-input-tax"></div>
-            </div>
-
-            <div class="popup-buy-text-container computation">
-              <div class="popup-buy-text-ticker">
-                PHP
-              </div>
-              <div class="popup-buy-text-balance popup-sell-input-php"></div>
-            </div>
-
-            <div class="popup-buy-text-container">
-              <div class="popup-buy-text-ticker">
-                Mode of Payment
-              </div>
-            </div>
-            <div class="popup-buy-input-wrapper">
-              <input style="font-size: 20px" name="mop" type="text" placeholder="gcash or bank details" class="popup-buy-input popup-sell-input-mop" />
-            </div>
-            <div id="sell_lc_alert"></div>
-            <div class="container">
-              <div class="alert alert-warning" role="alert">
-                Not enough cash
-              </div>
-            </div>
-          </form>
-        </div>
-        <button type="button" class="popup-btn-close"></button>
-      </div> */}
-
-      <div class="section-open">
-        <div class="logo-desktop"></div>
-        <div class="menu-fixed-left">
-          <div class="menu-bars">
-            <div class="menu-bar">
-              <div class="menu-bar-coin"></div>
-              <div class="menu-bar-value menu-bar-money-value">0.00</div>
-            </div>
-            <div class="menu-bar">
-              <div class="menu-bar-gas"></div>
-              <div class="menu-bar-value menu-bar-money-value">0.00</div>
-            </div>
-            <div class="menu-bar fc-bar">
-              <div class="menu-bar-money"></div>
-              <div class="menu-bar-value menu-bar-money-value">0.00</div>
-            </div>
-            <div class="menu-bar fc-bar ls-bar">
-              <div class="menu-bar-market"></div>
-              <div class="menu-bar-value menu-bar-money-value">0.00</div>
-            </div>
-            <div class="menu-bar">
-              <div class="menu-bar-peso"></div>
-              <div class="menu-bar-value menu-bar-money-value">1 CASH = ₱ 0.75</div>
-            </div>
-            <div class="menu-bar">
-              <div class="menu-bar-exchange"></div>
-              <div class="menu-bar-value menu-bar-money-value sell-allotment" id="allotment_amount">₱ 2,500,000</div>
-            </div>
-          </div>
-        </div>
-        <div class="menu-fixed-right">
-          <div class="menu-btns">
-            <button class="menu-btn-red" id="send_cash" data-bs-placement="right" data-bs-toggle="tooltip" title="Send FC/LC">
-              <i class="fa fa-money-bill-wave"></i>
-            </button>
-            <button class="menu-btn menu-btn-leaderboard" data-bs-placement="right" data-bs-toggle="tooltip" title="Leaderboard">
-              <i class="fa fa-trophy"></i>
-            </button>
-            <button class="menu-btn menu-btn-affiliate" data-bs-placement="right" data-bs-toggle="tooltip" title="Affiliate"  >
-              <i class="fa fa-users"></i>
-            </button>
-            <button class="menu-btn menu-btn-transactions" data-bs-placement="right" data-bs-toggle="tooltip" title="Transactions">
-              <i class="fa fa-cubes"></i>
-            </button>
-            <button class="menu-btn menu-btn-logs" data-bs-placement="right" data-bs-toggle="tooltip" title="Logs">
-              <i class="fa fa-money-check"></i>
-            </button>
-
-            <button class="menu-btn menu-btn-logout" data-bs-placement="right" data-bs-toggle="tooltip" title="Logout"  >
-              <i class="fa fa-sign-out"></i>
-            </button>
-          </div>
-        </div>
-        <div class="ranch trees">
-          {/* <div class="popup-wrapper popup-barn-1">
+      {/* <div class="popup-wrapper popup-barn-1">
             <div class="popup-box-1 popup-box">
               <div class="popup-profit-header">BASIC BARN</div>
               <div class="container">
@@ -958,85 +899,143 @@ const Home = () => {
             </div>
             <button type="button" class="popup-btn-close"></button>
           </div> */}
+      {/* <div class="loading" style="display:none;">Loading&#8230;</div> */}
 
-          <div class="barns">
-            <div class="barn">
-              <div class="barn-1 barn-grey-100"></div>
-              <div class="barn-action">
-                <button class="btn-red btn-buy-barn" onClick={unStake}>
-                  <div class="farm-coin">&nbsp;</div>
-                  500
-                </button>
+      {/* <div class="popup-wrapper popup-buy popup-exchange" style="display: none;">
+        <form action="https://happyfarmer.app/exchange" method="post" role="form" >
+          <div class="popup-box-1">
+            <div class="popup-buy-header">Purchase of Farm Cash</div>
+
+            <div class="popup-buy-text-container">
+              <div class="popup-buy-text-ticker">
+                <div class="popup-buy-currency-icon"></div>
+                COIN
+              </div>
+              <div class="popup-buy-text-balance">Balance: 0.00</div>
+            </div>
+            <div class="popup-buy-input-wrapper">
+              <input style="font-size: 20px" name="coin" type="number" inputmode="decimal" placeholder="0.0" class="popup-buy-input popup-buy-input-coin" />
+            </div>
+            <div class="popup-buy-arrow">
+              <i class="fa-solid fa-arrow-down"></i>
+            </div>
+            <div class="popup-buy-text-container" style="margin-top: 0px">
+              <div class="popup-buy-text-ticker">
+                <div class="popup-buy-coin-icon"></div>
+                FARM CASH
               </div>
             </div>
-            <div class="barn">
-              <div class="barn-2 barn-grey-100"></div>
-              <div class="barn-action">
-                <button class="btn-red btn-buy-barn">
-                  <div class="farm-coin">&nbsp;</div>
-                  1500
-                </button>
+            <div class="popup-buy-input-wrapper">
+              <input style="font-size:  20px" type="number" inputmode="decimal" placeholder="0" class="popup-buy-input popup-buy-input-cash" />
+            </div>
+            <div class="popup-buy-rate-text">
+              1 COIN For 1.33 Farm Cash (FC)
+            </div>
+            <div class="container">
+              <div class="alert alert-warning" role="alert">
+                Not enough coins
               </div>
             </div>
-            <div class="barn">
-              <div class="barn-3 barn-grey-100"></div>
-              <div class="barn-action">
-                <button class="btn-red btn-buy-barn">
-                  <div class="farm-coin">&nbsp;</div>
-                  4500
-                </button>
+          </div>
+        </form>
+        <button type="button" class="popup-btn-close popup-btn-close-3"></button>
+      </div>
+
+      <div class="popup-wrapper popup-payout" style="display: none;">
+        <div class="popup-box-exchange popup-box">
+          <form id="form_sell_fc" action="https://happyfarmer.app/sell" method="post">
+            <div class="popup-profit-header sell-header">Sell Farm Cash</div>
+
+            <div class="popup-buy-text-container">
+              <div class="popup-buy-text-ticker">
+                FC
+              </div>
+              <div class="popup-buy-text-balance popup-sell-input-max">Max: 0.00</div>
+            </div>
+            <div class="popup-buy-input-wrapper">
+              <input style="font-size: 20px" name="cash" type="number" id="sell_input_cash" inputmode="decimal" placeholder="0.0" class="popup-buy-input popup-sell-input-cash" />
+            </div>
+
+            <div class="popup-buy-text-container computation">
+              <div class="popup-buy-text-ticker">
+                5% TAX
+              </div>
+              <div class="popup-buy-text-balance popup-sell-input-tax"></div>
+            </div>
+
+            <div class="popup-buy-text-container computation">
+              <div class="popup-buy-text-ticker">
+                PHP
+              </div>
+              <div class="popup-buy-text-balance popup-sell-input-php"></div>
+            </div>
+
+            <div class="popup-buy-text-container">
+              <div class="popup-buy-text-ticker">
+                Mode of Payment
               </div>
             </div>
-            <div class="barn">
-              <div class="barn-4 barn-grey-100"></div>
-              <div class="barn-action">
-                <button class="btn-red btn-buy-barn">
-                  <div class="farm-coin">&nbsp;</div>
-                  13.5K
-                </button>
+            <div class="popup-buy-input-wrapper">
+              <input style="font-size: 20px" name="mop" type="text" placeholder="gcash or bank details" class="popup-buy-input popup-sell-input-mop" />
+            </div>
+            <div id="sell_fc_alert"></div>
+            <div class="container">
+              <div class="alert alert-warning" role="alert">
+                Not enough cash
               </div>
             </div>
-          </div >
-          <div class="barns">
-            <div class="barn">
-              <div class="barn-5 barn-grey-100"></div>
-              <div class="barn-action">
-                <button class="btn-red btn-buy-barn">
-                  <div class="farm-coin">&nbsp;</div>
-                  40.5K
-                </button>
+          </form>
+        </div>
+        <button type="button" class="popup-btn-close"></button>
+      </div>
+
+      <div class="popup-wrapper popup-payout-ls" style="display: none;">
+        <div class="popup-box-exchange popup-box">
+          <form id="form_sell_ls" action="https://happyfarmer.app/sell-ls" method="post">
+            <div class="popup-profit-header sell-header">Sell Livestock Cash</div>
+
+            <div class="popup-buy-text-container">
+              <div class="popup-buy-text-ticker">
+                Livestock Amount
+              </div>
+              <div class="popup-buy-text-balance popup-sell-input-max">Max: 0.00</div>
+            </div>
+            <div class="popup-buy-input-wrapper">
+              <input style="font-size: 20px" name="cash" type="number" id="sell_input_cash" inputmode="decimal" placeholder="0.0" class="popup-buy-input popup-sell-input-ls" />
+            </div>
+
+            <div class="popup-buy-text-container computation">
+              <div class="popup-buy-text-ticker">
+                5% TAX
+              </div>
+              <div class="popup-buy-text-balance popup-sell-input-tax"></div>
+            </div>
+
+            <div class="popup-buy-text-container computation">
+              <div class="popup-buy-text-ticker">
+                PHP
+              </div>
+              <div class="popup-buy-text-balance popup-sell-input-php"></div>
+            </div>
+
+            <div class="popup-buy-text-container">
+              <div class="popup-buy-text-ticker">
+                Mode of Payment
               </div>
             </div>
-            <div class="barn">
-              <div class="barn-6 barn-grey-100"></div>
-              <div class="barn-action">
-                <button class="btn-red btn-buy-barn">
-                  <div class="farm-coin">&nbsp;</div>
-                  120K
-                </button>
+            <div class="popup-buy-input-wrapper">
+              <input style="font-size: 20px" name="mop" type="text" placeholder="gcash or bank details" class="popup-buy-input popup-sell-input-mop" />
+            </div>
+            <div id="sell_lc_alert"></div>
+            <div class="container">
+              <div class="alert alert-warning" role="alert">
+                Not enough cash
               </div>
             </div>
-            <div class="barn">
-              <div class="barn-7 barn-grey-100"></div>
-              <div class="barn-action">
-                <button class="btn-red btn-buy-barn">
-                  <div class="farm-coin">&nbsp;</div>
-                  365K
-                </button>
-              </div>
-            </div>
-            <div class="barn">
-              <div class="barn-8 barn-grey-100"></div>
-              <div class="barn-action">
-                <button class="btn-red btn-buy-barn">
-                  <div class="farm-coin">&nbsp;</div>
-                  1M
-                </button>
-              </div>
-            </div>
-          </div >
-        </div >
-      </div >
+          </form>
+        </div>
+        <button type="button" class="popup-btn-close"></button>
+      </div> */}
     </>);
 }
 
