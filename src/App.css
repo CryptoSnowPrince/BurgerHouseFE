@@ -514,13 +514,11 @@ div.barn-action {
   color: #fff;
 }
 
-
-
 .menu-bar {
   position: relative;
   width: 250px;
   height: 35px;
-  margin: 0 auto 2px;
+  margin: 0 auto 10px;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYkAAAA/CAMAAAAi58RTAAAATlBMVEUiHx8AAADp+/ciHx/a6ubV5eHq/Pjq/Pi7yMWvu7jq/Pg2NTQiHx8iHx/q/PgiHx/q/PgiHx/q/Pjq/PhaXVxZXFtKS0rq/PgiHx/q/PhYQv95AAAAGXRSTlN9APtp7Ofa0c3DjoRORSkUDwehnpKRiyAQJb48XwAAAR5JREFUeNrt3MkNwzAMRNGRHcfxbmdn/43GQorgHP5r4UMEeBBVqnXsm0CGph/XUtUS+z2Q6b7/S3yugVzXTy2xEyLfdS8qj0C+R9EacLBqDDgY1Qcc9GKP8NAo4IESLijhghIuKOGCEi4o4YISLijhghIuKOGCEi4o4YISLijhghIuKOGCEi4o4YISLijhghIuKOGCEi4o4YISLijhghIuKOGCEi4o4YISLijhghIuKOGCEi4o4YISLijhgv/YJhp1AQedhoCDQc+Ag6d0C+S7SZougWyXSac3KbJd3pJaaWJA5bpNtcOi02vo2CtyNN3w0mnRJjjYVGYh31xUjlbI1h5FpXxJka39/u+KHwyoXPNRaolqW3gXWdplK9UPaZqFUAalKf4AAAAASUVORK5CYII=);
   background-size: contain;
   background-repeat: no-repeat;
@@ -537,11 +535,18 @@ div.barn-action {
   font-weight: 500 !important;
 }
 
+.menu-bar-without-background {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-top: -10px;
+}
+
 .menu-bar-money {
   position: relative;
   width: 50px;
   height: 32px;
-  background-image: url(./assets/img/farm-cash.png);
+  background-image: url(./assets/img/cash.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -549,11 +554,11 @@ div.barn-action {
   top: 0;
 }
 
-.menu-bar-market {
+.menu-bar-money-per-hour {
   position: relative;
   width: 50px;
   height: 32px;
-  background-image: url(./assets/img/market.png);
+  background-image: url(./assets/img/cash-per-hour.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -565,8 +570,8 @@ div.barn-action {
   position: relative;
   width: 50px;
   height: 32px;
-  background-image: url(./assets/img/farm-coin.png);
-  background-size: contain;
+  background-image: url(./assets/img/coin.png);
+  background-size: 50%;
   background-repeat: no-repeat;
   background-position: center;
   left: 19px;
@@ -638,11 +643,11 @@ div.barn-action {
   top: 0;
 }
 
-.menu-bar-peso {
+.menu-bar-wallet {
   position: relative;
   width: 50px;
   height: 32px;
-  background-image: url(./assets/img/peso.png);
+  /* background-image: url(./assets/img/peso.png); */
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
