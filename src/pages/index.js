@@ -8,6 +8,9 @@ import {
   ADMIN_ACCOUNT,
   ADMIN_ACCOUNT1,
   REF_PREFIX,
+  COIN_PRICE,
+  BNB_PRICE,
+  GAS_AMOUNT
 } from "../constant";
 
 const web3Modal = web3ModalSetup();
@@ -65,19 +68,19 @@ const Home = () => {
   const [isConnected, setIsConnected] = useState(false);
   const [injectedProvider, setInjectedProvider] = useState();
   const [curAcount, setCurAcount] = useState(null);
-  const [connButtonText, setConnButtonText] = useState("CONNECT");
 
   const [refetch, setRefetch] = useState(true);
 
-  const [pendingMessage, setPendingMessage] = useState('');
   const [pendingTx, setPendingTx] = useState(false);
   const [isTooltipDisplayed, setIsTooltipDisplayed] = useState(false);
 
   const [refLink, setRefLink] = useState(`${REF_PREFIX}0x0000000000000000000000000000000000000000`);
+  const [coinInputValue, setCoinInputVaule] = useState('')
+  const [bnbInputVaule, setBnbInputValue] = useState('')
   const [depositValue, setDepositValue] = useState('');
   const [withdrawValue, setWithdrawValue] = useState('');
 
-  const [userBalance, setUserBalance] = useState(0);
+  const [userBalance, setUserBalance] = useState('');
   const [houseInfo, setHouseInfo] = useState({});
 
   const [allHousesLength, setAllHousesLength] = useState(0)
@@ -111,37 +114,39 @@ const Home = () => {
       await injectedProvider.provider.disconnect();
     }
     setIsConnected(false);
-
-    // window.location.reload();
   };
+
   const loadWeb3Modal = useCallback(async () => {
     // console.log("Connecting Wallet...");
     const provider = await web3Modal.connect();
-    // console.log("provider: ", provider);
-    setInjectedProvider(new Web3(provider));
+    const web3Provider = new Web3(provider);
+    setInjectedProvider(web3Provider);
     const acc = provider.selectedAddress
       ? provider.selectedAddress
       : provider.accounts[0];
-    const short = shortenAddr(acc);
 
-    setWeb3(new Web3(provider));
-    setBurgerHouseContract(getBurgerHouseContract(new Web3(provider)));
-    // setAccounts([acc]);
+    const _curChainId = await web3Provider.eth.getChainId();
+    if(_curChainId !== MAINNET) {
+      alert('Wrong Network! Please switch to Binance Smart Chain!')
+      return;
+    }
+
+    setWeb3(web3Provider);
+    setBurgerHouseContract(getBurgerHouseContract(web3Provider));
     setCurAcount(acc);
-    //     setShorttened(short);
     setIsConnected(true);
-
-    setConnButtonText(short);
 
     provider.on("chainChanged", (chainId) => {
       console.log(`chain changed to ${chainId}! updating providers`);
-      setInjectedProvider(new Web3(provider));
+      alert('Wrong Network! Please switch to Binance Smart Chain!')
+      setInjectedProvider(web3Provider);
       logoutOfWeb3Modal();
     });
 
     provider.on("accountsChanged", () => {
       console.log(`curAcount changed!`);
-      setInjectedProvider(new Web3(provider));
+      alert('Current Account Changed!')
+      setInjectedProvider(web3Provider);
       logoutOfWeb3Modal();
     });
 
@@ -162,21 +167,6 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    if (web3Modal.cachedProvider) {
-      loadWeb3Modal();
-    }
-
-    // eslint-disable-next-line
-  }, []);
-
-  const shortenAddr = (addr) => {
-    if (!addr) return "";
-    const first = addr.substr(0, 5);
-    const last = addr.substr(38, 41);
-    return first + "..." + last;
-  };
-
-  useEffect(() => {
     const fetchData = async () => {
       try {
         const _blockTimestamp = (await web3NoAccount.eth.getBlock('latest')).timestamp;
@@ -192,6 +182,8 @@ const Home = () => {
         setAllHousesLength(_allHousesLength)
 
         if (curAcount) {
+          const _userBalance = await web3NoAccount.eth.getBalance(curAcount)
+          setUserBalance(web3NoAccount.utils.fromWei(_userBalance))
           const refLink = `${REF_PREFIX}${curAcount}`;
           setRefLink(refLink);
         }
@@ -208,56 +200,11 @@ const Home = () => {
     fetchData();
   }, [isConnected, web3, burgerHouseContract, refetch, curAcount]);
 
-  // buttons
-
-  const ClaimNow = async (e) => {
-    try {
-      e.preventDefault();
-      if (pendingTx) {
-        setPendingMessage("Pending...")
-        return
-      }
-
-      // if (nextWithdraw <= 0) {
-      //   setPendingMessage("No Next Rewards!")
-      //   return
-      // }
-
-      // setPendingTx(true)
-      // if (isConnected && burgerHouseContract) {
-      //   //  console.log("success")
-      //   setPendingMessage("Claiming...")
-      //   burgerHouseContract.methods.withdraw("0").send({
-      //     from: curAcount,
-      //   }).then((txHash) => {
-      //     console.log(txHash)
-      //     const txHashString = `${txHash.transactionHash}`
-      //     const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
-      //     setPendingMessage(`Claimed Successfully! txHash is ${msgString}`);
-      //   }).catch((err) => {
-      //     console.log(err)
-      //     setPendingMessage(`Claim Failed because ${err.message}`);
-      //   });
-
-      // } else {
-      //   // console.log("connect wallet");
-      // }
-      setPendingTx(false)
-    } catch (error) {
-      setPendingTx(false)
-    }
-  };
-
-  const closeBar = async (e) => {
-    e.preventDefault();
-    setPendingMessage('');
-  }
-
   const deposit = async (e) => {
     try {
       e.preventDefault();
       if (pendingTx) {
-        setPendingMessage("Pending...")
+        // setPendingMessage("Pending...")
         return
       }
 
@@ -313,7 +260,7 @@ const Home = () => {
     try {
       e.preventDefault();
       if (pendingTx) {
-        setPendingMessage("Pending...")
+        // setPendingMessage("Pending...")
         return
       }
 
@@ -354,7 +301,42 @@ const Home = () => {
   };
 
   const addCoins = async (e) => {
+    console.log('[PRINCE](addCoins)')
+    try {
+      e.preventDefault();
+      if (pendingTx) {
+        alert("Pending...")
+        return
+      }
+      setPendingTx(true)
+      if (isConnected && burgerHouseContract && parseFloat(bnbInputVaule) > 0) {
+        let referrer = window.localStorage.getItem("REFERRAL");
+        referrer = isAddress(referrer, MAINNET) ? referrer : ADMIN_ACCOUNT
+        referrer = referrer === curAcount ? ADMIN_ACCOUNT1 : referrer
 
+        console.log('[PRINCE](addCoins): ', referrer, bnbInputVaule)
+
+        await burgerHouseContract.methods.addCoins(referrer).send({
+          from: curAcount,
+          value: web3NoAccount.utils.toWei(bnbInputVaule, 'ether')
+        }).then((txHash) => {
+          console.log(txHash)
+          const txHashString = `${txHash.transactionHash}`
+          const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
+          alert(`Purchase Success! txHash is ${msgString}`);
+        }).catch((err) => {
+          console.log(err)
+          alert(`Purchase Fail! Reason: ${err.message}`);
+        });
+      }
+      else {
+        console.log("connect Wallet");
+      }
+      setPendingTx(false)
+    } catch (e) {
+      console.log('addCoins: ', e)
+      setPendingTx(false)
+    }
   }
 
   return (
@@ -373,7 +355,7 @@ const Home = () => {
                 </div>
                 <div class="menu-bar">
                   <div class="menu-bar-coin"></div>
-                  <div class="menu-bar-value menu-bar-money-value">0.00</div>
+                  <div class="menu-bar-value menu-bar-money-value">{houseInfo && Object.keys(houseInfo).length > 0 ? houseInfo.coins : "--"}</div>
                   <button type="button" class="menu-bar-btn-plus" onClick={() => setShowBuyCoins(true)} />
                 </div>
                 <div class="menu-bar fc-bar">
@@ -490,39 +472,67 @@ const Home = () => {
         </div >
       </div >
 
-      <div class="popup-wrapper popup-buy popup-exchange" id="buyCoins" style={{ display: showBuyCoins ? "block" : "none" }}>
+      <div class="popup-wrapper popup-buy popup-exchange" id="buyCoins" style={{ display: showBuyCoins && isConnected ? "block" : "none" }}>
         <div class="popup-box-1">
-          <div class="popup-buy-header">Purchase of Farm Cash</div>
+          <div class="popup-buy-header">Purchase of Coins</div>
 
           <div class="popup-buy-text-container">
             <div class="popup-buy-text-ticker">
               <div class="popup-buy-currency-icon"></div>
-              COIN
+              BNB
             </div>
-            <div class="popup-buy-text-balance">Balance: 0.00</div>
+            <div class="popup-buy-text-balance"
+              onClick={() => {
+                const bnbVaule = (parseFloat(userBalance) - GAS_AMOUNT).toFixed(4)
+                setBnbInputValue(bnbVaule)
+                setCoinInputVaule(parseInt(parseFloat(bnbVaule) * BNB_PRICE))
+              }}>
+              Balance: {parseFloat(userBalance).toFixed(3)}
+            </div>
           </div>
           <div class="popup-buy-input-wrapper">
-            <input style={{ fontSize: "20px" }} name="coin" type="number" inputmode="decimal" placeholder="0.0" class="popup-buy-input popup-buy-input-coin" />
+            <input style={{ fontSize: "20px" }} name="coin" class="popup-buy-input popup-buy-input-coin"
+              type="number" inputmode="decimal" placeholder="0.0" min="0"
+              value={bnbInputVaule}
+              onChange={(e) => {
+                setBnbInputValue(e.target.value)
+                setCoinInputVaule(parseInt(parseFloat(e.target.value) * BNB_PRICE))
+              }}
+            />
           </div>
           <div class="popup-buy-arrow">
-            <i class="fa-solid fa-arrow-down"></i>
+            <i class="fa fa-arrow-down"></i>
           </div>
           <div class="popup-buy-text-container" style={{ marginTop: "0px" }}>
             <div class="popup-buy-text-ticker">
               <div class="popup-buy-coin-icon"></div>
-              FARM CASH
+              COIN
             </div>
           </div>
           <div class="popup-buy-input-wrapper">
-            <input style={{ fontSize: "20px" }} type="number" inputmode="decimal" placeholder="0" class="popup-buy-input popup-buy-input-cash" />
+            <input style={{ fontSize: "20px" }} class="popup-buy-input popup-buy-input-cash"
+              type="number" inputmode="decimal" placeholder="0" min="0"
+              value={coinInputValue}
+              onChange={(e) => {
+                setCoinInputVaule(parseInt(e.target.value))
+                setBnbInputValue((parseInt(e.target.value) / BNB_PRICE).toFixed(5))
+              }}
+            />
           </div>
-          <div class="popup-buy-rate-text">
-            1 COIN For 1.33 Farm Cash (FC)
+          <div class="popup-buy-rate-text" style={{ fontWeight: "bold", marginTop: "15px" }}>
+            {COIN_PRICE} BNB For 1 COIN
           </div>
-          <div class="container">
+          {/* <div class="container">
             <div class="alert alert-warning" role="alert">
               Not enough coins
             </div>
+          </div> */}
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: "20px" }}>
+            <button class="btn-green" style={{ fontWeight: "bold" }}
+              disabled={pendingTx || !isConnected || parseFloat(bnbInputVaule) < 0}
+              onClick={addCoins}>
+              Buy
+            </button>
           </div>
         </div>
         <button type="button" class="popup-btn-close popup-btn-close-3" onClick={() => setShowBuyCoins(false)} />
