@@ -37,7 +37,7 @@ const displayRemainTime = (seconds) => {
   return `0H : 0M`
 }
 
-const price =
+const priceINT =
   [
     [500, 1500, 4500, 13500, 40500, 120000, 365000, 1000000],
     [625, 1800, 5600, 16800, 50600, 150000, 456000, 1200000],
@@ -46,14 +46,23 @@ const price =
     [1200, 3600, 11000, 33000, 98800, 293000, 890000, 2500000],
   ]
 
-const yeild =
+const price =
   [
-    [123, 390, 1197, 3585, 11250, 34200, 108600, 312000],
-    [156, 471, 1494, 4590, 14100, 42900, 136500, 379500],
-    [195, 603, 1875, 5760, 17700, 53700, 171600, 501000],
-    [246, 792, 2340, 7140, 22200, 68100, 217500, 649500],
-    [309, 954, 2985, 9015, 27900, 86100, 274500, 825000],
+    ["500", "1500", "4500", "13.5K", "40.5K", "120K", "365K", "1M"],
+    ["625", "1800", "5600", "16.8K", "50.6K", "150K", "456K", "1.2M"],
+    ["780", "2300", "7000", "21K", "63.2K", "187K", "570K", "1.56M"],
+    ["970", "3000", "8700", "26K", "79K", "235K", "713K", "2M"],
+    ["1200", "3600", "11K", "33K", "98.8K", "293K", "890K", "2.5M"],
   ]
+
+// const yield =
+//   [
+//     [123, 390, 1197, 3585, 11250, 34200, 108600, 312000],
+//     [156, 471, 1494, 4590, 14100, 42900, 136500, 379500],
+//     [195, 603, 1875, 5760, 17700, 53700, 171600, 501000],
+//     [246, 792, 2340, 7140, 22200, 68100, 217500, 649500],
+//     [309, 954, 2985, 9015, 27900, 86100, 274500, 825000],
+//   ]
 
 const Home = () => {
   const isMobile = window.matchMedia("only screen and (max-width: 1000px)").matches;
@@ -75,8 +84,8 @@ const Home = () => {
   const [isTooltipDisplayed, setIsTooltipDisplayed] = useState(false);
 
   const [refLink, setRefLink] = useState(`${REF_PREFIX}0x0000000000000000000000000000000000000000`);
-  const [coinInputValue, setCoinInputVaule] = useState('')
-  const [bnbInputVaule, setBnbInputValue] = useState('')
+  const [coinInputValue, setCoinInputValue] = useState('')
+  const [bnbInputValue, setBnbInputValue] = useState('')
   const [depositValue, setDepositValue] = useState('');
   const [withdrawValue, setWithdrawValue] = useState('');
 
@@ -91,6 +100,7 @@ const Home = () => {
 
   const [showBuyCoins, setShowBuyCoins] = useState(false)
   const [showGetBNB, setShowGetBNB] = useState(false)
+  const [showGetMoney, setShowGetMoney] = useState(false)
 
   useEffect(() => {
     const referral = window.localStorage.getItem("REFERRAL")
@@ -170,7 +180,7 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const _blockTimestamp = (await web3NoAccount.eth.getBlock('latest')).timestamp;
-        setBlockTimestamp(_blockTimestamp);
+        setBlockTimestamp(parseInt(_blockTimestamp));
 
         const _totalUpgrades = await contractNoAccount.methods.totalUpgrades().call();
         setTotalUpgrades(_totalUpgrades);
@@ -189,7 +199,7 @@ const Home = () => {
         }
 
         if (isConnected && burgerHouseContract && curAcount) {
-          const _houseInfo = await contractNoAccount.methods.houses(curAcount).call();
+          const _houseInfo = await contractNoAccount.methods.viewHouse(curAcount).call();
           setHouseInfo(_houseInfo)
           console.log('[PRINCE](houseInfo): ', _houseInfo)
         }
@@ -201,125 +211,87 @@ const Home = () => {
     fetchData();
   }, [isConnected, web3, burgerHouseContract, refetch, curAcount]);
 
-  const deposit = async (e) => {
-    try {
-      e.preventDefault();
-      if (pendingTx) {
-        // setPendingMessage("Pending...")
-        return
+  const pendingHours = () => {
+    if (houseInfo && Object.keys(houseInfo).length > 0) {
+      var hrs = parseInt((blockTimestamp - houseInfo.timestamp) / 3600)
+      if (hrs + houseInfo.hrs > 24) {
+        hrs = 24 - houseInfo.hrs;
       }
-
-      // if (Number.isNaN(parseFloat(depositValue))) {
-      //   setPendingMessage("Input Deposit Amount!")
-      //   return
-      // }
-
-      // if (parseFloat(depositValue) > userBalance) {
-      //   setPendingMessage("Deposit amount must be equal or less than your wallet balance!")
-      //   return
-      // }
-
-      // if (parseFloat(depositValue) < 0) {
-      //   setPendingMessage("Deposit amount must be equal or greater than 0 BUSD!")
-      //   return
-      // }
-
-      // setPendingTx(true)
-      // if (isConnected && burgerHouseContract) {
-      //   // console.log("success")
-
-      //   setPendingMessage("Depositing...")
-      //   const _value = web3NoAccount.utils.toWei(depositValue, DECIMALS);
-      //   console.log("[PRINCE](deposit): ", _value)
-
-      //   let referrer = window.localStorage.getItem("REFERRAL");
-      //   referrer = isAddress(referrer, MAINNET) ? referrer : ADMIN_ACCOUNT
-
-      //   await burgerHouseContract.methods.deposit(_value, referrer).send({
-      //     from: curAcount
-      //   }).then((txHash) => {
-      //     console.log(txHash)
-      //     const txHashString = `${txHash.transactionHash}`
-      //     const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
-      //     setPendingMessage(`Deposited Successfully! txHash is ${msgString}`);
-      //   }).catch((err) => {
-      //     console.log(err)
-      //     setPendingMessage(`Deposited Failed because ${err.message}`);
-      //   });
-      // }
-      // else {
-      //   // console.log("connect wallet");
-      // }
-      setPendingTx(false)
-    } catch (error) {
-      setPendingTx(false)
+      return hrs;
     }
-  };
+    return 0;
+  }
 
-  const unStake = async (e) => {
-    console.log('[PRINCE](unStake)')
-    try {
-      e.preventDefault();
-      if (pendingTx) {
-        // setPendingMessage("Pending...")
-        return
-      }
-
-      // if (Number.isNaN(parseFloat(withdrawValue))) {
-      //   setPendingMessage("Input Withdraw Amount!")
-      //   return
-      // }
-
-      // if (parseFloat(withdrawValue) > userDepositedAmount) {
-      //   setPendingMessage("Withdraw amount must be less than your deposited amount!")
-      //   return
-      // }
-
-      // setPendingTx(true)
-      // if (isConnected && burgerHouseContract) {
-      //   setPendingMessage("Unstaking...");
-      //   const _withdrawValue = web3NoAccount.utils.toWei(withdrawValue, DECIMALS);
-      //   console.log("[PRINCE](withdraw): ", _withdrawValue)
-      //   await burgerHouseContract.methods.withdraw(_withdrawValue).send({
-      //     from: curAcount,
-      //   }).then((txHash) => {
-      //     console.log(txHash)
-      //     const txHashString = `${txHash.transactionHash}`
-      //     const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
-      //     setPendingMessage(`UnStaked Successfully! txHash is ${msgString}`);
-      //   }).catch((err) => {
-      //     console.log(err)
-      //     setPendingMessage(`UnStaked Failed because ${err.message}`);
-      //   });
-      // }
-      // else {
-      //   // console.log("connect Wallet");
-      // }
-      setPendingTx(false)
-    } catch (error) {
-      setPendingTx(false)
+  const pendingCash = () => {
+    if (houseInfo && Object.keys(houseInfo).length > 0) {
+      return pendingHours() * houseInfo.yield;
     }
-  };
+    return 0;
+  }
 
-  const addCoins = async (e) => {
-    console.log('[PRINCE](addCoins)')
+  const upgradeHouse = async (e, houseId) => {
+    console.log('[PRINCE](upgradeHouse)', e, houseId)
     try {
       e.preventDefault();
       if (pendingTx) {
         alert("Pending...")
         return
       }
+
+      if (!houseInfo || Object.keys(houseInfo).length <= 0 || parseInt(houseInfo.coins) < priceINT[parseInt(houseInfo.levels[0])][0]) {
+        alert("Insufficient Coins! Please Purchase Coins!")
+        return
+      }
+
       setPendingTx(true)
-      if (isConnected && burgerHouseContract && parseFloat(bnbInputVaule) > 0) {
+      if (isConnected && burgerHouseContract) {
+        await burgerHouseContract.methods.upgradeHouse(houseId).send({
+          from: curAcount,
+        }).then((txHash) => {
+          console.log(txHash)
+          const txHashString = `${txHash.transactionHash}`
+          const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
+          alert(`House Upgrade Success! txHash is ${msgString}`);
+        }).catch((err) => {
+          console.log(err)
+          alert(`House Upgrade Fail! Reason: ${err.message}`);
+        });
+      }
+      else {
+        console.log("connect Wallet");
+      }
+      setPendingTx(false)
+    } catch (e) {
+      console.log('upgradeHouse: ', e)
+      setPendingTx(false)
+    }
+  }
+
+  const addCoins = async (e) => {
+    console.log('[PRINCE](addCoins)', e)
+    try {
+      e.preventDefault();
+      if (pendingTx) {
+        alert("Pending...")
+        return
+      }
+
+      if (parseFloat(bnbInputValue) <= 0) {
+        alert("Please input BNB value...")
+        return
+      }
+
+      setPendingTx(true)
+      if (isConnected && burgerHouseContract) {
         let referrer = window.localStorage.getItem("REFERRAL");
         referrer = isAddress(referrer, MAINNET) ? referrer : ADMIN_ACCOUNT
         referrer = referrer === curAcount ? ADMIN_ACCOUNT1 : referrer
 
-        console.log('[PRINCE](addCoins): ', referrer, bnbInputVaule)
+        console.log('[PRINCE](addCoins): ', referrer, bnbInputValue)
 
         await burgerHouseContract.methods.addCoins(referrer).send({
           from: curAcount,
-          value: web3NoAccount.utils.toWei(bnbInputVaule, 'ether')
+          value: web3NoAccount.utils.toWei(bnbInputValue, 'ether')
         }).then((txHash) => {
           console.log(txHash)
           const txHashString = `${txHash.transactionHash}`
@@ -336,6 +308,39 @@ const Home = () => {
       setPendingTx(false)
     } catch (e) {
       console.log('addCoins: ', e)
+      setPendingTx(false)
+    }
+  }
+
+  const collectMoney = async (e) => {
+    console.log('[PRINCE](collectMoney)', e)
+    try {
+      e.preventDefault();
+      if (pendingTx) {
+        alert("Pending...")
+        return
+      }
+
+      setPendingTx(true)
+      if (isConnected && burgerHouseContract) {
+        await burgerHouseContract.methods.collectMoney().send({
+          from: curAcount,
+        }).then((txHash) => {
+          console.log(txHash)
+          const txHashString = `${txHash.transactionHash}`
+          const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
+          alert(`Collect Money Success! txHash is ${msgString}`);
+        }).catch((err) => {
+          console.log(err)
+          alert(`Collect Money Fail! Reason: ${err.message}`);
+        });
+      }
+      else {
+        console.log("connect Wallet");
+      }
+      setPendingTx(false)
+    } catch (e) {
+      console.log('collectMoney: ', e)
       setPendingTx(false)
     }
   }
@@ -361,10 +366,10 @@ const Home = () => {
                 </div>
                 <div class="menu-bar fc-bar">
                   <div class="menu-bar-money"></div>
-                  <div class="menu-bar-value menu-bar-money-value">0.00</div>
+                  <div class="menu-bar-value menu-bar-money-value">{houseInfo && Object.keys(houseInfo).length > 0 ? houseInfo.cash : "--"}</div>
                   <button type="button" class="menu-bar-btn-minus" onClick={() => setShowGetBNB(true)} />
                 </div>
-                <div class="menu-bar-value menu-bar-money-value menu-bar-without-background">+0.00/h</div>
+                <div class="menu-bar-value menu-bar-money-value menu-bar-without-background">+{houseInfo && Object.keys(houseInfo).length > 0 ? houseInfo.yield : "--"}/h</div>
               </div>
             </div>
             <div class="menu-fixed-right">
@@ -392,10 +397,9 @@ const Home = () => {
                 <div class="barn" id="house1">
                   <div class="barn-1 barn-grey-100"></div>
                   <div class="barn-action">
-                    <button class="btn-red btn-buy-barn" data-toggle="modal" data-target="#upgradeHouse">
+                    <button class="btn-red btn-buy-barn" data-toggle="modal" data-target="#upgradeHouse0">
                       <div class="farm-coin" >&nbsp;</div>
-                      500
-                      {/* {houseInfo && Object.keys(houseInfo).length > 0 ? price[houseInfo.levels[0] + 1][0] : "--"} */}
+                      {houseInfo && Object.keys(houseInfo).length > 0 ? price[parseInt(houseInfo.levels[0])][0] : "--"}
                     </button>
                   </div>
                 </div>
@@ -404,7 +408,7 @@ const Home = () => {
                   <div class="barn-action">
                     <button class="btn-red btn-buy-barn">
                       <div class="farm-coin">&nbsp;</div>
-                      1500
+                      {houseInfo && Object.keys(houseInfo).length > 0 ? price[parseInt(houseInfo.levels[1])][1] : "--"}
                     </button>
                   </div>
                 </div>
@@ -413,7 +417,7 @@ const Home = () => {
                   <div class="barn-action">
                     <button class="btn-red btn-buy-barn">
                       <div class="farm-coin">&nbsp;</div>
-                      4500
+                      {houseInfo && Object.keys(houseInfo).length > 0 ? price[parseInt(houseInfo.levels[2])][2] : "--"}
                     </button>
                   </div>
                 </div>
@@ -422,7 +426,7 @@ const Home = () => {
                   <div class="barn-action">
                     <button class="btn-red btn-buy-barn">
                       <div class="farm-coin">&nbsp;</div>
-                      13.5K
+                      {houseInfo && Object.keys(houseInfo).length > 0 ? price[parseInt(houseInfo.levels[3])][3] : "--"}
                     </button>
                   </div>
                 </div>
@@ -433,7 +437,7 @@ const Home = () => {
                   <div class="barn-action">
                     <button class="btn-red btn-buy-barn">
                       <div class="farm-coin">&nbsp;</div>
-                      40.5K
+                      {houseInfo && Object.keys(houseInfo).length > 0 ? price[parseInt(houseInfo.levels[4])][4] : "--"}
                     </button>
                   </div>
                 </div>
@@ -442,7 +446,7 @@ const Home = () => {
                   <div class="barn-action">
                     <button class="btn-red btn-buy-barn">
                       <div class="farm-coin">&nbsp;</div>
-                      120K
+                      {houseInfo && Object.keys(houseInfo).length > 0 ? price[parseInt(houseInfo.levels[5])][5] : "--"}
                     </button>
                   </div>
                 </div>
@@ -451,7 +455,7 @@ const Home = () => {
                   <div class="barn-action">
                     <button class="btn-red btn-buy-barn">
                       <div class="farm-coin">&nbsp;</div>
-                      365K
+                      {houseInfo && Object.keys(houseInfo).length > 0 ? price[parseInt(houseInfo.levels[6])][6] : "--"}
                     </button>
                   </div>
                 </div>
@@ -460,11 +464,14 @@ const Home = () => {
                   <div class="barn-action">
                     <button class="btn-red btn-buy-barn">
                       <div class="farm-coin">&nbsp;</div>
-                      1M
+                      {houseInfo && Object.keys(houseInfo).length > 0 ? price[parseInt(houseInfo.levels[7])][7] : "--"}
                     </button>
                   </div>
                 </div>
               </div >
+              <div className="get-money">
+                <button type="button" class="btn-green" onClick={() => setShowGetMoney(true)}>Get Money</button>
+              </div>
             </>
             :
             <div className="login-action">
@@ -487,7 +494,7 @@ const Home = () => {
               onClick={() => {
                 const bnbVaule = (parseFloat(userBalance) - GAS_AMOUNT).toFixed(4)
                 setBnbInputValue(bnbVaule)
-                setCoinInputVaule(parseInt(parseFloat(bnbVaule) * BNB_PRICE))
+                setCoinInputValue(parseInt(parseFloat(bnbVaule) * BNB_PRICE))
               }}>
               Balance: {parseFloat(userBalance).toFixed(3)}
             </div>
@@ -495,10 +502,10 @@ const Home = () => {
           <div class="popup-buy-input-wrapper">
             <input style={{ fontSize: "20px" }} name="coin" class="popup-buy-input popup-buy-input-coin"
               type="number" inputmode="decimal" placeholder="0.0" min="0"
-              value={bnbInputVaule}
+              value={bnbInputValue}
               onChange={(e) => {
                 setBnbInputValue(e.target.value)
-                setCoinInputVaule(parseInt(parseFloat(e.target.value) * BNB_PRICE))
+                setCoinInputValue(parseInt(parseFloat(e.target.value) * BNB_PRICE))
               }}
             />
           </div>
@@ -516,7 +523,7 @@ const Home = () => {
               type="number" inputmode="decimal" placeholder="0" min="0"
               value={coinInputValue}
               onChange={(e) => {
-                setCoinInputVaule(parseInt(e.target.value))
+                setCoinInputValue(parseInt(e.target.value))
                 setBnbInputValue((parseInt(e.target.value) / BNB_PRICE).toFixed(5))
               }}
             />
@@ -531,7 +538,7 @@ const Home = () => {
           </div> */}
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: "20px" }}>
             <button class="btn-green" style={{ fontWeight: "bold" }}
-              disabled={pendingTx || !isConnected || parseFloat(bnbInputVaule) < 0}
+              disabled={pendingTx || !isConnected}
               onClick={addCoins}>
               Buy
             </button>
@@ -540,7 +547,7 @@ const Home = () => {
         <button type="button" class="popup-btn-close popup-btn-close-3" onClick={() => setShowBuyCoins(false)} />
       </div>
 
-      <div class="popup-wrapper popup-payout" style={{ display: showGetBNB ? "block" : "none" }}>
+      <div class="popup-wrapper popup-payout" style={{ display: showGetBNB && isConnected ? "block" : "none" }}>
         <div class="popup-box-exchange popup-box">
           <div class="popup-profit-header sell-header">Sell Farm Cash</div>
 
@@ -586,11 +593,36 @@ const Home = () => {
         <button type="button" class="popup-btn-close" onClick={() => setShowGetBNB(false)} />
       </div>
 
-      <div class="modal" id="upgradeHouse">
+      <div class="popup-wrapper popup-profit" style={{ display: showGetMoney && isConnected ? "block" : "none" }}>
+        <div class="popup-box-1">
+          <div class="popup-profit-header">Your profit</div>
+          <div class="popup-profit-time">
+            <div class="popup-profit-time-icon" />
+            <div class="popup-profit-time-text">{pendingHours()} Hours</div>
+          </div>
+          <div style={{ fontSize: "16px" }} class="popup-profit-time-description">
+            Don't forget to collect profit every 24 hours
+          </div>
+          <div class="popup-profit-figure" />
+          <div class="popup-profit-money-bar">
+            <div class="popup-profit-money-bar-icon" />
+            <div class="popup-profit-money-bar-text">{pendingCash()}</div>
+          </div>
+          <button type="button" class="btn-green" style={{ marginTop: "5px" }}
+            disabled={pendingTx || !isConnected}
+            onClick={(e) => collectMoney(e)}
+          >
+            Collect
+          </button>
+        </div>
+        <button type="button" class="popup-btn-close" onClick={() => setShowGetMoney(false)} />
+      </div>
+
+      <div class="modal" id="upgradeHouse0">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">House</h4>
+              <h4 class="modal-title">Burger House 1</h4>
               <button type="button" class="btn-close" data-dismiss="modal"></button>
             </div>
             <div class="modal-body">
@@ -608,9 +640,11 @@ const Home = () => {
                   <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">100</div>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                  <button class="btn-red btn-upgrade" onClick={unStake}>
+                  <button class="btn-red btn-upgrade"
+                    disabled={pendingTx || !isConnected}
+                    onClick={(e) => upgradeHouse(e, 0)}>
                     <div class="farm-coin" >&nbsp;</div>
-                    500
+                    {houseInfo && Object.keys(houseInfo).length > 0 ? price[parseInt(houseInfo.levels[0])][0] : "--"}
                   </button>
                 </div>
               </div>
