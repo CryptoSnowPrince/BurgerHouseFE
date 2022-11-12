@@ -20,23 +20,6 @@ const web3NoAccount = new Web3(httpProvider)
 const isAddress = web3NoAccount.utils.isAddress
 const contractNoAccount = getBurgerHouseContract(web3NoAccount)
 
-const displayRemainTime = (seconds) => {
-  if (seconds > 0) {
-    // Calculating the days, hours, minutes and seconds left
-    const timeDays = Math.floor(seconds / (60 * 60 * 24))
-    const timeHours = Math.floor((seconds % (60 * 60 * 24)) / (60 * 60))
-    const timeMinutes = Math.floor((seconds % (60 * 60)) / 60)
-
-    if (timeDays > 0) {
-      return `${timeDays}D : ${timeHours}H`
-    } else {
-      return `${timeHours}H : ${timeMinutes}M`
-    }
-  }
-
-  return `0H : 0M`
-}
-
 const priceINT =
   [
     [500, 1500, 4500, 13500, 40500, 120000, 365000, 1000000],
@@ -55,14 +38,22 @@ const price =
     ["1200", "3600", "11K", "33K", "98.8K", "293K", "890K", "2.5M"],
   ]
 
-// const yield =
-//   [
-//     [123, 390, 1197, 3585, 11250, 34200, 108600, 312000],
-//     [156, 471, 1494, 4590, 14100, 42900, 136500, 379500],
-//     [195, 603, 1875, 5760, 17700, 53700, 171600, 501000],
-//     [246, 792, 2340, 7140, 22200, 68100, 217500, 649500],
-//     [309, 954, 2985, 9015, 27900, 86100, 274500, 825000],
-//   ]
+const yieldValues =
+  [
+    [123, 390, 1197, 3585, 11250, 34200, 108600, 312000],
+    [156, 471, 1494, 4590, 14100, 42900, 136500, 379500],
+    [195, 603, 1875, 5760, 17700, 53700, 171600, 501000],
+    [246, 792, 2340, 7140, 22200, 68100, 217500, 649500],
+    [309, 954, 2985, 9015, 27900, 86100, 274500, 825000],
+  ]
+
+const getHouseprofit = (level, houseId) => {
+  var houseprofit = 0;
+  for (var i = 0; i < level; i++) {
+    houseprofit += yieldValues[i][houseId]
+  }
+  return houseprofit;
+}
 
 const Home = () => {
   const isMobile = window.matchMedia("only screen and (max-width: 1000px)").matches;
@@ -101,6 +92,7 @@ const Home = () => {
   const [showBuyCoins, setShowBuyCoins] = useState(false)
   const [showGetBNB, setShowGetBNB] = useState(false)
   const [showGetMoney, setShowGetMoney] = useState(false)
+  const [upgradeLevel, setUpgradeLevel] = useState(0)
 
   useEffect(() => {
     const referral = window.localStorage.getItem("REFERRAL")
@@ -211,8 +203,12 @@ const Home = () => {
     fetchData();
   }, [isConnected, web3, burgerHouseContract, refetch, curAcount]);
 
+  const enableValue = () => {
+    return (houseInfo && Object.keys(houseInfo).length > 0)
+  }
+
   const pendingHours = () => {
-    if (houseInfo && Object.keys(houseInfo).length > 0) {
+    if (enableValue()) {
       var hrs = parseInt((blockTimestamp - houseInfo.timestamp) / 3600)
       if (hrs + houseInfo.hrs > 24) {
         hrs = 24 - houseInfo.hrs;
@@ -223,10 +219,14 @@ const Home = () => {
   }
 
   const pendingCash = () => {
-    if (houseInfo && Object.keys(houseInfo).length > 0) {
-      return pendingHours() * houseInfo.yield;
+    if (enableValue()) {
+      return pendingHours() * houseInfo.yield + parseInt(houseInfo.burger);
     }
     return 0;
+  }
+
+  const sellTower = async (houseId) => {
+    return houseId
   }
 
   const upgradeHouse = async (e, houseId) => {
@@ -238,7 +238,9 @@ const Home = () => {
         return
       }
 
-      if (!houseInfo || Object.keys(houseInfo).length <= 0 || parseInt(houseInfo.coins) < priceINT[parseInt(houseInfo.levels[0])][0]) {
+      if (
+        !enableValue() ||
+        parseInt(houseInfo.coins) < priceINT[parseInt(houseInfo.levels[upgradeLevel - 1])][upgradeLevel - 1]) {
         alert("Insufficient Coins! Please Purchase Coins!")
         return
       }
@@ -361,15 +363,15 @@ const Home = () => {
                 </div>
                 <div class="menu-bar">
                   <div class="menu-bar-coin"></div>
-                  <div class="menu-bar-value menu-bar-money-value">{houseInfo && Object.keys(houseInfo).length > 0 ? houseInfo.coins : "--"}</div>
+                  <div class="menu-bar-value menu-bar-money-value">{enableValue() ? houseInfo.coins : "--"}</div>
                   <button type="button" class="menu-bar-btn-plus" onClick={() => setShowBuyCoins(true)} />
                 </div>
                 <div class="menu-bar fc-bar">
                   <div class="menu-bar-money"></div>
-                  <div class="menu-bar-value menu-bar-money-value">{houseInfo && Object.keys(houseInfo).length > 0 ? houseInfo.cash : "--"}</div>
+                  <div class="menu-bar-value menu-bar-money-value">{enableValue() ? houseInfo.cash : "--"}</div>
                   <button type="button" class="menu-bar-btn-minus" onClick={() => setShowGetBNB(true)} />
                 </div>
-                <div class="menu-bar-value menu-bar-money-value menu-bar-without-background">+{houseInfo && Object.keys(houseInfo).length > 0 ? houseInfo.yield : "--"}/h</div>
+                <div class="menu-bar-value menu-bar-money-value menu-bar-without-background">+{enableValue() ? houseInfo.yield : "--"}/h</div>
               </div>
             </div>
             <div class="menu-fixed-right">
@@ -397,36 +399,72 @@ const Home = () => {
                 <div class="barn" id="house1">
                   <div class="barn-1 barn-grey-100"></div>
                   <div class="barn-action">
-                    <button class="btn-red btn-buy-barn" data-toggle="modal" data-target="#upgradeHouse0">
-                      <div class="farm-coin" >&nbsp;</div>
-                      {houseInfo && Object.keys(houseInfo).length > 0 ? price[parseInt(houseInfo.levels[0])][0] : "--"}
+                    <button className="btn-red btn-buy-barn"
+                      onClick={() => setUpgradeLevel(1)}>
+                      {enableValue() && parseInt(houseInfo.levels[0]) === 5 ? (
+                        <div style={{ fontWeight: "bold", marginTop: "95px", color: "yellow" }}>Top Level</div>
+                      ) : (
+                        <>
+                          <div class="farm-coin" >&nbsp;</div>
+                          <div style={{ fontWeight: "bold", marginTop: "95px" }}>
+                            {enableValue() ? price[parseInt(houseInfo.levels[0])][0] : "--"}
+                          </div>
+                        </>
+                      )}
                     </button>
                   </div>
                 </div>
                 <div class="barn" id="house2">
                   <div class="barn-2 barn-grey-100"></div>
                   <div class="barn-action">
-                    <button class="btn-red btn-buy-barn">
-                      <div class="farm-coin">&nbsp;</div>
-                      {houseInfo && Object.keys(houseInfo).length > 0 ? price[parseInt(houseInfo.levels[1])][1] : "--"}
+                    <button className="btn-red btn-buy-barn"
+                      onClick={() => setUpgradeLevel(2)}>
+                      {enableValue() && parseInt(houseInfo.levels[1]) === 5 ? (
+                        <div style={{ fontWeight: "bold", marginTop: "95px", color: "yellow" }}>Top Level</div>
+                      ) : (
+                        <>
+                          <div class="farm-coin" >&nbsp;</div>
+                          <div style={{ fontWeight: "bold", marginTop: "95px" }}>
+                            {enableValue() ? price[parseInt(houseInfo.levels[1])][1] : "--"}
+                          </div>
+                        </>
+                      )}
                     </button>
                   </div>
                 </div>
                 <div class="barn" id="house3">
                   <div class="barn-3 barn-grey-100"></div>
                   <div class="barn-action">
-                    <button class="btn-red btn-buy-barn">
-                      <div class="farm-coin">&nbsp;</div>
-                      {houseInfo && Object.keys(houseInfo).length > 0 ? price[parseInt(houseInfo.levels[2])][2] : "--"}
+                    <button className="btn-red btn-buy-barn"
+                      onClick={() => setUpgradeLevel(3)}>
+                      {enableValue() && parseInt(houseInfo.levels[2]) === 5 ? (
+                        <div style={{ fontWeight: "bold", marginTop: "95px", color: "yellow" }}>Top Level</div>
+                      ) : (
+                        <>
+                          <div class="farm-coin" >&nbsp;</div>
+                          <div style={{ fontWeight: "bold", marginTop: "95px" }}>
+                            {enableValue() ? price[parseInt(houseInfo.levels[2])][2] : "--"}
+                          </div>
+                        </>
+                      )}
                     </button>
                   </div>
                 </div>
                 <div class="barn" id="house4">
                   <div class="barn-4 barn-grey-100"></div>
                   <div class="barn-action">
-                    <button class="btn-red btn-buy-barn">
-                      <div class="farm-coin">&nbsp;</div>
-                      {houseInfo && Object.keys(houseInfo).length > 0 ? price[parseInt(houseInfo.levels[3])][3] : "--"}
+                    <button className="btn-red btn-buy-barn"
+                      onClick={() => setUpgradeLevel(4)}>
+                      {enableValue() && parseInt(houseInfo.levels[3]) === 5 ? (
+                        <div style={{ fontWeight: "bold", marginTop: "95px", color: "yellow" }}>Top Level</div>
+                      ) : (
+                        <>
+                          <div class="farm-coin" >&nbsp;</div>
+                          <div style={{ fontWeight: "bold", marginTop: "95px" }}>
+                            {enableValue() ? price[parseInt(houseInfo.levels[3])][3] : "--"}
+                          </div>
+                        </>
+                      )}
                     </button>
                   </div>
                 </div>
@@ -435,42 +473,82 @@ const Home = () => {
                 <div class="barn" id="house5">
                   <div class="barn-5 barn-grey-100"></div>
                   <div class="barn-action">
-                    <button class="btn-red btn-buy-barn">
-                      <div class="farm-coin">&nbsp;</div>
-                      {houseInfo && Object.keys(houseInfo).length > 0 ? price[parseInt(houseInfo.levels[4])][4] : "--"}
+                    <button className="btn-red btn-buy-barn"
+                      onClick={() => setUpgradeLevel(5)}>
+                      {enableValue() && parseInt(houseInfo.levels[4]) === 5 ? (
+                        <div style={{ fontWeight: "bold", marginTop: "95px", color: "yellow" }}>Top Level</div>
+                      ) : (
+                        <>
+                          <div class="farm-coin" >&nbsp;</div>
+                          <div style={{ fontWeight: "bold", marginTop: "95px" }}>
+                            {enableValue() ? price[parseInt(houseInfo.levels[4])][4] : "--"}
+                          </div>
+                        </>
+                      )}
                     </button>
                   </div>
                 </div>
                 <div class="barn" id="house6">
                   <div class="barn-6 barn-grey-100"></div>
                   <div class="barn-action">
-                    <button class="btn-red btn-buy-barn">
-                      <div class="farm-coin">&nbsp;</div>
-                      {houseInfo && Object.keys(houseInfo).length > 0 ? price[parseInt(houseInfo.levels[5])][5] : "--"}
+                    <button className="btn-red btn-buy-barn"
+                      onClick={() => setUpgradeLevel(6)}>
+                      {enableValue() && parseInt(houseInfo.levels[5]) === 5 ? (
+                        <div style={{ fontWeight: "bold", marginTop: "95px", color: "yellow" }}>Top Level</div>
+                      ) : (
+                        <>
+                          <div class="farm-coin" >&nbsp;</div>
+                          <div style={{ fontWeight: "bold", marginTop: "95px" }}>
+                            {enableValue() ? price[parseInt(houseInfo.levels[5])][5] : "--"}
+                          </div>
+                        </>
+                      )}
                     </button>
                   </div>
                 </div>
                 <div class="barn" id="house7">
                   <div class="barn-7 barn-grey-100"></div>
                   <div class="barn-action">
-                    <button class="btn-red btn-buy-barn">
-                      <div class="farm-coin">&nbsp;</div>
-                      {houseInfo && Object.keys(houseInfo).length > 0 ? price[parseInt(houseInfo.levels[6])][6] : "--"}
+                    <button className="btn-red btn-buy-barn"
+                      onClick={() => setUpgradeLevel(7)}>
+                      {enableValue() && parseInt(houseInfo.levels[6]) === 5 ? (
+                        <div style={{ fontWeight: "bold", marginTop: "95px", color: "yellow" }}>Top Level</div>
+                      ) : (
+                        <>
+                          <div class="farm-coin" >&nbsp;</div>
+                          <div style={{ fontWeight: "bold", marginTop: "95px" }}>
+                            {enableValue() ? price[parseInt(houseInfo.levels[6])][6] : "--"}
+                          </div>
+                        </>
+                      )}
                     </button>
                   </div>
                 </div>
                 <div class="barn" id="house8">
                   <div class="barn-8 barn-grey-100"></div>
                   <div class="barn-action">
-                    <button class="btn-red btn-buy-barn">
-                      <div class="farm-coin">&nbsp;</div>
-                      {houseInfo && Object.keys(houseInfo).length > 0 ? price[parseInt(houseInfo.levels[7])][7] : "--"}
+                    <button className="btn-red btn-buy-barn"
+                      onClick={() => setUpgradeLevel(8)}>
+                      {enableValue() && parseInt(houseInfo.levels[7]) === 5 ? (
+                        <div style={{ fontWeight: "bold", marginTop: "95px", color: "yellow" }}>Top Level</div>
+                      ) : (
+                        <>
+                          <div class="farm-coin" >&nbsp;</div>
+                          <div style={{ fontWeight: "bold", marginTop: "95px" }}>
+                            {enableValue() ? price[parseInt(houseInfo.levels[7])][7] : "--"}
+                          </div>
+                        </>
+                      )}
                     </button>
                   </div>
                 </div>
               </div >
               <div className="get-money">
-                <button type="button" class="btn-green" onClick={() => setShowGetMoney(true)}>Get Money</button>
+                <button type="button" class="btn-green"
+                  style={{ fontWeight: "bold" }}
+                  onClick={() => setShowGetMoney(true)}>
+                  Get Money
+                </button>
               </div>
             </>
             :
@@ -595,12 +673,12 @@ const Home = () => {
 
       <div class="popup-wrapper popup-profit" style={{ display: showGetMoney && isConnected ? "block" : "none" }}>
         <div class="popup-box-1">
-          <div class="popup-profit-header">Your profit</div>
+          <div class="popup-profit-header" style={{ fontWeight: "bold" }}>Your profit</div>
           <div class="popup-profit-time">
             <div class="popup-profit-time-icon" />
-            <div class="popup-profit-time-text">{pendingHours()} Hours</div>
+            <div class="popup-profit-time-text" style={{ fontWeight: "bold" }}>{pendingHours()} Hours</div>
           </div>
-          <div style={{ fontSize: "16px" }} class="popup-profit-time-description">
+          <div style={{ fontSize: "16px", fontWeight: "bold" }} class="popup-profit-time-description">
             Don't forget to collect profit every 24 hours
           </div>
           <div class="popup-profit-figure" />
@@ -608,7 +686,7 @@ const Home = () => {
             <div class="popup-profit-money-bar-icon" />
             <div class="popup-profit-money-bar-text">{pendingCash()}</div>
           </div>
-          <button type="button" class="btn-green" style={{ marginTop: "5px" }}
+          <button type="button" class="btn-green" style={{ marginTop: "5px", fontWeight: "bold" }}
             disabled={pendingTx || !isConnected}
             onClick={(e) => collectMoney(e)}
           >
@@ -618,39 +696,83 @@ const Home = () => {
         <button type="button" class="popup-btn-close" onClick={() => setShowGetMoney(false)} />
       </div>
 
-      <div class="modal" id="upgradeHouse0">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Burger House 1</h4>
-              <button type="button" class="btn-close" data-dismiss="modal"></button>
+      <div class="popup-wrapper popup-upgrade" style={{ display: upgradeLevel > 0 && isConnected ? "block" : "none" }}>
+        <div class="popup-box-2">
+          <div class="popup-upgrade-header">House {upgradeLevel}</div>
+          <div class="popup-upgrade-cover" />
+          <div class="popup-upgrade-box">
+            <div class="popup-upgrade-mini-box">
+              <div class="popup-upgrade-mini-box-header">Level</div>
+              <div class="popup-upgrade-mini-box-text">
+                {enableValue() && upgradeLevel > 0 ? houseInfo.levels[upgradeLevel - 1] : 0} / 5
+              </div>
+              <div class="popup-upgrade-mini-box-added">
+                {enableValue() && upgradeLevel > 0 && parseInt(houseInfo.levels[upgradeLevel - 1]) < 5 ? `+ 1` : ` + 0`}
+              </div>
             </div>
-            <div class="modal-body">
-              <div class="popup-upgrade-box">
-                <div class="popup-upgrade-mini-box">
-                  <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Level</div>
-                  <div class="popup-upgrade-mini-box-added">1</div>
-                </div>
-                <div class="popup-upgrade-mini-box">
-                  <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Slots</div>
-                  <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">2</div>
-                </div>
-                <div class="popup-upgrade-mini-box">
-                  <div class="popup-upgrade-mini-box-text popup-upgrade-chefs popup-text">Amount</div>
-                  <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">100</div>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
-                  <button class="btn-red btn-upgrade"
-                    disabled={pendingTx || !isConnected}
-                    onClick={(e) => upgradeHouse(e, 0)}>
-                    <div class="farm-coin" >&nbsp;</div>
-                    {houseInfo && Object.keys(houseInfo).length > 0 ? price[parseInt(houseInfo.levels[0])][0] : "--"}
-                  </button>
-                </div>
+            <div class="popup-upgrade-mini-box">
+              <div class="popup-upgrade-mini-box-header">House Profit</div>
+              <div class="popup-upgrade-mini-box-text">
+                <span class="popup-upgrade-floor-profit">
+                  {`${enableValue() && upgradeLevel > 0 ?
+                    getHouseprofit(houseInfo.levels[upgradeLevel - 1], upgradeLevel - 1) :
+                    0} / Hour`}
+                </span>
+                <div class="popup-upgrade-money-icon" />
+              </div>
+              <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">
+                {`+ ${enableValue() && upgradeLevel > 0 && parseInt(houseInfo.levels[upgradeLevel - 1]) < 5 ?
+                  yieldValues[houseInfo.levels[upgradeLevel - 1]][upgradeLevel - 1] :
+                  0}`}
+              </div>
+            </div>
+            <div class="popup-upgrade-mini-box">
+              <div class="popup-upgrade-mini-box-header">Total Profit</div>
+              <div class="popup-upgrade-mini-box-text">
+                <span class="popup-upgrade-total-profit">{`${enableValue() ? houseInfo.yield : 0} / Hour`}</span>
+                <div class="popup-upgrade-money-icon" />
+              </div>
+              <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">
+                {`+ ${enableValue() && upgradeLevel > 0 && parseInt(houseInfo.levels[upgradeLevel - 1]) < 5 ?
+                  yieldValues[houseInfo.levels[upgradeLevel - 1]][upgradeLevel - 1] :
+                  0}`}
               </div>
             </div>
           </div>
+          <div class="popup-upgrade-info-text">
+            {`House ${upgradeLevel} - `}
+            {enableValue() && upgradeLevel > 0 ?
+              (parseInt(houseInfo.levels[upgradeLevel - 1]) < 5 ?
+                `Upgrade to Level ${parseInt(houseInfo.levels[upgradeLevel - 1]) + 1}` :
+                `Top Level !!!`) :
+              `Upgrade to Level 1`}
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <button class="btn-red btn-upgrade"
+              disabled={
+                pendingTx || !isConnected || upgradeLevel <= 0 ||
+                (enableValue() && upgradeLevel > 0 && parseInt(houseInfo.levels[upgradeLevel - 1]) === 5)
+              }
+              onClick={(e) => upgradeHouse(e, upgradeLevel - 1)}>
+              {enableValue() && upgradeLevel > 0 ? (
+                parseInt(houseInfo.levels[upgradeLevel - 1]) < 5 ?
+                  (
+                    <div class="farm-coin" style={{ fontWeight: "bold", marginLeft: "-12px", paddingLeft: "30px", paddingTop: "2px" }}>
+                      {price[parseInt(houseInfo.levels[upgradeLevel - 1])][upgradeLevel - 1]}
+                    </div>
+                  )
+                  :
+                  (
+                    <div style={{ marginLeft: "-24px", fontWeight: "bold", fontSize: "16px" }}>TOP LEVEL</div>
+                  )
+              )
+                : (<div>--</div>)}
+            </button>
+          </div>
         </div>
+        <button type="button" class="popup-btn-close"
+          style={{ marginTop: "-12px", marginLeft: "35px" }}
+          onClick={() => setUpgradeLevel(0)} />
       </div>
 
       <div class="modal" id="referral">
