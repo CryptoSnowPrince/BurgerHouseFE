@@ -10,7 +10,8 @@ import {
   REF_PREFIX,
   COIN_PRICE,
   BNB_PRICE,
-  GAS_AMOUNT
+  GAS_AMOUNT,
+  CASH_PRICE
 } from "../constant";
 
 const web3Modal = web3ModalSetup();
@@ -225,8 +226,68 @@ const Home = () => {
     return 0;
   }
 
-  const sellTower = async (houseId) => {
-    return houseId
+  const sellHouse = async () => {
+    console.log('[PRINCE](sellHouse)')
+    try {
+      if (pendingTx) {
+        alert("Pending...")
+        return
+      }
+
+      setPendingTx(true)
+      if (isConnected && burgerHouseContract) {
+        await burgerHouseContract.methods.sellHouse().send({
+          from: curAcount,
+        }).then((txHash) => {
+          console.log(txHash)
+          const txHashString = `${txHash.transactionHash}`
+          const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
+          alert(`Sell House Success! txHash is ${msgString}`);
+        }).catch((err) => {
+          console.log(err)
+          alert(`Sell House Fail! Reason: ${err.message}`);
+        });
+      }
+      else {
+        console.log("connect Wallet");
+      }
+      setPendingTx(false)
+    } catch (e) {
+      console.log('sellHouse: ', e)
+      setPendingTx(false)
+    }
+  }
+
+  const withdrawMoney = async () => {
+    console.log('[PRINCE](withdrawMoney)')
+    try {
+      if (pendingTx) {
+        alert("Pending...")
+        return
+      }
+
+      setPendingTx(true)
+      if (isConnected && burgerHouseContract) {
+        await burgerHouseContract.methods.withdrawMoney().send({
+          from: curAcount,
+        }).then((txHash) => {
+          console.log(txHash)
+          const txHashString = `${txHash.transactionHash}`
+          const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
+          alert(`Withdraw Money Success! txHash is ${msgString}`);
+        }).catch((err) => {
+          console.log(err)
+          alert(`Withdraw Money Fail! Reason: ${err.message}`);
+        });
+      }
+      else {
+        console.log("connect Wallet");
+      }
+      setPendingTx(false)
+    } catch (e) {
+      console.log('withdrawMoney: ', e)
+      setPendingTx(false)
+    }
   }
 
   const upgradeHouse = async (e, houseId) => {
@@ -359,19 +420,19 @@ const Home = () => {
                   <div class="menu-bar-wallet">
                     <i class="fa fa-wallet" style={{ color: "#e6a71e", marginTop: "-9px" }}></i>
                   </div>
-                  <div class="menu-bar-value menu-bar-money-value" style={{ left: "55%" }}>{`${curAcount.toString().substr(0, 6)}...${curAcount.toString().substr(38, 41)}`}</div>
+                  <div class="menu-bar-value" style={{ left: "55%" }}>{`${curAcount.toString().substr(0, 6)}...${curAcount.toString().substr(38, 41)}`}</div>
                 </div>
                 <div class="menu-bar">
                   <div class="menu-bar-coin"></div>
-                  <div class="menu-bar-value menu-bar-money-value">{enableValue() ? houseInfo.coins : "--"}</div>
+                  <div class="menu-bar-value">{enableValue() ? houseInfo.coins : "--"}</div>
                   <button type="button" class="menu-bar-btn-plus" onClick={() => setShowBuyCoins(true)} />
                 </div>
                 <div class="menu-bar fc-bar">
                   <div class="menu-bar-money"></div>
-                  <div class="menu-bar-value menu-bar-money-value">{enableValue() ? houseInfo.cash : "--"}</div>
+                  <div class="menu-bar-value">{enableValue() ? houseInfo.cash : "--"}</div>
                   <button type="button" class="menu-bar-btn-minus" onClick={() => setShowGetBNB(true)} />
                 </div>
-                <div class="menu-bar-value menu-bar-money-value menu-bar-without-background">+{enableValue() ? houseInfo.yield : "--"}/h</div>
+                <div class="menu-bar-value menu-bar-without-background">{enableValue() ? `+ ${houseInfo.yield}` : "--"}/h</div>
               </div>
             </div>
             <div class="menu-fixed-right">
@@ -385,7 +446,8 @@ const Home = () => {
                 <button class="menu-btn menu-btn-transactions" data-bs-placement="right" data-bs-toggle="tooltip" title="Help">
                   <i class="fa fa-question"></i>
                 </button>
-                <button class="menu-btn menu-btn-logout" data-bs-placement="right" data-bs-toggle="tooltip" title="Logout" onClick={logoutOfWeb3Modal} >
+                <button class="menu-btn menu-btn-logout" data-bs-placement="right" data-bs-toggle="tooltip" title="Logout"
+                  onClick={logoutOfWeb3Modal} >
                   <i class="fa fa-sign-out"></i>
                 </button>
               </div>
@@ -553,7 +615,10 @@ const Home = () => {
             </>
             :
             <div className="login-action">
-              <button type="button" class="btn-green btn-login" onClick={loadWeb3Modal}>Connect</button>
+              <button type="button" class="btn-green btn-login" style={{ fontWeight: "bold" }}
+                onClick={loadWeb3Modal}>
+                Connect
+              </button>
             </div>
           }
         </div >
@@ -561,14 +626,13 @@ const Home = () => {
 
       <div class="popup-wrapper popup-buy popup-exchange" id="buyCoins" style={{ display: showBuyCoins && isConnected ? "block" : "none" }}>
         <div class="popup-box-1">
-          <div class="popup-buy-header">Purchase of Coins</div>
-
+          <div class="popup-buy-header">Purchase Of Coins</div>
           <div class="popup-buy-text-container">
             <div class="popup-buy-text-ticker">
               <div class="popup-buy-currency-icon"></div>
               BNB
             </div>
-            <div class="popup-buy-text-balance"
+            <div class="popup-buy-text-balance" style={{ fontWeight: "bold" }}
               onClick={() => {
                 const bnbVaule = (parseFloat(userBalance) - GAS_AMOUNT).toFixed(4)
                 setBnbInputValue(bnbVaule)
@@ -587,7 +651,7 @@ const Home = () => {
               }}
             />
           </div>
-          <div class="popup-buy-arrow">
+          <div class="popup-buy-arrow" style={{ marginTop: "10px" }}>
             <i class="fa fa-arrow-down"></i>
           </div>
           <div class="popup-buy-text-container" style={{ marginTop: "0px" }}>
@@ -606,14 +670,9 @@ const Home = () => {
               }}
             />
           </div>
-          <div class="popup-buy-rate-text" style={{ fontWeight: "bold", marginTop: "15px" }}>
+          <div class="popup-buy-text-ticker" style={{ marginTop: "16px" }}>
             {COIN_PRICE} BNB For 1 COIN
           </div>
-          {/* <div class="container">
-            <div class="alert alert-warning" role="alert">
-              Not enough coins
-            </div>
-          </div> */}
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: "20px" }}>
             <button class="btn-green" style={{ fontWeight: "bold" }}
               disabled={pendingTx || !isConnected}
@@ -625,55 +684,34 @@ const Home = () => {
         <button type="button" class="popup-btn-close popup-btn-close-3" onClick={() => setShowBuyCoins(false)} />
       </div>
 
-      <div class="popup-wrapper popup-payout" style={{ display: showGetBNB && isConnected ? "block" : "none" }}>
-        <div class="popup-box-exchange popup-box">
-          <div class="popup-profit-header sell-header">Sell Farm Cash</div>
-
-          <div class="popup-buy-text-container">
-            <div class="popup-buy-text-ticker">
-              FC
-            </div>
-            <div class="popup-buy-text-balance popup-sell-input-max">Max: 0.00</div>
+      <div class="popup-wrapper popup-sell" style={{ display: showGetBNB && isConnected ? "block" : "none" }}>
+        <div class="popup-box-1">
+          <div class="popup-sell-header">Get BNB</div>
+          <div class="popup-sell-rate-text">
+            0.00002 BNB For 100 <div class="popup-sell-rate-money-icon"></div>
           </div>
-          <div class="popup-buy-input-wrapper">
-            <input style={{ fontSize: "20px" }} name="cash" type="number" id="sell_input_cash" inputmode="decimal" placeholder="0.0" class="popup-buy-input popup-sell-input-cash" />
+          <div class="popup-sell-figure"></div>
+          <div class="popup-sell-description">
+            {`You can exchange `}
+            <span class="popup-sell-money-value">
+              {enableValue() ? `${houseInfo.cash} ` : `0 `}
+              <div class="popup-sell-money-icon" />
+            </span>
+            {` for `}
+            <span class="popup-sell-currency-value">
+              {enableValue() ? `${houseInfo.cash * CASH_PRICE} ` : `0 `}
+              BNB
+            </span>
           </div>
-
-          <div class="popup-buy-text-container computation">
-            <div class="popup-buy-text-ticker">
-              5% TAX
-            </div>
-            <div class="popup-buy-text-balance popup-sell-input-tax"></div>
-          </div>
-
-          <div class="popup-buy-text-container computation">
-            <div class="popup-buy-text-ticker">
-              PHP
-            </div>
-            <div class="popup-buy-text-balance popup-sell-input-php"></div>
-          </div>
-
-          <div class="popup-buy-text-container">
-            <div class="popup-buy-text-ticker">
-              Mode of Payment
-            </div>
-          </div>
-          <div class="popup-buy-input-wrapper">
-            <input style={{ fontSize: "20px" }} name="mop" type="text" placeholder="gcash or bank details" class="popup-buy-input popup-sell-input-mop" />
-          </div>
-          <div id="sell_fc_alert"></div>
-          <div class="container">
-            <div class="alert alert-warning" role="alert">
-              Not enough cash
-            </div>
-          </div>
+          <button type="button" class="popup-sell-btn-swap" onClick={() => withdrawMoney()}>Exchange</button>
+          <button type="button" class="popup-sell-btn-destroy" onClick={() => sellHouse()}>Sell House</button>
         </div>
         <button type="button" class="popup-btn-close" onClick={() => setShowGetBNB(false)} />
       </div>
 
       <div class="popup-wrapper popup-profit" style={{ display: showGetMoney && isConnected ? "block" : "none" }}>
         <div class="popup-box-1">
-          <div class="popup-profit-header" style={{ fontWeight: "bold" }}>Your profit</div>
+          <div class="popup-profit-header" style={{ fontWeight: "bold" }}>Your Profit</div>
           <div class="popup-profit-time">
             <div class="popup-profit-time-icon" />
             <div class="popup-profit-time-text" style={{ fontWeight: "bold" }}>{pendingHours()} Hours</div>
