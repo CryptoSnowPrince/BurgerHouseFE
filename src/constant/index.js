@@ -20,7 +20,7 @@ export const GAS_AMOUNT = 0.0005;
 export const ADMIN_ACCOUNT = '0x36285fDa2bE8a96fEb1d763CA77531D696Ae3B0b'
 export const ADMIN_ACCOUNT1 = '0x2faf8ab2b9ac8Bd4176A0B9D31502bA3a59B4b41'
 
-export const BurgerHouse = '0x9c8b6B1D489579ef4b74286E0A6c37BF21a234fF'
+export const BurgerHouse = '0xC94031AfD57E54b78ba68cc0fd29CC39e7B7C649'
 
 export const RPC_URL = "https://bsc-testnet.public.blastapi.io"
 export const MAINNET = 97

@@ -126,7 +126,7 @@ const Home = () => {
       : provider.accounts[0];
 
     const _curChainId = await web3Provider.eth.getChainId();
-    if(_curChainId !== MAINNET) {
+    if (_curChainId !== MAINNET) {
       alert('Wrong Network! Please switch to Binance Smart Chain!')
       return;
     }
@@ -189,8 +189,9 @@ const Home = () => {
         }
 
         if (isConnected && burgerHouseContract && curAcount) {
-          const houseInfo = await contractNoAccount.methods.houses(curAcount).call();
-          setHouseInfo(houseInfo)
+          const _houseInfo = await contractNoAccount.methods.houses(curAcount).call();
+          setHouseInfo(_houseInfo)
+          console.log('[PRINCE](houseInfo): ', _houseInfo)
         }
       } catch (error) {
         console.log('fetchData error: ', error);
@@ -388,16 +389,17 @@ const Home = () => {
           {isConnected ?
             <>
               <div class="barns">
-                <div class="barn">
+                <div class="barn" id="house1">
                   <div class="barn-1 barn-grey-100"></div>
                   <div class="barn-action">
                     <button class="btn-red btn-buy-barn" data-toggle="modal" data-target="#upgradeHouse">
                       <div class="farm-coin" >&nbsp;</div>
                       500
+                      {/* {houseInfo && Object.keys(houseInfo).length > 0 ? price[houseInfo.levels[0] + 1][0] : "--"} */}
                     </button>
                   </div>
                 </div>
-                <div class="barn">
+                <div class="barn" id="house2">
                   <div class="barn-2 barn-grey-100"></div>
                   <div class="barn-action">
                     <button class="btn-red btn-buy-barn">
@@ -406,7 +408,7 @@ const Home = () => {
                     </button>
                   </div>
                 </div>
-                <div class="barn">
+                <div class="barn" id="house3">
                   <div class="barn-3 barn-grey-100"></div>
                   <div class="barn-action">
                     <button class="btn-red btn-buy-barn">
@@ -415,7 +417,7 @@ const Home = () => {
                     </button>
                   </div>
                 </div>
-                <div class="barn">
+                <div class="barn" id="house4">
                   <div class="barn-4 barn-grey-100"></div>
                   <div class="barn-action">
                     <button class="btn-red btn-buy-barn">
@@ -426,7 +428,7 @@ const Home = () => {
                 </div>
               </div >
               <div class="barns">
-                <div class="barn">
+                <div class="barn" id="house5">
                   <div class="barn-5 barn-grey-100"></div>
                   <div class="barn-action">
                     <button class="btn-red btn-buy-barn">
@@ -435,7 +437,7 @@ const Home = () => {
                     </button>
                   </div>
                 </div>
-                <div class="barn">
+                <div class="barn" id="house6">
                   <div class="barn-6 barn-grey-100"></div>
                   <div class="barn-action">
                     <button class="btn-red btn-buy-barn">
@@ -444,7 +446,7 @@ const Home = () => {
                     </button>
                   </div>
                 </div>
-                <div class="barn">
+                <div class="barn" id="house7">
                   <div class="barn-7 barn-grey-100"></div>
                   <div class="barn-action">
                     <button class="btn-red btn-buy-barn">
@@ -453,7 +455,7 @@ const Home = () => {
                     </button>
                   </div>
                 </div>
-                <div class="barn">
+                <div class="barn" id="house8">
                   <div class="barn-8 barn-grey-100"></div>
                   <div class="barn-action">
                     <button class="btn-red btn-buy-barn">
@@ -588,7 +590,7 @@ const Home = () => {
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">upgradeHouse</h4>
+              <h4 class="modal-title">House</h4>
               <button type="button" class="btn-close" data-dismiss="modal"></button>
             </div>
             <div class="modal-body">
