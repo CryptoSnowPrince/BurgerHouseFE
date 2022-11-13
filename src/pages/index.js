@@ -851,7 +851,7 @@ const Home = () => {
           <div class="popup-partners-money-bar">
             <div class="popup-partners-money-bar-icon" />
             <div class="popup-partners-money-bar-text">
-              {enableValue() ? `+ ${houseInfo.refCoins * REFERRAL_CASH / REFERRAL_COIN}` : `+ 0`}
+              {enableValue() ? `+ ${parseInt(houseInfo.refCoins * REFERRAL_COIN / REFERRAL_CASH)}` : `+ 0`}
             </div>
           </div>
           <div class="popup-partners-users-bar">
