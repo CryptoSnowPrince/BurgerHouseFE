@@ -13,7 +13,8 @@ import {
   GAS_AMOUNT,
   CASH_PRICE,
   REFERRAL_CASH,
-  REFERRAL_COIN
+  REFERRAL_COIN,
+  DENOMINATOR
 } from "../constant";
 
 const web3Modal = web3ModalSetup();
@@ -163,11 +164,16 @@ const Home = () => {
   }, [setInjectedProvider]);
 
   useEffect(() => {
-    setInterval(() => {
+    const timerID = setInterval(() => {
       setRefetch((prevRefetch) => {
         return !prevRefetch;
       });
-    }, 10000);
+    }, 12000);
+
+    return () => {
+      clearInterval(timerID);
+    };
+    
   }, []);
 
   useEffect(() => {
@@ -233,6 +239,11 @@ const Home = () => {
       if (pendingTx) {
         alert("Pending...")
         return
+      }
+
+      if (!enableValue() || houseInfo.timestamp <= 0) {
+        alert(`User is not registered!`);
+        return;
       }
 
       setPendingTx(true)
@@ -846,12 +857,14 @@ const Home = () => {
           <div class="popup-partners-header" style={{ marginTop: "15px" }}>Referral statistics</div>
           <div class="popup-partners-coins-bar">
             <div class="popup-partners-coins-bar-icon" />
-            <div class="popup-partners-coins-bar-text">{enableValue() ? `+ ${houseInfo.refCoins}` : `+ 0`}</div>
+            <div class="popup-partners-coins-bar-text">
+              {enableValue() ? `+ ${parseInt(houseInfo.refCoins * REFERRAL_COIN / DENOMINATOR)}` : `+ 0`}
+            </div>
           </div>
           <div class="popup-partners-money-bar">
             <div class="popup-partners-money-bar-icon" />
             <div class="popup-partners-money-bar-text">
-              {enableValue() ? `+ ${parseInt(houseInfo.refCoins * REFERRAL_COIN / REFERRAL_CASH)}` : `+ 0`}
+              {enableValue() ? `+ ${parseInt(houseInfo.refCoins * 100 * REFERRAL_CASH / DENOMINATOR)}` : `+ 0`}
             </div>
           </div>
           <div class="popup-partners-users-bar">
