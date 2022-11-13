@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { Alert, AlertTitle } from "@mui/material";
+import { Alert, Snackbar } from "@mui/material";
 import web3ModalSetup from "./../helpers/web3ModalSetup";
 import Web3 from "web3";
 import {
@@ -60,10 +60,10 @@ const getHouseprofit = (level, houseId) => {
   return houseprofit;
 }
 
-const ALERT_EMPTY = 0
-const ALERT_SUCCESS = 1
-const ALERT_WARN = 2
-const ALERT_ERROR = 3
+const ALERT_EMPTY = ""
+const ALERT_SUCCESS = "success"
+const ALERT_WARN = "warning"
+const ALERT_ERROR = "error"
 
 const Home = () => {
   const isMobile = window.matchMedia("only screen and (max-width: 1000px)").matches;
@@ -102,7 +102,7 @@ const Home = () => {
   const [showGetMoney, setShowGetMoney] = useState(false)
   const [upgradeLevel, setUpgradeLevel] = useState(0)
   const [showReferral, setShowReferral] = useState(false)
-  const [alertMessage, setAlertMessage] = useState({ type: 0, message: "" })
+  const [alertMessage, setAlertMessage] = useState({ type: ALERT_EMPTY, message: "" })
 
   useEffect(() => {
     const referral = window.localStorage.getItem("REFERRAL")
@@ -427,14 +427,24 @@ const Home = () => {
     }
   }
 
+  const handleClose = () => {
+    setAlertMessage({ type: ALERT_EMPTY, message: "" })
+  }
+
   return (
     <>
-      <div class="section-open">
-        <Alert
-          style={{ position: "absolute", display: alertMessage.type !== ALERT_EMPTY ? "block" : "none", zIndex: 1000 }}
-          onClose={() => setAlertMessage({ type: ALERT_EMPTY, message: "" })}>
+      <Snackbar
+        className="alert-message"
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        open={alertMessage.type !== ALERT_EMPTY}
+        autoHideDuration={5000}
+        onClose={handleClose}
+      >
+        <Alert onClose={handleClose} severity={alertMessage.type} sx={{ width: '100%' }}>
           {alertMessage.message}
         </Alert>
+      </Snackbar>
+      <div class="section-open">
         <div class="logo-desktop"></div>
         {isConnected &&
           <>

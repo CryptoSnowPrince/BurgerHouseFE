@@ -117,6 +117,15 @@ input.form-input {
   padding: 10px 20px;
 }
 
+.alert-message {
+  position: absolute;
+  display: flex;
+  z-index: 1000;
+  top: 30px;
+  color: #fff;
+  justify-content: center;
+}
+
 .btn-red {
   background: url(./assets/img/btn_red.png) no-repeat;
   cursor: pointer;
