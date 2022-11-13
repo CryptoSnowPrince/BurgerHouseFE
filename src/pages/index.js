@@ -168,7 +168,7 @@ const Home = () => {
       setRefetch((prevRefetch) => {
         return !prevRefetch;
       });
-    }, 12000);
+    }, 10000);
 
     return () => {
       clearInterval(timerID);
@@ -470,6 +470,25 @@ const Home = () => {
                   onClick={logoutOfWeb3Modal} >
                   <i class="fa fa-sign-out"></i>
                 </button>
+              </div>
+              <br />
+              <div className="panels">
+                <div class="panel">
+                  <div class="panel-left">Total Houses</div>
+                  <div class="panel-right panel-towers-value">{allHousesLength}</div>
+                </div>
+                <div class="panel">
+                  <div class="panel-left">Total Deposits</div>
+                  <div class="panel-right panel-towers-value">{`${web3NoAccount.utils.fromWei(totalInvested, 'ether')} BNB`}</div>
+                </div>
+                <div class="panel">
+                  <div class="panel-left">Total Upgrades</div>
+                  <div class="panel-right panel-towers-value">{totalUpgrades}</div>
+                </div>
+                <div class="panel">
+                  <div class="panel-left">Your Partners</div>
+                  <div class="panel-right panel-towers-value">{enableValue() ? houseInfo.refs : 0}</div>
+                </div>
               </div>
             </div>
           </>

@@ -1313,15 +1313,14 @@ div.barn-action {
 
 .panels {
   width: 100%;
-  position: relative;
-  padding: 0px 10px !important;
+  position: absolute;
+  padding: 0px 5px !important;
 }
 
 .panel {
   width: 100%;
   height: 35px;
-  background-color: #fff;
-  color: #000;
+  background-color: #00000070;
   margin-bottom: 14px;
   text-align: left;
   padding-left: 15px;
@@ -1331,15 +1330,12 @@ div.barn-action {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  text-shadow: -1px -1px 0 #000, 0 -1px 0 #000, 1px -1px 0 #000, 1px 0 0 #000, 1px 1px 0 #000, 0 1px 0 #000, -1px 1px 0 #000, -1px 0 0 #000, 0 1.5px 0 #00000090;
 }
 
 .panel-right {
+  font-family: LilitaOne, sans-serif !important;
   font-weight: 500 !important;
-  margin: 10px;
-}
-
-.panel-left {
-  margin: 10px;
 }
 
 .popup-payout .popup-buy-text-container.computation {
