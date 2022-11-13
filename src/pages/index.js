@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { Alert, AlertTitle } from "@mui/material";
 import web3ModalSetup from "./../helpers/web3ModalSetup";
 import Web3 from "web3";
 import {
@@ -59,6 +60,11 @@ const getHouseprofit = (level, houseId) => {
   return houseprofit;
 }
 
+const ALERT_EMPTY = 0
+const ALERT_SUCCESS = 1
+const ALERT_WARN = 2
+const ALERT_ERROR = 3
+
 const Home = () => {
   const isMobile = window.matchMedia("only screen and (max-width: 1000px)").matches;
 
@@ -96,6 +102,7 @@ const Home = () => {
   const [showGetMoney, setShowGetMoney] = useState(false)
   const [upgradeLevel, setUpgradeLevel] = useState(0)
   const [showReferral, setShowReferral] = useState(false)
+  const [alertMessage, setAlertMessage] = useState({ type: 0, message: "" })
 
   useEffect(() => {
     const referral = window.localStorage.getItem("REFERRAL")
@@ -132,7 +139,7 @@ const Home = () => {
 
     const _curChainId = await web3Provider.eth.getChainId();
     if (_curChainId !== MAINNET) {
-      alert('Wrong Network! Please switch to Binance Smart Chain!')
+      setAlertMessage({ type: ALERT_ERROR, message: 'Wrong Network! Please switch to Binance Smart Chain!' })
       return;
     }
 
@@ -143,14 +150,14 @@ const Home = () => {
 
     provider.on("chainChanged", (chainId) => {
       console.log(`chain changed to ${chainId}! updating providers`);
-      alert('Wrong Network! Please switch to Binance Smart Chain!')
+      setAlertMessage({ type: ALERT_ERROR, message: 'Wrong Network! Please switch to Binance Smart Chain!' })
       setInjectedProvider(web3Provider);
       logoutOfWeb3Modal();
     });
 
     provider.on("accountsChanged", () => {
       console.log(`curAcount changed!`);
-      alert('Current Account Changed!')
+      setAlertMessage({ type: ALERT_WARN, message: 'Current Account Changed!' })
       setInjectedProvider(web3Provider);
       logoutOfWeb3Modal();
     });
@@ -237,12 +244,12 @@ const Home = () => {
     console.log('[PRINCE](sellHouse)')
     try {
       if (pendingTx) {
-        alert("Pending...")
+        setAlertMessage({ type: ALERT_WARN, message: "Pending..." })
         return
       }
 
       if (!enableValue() || houseInfo.timestamp <= 0) {
-        alert(`User is not registered!`);
+        setAlertMessage({ type: ALERT_WARN, message: `User is not registered!` });
         return;
       }
 
@@ -254,10 +261,10 @@ const Home = () => {
           console.log(txHash)
           const txHashString = `${txHash.transactionHash}`
           const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
-          alert(`Sell House Success! txHash is ${msgString}`);
+          setAlertMessage({ type: ALERT_SUCCESS, message: `Sell House Success! txHash is ${msgString}` });
         }).catch((err) => {
           console.log(err)
-          alert(`Sell House Fail! Reason: ${err.message}`);
+          setAlertMessage({ type: ALERT_ERROR, message: `Sell House Fail! Reason: ${err.message}` });
         });
       }
       else {
@@ -274,7 +281,7 @@ const Home = () => {
     console.log('[PRINCE](withdrawMoney)')
     try {
       if (pendingTx) {
-        alert("Pending...")
+        setAlertMessage({ type: ALERT_WARN, message: "Pending..." })
         return
       }
 
@@ -286,10 +293,10 @@ const Home = () => {
           console.log(txHash)
           const txHashString = `${txHash.transactionHash}`
           const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
-          alert(`Withdraw Money Success! txHash is ${msgString}`);
+          setAlertMessage({ type: ALERT_SUCCESS, message: `Withdraw Money Success! txHash is ${msgString}` });
         }).catch((err) => {
           console.log(err)
-          alert(`Withdraw Money Fail! Reason: ${err.message}`);
+          setAlertMessage({ type: ALERT_ERROR, message: `Withdraw Money Fail! Reason: ${err.message}` });
         });
       }
       else {
@@ -307,14 +314,14 @@ const Home = () => {
     try {
       e.preventDefault();
       if (pendingTx) {
-        alert("Pending...")
+        setAlertMessage({ type: ALERT_WARN, message: "Pending..." })
         return
       }
 
       if (
         !enableValue() ||
         parseInt(houseInfo.coins) < priceINT[parseInt(houseInfo.levels[upgradeLevel - 1])][upgradeLevel - 1]) {
-        alert("Insufficient Coins! Please Purchase Coins!")
+        setAlertMessage({ type: ALERT_WARN, message: "Insufficient Coins! Please Purchase Coins!" })
         return
       }
 
@@ -326,10 +333,10 @@ const Home = () => {
           console.log(txHash)
           const txHashString = `${txHash.transactionHash}`
           const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
-          alert(`House Upgrade Success! txHash is ${msgString}`);
+          setAlertMessage({ type: ALERT_SUCCESS, message: `House Upgrade Success! txHash is ${msgString}` });
         }).catch((err) => {
           console.log(err)
-          alert(`House Upgrade Fail! Reason: ${err.message}`);
+          setAlertMessage({ type: ALERT_ERROR, message: `House Upgrade Fail! Reason: ${err.message}` });
         });
       }
       else {
@@ -347,12 +354,12 @@ const Home = () => {
     try {
       e.preventDefault();
       if (pendingTx) {
-        alert("Pending...")
+        setAlertMessage({ type: ALERT_WARN, message: "Pending..." })
         return
       }
 
       if (parseFloat(bnbInputValue) <= 0) {
-        alert("Please input BNB value...")
+        setAlertMessage({ type: ALERT_WARN, message: "Please input BNB value..." })
         return
       }
 
@@ -371,10 +378,10 @@ const Home = () => {
           console.log(txHash)
           const txHashString = `${txHash.transactionHash}`
           const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
-          alert(`Purchase Success! txHash is ${msgString}`);
+          setAlertMessage({ type: ALERT_SUCCESS, message: `Purchase Success! txHash is ${msgString}` });
         }).catch((err) => {
           console.log(err)
-          alert(`Purchase Fail! Reason: ${err.message}`);
+          setAlertMessage({ type: ALERT_ERROR, message: `Purchase Fail! Reason: ${err.message}` });
         });
       }
       else {
@@ -392,7 +399,7 @@ const Home = () => {
     try {
       e.preventDefault();
       if (pendingTx) {
-        alert("Pending...")
+        setAlertMessage({ type: ALERT_WARN, message: "Pending..." })
         return
       }
 
@@ -404,10 +411,10 @@ const Home = () => {
           console.log(txHash)
           const txHashString = `${txHash.transactionHash}`
           const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
-          alert(`Collect Money Success! txHash is ${msgString}`);
+          setAlertMessage({ type: ALERT_SUCCESS, message: `Collect Money Success! txHash is ${msgString}` });
         }).catch((err) => {
           console.log(err)
-          alert(`Collect Money Fail! Reason: ${err.message}`);
+          setAlertMessage({ type: ALERT_ERROR, message: `Collect Money Fail! Reason: ${err.message}` });
         });
       }
       else {
@@ -423,6 +430,11 @@ const Home = () => {
   return (
     <>
       <div class="section-open">
+        <Alert
+          style={{ position: "absolute", display: alertMessage.type !== ALERT_EMPTY ? "block" : "none", zIndex: 1000 }}
+          onClose={() => setAlertMessage({ type: ALERT_EMPTY, message: "" })}>
+          {alertMessage.message}
+        </Alert>
         <div class="logo-desktop"></div>
         {isConnected &&
           <>
