@@ -68,7 +68,7 @@ const ALERT_WARN = "warning"
 const ALERT_ERROR = "error"
 
 const Home = () => {
-  const isMobile = window.matchMedia("only screen and (max-width: 1000px)").matches;
+  // const isMobile = window.matchMedia("only screen and (max-width: 1000px)").matches;
 
   const queryString = window.location.search;
   const parameters = new URLSearchParams(queryString);
