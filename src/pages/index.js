@@ -210,7 +210,7 @@ const Home = () => {
         if (isConnected && burgerHouseContract && curAcount) {
           const _houseInfo = await contractNoAccount.methods.viewHouse(curAcount).call();
           setHouseInfo(_houseInfo)
-          console.log('[PRINCE](houseInfo): ', _houseInfo)
+          // console.log('[PRINCE](houseInfo): ', _houseInfo)
         }
       } catch (error) {
         console.log('fetchData error: ', error);
@@ -442,10 +442,7 @@ const Home = () => {
       pauseOnHover: true,
       draggable: true,
       onClose: handleClose,
-      className: 'alert-message'
-      // className: css({
-      //   background: "#1ab394 !important"
-      // })
+      className: 'alert-message-success'
     });
 
   const notifyError = () => {
@@ -457,7 +454,7 @@ const Home = () => {
       pauseOnHover: true,
       draggable: true,
       onClose: handleClose,
-      className: 'alert-message'
+      className: 'alert-message-error'
     });
   };
 
@@ -470,14 +467,8 @@ const Home = () => {
       pauseOnHover: true,
       draggable: true,
       onClose: handleClose,
-      className: 'alert-message'
-      // className: css({
-      //   background: "#f8ac59 !important"
-      // })
-      // progressClassName: css({
-      //   background:
-      //     "repeating-radial-gradient(circle at center, red 0, blue, green 30px)"
-      // })
+      className: 'alert-message-warn',
+      progressClassName: 'alert-message-warn-progress'
     });
   };
 

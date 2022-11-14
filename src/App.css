@@ -123,12 +123,28 @@ input.form-input {
   padding: 10px 20px;
 }
 
-.alert-message {
+.alert-message-success,
+.alert-message-error,
+.alert-message-warn {
   color: rgb(12, 13, 12);
   font-size: 20px;
   font-weight: bold;
-  background-color: #0fd1ee90;
-  opacity: 1;
+}
+
+.alert-message-success {
+  background-color: #0fd1ee;
+}
+
+.alert-message-error {
+  background-color: #f00;
+}
+
+.alert-message-warn {
+  background-color: #f1e20a;
+}
+
+.alert-message-warn-progress {
+  background: #f00
 }
 
 .barn-grey-100 {
