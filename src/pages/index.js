@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+// import { ToastContainer, Toast } from 'react-toastify';
 import { Alert, Snackbar } from "@mui/material";
 import web3ModalSetup from "./../helpers/web3ModalSetup";
 import Web3 from "web3";
@@ -102,7 +103,7 @@ const Home = () => {
   const [showGetMoney, setShowGetMoney] = useState(false)
   const [upgradeLevel, setUpgradeLevel] = useState(0)
   const [showReferral, setShowReferral] = useState(false)
-  const [alertMessage, setAlertMessage] = useState({ type: ALERT_EMPTY, message: "" })
+  const [alertMessage, setAlertMessage] = useState({ type: ALERT_ERROR, message: "asdfgewadfs aljfdwlw wejaljesf" })
 
   useEffect(() => {
     const referral = window.localStorage.getItem("REFERRAL")
@@ -444,91 +445,91 @@ const Home = () => {
           {alertMessage.message}
         </Alert>
       </Snackbar>
-      <div class="section-open">
-        <div class="logo-desktop"></div>
+      <div className="section-open">
+        <div className="logo-desktop"></div>
         {isConnected &&
           <>
-            <div class="menu-fixed-left">
-              <div class="menu-bars">
-                <div class="menu-bar">
-                  <div class="menu-bar-wallet">
-                    <i class="fa fa-wallet" style={{ color: "#e6a71e", marginTop: "-9px" }}></i>
+            <div className="menu-fixed-left">
+              <div className="menu-bars">
+                <div className="menu-bar">
+                  <div className="menu-bar-wallet">
+                    <i className="fa fa-wallet" style={{ color: "#e6a71e", marginTop: "-9px" }}></i>
                   </div>
-                  <div class="menu-bar-value" style={{ left: "55%" }}>{`${curAcount.toString().substr(0, 6)}...${curAcount.toString().substr(38, 41)}`}</div>
+                  <div className="menu-bar-value" style={{ left: "55%" }}>{`${curAcount.toString().substr(0, 6)}...${curAcount.toString().substr(38, 41)}`}</div>
                 </div>
-                <div class="menu-bar">
-                  <div class="menu-bar-coin"></div>
-                  <div class="menu-bar-value">{enableValue() ? houseInfo.coins : "--"}</div>
-                  <button type="button" class="menu-bar-btn-plus" onClick={() => setShowBuyCoins(true)} />
+                <div className="menu-bar">
+                  <div className="menu-bar-coin"></div>
+                  <div className="menu-bar-value">{enableValue() ? houseInfo.coins : "--"}</div>
+                  <button type="button" className="menu-bar-btn-plus" onClick={() => setShowBuyCoins(true)} />
                 </div>
-                <div class="menu-bar fc-bar">
-                  <div class="menu-bar-money"></div>
-                  <div class="menu-bar-value">{enableValue() ? houseInfo.cash : "--"}</div>
-                  <button type="button" class="menu-bar-btn-minus" onClick={() => setShowGetBNB(true)} />
+                <div className="menu-bar fc-bar">
+                  <div className="menu-bar-money"></div>
+                  <div className="menu-bar-value">{enableValue() ? houseInfo.cash : "--"}</div>
+                  <button type="button" className="menu-bar-btn-minus" onClick={() => setShowGetBNB(true)} />
                 </div>
-                <div class="menu-bar-value menu-bar-without-background">{enableValue() ? `+ ${houseInfo.yield}` : "--"}/h</div>
+                <div className="menu-bar-value menu-bar-without-background">{enableValue() ? `+ ${houseInfo.yield}` : "--"}/h</div>
               </div>
             </div>
-            <div class="menu-fixed-right">
-              <div class="menu-btns">
-                <button class="menu-btn menu-btn-affiliate"
+            <div className="menu-fixed-right">
+              <div className="menu-btns">
+                <button className="menu-btn menu-btn-affiliate"
                   onClick={() => setShowReferral(true)}
                   data-bs-placement="right"
                   data-bs-toggle="tooltip"
                   title="Partners">
-                  <i class="fa fa-users"></i>
+                  <i className="fa fa-users"></i>
                 </button>
                 <a href="https://t.me/red1ones" target="_blank" rel="noreferrer">
-                  <button class="menu-btn menu-btn-leaderboard" data-bs-placement="right" data-bs-toggle="tooltip" title="Telegram">
+                  <button className="menu-btn menu-btn-leaderboard" data-bs-placement="right" data-bs-toggle="tooltip" title="Telegram">
                     <svg fill="#ffffff" xmlns="http://www.w3.org/2000/svg" viewBox="3 5 50 50" width="30px" height="30px"><path d="M46.137,6.552c-0.75-0.636-1.928-0.727-3.146-0.238l-0.002,0C41.708,6.828,6.728,21.832,5.304,22.445	c-0.259,0.09-2.521,0.934-2.288,2.814c0.208,1.695,2.026,2.397,2.248,2.478l8.893,3.045c0.59,1.964,2.765,9.21,3.246,10.758	c0.3,0.965,0.789,2.233,1.646,2.494c0.752,0.29,1.5,0.025,1.984-0.355l5.437-5.043l8.777,6.845l0.209,0.125	c0.596,0.264,1.167,0.396,1.712,0.396c0.421,0,0.825-0.079,1.211-0.237c1.315-0.54,1.841-1.793,1.896-1.935l6.556-34.077	C47.231,7.933,46.675,7.007,46.137,6.552z M22,32l-3,8l-3-10l23-17L22,32z"></path></svg>
                   </button>
                 </a>
                 <a href="https://t.me/red1ones" target="_blank" rel="noreferrer">
-                  <button class="menu-btn menu-btn-transactions" data-bs-placement="right" data-bs-toggle="tooltip" title="Help">
-                    <i class="fa fa-question"></i>
+                  <button className="menu-btn menu-btn-transactions" data-bs-placement="right" data-bs-toggle="tooltip" title="Help">
+                    <i className="fa fa-question"></i>
                   </button>
                 </a>
-                <button class="menu-btn menu-btn-logout" data-bs-placement="right" data-bs-toggle="tooltip" title="Logout"
+                <button className="menu-btn menu-btn-logout" data-bs-placement="right" data-bs-toggle="tooltip" title="Logout"
                   onClick={logoutOfWeb3Modal} >
-                  <i class="fa fa-sign-out"></i>
+                  <i className="fa fa-sign-out"></i>
                 </button>
               </div>
               <br />
               <div className="panels">
-                <div class="panel">
-                  <div class="panel-left">Total Houses</div>
-                  <div class="panel-right panel-towers-value">{allHousesLength}</div>
+                <div className="panel">
+                  <div className="panel-left">Total Houses</div>
+                  <div className="panel-right panel-towers-value">{allHousesLength}</div>
                 </div>
-                <div class="panel">
-                  <div class="panel-left">Total Deposits</div>
-                  <div class="panel-right panel-towers-value">{`${web3NoAccount.utils.fromWei(totalInvested, 'ether')} BNB`}</div>
+                <div className="panel">
+                  <div className="panel-left">Total Deposits</div>
+                  <div className="panel-right panel-towers-value">{`${web3NoAccount.utils.fromWei(totalInvested, 'ether')} BNB`}</div>
                 </div>
-                <div class="panel">
-                  <div class="panel-left">Total Upgrades</div>
-                  <div class="panel-right panel-towers-value">{totalUpgrades}</div>
+                <div className="panel">
+                  <div className="panel-left">Total Upgrades</div>
+                  <div className="panel-right panel-towers-value">{totalUpgrades}</div>
                 </div>
-                <div class="panel">
-                  <div class="panel-left">Your Partners</div>
-                  <div class="panel-right panel-towers-value">{enableValue() ? houseInfo.refs : 0}</div>
+                <div className="panel">
+                  <div className="panel-left">Your Partners</div>
+                  <div className="panel-right panel-towers-value">{enableValue() ? houseInfo.refs : 0}</div>
                 </div>
               </div>
             </div>
           </>
         }
-        < div class="ranch trees">
+        < div className="ranch trees">
           {isConnected ?
             <>
-              <div class="barns">
-                <div class="barn" id="house1">
-                  <div class="barn-1 barn-grey-100"></div>
-                  <div class="barn-action">
+              <div className="barns">
+                <div className="barn" id="house1">
+                  <div className="barn-1 barn-grey-100"></div>
+                  <div className="barn-action">
                     <button className="btn-red btn-buy-barn"
                       onClick={() => setUpgradeLevel(1)}>
                       {enableValue() && parseInt(houseInfo.levels[0]) === 5 ? (
                         <div style={{ fontWeight: "bold", marginTop: "95px", color: "yellow" }}>Top Level</div>
                       ) : (
                         <>
-                          <div class="farm-coin" >&nbsp;</div>
+                          <div className="farm-coin" >&nbsp;</div>
                           <div style={{ fontWeight: "bold", marginTop: "95px" }}>
                             {enableValue() ? price[parseInt(houseInfo.levels[0])][0] : "--"}
                           </div>
@@ -537,16 +538,16 @@ const Home = () => {
                     </button>
                   </div>
                 </div>
-                <div class="barn" id="house2">
-                  <div class="barn-2 barn-grey-100"></div>
-                  <div class="barn-action">
+                <div className="barn" id="house2">
+                  <div className="barn-2 barn-grey-100"></div>
+                  <div className="barn-action">
                     <button className="btn-red btn-buy-barn"
                       onClick={() => setUpgradeLevel(2)}>
                       {enableValue() && parseInt(houseInfo.levels[1]) === 5 ? (
                         <div style={{ fontWeight: "bold", marginTop: "95px", color: "yellow" }}>Top Level</div>
                       ) : (
                         <>
-                          <div class="farm-coin" >&nbsp;</div>
+                          <div className="farm-coin" >&nbsp;</div>
                           <div style={{ fontWeight: "bold", marginTop: "95px" }}>
                             {enableValue() ? price[parseInt(houseInfo.levels[1])][1] : "--"}
                           </div>
@@ -555,16 +556,16 @@ const Home = () => {
                     </button>
                   </div>
                 </div>
-                <div class="barn" id="house3">
-                  <div class="barn-3 barn-grey-100"></div>
-                  <div class="barn-action">
+                <div className="barn" id="house3">
+                  <div className="barn-3 barn-grey-100"></div>
+                  <div className="barn-action">
                     <button className="btn-red btn-buy-barn"
                       onClick={() => setUpgradeLevel(3)}>
                       {enableValue() && parseInt(houseInfo.levels[2]) === 5 ? (
                         <div style={{ fontWeight: "bold", marginTop: "95px", color: "yellow" }}>Top Level</div>
                       ) : (
                         <>
-                          <div class="farm-coin" >&nbsp;</div>
+                          <div className="farm-coin" >&nbsp;</div>
                           <div style={{ fontWeight: "bold", marginTop: "95px" }}>
                             {enableValue() ? price[parseInt(houseInfo.levels[2])][2] : "--"}
                           </div>
@@ -573,16 +574,16 @@ const Home = () => {
                     </button>
                   </div>
                 </div>
-                <div class="barn" id="house4">
-                  <div class="barn-4 barn-grey-100"></div>
-                  <div class="barn-action">
+                <div className="barn" id="house4">
+                  <div className="barn-4 barn-grey-100"></div>
+                  <div className="barn-action">
                     <button className="btn-red btn-buy-barn"
                       onClick={() => setUpgradeLevel(4)}>
                       {enableValue() && parseInt(houseInfo.levels[3]) === 5 ? (
                         <div style={{ fontWeight: "bold", marginTop: "95px", color: "yellow" }}>Top Level</div>
                       ) : (
                         <>
-                          <div class="farm-coin" >&nbsp;</div>
+                          <div className="farm-coin" >&nbsp;</div>
                           <div style={{ fontWeight: "bold", marginTop: "95px" }}>
                             {enableValue() ? price[parseInt(houseInfo.levels[3])][3] : "--"}
                           </div>
@@ -592,17 +593,17 @@ const Home = () => {
                   </div>
                 </div>
               </div >
-              <div class="barns">
-                <div class="barn" id="house5">
-                  <div class="barn-5 barn-grey-100"></div>
-                  <div class="barn-action">
+              <div className="barns">
+                <div className="barn" id="house5">
+                  <div className="barn-5 barn-grey-100"></div>
+                  <div className="barn-action">
                     <button className="btn-red btn-buy-barn"
                       onClick={() => setUpgradeLevel(5)}>
                       {enableValue() && parseInt(houseInfo.levels[4]) === 5 ? (
                         <div style={{ fontWeight: "bold", marginTop: "95px", color: "yellow" }}>Top Level</div>
                       ) : (
                         <>
-                          <div class="farm-coin" >&nbsp;</div>
+                          <div className="farm-coin" >&nbsp;</div>
                           <div style={{ fontWeight: "bold", marginTop: "95px" }}>
                             {enableValue() ? price[parseInt(houseInfo.levels[4])][4] : "--"}
                           </div>
@@ -611,16 +612,16 @@ const Home = () => {
                     </button>
                   </div>
                 </div>
-                <div class="barn" id="house6">
-                  <div class="barn-6 barn-grey-100"></div>
-                  <div class="barn-action">
+                <div className="barn" id="house6">
+                  <div className="barn-6 barn-grey-100"></div>
+                  <div className="barn-action">
                     <button className="btn-red btn-buy-barn"
                       onClick={() => setUpgradeLevel(6)}>
                       {enableValue() && parseInt(houseInfo.levels[5]) === 5 ? (
                         <div style={{ fontWeight: "bold", marginTop: "95px", color: "yellow" }}>Top Level</div>
                       ) : (
                         <>
-                          <div class="farm-coin" >&nbsp;</div>
+                          <div className="farm-coin" >&nbsp;</div>
                           <div style={{ fontWeight: "bold", marginTop: "95px" }}>
                             {enableValue() ? price[parseInt(houseInfo.levels[5])][5] : "--"}
                           </div>
@@ -629,16 +630,16 @@ const Home = () => {
                     </button>
                   </div>
                 </div>
-                <div class="barn" id="house7">
-                  <div class="barn-7 barn-grey-100"></div>
-                  <div class="barn-action">
+                <div className="barn" id="house7">
+                  <div className="barn-7 barn-grey-100"></div>
+                  <div className="barn-action">
                     <button className="btn-red btn-buy-barn"
                       onClick={() => setUpgradeLevel(7)}>
                       {enableValue() && parseInt(houseInfo.levels[6]) === 5 ? (
                         <div style={{ fontWeight: "bold", marginTop: "95px", color: "yellow" }}>Top Level</div>
                       ) : (
                         <>
-                          <div class="farm-coin" >&nbsp;</div>
+                          <div className="farm-coin" >&nbsp;</div>
                           <div style={{ fontWeight: "bold", marginTop: "95px" }}>
                             {enableValue() ? price[parseInt(houseInfo.levels[6])][6] : "--"}
                           </div>
@@ -647,16 +648,16 @@ const Home = () => {
                     </button>
                   </div>
                 </div>
-                <div class="barn" id="house8">
-                  <div class="barn-8 barn-grey-100"></div>
-                  <div class="barn-action">
+                <div className="barn" id="house8">
+                  <div className="barn-8 barn-grey-100"></div>
+                  <div className="barn-action">
                     <button className="btn-red btn-buy-barn"
                       onClick={() => setUpgradeLevel(8)}>
                       {enableValue() && parseInt(houseInfo.levels[7]) === 5 ? (
                         <div style={{ fontWeight: "bold", marginTop: "95px", color: "yellow" }}>Top Level</div>
                       ) : (
                         <>
-                          <div class="farm-coin" >&nbsp;</div>
+                          <div className="farm-coin" >&nbsp;</div>
                           <div style={{ fontWeight: "bold", marginTop: "95px" }}>
                             {enableValue() ? price[parseInt(houseInfo.levels[7])][7] : "--"}
                           </div>
@@ -667,7 +668,7 @@ const Home = () => {
                 </div>
               </div >
               <div className="get-money">
-                <button type="button" class="btn-green"
+                <button type="button" className="btn-green"
                   style={{ fontWeight: "bold" }}
                   onClick={() => setShowGetMoney(true)}>
                   Get Money
@@ -676,7 +677,7 @@ const Home = () => {
             </>
             :
             <div className="login-action">
-              <button type="button" class="btn-green btn-login" style={{ fontWeight: "bold" }}
+              <button type="button" className="btn-green btn-login" style={{ fontWeight: "bold" }}
                 onClick={loadWeb3Modal}>
                 Connect
               </button>
@@ -685,15 +686,15 @@ const Home = () => {
         </div >
       </div >
 
-      <div class="popup-wrapper popup-buy popup-exchange" id="buyCoins" style={{ display: showBuyCoins && isConnected ? "block" : "none" }}>
-        <div class="popup-box-1">
-          <div class="popup-buy-header">Purchase Of Coins</div>
-          <div class="popup-buy-text-container">
-            <div class="popup-buy-text-ticker">
-              <div class="popup-buy-currency-icon"></div>
+      <div className="popup-wrapper popup-buy popup-exchange" id="buyCoins" style={{ display: showBuyCoins && isConnected ? "block" : "none" }}>
+        <div className="popup-box-1">
+          <div className="popup-buy-header">Purchase Of Coins</div>
+          <div className="popup-buy-text-container">
+            <div className="popup-buy-text-ticker">
+              <div className="popup-buy-currency-icon"></div>
               BNB
             </div>
-            <div class="popup-buy-text-balance" style={{ fontWeight: "bold" }}
+            <div className="popup-buy-text-balance" style={{ fontWeight: "bold" }}
               onClick={() => {
                 const bnbVaule = (parseFloat(userBalance) - GAS_AMOUNT).toFixed(4)
                 setBnbInputValue(bnbVaule)
@@ -702,8 +703,8 @@ const Home = () => {
               Balance: {parseFloat(userBalance).toFixed(3)}
             </div>
           </div>
-          <div class="popup-buy-input-wrapper">
-            <input style={{ fontSize: "20px" }} name="coin" class="popup-buy-input popup-buy-input-coin"
+          <div className="popup-buy-input-wrapper">
+            <input style={{ fontSize: "20px" }} name="coin" className="popup-buy-input popup-buy-input-coin"
               type="number" inputmode="decimal" placeholder="0.0" min="0"
               value={bnbInputValue}
               onChange={(e) => {
@@ -712,17 +713,17 @@ const Home = () => {
               }}
             />
           </div>
-          <div class="popup-buy-arrow" style={{ marginTop: "10px" }}>
-            <i class="fa fa-arrow-down"></i>
+          <div className="popup-buy-arrow" style={{ marginTop: "10px" }}>
+            <i className="fa fa-arrow-down"></i>
           </div>
-          <div class="popup-buy-text-container" style={{ marginTop: "0px" }}>
-            <div class="popup-buy-text-ticker">
-              <div class="popup-buy-coin-icon"></div>
+          <div className="popup-buy-text-container" style={{ marginTop: "0px" }}>
+            <div className="popup-buy-text-ticker">
+              <div className="popup-buy-coin-icon"></div>
               COIN
             </div>
           </div>
-          <div class="popup-buy-input-wrapper">
-            <input style={{ fontSize: "20px" }} class="popup-buy-input popup-buy-input-cash"
+          <div className="popup-buy-input-wrapper">
+            <input style={{ fontSize: "20px" }} className="popup-buy-input popup-buy-input-cash"
               type="number" inputmode="decimal" placeholder="0" min="0"
               value={coinInputValue}
               onChange={(e) => {
@@ -731,114 +732,114 @@ const Home = () => {
               }}
             />
           </div>
-          <div class="popup-buy-text-ticker" style={{ marginTop: "16px" }}>
+          <div className="popup-buy-text-ticker" style={{ marginTop: "16px" }}>
             {COIN_PRICE} BNB For 1 COIN
           </div>
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: "20px" }}>
-            <button class="btn-green" style={{ fontWeight: "bold" }}
+            <button className="btn-green" style={{ fontWeight: "bold" }}
               disabled={pendingTx || !isConnected}
               onClick={addCoins}>
               Buy
             </button>
           </div>
         </div>
-        <button type="button" class="popup-btn-close popup-btn-close-3" onClick={() => setShowBuyCoins(false)} />
+        <button type="button" className="popup-btn-close popup-btn-close-3" onClick={() => setShowBuyCoins(false)} />
       </div>
 
-      <div class="popup-wrapper popup-sell" style={{ display: showGetBNB && isConnected ? "block" : "none" }}>
-        <div class="popup-box-1">
-          <div class="popup-sell-header">Get BNB</div>
-          <div class="popup-sell-rate-text">
-            0.00002 BNB For 100 <div class="popup-sell-rate-money-icon"></div>
+      <div className="popup-wrapper popup-sell" style={{ display: showGetBNB && isConnected ? "block" : "none" }}>
+        <div className="popup-box-1">
+          <div className="popup-sell-header">Get BNB</div>
+          <div className="popup-sell-rate-text">
+            0.00002 BNB For 100 <div className="popup-sell-rate-money-icon"></div>
           </div>
-          <div class="popup-sell-figure"></div>
-          <div class="popup-sell-description">
+          <div className="popup-sell-figure"></div>
+          <div className="popup-sell-description">
             {`You can exchange `}
-            <span class="popup-sell-money-value">
+            <span className="popup-sell-money-value">
               {enableValue() ? `${houseInfo.cash} ` : `0 `}
-              <div class="popup-sell-money-icon" />
+              <div className="popup-sell-money-icon" />
             </span>
             {` for `}
-            <span class="popup-sell-currency-value">
+            <span className="popup-sell-currency-value">
               {enableValue() ? `${houseInfo.cash * CASH_PRICE} ` : `0 `}
               BNB
             </span>
           </div>
-          <button type="button" class="popup-sell-btn-swap" onClick={() => withdrawMoney()}>Exchange</button>
-          <button type="button" class="popup-sell-btn-destroy" onClick={() => sellHouse()}>Sell House</button>
+          <button type="button" className="popup-sell-btn-swap" onClick={() => withdrawMoney()}>Exchange</button>
+          <button type="button" className="popup-sell-btn-destroy" onClick={() => sellHouse()}>Sell House</button>
         </div>
-        <button type="button" class="popup-btn-close" onClick={() => setShowGetBNB(false)} />
+        <button type="button" className="popup-btn-close" onClick={() => setShowGetBNB(false)} />
       </div>
 
-      <div class="popup-wrapper popup-profit" style={{ display: showGetMoney && isConnected ? "block" : "none" }}>
-        <div class="popup-box-1">
-          <div class="popup-profit-header" style={{ fontWeight: "bold" }}>Your Profit</div>
-          <div class="popup-profit-time">
-            <div class="popup-profit-time-icon" />
-            <div class="popup-profit-time-text" style={{ fontWeight: "bold" }}>{pendingHours()} Hours</div>
+      <div className="popup-wrapper popup-profit" style={{ display: showGetMoney && isConnected ? "block" : "none" }}>
+        <div className="popup-box-1">
+          <div className="popup-profit-header" style={{ fontWeight: "bold" }}>Your Profit</div>
+          <div className="popup-profit-time">
+            <div className="popup-profit-time-icon" />
+            <div className="popup-profit-time-text" style={{ fontWeight: "bold" }}>{pendingHours()} Hours</div>
           </div>
-          <div style={{ fontSize: "16px", fontWeight: "bold" }} class="popup-profit-time-description">
+          <div style={{ fontSize: "16px", fontWeight: "bold" }} className="popup-profit-time-description">
             Don't forget to collect profit every 24 hours
           </div>
-          <div class="popup-profit-figure" />
-          <div class="popup-profit-money-bar">
-            <div class="popup-profit-money-bar-icon" />
-            <div class="popup-profit-money-bar-text">{pendingCash()}</div>
+          <div className="popup-profit-figure" />
+          <div className="popup-profit-money-bar">
+            <div className="popup-profit-money-bar-icon" />
+            <div className="popup-profit-money-bar-text">{pendingCash()}</div>
           </div>
-          <button type="button" class="btn-green" style={{ marginTop: "5px", fontWeight: "bold" }}
+          <button type="button" className="btn-green" style={{ marginTop: "5px", fontWeight: "bold" }}
             disabled={pendingTx || !isConnected}
             onClick={(e) => collectMoney(e)}
           >
             Collect
           </button>
         </div>
-        <button type="button" class="popup-btn-close" onClick={() => setShowGetMoney(false)} />
+        <button type="button" className="popup-btn-close" onClick={() => setShowGetMoney(false)} />
       </div>
 
-      <div class="popup-wrapper popup-upgrade" style={{ display: upgradeLevel > 0 && isConnected ? "block" : "none" }}>
-        <div class="popup-box-2">
-          <div class="popup-upgrade-header">House {upgradeLevel}</div>
-          <div class="popup-upgrade-cover" />
-          <div class="popup-upgrade-box">
-            <div class="popup-upgrade-mini-box">
-              <div class="popup-upgrade-mini-box-header">Level</div>
-              <div class="popup-upgrade-mini-box-text">
+      <div className="popup-wrapper popup-upgrade" style={{ display: upgradeLevel > 0 && isConnected ? "block" : "none" }}>
+        <div className="popup-box-2">
+          <div className="popup-upgrade-header">House {upgradeLevel}</div>
+          <div className="popup-upgrade-cover" />
+          <div className="popup-upgrade-box">
+            <div className="popup-upgrade-mini-box">
+              <div className="popup-upgrade-mini-box-header">Level</div>
+              <div className="popup-upgrade-mini-box-text">
                 {enableValue() && upgradeLevel > 0 ? houseInfo.levels[upgradeLevel - 1] : 0} / 5
               </div>
-              <div class="popup-upgrade-mini-box-added">
+              <div className="popup-upgrade-mini-box-added">
                 {enableValue() && upgradeLevel > 0 && parseInt(houseInfo.levels[upgradeLevel - 1]) < 5 ? `+ 1` : ` + 0`}
               </div>
             </div>
-            <div class="popup-upgrade-mini-box">
-              <div class="popup-upgrade-mini-box-header">House Profit</div>
-              <div class="popup-upgrade-mini-box-text">
-                <span class="popup-upgrade-floor-profit">
+            <div className="popup-upgrade-mini-box">
+              <div className="popup-upgrade-mini-box-header">House Profit</div>
+              <div className="popup-upgrade-mini-box-text">
+                <span className="popup-upgrade-floor-profit">
                   {`${enableValue() && upgradeLevel > 0 ?
                     getHouseprofit(houseInfo.levels[upgradeLevel - 1], upgradeLevel - 1) :
                     0} / Hour`}
                 </span>
-                <div class="popup-upgrade-money-icon" />
+                <div className="popup-upgrade-money-icon" />
               </div>
-              <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">
+              <div className="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">
                 {`+ ${enableValue() && upgradeLevel > 0 && parseInt(houseInfo.levels[upgradeLevel - 1]) < 5 ?
                   yieldValues[houseInfo.levels[upgradeLevel - 1]][upgradeLevel - 1] :
                   0}`}
               </div>
             </div>
-            <div class="popup-upgrade-mini-box">
-              <div class="popup-upgrade-mini-box-header">Total Profit</div>
-              <div class="popup-upgrade-mini-box-text">
-                <span class="popup-upgrade-total-profit">{`${enableValue() ? houseInfo.yield : 0} / Hour`}</span>
-                <div class="popup-upgrade-money-icon" />
+            <div className="popup-upgrade-mini-box">
+              <div className="popup-upgrade-mini-box-header">Total Profit</div>
+              <div className="popup-upgrade-mini-box-text">
+                <span className="popup-upgrade-total-profit">{`${enableValue() ? houseInfo.yield : 0} / Hour`}</span>
+                <div className="popup-upgrade-money-icon" />
               </div>
-              <div class="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">
+              <div className="popup-upgrade-mini-box-added popup-upgrade-mini-box-profit-added">
                 {`+ ${enableValue() && upgradeLevel > 0 && parseInt(houseInfo.levels[upgradeLevel - 1]) < 5 ?
                   yieldValues[houseInfo.levels[upgradeLevel - 1]][upgradeLevel - 1] :
                   0}`}
               </div>
             </div>
           </div>
-          <div class="popup-upgrade-info-text">
+          <div className="popup-upgrade-info-text">
             {`House ${upgradeLevel} - `}
             {enableValue() && upgradeLevel > 0 ?
               (parseInt(houseInfo.levels[upgradeLevel - 1]) < 5 ?
@@ -847,7 +848,7 @@ const Home = () => {
               `Upgrade to Level 1`}
           </div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <button class="btn-red btn-upgrade"
+            <button className="btn-red btn-upgrade"
               disabled={
                 pendingTx || !isConnected || upgradeLevel <= 0 ||
                 (enableValue() && upgradeLevel > 0 && parseInt(houseInfo.levels[upgradeLevel - 1]) === 5)
@@ -856,7 +857,7 @@ const Home = () => {
               {enableValue() && upgradeLevel > 0 ? (
                 parseInt(houseInfo.levels[upgradeLevel - 1]) < 5 ?
                   (
-                    <div class="farm-coin" style={{ fontWeight: "bold", marginLeft: "-12px", paddingLeft: "30px", paddingTop: "2px" }}>
+                    <div className="farm-coin" style={{ fontWeight: "bold", marginLeft: "-12px", paddingLeft: "30px", paddingTop: "2px" }}>
                       {price[parseInt(houseInfo.levels[upgradeLevel - 1])][upgradeLevel - 1]}
                     </div>
                   )
@@ -869,19 +870,19 @@ const Home = () => {
             </button>
           </div>
         </div>
-        <button type="button" class="popup-btn-close"
+        <button type="button" className="popup-btn-close"
           style={{ marginTop: "-12px", marginLeft: "35px" }}
           onClick={() => setUpgradeLevel(0)} />
       </div>
 
-      <div class="popup-wrapper popup-partners" style={{ display: showReferral && isConnected ? "block" : "none" }}>
-        <div class="popup-box-1">
-          <div class="popup-partners-header">Your link</div>
-          <div class="popup-partners-input-wrapper">
-            <input class="popup-partners-input" readonly="readonly" value={refLink} />
+      <div className="popup-wrapper popup-partners" style={{ display: showReferral && isConnected ? "block" : "none" }}>
+        <div className="popup-box-1">
+          <div className="popup-partners-header">Your link</div>
+          <div className="popup-partners-input-wrapper">
+            <input className="popup-partners-input" readonly="readonly" value={refLink} />
           </div>
           <button type="button"
-            class="popup-partners-btn-copy"
+            className="popup-partners-btn-copy"
             onClick={() => {
               if (navigator.clipboard) {
                 navigator.clipboard.writeText(refLink)
@@ -894,32 +895,33 @@ const Home = () => {
           >
             Copy
           </button>
-          <div class="popup-partners-description">
+          <div className="popup-partners-description">
             Get <span>7%</span>
-            <div class="popup-partners-coin-icon" />{` and `}<span>3%</span>
-            <div class="popup-partners-money-icon" />{` from each deposit of your partner.`}
+            <div className="popup-partners-coin-icon" />{` and `}<span>3%</span>
+            <div className="popup-partners-money-icon" />{` from each deposit of your partner.`}
           </div>
-          <div class="popup-partners-header" style={{ marginTop: "15px" }}>Referral statistics</div>
-          <div class="popup-partners-coins-bar">
-            <div class="popup-partners-coins-bar-icon" />
-            <div class="popup-partners-coins-bar-text">
+          <div className="popup-partners-header" style={{ marginTop: "15px" }}>Referral statistics</div>
+          <div className="popup-partners-coins-bar">
+            <div className="popup-partners-coins-bar-icon" />
+            <div className="popup-partners-coins-bar-text">
               {enableValue() ? `+ ${parseInt(houseInfo.refCoins * REFERRAL_COIN / DENOMINATOR)}` : `+ 0`}
             </div>
           </div>
-          <div class="popup-partners-money-bar">
-            <div class="popup-partners-money-bar-icon" />
-            <div class="popup-partners-money-bar-text">
+          <div className="popup-partners-money-bar">
+            <div className="popup-partners-money-bar-icon" />
+            <div className="popup-partners-money-bar-text">
               {enableValue() ? `+ ${parseInt(houseInfo.refCoins * 100 * REFERRAL_CASH / DENOMINATOR)}` : `+ 0`}
             </div>
           </div>
-          <div class="popup-partners-users-bar">
-            <div class="popup-partners-users-bar-icon" />
-            <div class="popup-partners-users-bar-text">{enableValue() ? `+ ${houseInfo.refs}` : `+ 0`}</div>
+          <div className="popup-partners-users-bar">
+            <div className="popup-partners-users-bar-icon" />
+            <div className="popup-partners-users-bar-text">{enableValue() ? `+ ${houseInfo.refs}` : `+ 0`}</div>
           </div>
         </div>
         <div className="alert" style={{ opacity: isTooltipDisplayed ? 1 : 0 }}>Copied!</div>
-        <button type="button" class="popup-btn-close" onClick={() => setShowReferral(false)} />
+        <button type="button" className="popup-btn-close" onClick={() => setShowReferral(false)} />
       </div>
+      {/* <ToastContainer /> */}
     </>
   );
 }
