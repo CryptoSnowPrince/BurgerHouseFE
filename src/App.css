@@ -3,7 +3,8 @@
 }
 
 body {
-  background-color: #E1D2B6;
+  /* background-color: #E1D2B6; */
+  background: url(./assets/img/background.png) repeat-x;
 }
 
 .section-bg {
@@ -11,7 +12,7 @@ body {
 }
 
 .section-open {
-  background: url(./assets/img/background.png) repeat-x;
+  /* background: url(./assets/img/background.png) repeat-x; */
   background-size: contain;
   background-position: bottom;
 }
@@ -125,6 +126,10 @@ input.form-input {
   opacity: 1;
 }
 
+.barn-grey-100 {
+  top: 0px;
+}
+
 .btn-red {
   background: url(./assets/img/btn_red.png) no-repeat;
   cursor: pointer;
@@ -144,7 +149,6 @@ input.form-input {
   display: flex;
   text-decoration: none;
 }
-
 
 .btn-upgrade {
   background: url(./assets/img/btn-upgrade.png) no-repeat;
@@ -172,6 +176,11 @@ button:hover,
 .btn-green:hover {
   transform: scale(.97);
   color: #fff;
+}
+
+.house {
+  position: relative;
+  top: 150px;
 }
 
 .popup-upgrade-cover {
@@ -369,6 +378,7 @@ button:hover,
   z-index: 2;
   display: flex;
   justify-content: center;
+  flex-direction: row;
 }
 
 .barn-btn-add>div:first-child,
@@ -507,13 +517,11 @@ div.farm-coin {
   margin-left: -15px;
 }
 
-
 div.barn-action {
   position: relative;
   display: flex;
   justify-content: center;
 }
-
 
 .land {
   width: 100%;
@@ -526,9 +534,9 @@ div.barn-action {
 }
 
 .trees {
-  background: url(./assets/img/trees.png) no-repeat;
+  /* background: url(./assets/img/trees.png) no-repeat; */
   width: 100%;
-  background-repeat: repeat-x;
+  /* background-repeat: repeat-x; */
   /* background-size: contain;
   background-position: top; */
   height: 78vh;
@@ -1465,7 +1473,14 @@ table.table {
 }
 
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
+  .barn-grey-100 {
+    width: 100% !important;
+  }
+
+  .barns {
+    flex-direction: column;
+  }
 
   .section-open,
   .trees {
@@ -1563,10 +1578,6 @@ table.table {
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-  /* .barns {
-    width: 100%;
-    overflow-x: scroll;
-  } */
 
   .section-open,
   .trees {
@@ -1610,10 +1621,6 @@ table.table {
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-  /* .barns {
-    width: 100%;
-    overflow-x: scroll;
-  } */
 
   .section-open,
   .trees {
@@ -1695,10 +1702,6 @@ table.table {
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-  /* .barns {
-    width: auto;
-    overflow-x: hidden;
-  } */
 
   .section-open,
   .trees {
