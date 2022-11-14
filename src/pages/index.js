@@ -94,7 +94,7 @@ const Home = () => {
   const [houseInfo, setHouseInfo] = useState({});
 
   const [allHousesLength, setAllHousesLength] = useState(0)
-  const [totalInvested, setTotalInvested] = useState(0)
+  const [totalInvested, setTotalInvested] = useState("0")
   const [totalUpgrades, setTotalUpgrades] = useState(0)
 
   const [blockTimestamp, setBlockTimestamp] = useState(0)
@@ -195,7 +195,7 @@ const Home = () => {
         setTotalUpgrades(_totalUpgrades);
 
         const _totalInvested = await contractNoAccount.methods.totalInvested().call();
-        setTotalInvested(_totalInvested);
+        setTotalInvested(web3NoAccount.utils.fromWei(_totalInvested, 'ether'));
 
         const _allHousesLength = await contractNoAccount.methods.allHousesLength().call();
         setAllHousesLength(_allHousesLength)
@@ -537,7 +537,7 @@ const Home = () => {
                 </div>
                 <div className="panel">
                   <div className="panel-left">Total Deposits</div>
-                  <div className="panel-right panel-towers-value">{`${web3NoAccount.utils.fromWei(totalInvested, 'ether')} BNB`}</div>
+                  <div className="panel-right panel-towers-value">{`${totalInvested} BNB`}</div>
                 </div>
                 <div className="panel">
                   <div className="panel-left">Total Upgrades</div>
@@ -548,7 +548,6 @@ const Home = () => {
                   <div className="panel-right panel-towers-value">{enableValue() ? houseInfo.refs : 0}</div>
                 </div>
               </div>
-              <br />
               <div className="menu-btns">
                 <button className="menu-btn menu-btn-affiliate"
                   onClick={() => setShowReferral(true)}
@@ -575,7 +574,7 @@ const Home = () => {
             </div>
           </>
         }
-        < div className="ranch trees">
+        <div className="ranch trees">
           {isConnected ?
             <>
               <div className="barns">

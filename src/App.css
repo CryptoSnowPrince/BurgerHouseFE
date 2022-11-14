@@ -558,7 +558,6 @@ div.barn-action {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-top: 150px;
 }
 
 .menu-fixed-left .menu-btn,
@@ -1318,10 +1317,9 @@ div.barn-action {
   margin-left: 10px;
 }
 
-
 .panels {
-  width: 100%;
-  position: absolute;
+  width: 240px;
+  position: relative;
   padding: 0px 5px !important;
 }
 
@@ -1443,9 +1441,6 @@ table.table {
 .but-buttons {
   display: inline-flex;
 }
-
-
-
 
 .menu-fixed-right {
   position: fixed;
