@@ -180,7 +180,6 @@ button:hover,
 
 .house {
   position: relative;
-  top: 150px;
 }
 
 .popup-upgrade-cover {
@@ -298,7 +297,12 @@ button:hover,
   background-position: center bottom;
   overflow: hidden;
   text-align: center;
-  height: 120px;
+  height: 80px;
+}
+
+.level-text {
+  font-weight: bold;
+  margin-top: 55px;
 }
 
 .barn .barn-grey-0:hover,
@@ -317,7 +321,7 @@ button:hover,
 .barn-8 {
   top: 0px;
   width: 300px;
-  height: 350px !important;
+  height: 260px !important;
   background-image: url(./assets/img/house1.png);
   bottom: 0px;
 }
