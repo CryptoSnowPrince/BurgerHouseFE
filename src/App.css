@@ -548,7 +548,7 @@ div.barn-action {
   z-index: 4;
 }
 
-.menu-fixed-left .menu-btns {
+.menu-fixed-left {
   display: block;
   margin-left: 1px;
 }
@@ -558,7 +558,7 @@ div.barn-action {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 5px;
+  margin-top: 150px;
 }
 
 .menu-fixed-left .menu-btn,
@@ -1327,9 +1327,9 @@ div.barn-action {
 
 .panel {
   width: 100%;
-  height: 35px;
+  height: 32px;
   background-color: #00000070;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
   text-align: left;
   padding-left: 15px;
   padding-right: 15px;

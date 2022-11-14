@@ -530,6 +530,25 @@ const Home = () => {
               </div>
             </div>
             <div className="menu-fixed-right">
+              <div className="panels">
+                <div className="panel">
+                  <div className="panel-left">Total Houses</div>
+                  <div className="panel-right panel-towers-value">{allHousesLength}</div>
+                </div>
+                <div className="panel">
+                  <div className="panel-left">Total Deposits</div>
+                  <div className="panel-right panel-towers-value">{`${web3NoAccount.utils.fromWei(totalInvested, 'ether')} BNB`}</div>
+                </div>
+                <div className="panel">
+                  <div className="panel-left">Total Upgrades</div>
+                  <div className="panel-right panel-towers-value">{totalUpgrades}</div>
+                </div>
+                <div className="panel">
+                  <div className="panel-left">Your Partners</div>
+                  <div className="panel-right panel-towers-value">{enableValue() ? houseInfo.refs : 0}</div>
+                </div>
+              </div>
+              <br />
               <div className="menu-btns">
                 <button className="menu-btn menu-btn-affiliate"
                   onClick={() => setShowReferral(true)}
@@ -552,25 +571,6 @@ const Home = () => {
                   onClick={logoutOfWeb3Modal} >
                   <i className="fa fa-sign-out"></i>
                 </button>
-              </div>
-              <br />
-              <div className="panels">
-                <div className="panel">
-                  <div className="panel-left">Total Houses</div>
-                  <div className="panel-right panel-towers-value">{allHousesLength}</div>
-                </div>
-                <div className="panel">
-                  <div className="panel-left">Total Deposits</div>
-                  <div className="panel-right panel-towers-value">{`${web3NoAccount.utils.fromWei(totalInvested, 'ether')} BNB`}</div>
-                </div>
-                <div className="panel">
-                  <div className="panel-left">Total Upgrades</div>
-                  <div className="panel-right panel-towers-value">{totalUpgrades}</div>
-                </div>
-                <div className="panel">
-                  <div className="panel-left">Your Partners</div>
-                  <div className="panel-right panel-towers-value">{enableValue() ? houseInfo.refs : 0}</div>
-                </div>
               </div>
             </div>
           </>
