@@ -128,6 +128,8 @@ const Home = () => {
       await injectedProvider.provider.disconnect();
     }
     setIsConnected(false);
+
+    window.location.reload();
   };
 
   const loadWeb3Modal = useCallback(async () => {
