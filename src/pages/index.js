@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
-import { Alert, Snackbar } from "@mui/material";
 import web3ModalSetup from "./../helpers/web3ModalSetup";
 import Web3 from "web3";
 import {
@@ -16,7 +15,9 @@ import {
   CASH_PRICE,
   REFERRAL_CASH,
   REFERRAL_COIN,
-  DENOMINATOR
+  DENOMINATOR,
+  ALERT_DELAY,
+  ALERT_POSITION,
 } from "../constant";
 
 const web3Modal = web3ModalSetup();
@@ -103,7 +104,7 @@ const Home = () => {
   const [showGetMoney, setShowGetMoney] = useState(false)
   const [upgradeLevel, setUpgradeLevel] = useState(0)
   const [showReferral, setShowReferral] = useState(false)
-  const [alertMessage, setAlertMessage] = useState({ type: ALERT_ERROR, message: "asdfgewadfs aljfdwlw wejaljesf" })
+  const [alertMessage, setAlertMessage] = useState({ type: ALERT_EMPTY, message: "" })
 
   useEffect(() => {
     const referral = window.localStorage.getItem("REFERRAL")
@@ -432,42 +433,44 @@ const Home = () => {
     setAlertMessage({ type: ALERT_EMPTY, message: "" })
   }
 
-  
   const notifySuccess = () =>
-    toast.success("Wow so easy!", {
-      position: "top-right",
-      autoClose: 5000,
+    toast.success(alertMessage.message, {
+      position: ALERT_POSITION,
+      autoClose: ALERT_DELAY,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
+      onClose: handleClose,
+      className: 'alert-message'
       // className: css({
       //   background: "#1ab394 !important"
       // })
     });
 
   const notifyError = () => {
-    toast.error("Wow serious error!", {
-      position: "top-right",
-      autoClose: 5000,
+    toast.error(alertMessage.message, {
+      position: ALERT_POSITION,
+      autoClose: ALERT_DELAY,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
-      // className: css({
-      //   background: "#ed5565 !important"
-      // })
+      onClose: handleClose,
+      className: 'alert-message'
     });
   };
 
   const notifyWarn = () => {
-    toast.warn("Wow a minor warning!", {
-      position: "top-right",
-      autoClose: 5000,
+    toast.warn(alertMessage.message, {
+      position: ALERT_POSITION,
+      autoClose: ALERT_DELAY,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
+      onClose: handleClose,
+      className: 'alert-message'
       // className: css({
       //   background: "#f8ac59 !important"
       // })
@@ -478,25 +481,29 @@ const Home = () => {
     });
   };
 
+  useEffect(() => {
+    switch (alertMessage.type) {
+      case ALERT_ERROR:
+        notifyError()
+        return;
+      case ALERT_SUCCESS:
+        notifySuccess()
+        return;
+      case ALERT_WARN:
+        notifyWarn()
+        return;
+      case ALERT_EMPTY:
+        return;
+      default:
+        handleClose();
+        return;
+    }
+
+  }, [alertMessage])
+
   return (
     <>
-      <div>
-        <button onClick={notifySuccess}>Notify Success!</button>
-        <button onClick={notifyError}>Notify Error!</button>
-        <button onClick={notifyWarn}>Notify Warn!</button>
-        <ToastContainer />
-      </div>
-      <Snackbar
-        className="alert-message"
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        open={alertMessage.type !== ALERT_EMPTY}
-        autoHideDuration={5000}
-        onClose={handleClose}
-      >
-        <Alert onClose={handleClose} severity={alertMessage.type} sx={{ width: '100%' }}>
-          {alertMessage.message}
-        </Alert>
-      </Snackbar>
+      <ToastContainer />
       <div className="section-open">
         <div className="logo-desktop"></div>
         {isConnected &&

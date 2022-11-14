@@ -15,6 +15,8 @@ export const LIMIT_INCOME = 15000;
 export const DENOMINATOR = 10000;
 
 export const GAS_AMOUNT = 0.0005;
+export const ALERT_DELAY = 5000;
+export const ALERT_POSITION = 'top-center';
 
 // BSC TESTNET
 export const ADMIN_ACCOUNT = '0x36285fDa2bE8a96fEb1d763CA77531D696Ae3B0b'

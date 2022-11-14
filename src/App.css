@@ -118,12 +118,11 @@ input.form-input {
 }
 
 .alert-message {
-  position: absolute;
-  display: flex;
-  z-index: 1000;
-  top: 30px;
-  color: #fff;
-  justify-content: center;
+  color: rgb(12, 13, 12);
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #0fd1ee90;
+  opacity: 1;
 }
 
 .btn-red {
