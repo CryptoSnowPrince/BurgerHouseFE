@@ -136,7 +136,7 @@ input.form-input {
 }
 
 .alert-message-error {
-  background-color: #f00;
+  background-color: rgb(243, 159, 14);
 }
 
 .alert-message-warn {
