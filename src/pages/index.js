@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-// import { ToastContainer, Toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import { Alert, Snackbar } from "@mui/material";
 import web3ModalSetup from "./../helpers/web3ModalSetup";
 import Web3 from "web3";
@@ -432,8 +432,60 @@ const Home = () => {
     setAlertMessage({ type: ALERT_EMPTY, message: "" })
   }
 
+  
+  const notifySuccess = () =>
+    toast.success("Wow so easy!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      // className: css({
+      //   background: "#1ab394 !important"
+      // })
+    });
+
+  const notifyError = () => {
+    toast.error("Wow serious error!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      // className: css({
+      //   background: "#ed5565 !important"
+      // })
+    });
+  };
+
+  const notifyWarn = () => {
+    toast.warn("Wow a minor warning!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      // className: css({
+      //   background: "#f8ac59 !important"
+      // })
+      // progressClassName: css({
+      //   background:
+      //     "repeating-radial-gradient(circle at center, red 0, blue, green 30px)"
+      // })
+    });
+  };
+
   return (
     <>
+      <div>
+        <button onClick={notifySuccess}>Notify Success!</button>
+        <button onClick={notifyError}>Notify Error!</button>
+        <button onClick={notifyWarn}>Notify Warn!</button>
+        <ToastContainer />
+      </div>
       <Snackbar
         className="alert-message"
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
@@ -921,7 +973,6 @@ const Home = () => {
         <div className="alert" style={{ opacity: isTooltipDisplayed ? 1 : 0 }}>Copied!</div>
         <button type="button" className="popup-btn-close" onClick={() => setShowReferral(false)} />
       </div>
-      {/* <ToastContainer /> */}
     </>
   );
 }
