@@ -307,68 +307,47 @@ button:hover,
   transform: scale(1.1);
 }
 
-.barn-1 {
+.barn-1,
+.barn-2,
+.barn-3,
+.barn-4,
+.barn-5,
+.barn-6,
+.barn-7,
+.barn-8 {
   top: 0px;
-  width: 230px;
-  background-image: url(./assets/img/house1.webp);
+  width: 300px;
+  height: 350px !important;
+  background-image: url(./assets/img/house1.png);
   bottom: 0px;
-  filter: grayscale(100%);
 }
 
 .barn-2 {
-  top: 0px;
-  width: 260px;
-  background-image: url(./assets/img/house2.webp);
-  bottom: 0px;
-  filter: grayscale(100%);
+  background-image: url(./assets/img/house2.png);
 }
 
 .barn-3 {
-  top: 0px;
-  width: 290px;
-  background-image: url(./assets/img/house3.webp);
-  bottom: 0px;
-  filter: grayscale(100%);
+  background-image: url(./assets/img/house3.png);
 }
 
 .barn-4 {
-  top: 0px;
-  width: 320px;
-  background-image: url(./assets/img/house4.webp);
-  bottom: 0px;
-  filter: grayscale(100%);
+  background-image: url(./assets/img/house4.png);
 }
 
 .barn-5 {
-  top: 0px;
-  width: 260px;
-  background-image: url(./assets/img/house5.webp);
-  bottom: 0px;
-  filter: grayscale(100%);
+  background-image: url(./assets/img/house5.png);
 }
 
 .barn-6 {
-  top: 0px;
-  width: 290px;
-  background-image: url(./assets/img/house6.webp);
-  bottom: 0px;
-  filter: grayscale(100%);
+  background-image: url(./assets/img/house6.png);
 }
 
 .barn-7 {
-  top: 0px;
-  width: 320px;
-  background-image: url(./assets/img/house7.webp);
-  bottom: 0px;
-  filter: grayscale(100%);
+  background-image: url(./assets/img/house7.png);
 }
 
 .barn-8 {
-  top: 0px;
-  width: 350px;
-  background-image: url(./assets/img/house8.webp);
-  bottom: 0px;
-  filter: grayscale(100%);
+  background-image: url(./assets/img/house8.png);
 }
 
 .barns {
