@@ -504,7 +504,7 @@ const Home = () => {
   return (
     <>
       <ToastContainer />
-      <div className="section-open">
+      <div className={isConnected ? "section-open" : "section-open-logout"}>
         <div className="logo-desktop"></div>
         {isConnected &&
           <>

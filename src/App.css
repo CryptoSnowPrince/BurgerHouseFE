@@ -3,7 +3,6 @@
 }
 
 body {
-  /* background-color: #E1D2B6; */
   background: url(./assets/img/background.png) repeat-x;
 }
 
@@ -12,9 +11,15 @@ body {
 }
 
 .section-open {
-  /* background: url(./assets/img/background.png) repeat-x; */
   background-size: contain;
   background-position: bottom;
+}
+
+.section-open-logout {
+  background: url(./assets/img/background-logout.png) no-repeat;
+  width: 100%;
+  background-size: cover;
+  background-position: top;
 }
 
 #slider {
@@ -1457,6 +1462,18 @@ table.table {
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 800px) {
+  .panels {
+    width: 200px;
+    position: relative;
+    padding: 0px 5px !important;
+  }
+
+  .panel {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 14px;
+  }
+
   .barn-grey-100 {
     width: 100% !important;
   }
@@ -1481,15 +1498,17 @@ table.table {
   }
 
   .menu-bar {
-    width: 180px;
+    width: 160px;
     margin: 0 auto 6px
   }
 
   .menu-fixed-left {
     top: 10px;
-    left: 210px;
+    left: 200px;
+    width: 180px;
   }
 
+  .menu-bar-wallet,
   .menu-bar-coin,
   .menu-bar-money {
     left: 2px
