@@ -703,6 +703,8 @@ const Home = () => {
                   </button>
                 </div>
               </div>
+              <div className="bg-ground-my-bottom"></div>
+
               <div className="barn" id="house1">
                 <div className="barn-1 barn-grey-100" />
                 <div className="barn-action">
@@ -721,7 +723,9 @@ const Home = () => {
                   </button>
                 </div>
               </div>
+
             </div >
+
             <div className="get-money">
               {isConnected ?
                 <button type="button" className="btn-green"
@@ -736,7 +740,10 @@ const Home = () => {
               }
             </div>
           </div>
+
         </div >
+      
+
       </div >
 
       <div className="popup-wrapper popup-buy popup-exchange" id="buyCoins" style={{ display: showBuyCoins && isConnected ? "block" : "none" }}>
