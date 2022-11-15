@@ -521,26 +521,6 @@ const Home = () => {
                 </div>
                 <div className="menu-bar-value menu-bar-without-background">{enableValue() ? `+ ${houseInfo.yield}` : "--"}/h</div>
               </div>
-            </div>
-            <div className="menu-fixed-right">
-              <div className="panels">
-                <div className="panel">
-                  <div className="panel-left">Total Houses</div>
-                  <div className="panel-right panel-towers-value">{allHousesLength}</div>
-                </div>
-                <div className="panel">
-                  <div className="panel-left">Total Deposits</div>
-                  <div className="panel-right panel-towers-value">{`${totalInvested} BNB`}</div>
-                </div>
-                <div className="panel">
-                  <div className="panel-left">Total Upgrades</div>
-                  <div className="panel-right panel-towers-value">{totalUpgrades}</div>
-                </div>
-                <div className="panel">
-                  <div className="panel-left">Your Partners</div>
-                  <div className="panel-right panel-towers-value">{enableValue() ? houseInfo.refs : 0}</div>
-                </div>
-              </div>
               <div className="menu-btns">
                 <button className="menu-btn menu-btn-affiliate"
                   onClick={() => setShowReferral(true)}
@@ -563,6 +543,26 @@ const Home = () => {
                   onClick={logoutOfWeb3Modal} >
                   <i className="fa fa-sign-out"></i>
                 </button>
+              </div>
+            </div>
+            <div className="menu-fixed-right">
+              <div className="panels">
+                <div className="panel">
+                  <div className="panel-left">Total Houses</div>
+                  <div className="panel-right panel-towers-value">{allHousesLength}</div>
+                </div>
+                <div className="panel">
+                  <div className="panel-left">Total Deposits</div>
+                  <div className="panel-right panel-towers-value">{`${totalInvested} BNB`}</div>
+                </div>
+                <div className="panel">
+                  <div className="panel-left">Total Upgrades</div>
+                  <div className="panel-right panel-towers-value">{totalUpgrades}</div>
+                </div>
+                <div className="panel">
+                  <div className="panel-left">Your Partners</div>
+                  <div className="panel-right panel-towers-value">{enableValue() ? houseInfo.refs : 0}</div>
+                </div>
               </div>
             </div>
           </>

@@ -554,23 +554,20 @@ div.barn-action {
 
 .menu-fixed-left {
   position: fixed;
-  left: 10px;
+  left: 15px;
   top: 30px;
   color: #fff;
   width: 250px;
   z-index: 4;
-}
-
-.menu-fixed-left {
   display: block;
-  margin-left: 1px;
 }
 
 .menu-btns {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 15px;
+  width: 70px;
 }
 
 .menu-fixed-left .menu-btn,
@@ -826,11 +823,6 @@ div.barn-action {
 }
 
 .popup-partners-description {
-  /* color: #000;
-  text-align: center;
-  width: 300px;
-  margin: 3px auto 0;
-  font-size: 16px; */
   color: #fff;
   text-shadow: 0em 0.1em #000, 0.038em 0.092em #000, 0.071em 0.071em #000, 0.092em 0.038em #000, 0.1em 0em #000, 0.092em -0.038em #000, 0.071em -0.071em #000, 0.038em -0.092em #000, 0em -0.1em #000, -0.038em -0.092em #000, -0.071em -0.071em #000, -0.092em -0.038em #000, -0.1em 0em #000, -0.092em 0.038em #000, -0.071em 0.071em #000, -0.038em 0.092em #000;
   text-align: center;
@@ -1477,17 +1469,17 @@ table.table {
   margin-right: 10px;
 }
 
-/* Extra small devices (phones, 600px and down) */
+/* Extra small devices (phones, 800px and down) */
 @media only screen and (max-width: 800px) {
   .panels {
-    width: 200px;
+    width: 100%;
     position: relative;
     padding: 0px 5px !important;
   }
 
   .panel {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
     font-size: 14px;
   }
 
@@ -1505,15 +1497,6 @@ table.table {
     background-size: cover;
   }
 
-  .menu-btns {
-    justify-content: center;
-  }
-
-  .menu-fixed-left .menu-btns {
-    display: block;
-    margin-left: 0px;
-  }
-
   .menu-bar {
     width: 160px;
     margin: 0 auto 6px
@@ -1521,8 +1504,16 @@ table.table {
 
   .menu-fixed-left {
     top: 10px;
-    left: 200px;
-    width: 180px;
+    width: 45%;
+    display: block;
+  }
+
+  .menu-btns {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 0px;
+    width: 70px;
   }
 
   .menu-bar-wallet,
@@ -1543,9 +1534,9 @@ table.table {
   }
 
   .menu-fixed-right {
-    left: 5px;
+    width: 45%;
+    right: 5px;
     top: 10px;
-    width: 20px;
   }
 
   .logo {
@@ -1596,7 +1587,7 @@ table.table {
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
+/* @media only screen and (min-width: 600px) {
 
   .section-open,
   .trees {
@@ -1636,10 +1627,10 @@ table.table {
     z-index: 5;
     bottom: 0;
   }
-}
+} */
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
+/* @media only screen and (min-width: 768px) {
 
   .section-open,
   .trees {
@@ -1649,15 +1640,6 @@ table.table {
 
   .menu-btns {
     justify-content: space-between;
-  }
-
-  .menu-fixed-left .menu-btns {
-    display: block;
-    margin-left: 15px;
-  }
-
-  .menu-fixed-left {
-    width: 250px;
   }
 
   .menu-fixed-right .menu-btns {
@@ -1717,10 +1699,10 @@ table.table {
     bottom: 43%;
   }
 
-}
+} */
 
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
+/* @media only screen and (min-width: 992px) {
 
   .section-open,
   .trees {
@@ -1747,7 +1729,7 @@ table.table {
     left: 34%;
   }
 
-}
+} */
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {}
+/* @media only screen and (min-width: 1200px) {} */
