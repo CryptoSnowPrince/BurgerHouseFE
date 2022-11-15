@@ -575,7 +575,7 @@ const Home = () => {
           <div className="house">
             <div className="barns">
               <div className="barn" id="house1">
-                <div className="barn-1 barn-grey-100"></div>
+                <div className="barn-1 barn-grey-100" />
                 <div className="barn-action">
                   <button className="btn-red btn-buy-barn"
                     onClick={() => setUpgradeLevel(1)}>
@@ -593,7 +593,7 @@ const Home = () => {
                 </div>
               </div>
               <div className="barn" id="house2">
-                <div className="barn-2 barn-grey-100"></div>
+                <div className="barn-2 barn-grey-100" />
                 <div className="barn-action">
                   <button className="btn-red btn-buy-barn"
                     onClick={() => setUpgradeLevel(2)}>
@@ -611,7 +611,7 @@ const Home = () => {
                 </div>
               </div>
               <div className="barn" id="house3">
-                <div className="barn-3 barn-grey-100"></div>
+                <div className="barn-3 barn-grey-100" />
                 <div className="barn-action">
                   <button className="btn-red btn-buy-barn"
                     onClick={() => setUpgradeLevel(3)}>
@@ -629,7 +629,7 @@ const Home = () => {
                 </div>
               </div>
               <div className="barn" id="house4">
-                <div className="barn-4 barn-grey-100"></div>
+                <div className="barn-4 barn-grey-100" />
                 <div className="barn-action">
                   <button className="btn-red btn-buy-barn"
                     onClick={() => setUpgradeLevel(4)}>
@@ -647,7 +647,7 @@ const Home = () => {
                 </div>
               </div>
               <div className="barn" id="house5">
-                <div className="barn-5 barn-grey-100"></div>
+                <div className="barn-5 barn-grey-100" />
                 <div className="barn-action">
                   <button className="btn-red btn-buy-barn"
                     onClick={() => setUpgradeLevel(5)}>
@@ -665,7 +665,7 @@ const Home = () => {
                 </div>
               </div>
               <div className="barn" id="house6">
-                <div className="barn-6 barn-grey-100"></div>
+                <div className="barn-6 barn-grey-100" />
                 <div className="barn-action">
                   <button className="btn-red btn-buy-barn"
                     onClick={() => setUpgradeLevel(6)}>
@@ -683,7 +683,7 @@ const Home = () => {
                 </div>
               </div>
               <div className="barn" id="house7">
-                <div className="barn-7 barn-grey-100"></div>
+                <div className="barn-7 barn-grey-100" />
                 <div className="barn-action">
                   <button className="btn-red btn-buy-barn"
                     onClick={() => setUpgradeLevel(7)}>
@@ -701,7 +701,7 @@ const Home = () => {
                 </div>
               </div>
               <div className="barn" id="house8">
-                <div className="barn-8 barn-grey-100"></div>
+                <div className="barn-8 barn-grey-100" />
                 <div className="barn-action">
                   <button className="btn-red btn-buy-barn"
                     onClick={() => setUpgradeLevel(8)}>
