@@ -571,6 +571,7 @@ const Home = () => {
             </div>
           </div>
         </div>
+        
         <div className="ranch trees">
           <div className="house">
             <div className="barns">
