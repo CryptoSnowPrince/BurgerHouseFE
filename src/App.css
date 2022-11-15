@@ -611,6 +611,10 @@ div.barn-action {
   font-weight: bold;
 }
 
+.menu-bar-value-wallet {
+  left: 55%;
+}
+
 .menu-bar-without-background {
   position: relative;
   display: flex;
@@ -1520,6 +1524,15 @@ table.table {
 
   .menu-bar-value {
     font-size: 16px;
+    margin-top: 2px;
+  }
+
+  .menu-bar-value-wallet {
+    left: 60%;
+  }
+
+  .menu-bar-without-background {
+    margin-top: -14px !important;
   }
 
   .menu-fixed-right {

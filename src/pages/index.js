@@ -507,7 +507,7 @@ const Home = () => {
                 <div className="menu-bar-wallet">
                   <i className="fa fa-wallet" style={{ color: "#e6a71e", marginTop: "-9px" }}></i>
                 </div>
-                <div className="menu-bar-value" style={{ left: "55%" }}>{`${curAcount.toString().substr(0, 6)}...${curAcount.toString().substr(38, 41)}`}</div>
+                <div className="menu-bar-value menu-bar-value-wallet">{`${curAcount.toString().substr(0, 6)}...${curAcount.toString().substr(38, 41)}`}</div>
               </div>
             }
             <div className="menu-bar">
