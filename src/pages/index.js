@@ -574,108 +574,18 @@ const Home = () => {
         <div className="ranch trees">
           <div className="house">
             <div className="barns">
-              <div className="barn" id="house1">
-                <div className="barn-1 barn-grey-100" />
+              <div className="barn" id="house8">
+                <div className="barn-8 barn-grey-100" />
                 <div className="barn-action">
                   <button className="btn-red btn-buy-barn"
-                    onClick={() => setUpgradeLevel(1)}>
-                    {enableValue() && parseInt(houseInfo.levels[0]) === 5 ? (
+                    onClick={() => setUpgradeLevel(8)}>
+                    {enableValue() && parseInt(houseInfo.levels[7]) === 5 ? (
                       <div className="level-text" style={{ color: "yellow" }}>Top Level</div>
                     ) : (
                       <>
                         <div className="farm-coin" >&nbsp;</div>
                         <div className="level-text">
-                          {enableValue() ? price[parseInt(houseInfo.levels[0])][0] : price[0][0]}
-                        </div>
-                      </>
-                    )}
-                  </button>
-                </div>
-              </div>
-              <div className="barn" id="house2">
-                <div className="barn-2 barn-grey-100" />
-                <div className="barn-action">
-                  <button className="btn-red btn-buy-barn"
-                    onClick={() => setUpgradeLevel(2)}>
-                    {enableValue() && parseInt(houseInfo.levels[1]) === 5 ? (
-                      <div className="level-text" style={{ color: "yellow" }}>Top Level</div>
-                    ) : (
-                      <>
-                        <div className="farm-coin" >&nbsp;</div>
-                        <div className="level-text">
-                          {enableValue() ? price[parseInt(houseInfo.levels[1])][1] : price[0][1]}
-                        </div>
-                      </>
-                    )}
-                  </button>
-                </div>
-              </div>
-              <div className="barn" id="house3">
-                <div className="barn-3 barn-grey-100" />
-                <div className="barn-action">
-                  <button className="btn-red btn-buy-barn"
-                    onClick={() => setUpgradeLevel(3)}>
-                    {enableValue() && parseInt(houseInfo.levels[2]) === 5 ? (
-                      <div className="level-text" style={{ color: "yellow" }}>Top Level</div>
-                    ) : (
-                      <>
-                        <div className="farm-coin" >&nbsp;</div>
-                        <div className="level-text">
-                          {enableValue() ? price[parseInt(houseInfo.levels[2])][2] : price[0][2]}
-                        </div>
-                      </>
-                    )}
-                  </button>
-                </div>
-              </div>
-              <div className="barn" id="house4">
-                <div className="barn-4 barn-grey-100" />
-                <div className="barn-action">
-                  <button className="btn-red btn-buy-barn"
-                    onClick={() => setUpgradeLevel(4)}>
-                    {enableValue() && parseInt(houseInfo.levels[3]) === 5 ? (
-                      <div className="level-text" style={{ color: "yellow" }}>Top Level</div>
-                    ) : (
-                      <>
-                        <div className="farm-coin" >&nbsp;</div>
-                        <div className="level-text">
-                          {enableValue() ? price[parseInt(houseInfo.levels[3])][3] : price[0][3]}
-                        </div>
-                      </>
-                    )}
-                  </button>
-                </div>
-              </div>
-              <div className="barn" id="house5">
-                <div className="barn-5 barn-grey-100" />
-                <div className="barn-action">
-                  <button className="btn-red btn-buy-barn"
-                    onClick={() => setUpgradeLevel(5)}>
-                    {enableValue() && parseInt(houseInfo.levels[4]) === 5 ? (
-                      <div className="level-text" style={{ color: "yellow" }}>Top Level</div>
-                    ) : (
-                      <>
-                        <div className="farm-coin" >&nbsp;</div>
-                        <div className="level-text">
-                          {enableValue() ? price[parseInt(houseInfo.levels[4])][4] : price[0][4]}
-                        </div>
-                      </>
-                    )}
-                  </button>
-                </div>
-              </div>
-              <div className="barn" id="house6">
-                <div className="barn-6 barn-grey-100" />
-                <div className="barn-action">
-                  <button className="btn-red btn-buy-barn"
-                    onClick={() => setUpgradeLevel(6)}>
-                    {enableValue() && parseInt(houseInfo.levels[5]) === 5 ? (
-                      <div className="level-text" style={{ color: "yellow" }}>Top Level</div>
-                    ) : (
-                      <>
-                        <div className="farm-coin" >&nbsp;</div>
-                        <div className="level-text">
-                          {enableValue() ? price[parseInt(houseInfo.levels[5])][5] : price[0][5]}
+                          {enableValue() ? price[parseInt(houseInfo.levels[7])][7] : price[0][7]}
                         </div>
                       </>
                     )}
@@ -700,18 +610,108 @@ const Home = () => {
                   </button>
                 </div>
               </div>
-              <div className="barn" id="house8">
-                <div className="barn-8 barn-grey-100" />
+              <div className="barn" id="house6">
+                <div className="barn-6 barn-grey-100" />
                 <div className="barn-action">
                   <button className="btn-red btn-buy-barn"
-                    onClick={() => setUpgradeLevel(8)}>
-                    {enableValue() && parseInt(houseInfo.levels[7]) === 5 ? (
+                    onClick={() => setUpgradeLevel(6)}>
+                    {enableValue() && parseInt(houseInfo.levels[5]) === 5 ? (
                       <div className="level-text" style={{ color: "yellow" }}>Top Level</div>
                     ) : (
                       <>
                         <div className="farm-coin" >&nbsp;</div>
                         <div className="level-text">
-                          {enableValue() ? price[parseInt(houseInfo.levels[7])][7] : price[0][7]}
+                          {enableValue() ? price[parseInt(houseInfo.levels[5])][5] : price[0][5]}
+                        </div>
+                      </>
+                    )}
+                  </button>
+                </div>
+              </div>
+              <div className="barn" id="house5">
+                <div className="barn-5 barn-grey-100" />
+                <div className="barn-action">
+                  <button className="btn-red btn-buy-barn"
+                    onClick={() => setUpgradeLevel(5)}>
+                    {enableValue() && parseInt(houseInfo.levels[4]) === 5 ? (
+                      <div className="level-text" style={{ color: "yellow" }}>Top Level</div>
+                    ) : (
+                      <>
+                        <div className="farm-coin" >&nbsp;</div>
+                        <div className="level-text">
+                          {enableValue() ? price[parseInt(houseInfo.levels[4])][4] : price[0][4]}
+                        </div>
+                      </>
+                    )}
+                  </button>
+                </div>
+              </div>
+              <div className="barn" id="house4">
+                <div className="barn-4 barn-grey-100" />
+                <div className="barn-action">
+                  <button className="btn-red btn-buy-barn"
+                    onClick={() => setUpgradeLevel(4)}>
+                    {enableValue() && parseInt(houseInfo.levels[3]) === 5 ? (
+                      <div className="level-text" style={{ color: "yellow" }}>Top Level</div>
+                    ) : (
+                      <>
+                        <div className="farm-coin" >&nbsp;</div>
+                        <div className="level-text">
+                          {enableValue() ? price[parseInt(houseInfo.levels[3])][3] : price[0][3]}
+                        </div>
+                      </>
+                    )}
+                  </button>
+                </div>
+              </div>
+              <div className="barn" id="house3">
+                <div className="barn-3 barn-grey-100" />
+                <div className="barn-action">
+                  <button className="btn-red btn-buy-barn"
+                    onClick={() => setUpgradeLevel(3)}>
+                    {enableValue() && parseInt(houseInfo.levels[2]) === 5 ? (
+                      <div className="level-text" style={{ color: "yellow" }}>Top Level</div>
+                    ) : (
+                      <>
+                        <div className="farm-coin" >&nbsp;</div>
+                        <div className="level-text">
+                          {enableValue() ? price[parseInt(houseInfo.levels[2])][2] : price[0][2]}
+                        </div>
+                      </>
+                    )}
+                  </button>
+                </div>
+              </div>
+              <div className="barn" id="house2">
+                <div className="barn-2 barn-grey-100" />
+                <div className="barn-action">
+                  <button className="btn-red btn-buy-barn"
+                    onClick={() => setUpgradeLevel(2)}>
+                    {enableValue() && parseInt(houseInfo.levels[1]) === 5 ? (
+                      <div className="level-text" style={{ color: "yellow" }}>Top Level</div>
+                    ) : (
+                      <>
+                        <div className="farm-coin" >&nbsp;</div>
+                        <div className="level-text">
+                          {enableValue() ? price[parseInt(houseInfo.levels[1])][1] : price[0][1]}
+                        </div>
+                      </>
+                    )}
+                  </button>
+                </div>
+              </div>
+              <div className="barn" id="house1">
+                <div className="barn-1 barn-grey-100" />
+                <div className="barn-action">
+                  <button className="btn-red btn-buy-barn"
+                    onClick={() => setUpgradeLevel(1)}>
+                    {enableValue() && parseInt(houseInfo.levels[0]) === 5 ? (
+                      <div className="level-text" style={{ color: "yellow" }}>Top Level</div>
+                    ) : (
+                      <>
+                        <div className="farm-coin" >&nbsp;</div>
+                        <div className="level-text">
+                          {enableValue() ? price[parseInt(houseInfo.levels[0])][0] : price[0][0]}
                         </div>
                       </>
                     )}
