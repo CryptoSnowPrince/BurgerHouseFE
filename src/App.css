@@ -309,10 +309,6 @@ button:hover,
   display: initial;
 }
 
-.barn {
-  margin: 5px;
-}
-
 .barn div {
   background-size: contain;
   background-repeat: no-repeat;
@@ -383,7 +379,7 @@ button:hover,
   z-index: 2;
   display: flex;
   justify-content: center;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .barn-btn-add>div:first-child,
@@ -1487,14 +1483,11 @@ table.table {
     width: 100% !important;
   }
 
-  .barns {
-    flex-direction: column;
-  }
-
   .section-open,
   .trees {
     background-position: top;
     background-size: cover;
+    top: 120px;
   }
 
   .menu-bar {
@@ -1503,9 +1496,8 @@ table.table {
   }
 
   .menu-fixed-left {
-    top: 10px;
+    top: 100px;
     width: 45%;
-    display: block;
   }
 
   .menu-btns {
@@ -1536,7 +1528,7 @@ table.table {
   .menu-fixed-right {
     width: 45%;
     right: 5px;
-    top: 10px;
+    top: 100px;
   }
 
   .logo {
@@ -1544,7 +1536,9 @@ table.table {
   }
 
   .logo-desktop {
-    display: none;
+    background-size: contain;
+    position: sticky;
+    height: 100px;
   }
 
   .collect-action {

@@ -644,8 +644,6 @@ const Home = () => {
                       </button>
                     </div>
                   </div>
-                </div >
-                <div className="barns">
                   <div className="barn" id="house5">
                     <div className="barn-5 barn-grey-100"></div>
                     <div className="barn-action">
