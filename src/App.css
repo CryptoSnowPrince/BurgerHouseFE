@@ -149,6 +149,7 @@ input.form-input {
 }
 
 .barn-grey-100 {
+  width: 100% !important;
   top: 0px;
 }
 
@@ -1477,10 +1478,6 @@ table.table {
     padding-left: 5px;
     padding-right: 5px;
     font-size: 14px;
-  }
-
-  .barn-grey-100 {
-    width: 100% !important;
   }
 
   .section-open,
