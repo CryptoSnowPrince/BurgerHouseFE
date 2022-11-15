@@ -497,7 +497,8 @@ const Home = () => {
   return (
     <>
       <ToastContainer />
-      <div className="section-open">
+      {/* modify to add animation */}
+      <div className="section-open container cloud-intro">
         <div className="logo-desktop"></div>
         <div className="menu-fixed-left">
           <div className="menu-bars">
