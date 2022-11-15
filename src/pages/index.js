@@ -520,7 +520,9 @@ const Home = () => {
               <div className="menu-bar-value">{enableValue() ? houseInfo.cash : "--"}</div>
               <button type="button" className="menu-bar-btn-minus" onClick={() => setShowGetBNB(true)} />
             </div>
-            <div className="menu-bar-value menu-bar-without-background">{enableValue() ? `+ ${houseInfo.yield}` : "--"}/h</div>
+            <div className="menu-bar menu-bar-without-background">
+              <div className="menu-bar-value">{enableValue() ? `+ ${houseInfo.yield}` : "--"}/h</div>
+            </div>
           </div>
           <div className="menu-btns">
             <button className="menu-btn menu-btn-affiliate"

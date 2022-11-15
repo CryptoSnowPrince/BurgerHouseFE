@@ -620,6 +620,7 @@ div.barn-action {
   display: flex;
   justify-content: center;
   margin-top: -10px;
+  background-image: none;
 }
 
 .menu-bar-money {
@@ -1472,6 +1473,13 @@ table.table {
 
 /* Extra small devices (phones, 800px and down) */
 @media only screen and (max-width: 800px) {
+  .menu-bars {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 70px;
+  }
+
   .panels {
     width: 100%;
     position: relative;
