@@ -6,12 +6,12 @@ import DeliveryMan from "./deliveryMan";
 const Footer = (props) => {
     return (
         <div className='footer'>
-            <div class="floor-0-background">
+            <div class="floor-0-background" style={{ overflow: "hidden" }} >
                 <div class="floor-0-parking-pos">
                     <ParkingManager />
                     <div class="floor-0-brick-wall"></div>
                     <div class="floor-0-roof"></div>
-                    {/* <DeliveryMan nSpeed={4} /> */}
+                    <DeliveryMan nSpeed={4} />
                 </div>
             </div>
             <div className="bg-ground-my-bottom"></div>

@@ -19,16 +19,16 @@
     url(./assets/img/cloud1.png);
 
   background-size:
+    700px,
+    650px,
     500px,
-    350px,
-    300px,
-    230px,
-    300px,
-    270px,
-    250px,
-    190px,
-    210px,
-    250px;
+    630px,
+    600px,
+    670px,
+    650px,
+    590px,
+    510px,
+    550px;
   animation: wind 30s linear infinite;
   z-index: -1;
   background-repeat: no-repeat;
@@ -72,9 +72,10 @@
   background-repeat: repeat-x;
   background-position-x: bottom;
   background-position-y: bottom;
-  height: 100px;
+  height: 160px;
   background-image: url(./assets/img/city-front.png );
   z-index: 10;
+  overflow: hidden;
 }
 
 .bg-ground-my-bottom {
