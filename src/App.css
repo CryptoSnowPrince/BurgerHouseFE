@@ -19,16 +19,16 @@
     url(./assets/img/cloud1.png);
 
   background-size:
-    700px,
     650px,
-    500px,
-    630px,
     600px,
-    670px,
-    650px,
-    590px,
-    510px,
-    550px;
+    450px,
+    430px,
+    450px,
+    600px,
+    550px,
+    500px,
+    450px,
+    400px;
   animation: wind 30s linear infinite;
   z-index: -1;
   background-repeat: no-repeat;
