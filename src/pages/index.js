@@ -21,6 +21,8 @@ import {
 } from "../constant";
 
 import House from "./house";
+import ParkingManager from "./parkingManager";
+import DeliveryMan from "./deliveryMan";
 
 const web3Modal = web3ModalSetup();
 
@@ -523,9 +525,7 @@ const Home = () => {
               <div className="menu-bar-value">{enableValue() ? houseInfo.cash : "--"}</div>
               <button type="button" className="menu-bar-btn-minus" onClick={() => setShowGetBNB(true)} />
             </div>
-            <div className="menu-bar menu-bar-without-background">
-              <div className="menu-bar-value">{enableValue() ? `+ ${houseInfo.yield}` : "--"}/h</div>
-            </div>
+            
           </div>
           <div className="menu-btns">
             <button className="menu-btn menu-btn-affiliate"
@@ -576,11 +576,25 @@ const Home = () => {
         </div>
         <div className="ranch trees">
           <div className="house">
+          <div className="background-cloud">
+            <div id="cloud-intro"></div>
+          </div>
             <div className="barns">
+              <div className="background-cloud1">
+              <div id="cloud-intro1"></div>
+            </div>
               {[8, 7, 6, 5, 4, 3, 2, 1].map((id, index) => (
                 <House id={id} houseInfo={houseInfo} price={price} key={index} setUpgradeLevel={setUpgradeLevel} enableValue={enableValue} />
               ))}
             </div >
+            <div class = "floor-0-background">
+              <div class="floor-0-parking-pos">
+                <ParkingManager/>
+                <div class="floor-0-brick-wall"></div>
+                <div class="floor-0-roof"></div>
+                <DeliveryMan nSpeed={4}/>
+              </div>
+            </div>
             <div className="bg-ground-my-bottom"></div>
             <div className="get-money">
               {isConnected ?
@@ -596,11 +610,8 @@ const Home = () => {
               }
             </div>
           </div>
-
         </div >
-        <div className="background-cloud">
-          <div id="cloud-intro"></div>
-        </div>
+        
       </div >
 
       <div className="popup-wrapper popup-buy popup-exchange" id="buyCoins" style={{ display: showBuyCoins && isConnected ? "block" : "none" }}>

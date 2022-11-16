@@ -165,7 +165,7 @@
     background-position: top;
     height: 64px;
     width: 48px;
-    bottom: 19px;
+    bottom: 17px;
     right: 54px
 }
 
@@ -356,13 +356,14 @@
 }
 
 .delivery-man {
-    position: absolute;
-    right: 0;
-    bottom: -2px;
     background-size: auto 100%;
     background-repeat: no-repeat;
     height: 55px;
-    width: 620px
+    width: 620px;
+    position: absolute;
+    bottom:-2px;
+    left:60px;
+    z-index: -20;
 }
 
 .delivery-man-0 {

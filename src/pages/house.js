@@ -18,7 +18,7 @@ const House = ({ id = 0, houseInfo, price, tableCount = 3, setUpgradeLevel, enab
         const intervalId3 = setInterval(() => {
             setVisible3(true);
         }, Math.floor(Math.random() * 7000) + 2000);
-    
+
         return () => {
           clearInterval(intervalId1);
           clearInterval(intervalId2);
@@ -28,24 +28,32 @@ const House = ({ id = 0, houseInfo, price, tableCount = 3, setUpgradeLevel, enab
     
     return (
         <div className='floor_kitchen'>
+            {(id == 5) &&<div className="background-cloud">
+            <div id="cloud-intro"></div>
+          </div>}
+          {(id == 4) &&<div className="background-cloud1">
+            <div id="cloud-intro1"></div>
+          </div>}
             <div className="barn" id={`home${id}`}>
                 <div className={`home home-${id}`} />
                 <div className={`kitchen kitchen-${id}`}>
                     <div className='tables'>
-                        <div className='table table1'></div>
-                        <div className='table table2'></div>
-                        <div className='table table3'></div>
+                        {(id > 6) && <div className='table table1'></div>}
+                        {(id > 4) && <div className='table table2'></div>}
+                        {(id > 2) && <div className='table table3'></div>}
+                        <div className='table table4'></div>
                     </div>
-                    {visible1 && <Chef className="chef-box" />}
-                    {visible2 && <Chef className="chef-box1" />}
-                    {visible3 && <Chef className="chef-box2" />}
+                    {visible1 && (id > 6) && <Chef className="chef-1" chefId={1} cookingTime={1000} workTime={3000} backTime={3000} />}
+                    {visible1 && (id > 4) && <Chef className="chef-2" chefId={2} cookingTime={1000} workTime={5000} backTime={6000} />}
+                    {visible2 && (id > 2) && <Chef className="chef-3" chefId={3} cookingTime={1000} workTime={7000} backTime={8000} />}
+                    {visible3 && <Chef className="chef-4" chefId={4} cookingTime={2000} workTime={9000} backTime={10000} />}
                 </div>
             </div>
 
             <div className="barn-action">
                 <button className="btn-red btn-buy-barn"
                     onClick={() => setUpgradeLevel(id + 1)}>
-                    {enableValue() && parseInt(houseInfo.levels[id]) === 5 ? (
+                    {enableValue() && parseInt(houseInfo.levels[id]) == 5 ? (
                         <div className="level-text" style={{ color: "yellow" }}>Top Level</div>
                     ) : (
                         <>
@@ -57,8 +65,8 @@ const House = ({ id = 0, houseInfo, price, tableCount = 3, setUpgradeLevel, enab
                     )}
                 </button>
             </div>
+            
         </div>
     )
 }
-
 export default House;

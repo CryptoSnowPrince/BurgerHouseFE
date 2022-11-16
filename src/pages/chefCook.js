@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-
-const Chef = ({ chefId }) => {
+const ChefCook = ({ chefId }) => {
   const [step, setStep] = useState(0);
-
+  const [LENGTH, setLength] = useState(chefId == 1 ? 193 : chefId == 2 ? 133 : chefId == 3 ? 73 : 13);
   useEffect(() => {
     const intervalId = setInterval(() => {
       setStep(prev => prev > 28 ? 0 : prev + 1);
@@ -10,10 +9,10 @@ const Chef = ({ chefId }) => {
     return () => clearInterval(intervalId);
   }, []);
 
-
   return (
-    <div className={`chef-${chefId}-cooking chef-cooking chef-cooking-${step}`}></div>
+    <div className={`chef-${chefId}-cooking chef-cooking chef-cooking-${step}`} 
+    style={{ right: `${LENGTH}px` }}
+    />
   )
 }
-
-export default Chef;
+export default ChefCook;
