@@ -10,7 +10,7 @@ const House = ({ id = 0, houseInfo, price, tableCount = 3, setUpgradeLevel, enab
         const intervalId1 = setInterval(() => {
             setVisible1(true);
         }, Math.floor(Math.random() * 3000));
-    
+
         const intervalId2 = setInterval(() => {
             setVisible2(true);
         }, Math.floor(Math.random() * 10000) + 4000);
@@ -20,20 +20,14 @@ const House = ({ id = 0, houseInfo, price, tableCount = 3, setUpgradeLevel, enab
         }, Math.floor(Math.random() * 7000) + 2000);
 
         return () => {
-          clearInterval(intervalId1);
-          clearInterval(intervalId2);
-          clearInterval(intervalId3);
+            clearInterval(intervalId1);
+            clearInterval(intervalId2);
+            clearInterval(intervalId3);
         };
-      }, []);
-    
+    }, []);
+
     return (
         <div className='floor_kitchen'>
-            {(id == 5) &&<div className="background-cloud">
-            <div id="cloud-intro"></div>
-          </div>}
-          {(id == 4) &&<div className="background-cloud1">
-            <div id="cloud-intro1"></div>
-          </div>}
             <div className="barn" id={`home${id}`}>
                 <div className={`home home-${id}`} />
                 <div className={`kitchen kitchen-${id}`}>
@@ -65,7 +59,6 @@ const House = ({ id = 0, houseInfo, price, tableCount = 3, setUpgradeLevel, enab
                     )}
                 </button>
             </div>
-            
         </div>
     )
 }

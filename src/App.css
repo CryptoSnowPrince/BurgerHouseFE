@@ -2,94 +2,67 @@
   font-family: 'Acme', sans-serif;
 }
 
-/* .clouds {
-  position: absolute;
-  bottom: 15px;
-  left: 0;
-  width: 100%
-} */
-.background-cloud {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-}
-
 #cloud-intro {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: url(./assets/img/cloud.png);
-  background: url(./assets/img/cloud1.png) 1000px 100px,
-    url(./assets/img/cloud.png) 1200px 300px,
-    url(./assets/img/cloud.png) 1100px 400px,
-    url(./assets/img/cloud.png) -100px 600px,
-    url(./assets/img/cloud.png) -100px 700px,
-    url(./assets/img/cloud.png) -100px 850px,
-    url(./assets/img/cloud.png) -100px 1000px,
-    url(./assets/img/cloud1.png) -200px 1050px,
+  background:
+    url(./assets/img/cloud.png),
+    url(./assets/img/cloud1.png),
+    url(./assets/img/cloud.png),
+    url(./assets/img/cloud1.png),
+    url(./assets/img/cloud.png),
+    url(./assets/img/cloud1.png),
+    url(./assets/img/cloud.png),
+    url(./assets/img/cloud1.png),
+    url(./assets/img/cloud.png),
+    url(./assets/img/cloud1.png);
 
-    url(./assets/img/cloud.png) 100px 300px,
-    url(./assets/img/cloud.png) 1100px 400px,
-    url(./assets/img/cloud.png) -100px 600px,
-    url(./assets/img/cloud.png) -100px 700px,
-    url(./assets/img/cloud.png) -100px 850px,
-    url(./assets/img/cloud.png) -100px 1000px,
-    url(./assets/img/cloud1.png) -200px 1050px;
-
-  background-size: 200px;
-  animation: wind 40s linear infinite;
+  background-size:
+    500px,
+    350px,
+    300px,
+    230px,
+    300px,
+    270px,
+    250px,
+    190px,
+    210px,
+    250px;
+  animation: wind 30s linear infinite;
   z-index: -1;
   background-repeat: no-repeat;
 }
 
 @keyframes wind {
   0% {
-    background-position: 1000px 100px, 1200px 200px, 1100px 300px, 1200px 400px, 1400px 500px;
+    background-position:
+      2000px 000px,
+      2200px 150px,
+      2400px 350px,
+      2000px 500px,
+      2400px 740px,
+      2600px 980px,
+      2200px 1130px,
+      2800px 1350px,
+      2300px 1600px,
+      2500px 1850px;
   }
 
   100% {
-    background-position: 0 100px, 100px 200px, 50px 300px, -100px 400px, -200px 500px;
+    background-position:
+      -1000px 120px,
+      -800px 100px,
+      -600px 250px,
+      -1000px 650px,
+      -600px 800px,
+      -400px 790px,
+      -800px 1230px,
+      -200px 1150px,
+      -700px 1700px,
+      -500px 1680px;
   }
 }
-
-#cloud-intro1 {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: url(./assets/img/cloud.png);
-  background: url(./assets/img/cloud1.png) 1000px 100px,
-    url(./assets/img/cloud.png) 1200px 300px,
-    url(./assets/img/cloud.png) 1100px 400px,
-    url(./assets/img/cloud.png) -100px 600px,
-    url(./assets/img/cloud.png) -100px 700px,
-    url(./assets/img/cloud.png) -100px 850px,
-    url(./assets/img/cloud.png) -100px 1000px,
-    url(./assets/img/cloud1.png) -200px 1050px,
-
-    url(./assets/img/cloud.png) 100px 300px,
-    url(./assets/img/cloud.png) 1100px 400px,
-    url(./assets/img/cloud.png) -100px 600px,
-    url(./assets/img/cloud.png) -100px 700px,
-    url(./assets/img/cloud.png) -100px 850px,
-    url(./assets/img/cloud.png) -100px 1000px,
-    url(./assets/img/cloud1.png) -200px 1050px;
-
-  background-size: 200px;
-  animation: wind 50s linear infinite;
-  z-index: -1;
-  background-repeat: no-repeat;
-}
-
-@keyframes wind {
-  0% {
-    background-position: 1000px 100px, 900px 200px, 1100px 300px, 1200px 400px, 1800px 500px;
-  }
-
-  100% {
-    background-position: 0 100px, 100px 200px, 560px 300px, -600px 400px, -400px 500px;
-  }
-}
-
 
 .floor-0-background {
   position: relative;
@@ -103,7 +76,6 @@
   background-image: url(./assets/img/city-front.png );
   z-index: 10;
 }
-
 
 .bg-ground-my-bottom {
   position: absolute;
@@ -490,6 +462,7 @@ button:hover,
   height: 220px !important;
   z-index: 9;
 }
+
 .floor-0-parking-pos {
   background-image: url(./assets/img/parking-pos.png);
   background-repeat: no-repeat;
@@ -503,7 +476,7 @@ button:hover,
   /* margin-right: 810px; */
   /* transform: translate(50%); */
   left: 50%;
-  bottom:0px;
+  bottom: 0px;
   margin-left: -280px;
 }
 
@@ -793,7 +766,7 @@ button:hover,
   display: flex;
   justify-content: center;
   flex-direction: column;
-  bottom:-124px;
+  bottom: -124px;
 }
 
 .barn-btn-add>div:first-child,
