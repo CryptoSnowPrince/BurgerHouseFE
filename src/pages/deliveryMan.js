@@ -9,7 +9,7 @@ const DeliveryMan = ({ nSpeed }) => {
         const intervalId1 = setInterval(() => {
             setStep(prev => prev >= 19 ? 0 : prev + 1);
             setWalk(prev => prev > window.innerWidth ? 60 : prev + nSpeed);
-        }, 100);
+        }, 60);
 
         return () => {
             clearInterval(intervalId1);

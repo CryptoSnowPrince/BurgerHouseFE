@@ -6,7 +6,7 @@ const ParkingManager = () => {
     useEffect(() => {
         const intervalId = setInterval(() => {
             setStep(prev => prev >= 39 ? 0 : prev + 1);
-        }, 50);
+        }, 70);
         return () => clearInterval(intervalId);
     }, []);
 

@@ -11,7 +11,7 @@ const Footer = (props) => {
                     <ParkingManager />
                     <div class="floor-0-brick-wall"></div>
                     <div class="floor-0-roof"></div>
-                    <DeliveryMan nSpeed={4} />
+                    <DeliveryMan nSpeed={5} />
                 </div>
             </div>
             <div className="bg-ground-my-bottom"></div>
