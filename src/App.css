@@ -2,6 +2,69 @@
   font-family: 'Acme', sans-serif;
 }
 
+/* .clouds {
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  width: 100%
+} */
+.background-cloud {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+}
+#cloud-intro{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url(./assets/img/cloud.png);
+  background: url(./assets/img/cloud1.png) 1000px 100px,
+              url(./assets/img/cloud.png) 1200px 300px,
+              url(./assets/img/cloud.png) 1100px 400px,
+              url(./assets/img/cloud.png) -100px 600px,
+              url(./assets/img/cloud.png) -100px 700px,
+              url(./assets/img/cloud.png) -100px 850px,
+              url(./assets/img/cloud.png) -100px 1000px,
+              url(./assets/img/cloud1.png) -200px 1050px;
+
+  background-size: 200px;
+	animation: wind 40s linear infinite;
+  z-index: -1;
+  background-repeat: no-repeat;
+}
+@keyframes wind{
+  0% {
+    background-position: 1000px 100px, 1200px 200px, 1100px 300px, 1200px 400px, 1400px 500px;
+  }
+  100% {
+    background-position: 0 100px, 100px 200px, 50px 300px, -100px 400px, -200px 500px;
+  }
+}
+
+.bg-ground-my-bottom {
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+  left: 50%;
+  transform: translate(-50%);
+  background-size: auto 100%;
+  background-repeat: repeat-x;
+  background-position-x: bottom;
+  background-position-y: bottom;
+  height: 75px;
+  background-image: url(./assets/img/land.png );
+}
+
+.floor-kitchen {
+  background-image: url(./assets/img/floor-kitchen.png);
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 430px;
+  background-size: contain;
+  position: absolute;
+  right: 0
+}
+
 body {
   background: url(./assets/img/background.png) repeat-x;
 }
@@ -353,12 +416,11 @@ button:hover,
   background-position: center bottom;
   overflow: hidden;
   text-align: center;
-  height: 80px;
+  height: 90px;
 }
 
 .level-text {
   font-weight: bold;
-  margin-top: 55px;
 }
 
 .barn .barn-grey-0:hover,
@@ -367,51 +429,84 @@ button:hover,
   transform: scale(1.1);
 }
 
-.barn-1,
-.barn-2,
-.barn-3,
-.barn-4,
-.barn-5,
-.barn-6,
-.barn-7,
-.barn-8 {
-  top: 0px;
-  width: 300px;
-  height: 200px !important;
-  background-image: url(./assets/img/house1.png);
-  bottom: 0px;
+.chef {
+  height: 100px;
+  width: calc(50% + 160px);
+  position: absolute;
+  bottom: 5px;
+  right: 65px;
+  z-index: 7;
+}
+.floor_kitchen {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-.barn-2 {
+.mt-60 {
+  margin-top: 60px;
+}
+
+.barn {
+  position: relative;
+  width: 100%;
+  height: 200px;
+}
+
+.home {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 370px);
+  width: 320px;
+  height: 240px !important;
+  z-index: 9;
+}
+
+.kitchen {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 225px);
+  width: 450px;
+  height: 200px !important;
+  background-image: url(./assets/img/floor-kitchen.png);
+  z-index: 5;
+}
+
+.home-1 {
+  background-image: url(./assets/img/house1.png);
+}
+
+.home-2 {
   background-image: url(./assets/img/house2.png);
 }
 
-.barn-3 {
+.home-3 {
   background-image: url(./assets/img/house3.png);
 }
 
-.barn-4 {
+.home-4 {
   background-image: url(./assets/img/house4.png);
 }
 
-.barn-5 {
+.home-5 {
   background-image: url(./assets/img/house5.png);
 }
 
-.barn-6 {
+.home-6 {
   background-image: url(./assets/img/house6.png);
 }
 
-.barn-7 {
+.home-7 {
   background-image: url(./assets/img/house7.png);
 }
 
-.barn-8 {
+.home-8 {
   background-image: url(./assets/img/house8.png);
 }
 
 .barns {
   /* transform: translate(-50%, calc(-50% + 10px)); */
+  position: relative;
   overflow: hidden;
   text-align: center;
   z-index: 2;
@@ -594,6 +689,17 @@ div.barn-action {
   width: 250px;
   z-index: 4;
   display: block;
+}
+
+.menu-fixed-mmm{
+  position: fixed;
+  left: 15px;
+  top: 30px;
+  color: #fff;
+  width: 250px;
+  z-index: 4;
+  display: block;
+  align-items: center;
 }
 
 .menu-btns {

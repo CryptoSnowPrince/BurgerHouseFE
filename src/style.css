@@ -1,0 +1,446 @@
+/*        Chef        */
+.display-none {
+    display: none;
+}
+
+.display-block {
+    display: block;
+}
+
+.chef-cooking {
+    position: absolute;
+    bottom: 20px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: top;
+    height: 37px;
+    width: 51px;
+}
+
+.chef-1-cooking {
+    right: 38px
+}
+
+.chef-2-cooking {
+    right: 91px
+}
+
+.chef-3-cooking {
+    right: 144px
+}
+
+.chef-4-cooking {
+    right: 197px
+}
+
+.chef-5-cooking {
+    right: 250px
+}
+
+.chef-cooking-0 {
+    background-image: url(./assets/img/states/cook/0.png);
+}
+
+.chef-cooking-1 {
+    background-image: url(./assets/img/states/cook/1.png);
+}
+
+.chef-cooking-2 {
+    background-image: url(./assets/img/states/cook/2.png);
+}
+
+.chef-cooking-3 {
+    background-image: url(./assets/img/states/cook/3.png);
+}
+
+.chef-cooking-4 {
+    background-image: url(./assets/img/states/cook/4.png);
+}
+
+.chef-cooking-5 {
+    background-image: url(./assets/img/states/cook/5.png);
+}
+
+.chef-cooking-6 {
+    background-image: url(./assets/img/states/cook/6.png);
+}
+
+.chef-cooking-7 {
+    background-image: url(./assets/img/states/cook/7.png);
+}
+
+.chef-cooking-8 {
+    background-image: url(./assets/img/states/cook/8.png);
+}
+
+.chef-cooking-9 {
+    background-image: url(./assets/img/states/cook/9.png);
+}
+
+.chef-cooking-10 {
+    background-image: url(./assets/img/states/cook/10.png);
+}
+
+.chef-cooking-11 {
+    background-image: url(./assets/img/states/cook/11.png);
+}
+
+.chef-cooking-12 {
+    background-image: url(./assets/img/states/cook/12.png);
+}
+
+.chef-cooking-13 {
+    background-image: url(./assets/img/states/cook/13.png);
+}
+
+.chef-cooking-14 {
+    background-image: url(./assets/img/states/cook/14.png);
+}
+
+.chef-cooking-15 {
+    background-image: url(./assets/img/states/cook/15.png);
+}
+
+.chef-cooking-16 {
+    background-image: url(./assets/img/states/cook/16.png);
+}
+
+.chef-cooking-17 {
+    background-image: url(./assets/img/states/cook/17.png);
+}
+
+.chef-cooking-18 {
+    background-image: url(./assets/img/states/cook/18.png);
+}
+
+.chef-cooking-19 {
+    background-image: url(./assets/img/states/cook/19.png);
+}
+
+.chef-cooking-20 {
+    background-image: url(./assets/img/states/cook/20.png);
+}
+
+.chef-cooking-21 {
+    background-image: url(./assets/img/states/cook/21.png);
+}
+
+.chef-cooking-22 {
+    background-image: url(./assets/img/states/cook/22.png);
+}
+
+.chef-cooking-23 {
+    background-image: url(./assets/img/states/cook/23.png);
+}
+
+.chef-cooking-24 {
+    background-image: url(./assets/img/states/cook/24.png);
+}
+
+.chef-cooking-25 {
+    background-image: url(./assets/img/states/cook/25.png);
+}
+
+.chef-cooking-26 {
+    background-image: url(./assets/img/states/cook/26.png);
+}
+
+.chef-cooking-27 {
+    background-image: url(./assets/img/states/cook/27.png);
+}
+
+.chef-cooking-28 {
+    background-image: url(./assets/img/states/cook/28.png);
+}
+
+.chef-cooking-29 {
+    background-image: url(./assets/img/states/cook/29.png);
+}
+
+
+.chef-walk-with-pizza {
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: top;
+    height: 64px;
+    width: 48px;
+    bottom: 19px;
+    right: 54px
+}
+
+.chef-walk-with-pizza-0 {
+    background-image: url(./assets/img/states/pizza/0.png);
+}
+
+.chef-walk-with-pizza-1 {
+    background-image: url(./assets/img/states/pizza/1.png);
+}
+
+.chef-walk-with-pizza-2 {
+    background-image: url(./assets/img/states/pizza/2.png);
+}
+
+.chef-walk-with-pizza-3 {
+    background-image: url(./assets/img/states/pizza/3.png);
+}
+
+.chef-walk-with-pizza-4 {
+    background-image: url(./assets/img/states/pizza/4.png);
+}
+
+.chef-walk-with-pizza-5 {
+    background-image: url(./assets/img/states/pizza/5.png);
+}
+
+.chef-walk-with-pizza-6 {
+    background-image: url(./assets/img/states/pizza/6.png);
+}
+
+.chef-walk-with-pizza-7 {
+    background-image: url(./assets/img/states/pizza/7.png);
+}
+
+.chef-walk-with-pizza-8 {
+    background-image: url(./assets/img/states/pizza/8.png);
+}
+
+.chef-walk-with-pizza-9 {
+    background-image: url(./assets/img/states/pizza/9.png);
+}
+
+.chef-walk-with-pizza-10 {
+    background-image: url(./assets/img/states/pizza/10.png);
+}
+
+.chef-walk-with-pizza-11 {
+    background-image: url(./assets/img/states/pizza/11.png);
+}
+
+.chef-walk-with-pizza-12 {
+    background-image: url(./assets/img/states/pizza/12.png);
+}
+
+.chef-walk-with-pizza-13 {
+    background-image: url(./assets/img/states/pizza/13.png);
+}
+
+.chef-walk-with-pizza-14 {
+    background-image: url(./assets/img/states/pizza/14.png);
+}
+
+.chef-walk-with-pizza-15 {
+    background-image: url(./assets/img/states/pizza/15.png);
+}
+
+.chef-walk-with-pizza-16 {
+    background-image: url(./assets/img/states/pizza/16.png);
+}
+
+.chef-walk-with-pizza-17 {
+    background-image: url(./assets/img/states/pizza/17.png);
+}
+
+.chef-walk-with-pizza-18 {
+    background-image: url(./assets/img/states/pizza/18.png);
+}
+
+.chef-walk-with-pizza-19 {
+    background-image: url(./assets/img/states/pizza/19.png);
+}
+
+.chef-walk {
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: top;
+    height: 67px;
+    width: 35px;
+    right: 94px;
+    bottom: 17px;
+    transform: scaleX(-1);
+}
+
+.chef-walk-0 {
+    background-image: url(./assets/img/states/walk/0.png);
+}
+
+.chef-walk-1 {
+    background-image: url(./assets/img/states/walk/1.png);
+}
+
+.chef-walk-2 {
+    background-image: url(./assets/img/states/walk/2.png);
+}
+
+.chef-walk-3 {
+    background-image: url(./assets/img/states/walk/3.png);
+}
+
+.chef-walk-4 {
+    background-image: url(./assets/img/states/walk/4.png);
+}
+
+.chef-walk-5 {
+    background-image: url(./assets/img/states/walk/5.png);
+}
+
+.chef-walk-6 {
+    background-image: url(./assets/img/states/walk/6.png);
+}
+
+.chef-walk-7 {
+    background-image: url(./assets/img/states/walk/7.png);
+}
+
+.chef-walk-8 {
+    background-image: url(./assets/img/states/walk/8.png);
+}
+
+.chef-walk-9 {
+    background-image: url(./assets/img/states/walk/9.png);
+}
+
+.chef-walk-10 {
+    background-image: url(./assets/img/states/walk/10.png);
+}
+
+.chef-walk-11 {
+    background-image: url(./assets/img/states/walk/11.png);
+}
+
+.chef-walk-12 {
+    background-image: url(./assets/img/states/walk/12.png);
+}
+
+.chef-walk-13 {
+    background-image: url(./assets/img/states/walk/13.png);
+}
+
+.chef-walk-14 {
+    background-image: url(./assets/img/states/walk/14.png);
+}
+
+.chef-walk-15 {
+    background-image: url(./assets/img/states/walk/15.png);
+}
+
+.chef-walk-16 {
+    background-image: url(./assets/img/states/walk/16.png);
+}
+
+.chef-walk-17 {
+    background-image: url(./assets/img/states/walk/17.png);
+}
+
+.chef-walk-18 {
+    background-image: url(./assets/img/states/walk/18.png);
+}
+
+.chef-walk-19 {
+    background-image: url(./assets/img/states/walk/19.png);
+}
+
+.tables {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    right: 40px;
+    bottom: 22px;
+    z-index: 8;
+}
+
+.table {
+    width: 60px;
+    background-image: url(./assets/img/table.png);
+}
+
+.delivery-man {
+    position: absolute;
+    right: 0;
+    bottom: -2px;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    height: 55px;
+    width: 620px
+}
+
+.delivery-man-0 {
+    background-image: url(./assets/img/states/delivery/0.png);
+}
+
+.delivery-man-1 {
+    background-image: url(./assets/img/states/delivery/1.png);
+}
+
+.delivery-man-2 {
+    background-image: url(./assets/img/states/delivery/2.png);
+}
+
+.delivery-man-3 {
+    background-image: url(./assets/img/states/delivery/3.png);
+}
+
+.delivery-man-4 {
+    background-image: url(./assets/img/states/delivery/4.png);
+}
+
+.delivery-man-5 {
+    background-image: url(./assets/img/states/delivery/5.png);
+}
+
+.delivery-man-6 {
+    background-image: url(./assets/img/states/delivery/6.png);
+}
+
+.delivery-man-7 {
+    background-image: url(./assets/img/states/delivery/7.png);
+}
+
+.delivery-man-8 {
+    background-image: url(./assets/img/states/delivery/8.png);
+}
+
+.delivery-man-9 {
+    background-image: url(./assets/img/states/delivery/9.png);
+}
+
+.delivery-man-10 {
+    background-image: url(./assets/img/states/delivery/10.png);
+}
+
+.delivery-man-11 {
+    background-image: url(./assets/img/states/delivery/11.png);
+}
+
+.delivery-man-12 {
+    background-image: url(./assets/img/states/delivery/12.png);
+}
+
+.delivery-man-13 {
+    background-image: url(./assets/img/states/delivery/13.png);
+}
+
+.delivery-man-14 {
+    background-image: url(./assets/img/states/delivery/14.png);
+}
+
+.delivery-man-15 {
+    background-image: url(./assets/img/states/delivery/15.png);
+}
+
+.delivery-man-16 {
+    background-image: url(./assets/img/states/delivery/16.png);
+}
+
+.delivery-man-17 {
+    background-image: url(./assets/img/states/delivery/17.png);
+}
+
+.delivery-man-18 {
+    background-image: url(./assets/img/states/delivery/18.png);
+}
+
+.delivery-man-19 {
+    background-image: url(./assets/img/states/delivery/19.png);
+}
