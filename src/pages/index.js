@@ -77,8 +77,6 @@ const Home = () => {
   const parameters = new URLSearchParams(queryString);
   const newReferral = parameters.get('ref');
 
-  const [flowing, setFlowing] = useState(true);
-
   const [burgerHouseContract, setBurgerHouseContract] = useState();
 
   const [web3, setWeb3] = useState();
@@ -128,7 +126,7 @@ const Home = () => {
     if (
       injectedProvider &&
       injectedProvider.provider &&
-      typeof injectedProvider.provider.disconnect == "function"
+      typeof injectedProvider.provider.disconnect === "function"
     ) {
       await injectedProvider.provider.disconnect();
     }

@@ -14,7 +14,7 @@ const DeliveryMan = ({ nSpeed }) => {
         return () => {
             clearInterval(intervalId1);
         };
-    }, []);
+    }, [nSpeed]);
 
     return (
         <div ref={bike}

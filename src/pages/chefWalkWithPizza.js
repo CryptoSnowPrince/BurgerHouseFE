@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 const ChefWalkWithPizza = ({ chefId }) => {
-  const LENGTH = chefId == 1 ? 193 : chefId == 2 ? 133 : chefId == 3 ? 73 : 13;
+  const LENGTH = chefId === 1 ? 193 : chefId === 2 ? 133 : chefId === 3 ? 73 : 13;
 
   const [step, setStep] = useState(0);
   const [walk, setWalk] = useState(0);

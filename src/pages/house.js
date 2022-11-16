@@ -47,7 +47,7 @@ const House = ({ id = 0, houseInfo, price, tableCount = 3, setUpgradeLevel, enab
             <div className="barn-action">
                 <button className="btn-red btn-buy-barn"
                     onClick={() => setUpgradeLevel(id + 1)}>
-                    {enableValue() && parseInt(houseInfo.levels[id]) == 5 ? (
+                    {enableValue() && parseInt(houseInfo.levels[id]) === 5 ? (
                         <div className="level-text" style={{ color: "yellow" }}>Top Level</div>
                     ) : (
                         <>

@@ -12,7 +12,7 @@ const Chef = (props) => {
             setStep(prev => prev >= totalTime ? 0 : prev + 1000);
         }, 1000);
         return () => clearInterval(intervalId);
-    }, []);
+    }, [totalTime]);
 
     return (
         <div className='chef'>
