@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const Chef = ({ chefId = 1 }) => {
+const Chef = ({ chefId }) => {
   const [step, setStep] = useState(0);
 
   useEffect(() => {

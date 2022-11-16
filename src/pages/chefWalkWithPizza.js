@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-const ChefWalkWithPizza = ({ chefId = 1 }) => {
+const DISTANCE = 100;
+
+const ChefWalkWithPizza = ({ chefId, endPosition }) => {
   const [step, setStep] = useState(0);
   const [walk, setWalk] = useState(0);
 
@@ -19,7 +21,9 @@ const ChefWalkWithPizza = ({ chefId = 1 }) => {
   }, []);
 
   return (
-    <div className={`chef-walk-with-pizza chef-walk-with-pizza-${step}`} style={{ right: `${walk}px` }}></div>
+    <div
+      className={`chef-walk-with-pizza chef-walk-with-pizza-${step}`}
+      style={{ right: `${walk + chefId * DISTANCE + endPosition}px` }}></div>
   )
 }
 
