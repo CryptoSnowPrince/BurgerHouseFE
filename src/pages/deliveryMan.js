@@ -8,15 +8,11 @@ const DeliveryMan = ({ nSpeed }) => {
     useEffect(() => {
         const intervalId1 = setInterval(() => {
             setStep(prev => prev >= 19 ? 0 : prev + 1);
-        }, 50);
-
-        const intervalId2 = setInterval(() => {
             setWalk(prev => prev > window.innerWidth ? 60 : prev + nSpeed);
-        }, 50);
+        }, 100);
 
         return () => {
             clearInterval(intervalId1);
-            clearInterval(intervalId2);
         };
     }, []);
 
