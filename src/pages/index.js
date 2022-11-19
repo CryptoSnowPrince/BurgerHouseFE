@@ -20,8 +20,8 @@ import {
   ALERT_POSITION,
 } from "../constant";
 
-import House from "./house";
-import Footer from "./footer";
+import House from "../components/house";
+import Footer from "../components/footer";
 
 const web3Modal = web3ModalSetup();
 
