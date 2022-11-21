@@ -6,8 +6,10 @@ import DeliveryMan from "./animations/deliveryMan";
 const Floor0 = () => {
     return (
         <div className="floor-0">
-            {/* <ParkingManager />
-            <DeliveryMan nSpeed={5} /> */}
+            <div className='counter'>
+                {/* <ParkingManager /> */}
+            </div>
+            {/* <DeliveryMan nSpeed={5} /> */}
         </div>
     )
 }

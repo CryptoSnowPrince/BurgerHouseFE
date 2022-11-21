@@ -394,6 +394,13 @@ button:hover,
   margin: 0 auto;
 }
 
+.counter {
+  height: 171px;
+  background: url(./assets/img/static/counter.png) no-repeat;
+  background-size: contain;
+  background-position-x: 81px;
+}
+
 .parking-manager {
   position: absolute;
   left: 55px;
@@ -1622,6 +1629,13 @@ table.table {
     height: 116px;
     left: -47px;
   }
+
+  .counter {
+    height: 116px;
+    background-size: contain;
+    background-position-x: 27px;
+  }
+
 
   .btn-floor {
     margin-top: 30px;
