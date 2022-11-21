@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LeftPanel = ({ isConnected, curAcount, coins, cash, setShowBuyCoins, setShowGetBNB, setShowReferral, logoutOfWeb3Modal }) => {
+const LeftPanel = ({ isConnected, curAcount, coins, cash, yieldValue, setShowBuyCoins, setShowGetBNB, setShowReferral, logoutOfWeb3Modal }) => {
     return (
         <div className="menu-fixed-left">
             <div className="menu-bars">
@@ -22,7 +22,9 @@ const LeftPanel = ({ isConnected, curAcount, coins, cash, setShowBuyCoins, setSh
                     <div className="menu-bar-value">{cash}</div>
                     <button type="button" className="menu-bar-btn-minus" disabled={!isConnected} onClick={() => setShowGetBNB(true)} />
                 </div>
-
+                <div className="menu-bar menu-bar-without-background">
+                    <div className="menu-bar-value">{yieldValue}/h</div>
+                </div>
             </div>
             <div className="menu-btns">
                 <button className="menu-btn menu-btn-affiliate"

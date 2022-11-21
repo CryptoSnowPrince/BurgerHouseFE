@@ -513,6 +513,7 @@ const Home = () => {
           curAcount={curAcount}
           coins={enableValue() ? houseInfo.coins : "--"}
           cash={enableValue() ? houseInfo.cash : "--"}
+          yieldValue={enableValue() ? `+ ${houseInfo.yield}` : "--"}
           setShowBuyCoins={setShowBuyCoins}
           setShowGetBNB={setShowGetBNB}
           setShowReferral={setShowReferral}
