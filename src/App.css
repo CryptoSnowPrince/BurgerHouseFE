@@ -396,13 +396,6 @@ button:hover,
   margin: 0 auto;
 }
 
-.counter {
-  height: 171px;
-  background: url(./assets/img/static/counter.png) no-repeat;
-  background-size: contain;
-  background-position-x: 81px;
-}
-
 .counter-in-house {
   position: absolute;
   height: 40px;
@@ -1550,8 +1543,52 @@ div.farm-coin {
   margin-right: 10px;
 }
 
+.lift {
+  position: absolute;
+  background: url(./assets/img/static/lift.png) no-repeat;
+  background-size: contain;
+  z-index: 2;
+  width: 71px;
+  height: 102px;
+  left: calc(50% - 200px);
+  bottom: 0px;
+  z-index: 2;
+}
+
+.lift-bar {
+  position: absolute;
+  background: url(./assets/img/static/rope.png) repeat-y;
+  width: 9px;
+  height: 1350px;
+  left: calc(50% - 170px);
+  bottom: 101px;
+  z-index: 2;
+}
+
+.counter {
+  position: absolute;
+  background: url(./assets/img/static/counter.png) no-repeat;
+  background-size: contain;
+  z-index: 3;
+  width: 110px;
+  height: 150px;
+  left: calc(50% - 223px);
+  bottom: 0px;
+}
+
 /* Extra small devices (phones, 800px and down) */
 @media only screen and (max-width: 800px) {
+  .lift-bar {
+    height: 927px;
+    left: calc(50% - 163px);
+    bottom: 69px;
+  }
+
+  .lift {
+    width: 48px;
+    height: 70px;
+    left: calc(50% - 182px);
+  }
 
   .counter-in-house {
     height: 28px;
@@ -1640,9 +1677,9 @@ div.farm-coin {
   }
 
   .counter {
-    height: 116px;
-    background-size: contain;
-    background-position-x: 27px;
+    width: 78px;
+    height: 105px;
+    left: calc(50% - 198px);
   }
 
   .btn-floor {

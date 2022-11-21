@@ -30,6 +30,7 @@ import CollectMoney from "../components/popups/collectMoney";
 import UpgradeLevel from "../components/popups/upgradeLevel";
 import Referral from "../components/popups/referral";
 import Floor0 from "../components/floor0";
+import Elevator from "../components/animations/elevator";
 
 const web3Modal = web3ModalSetup();
 
@@ -37,6 +38,13 @@ const httpProvider = new Web3.providers.HttpProvider(RPC_URL)
 const web3NoAccount = new Web3(httpProvider)
 const isAddress = web3NoAccount.utils.isAddress
 const contractNoAccount = getBurgerHouseContract(web3NoAccount)
+
+const HEIGHT_PC = 1290;
+const HEIGHT_MOBILE = 880;
+const ROP_BOTTOM_PC = 101;
+const ROP_HEIGHT_PC = 1350;
+const ROP_BOTTOM_MOBILE = 69;
+const ROP_HEIGHT_MOBILE = 927;
 
 const priceINT =
   [
@@ -79,7 +87,7 @@ const ALERT_WARN = "warning"
 const ALERT_ERROR = "error"
 
 const Home = () => {
-  // const isMobile = window.matchMedia("only screen and (max-width: 1000px)").matches;
+  const isMobile = window.matchMedia("only screen and (max-width: 800px)").matches;
 
   const queryString = window.location.search;
   const parameters = new URLSearchParams(queryString);
@@ -529,10 +537,17 @@ const Home = () => {
       <div className="house">
         <div id="cloud-intro" />
         <div className="roof" />
-        {[8, 7, 6, 5, 4, 3, 2, 1].map((value) => ( // value = 8, 7, 6, 5, 4, 3, 2, 1
-          <House key={value} id={value} houseInfo={houseInfo} isConnected={isConnected} price={price} setUpgradeLevel={setUpgradeLevel} enableValue={enableValue} />
-        ))}
-        <Floor0 />
+        <div className="floors">
+          <Elevator
+            height={isMobile ? HEIGHT_MOBILE : HEIGHT_PC}
+            ropBottom={isMobile ? ROP_BOTTOM_MOBILE : ROP_BOTTOM_PC}
+            ropHeight={isMobile ? ROP_HEIGHT_MOBILE : ROP_HEIGHT_PC}
+          />
+          {[8, 7, 6, 5, 4, 3, 2, 1].map((value) => ( // value = 8, 7, 6, 5, 4, 3, 2, 1
+            <House key={value} id={value} houseInfo={houseInfo} isConnected={isConnected} price={price} setUpgradeLevel={setUpgradeLevel} enableValue={enableValue} />
+          ))}
+          <Floor0 />
+        </div>
       </div>
       <Footer
         isConnected={isConnected}
