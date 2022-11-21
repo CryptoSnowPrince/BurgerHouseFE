@@ -529,8 +529,8 @@ const Home = () => {
           <div className="house">
             <div className="barns">
               <div id="cloud-intro" />
-              {[8, 7, 6, 5, 4, 3, 2, 1].map((id, index) => (
-                <House id={id} houseInfo={houseInfo} isConnected={isConnected} price={price} key={index} setUpgradeLevel={setUpgradeLevel} enableValue={enableValue} />
+              {[8, 7, 6, 5, 4, 3, 2, 1].map((key) => ( // key = 8, 7, 6, 5, 4, 3, 2, 1
+                <House id={key} houseInfo={houseInfo} isConnected={isConnected} price={price} setUpgradeLevel={setUpgradeLevel} enableValue={enableValue} />
               ))}
             </div >
             <Footer
@@ -587,13 +587,6 @@ const Home = () => {
         profit={`${enableValue() && upgradeLevel > 0 ? getHouseprofit(houseInfo.levels[upgradeLevel - 1], upgradeLevel - 1) : 0} / Hour`}
         addedProfit={`+ ${enableValue() && upgradeLevel > 0 && parseInt(houseInfo.levels[upgradeLevel - 1]) < 5 ? yieldValues[houseInfo.levels[upgradeLevel - 1]][upgradeLevel - 1] : 0}`}
         totalProfit={`${enableValue() ? houseInfo.yield : 0} / Hour`}
-        upgradeInfoText={
-          enableValue() && upgradeLevel > 0 ?
-            (
-              parseInt(houseInfo.levels[upgradeLevel - 1]) < 5 ?
-                `Upgrade to Level ${parseInt(houseInfo.levels[upgradeLevel - 1]) + 1}` :
-                `Top Level !!!`
-            ) : `Upgrade to Level 1`}
         disabled={pendingTx || !isConnected || upgradeLevel <= 0 || (enableValue() && upgradeLevel > 0 && parseInt(houseInfo.levels[upgradeLevel - 1]) === 5)}
         upgradeHouse={upgradeHouse}
         enableValue={enableValue}

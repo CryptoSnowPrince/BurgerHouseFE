@@ -8,7 +8,6 @@ const UpgradeLevel = ({
     profit,
     addedProfit,
     totalProfit,
-    upgradeInfoText,
     disabled,
     upgradeHouse,
     enableValue,
@@ -56,7 +55,12 @@ const UpgradeLevel = ({
                 </div>
                 <div className="popup-upgrade-info-text">
                     {`House ${upgradeLevel} - `}
-                    {upgradeInfoText}
+                    {enableValue() && upgradeLevel > 0 ?
+                        (
+                            parseInt(houseInfo.levels[upgradeLevel - 1]) < 5 ?
+                                `Upgrade to Level ${parseInt(houseInfo.levels[upgradeLevel - 1]) + 1}` :
+                                `Top Level !!!`
+                        ) : `Upgrade to Level 1`}
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <button className="btn-red btn-upgrade"
