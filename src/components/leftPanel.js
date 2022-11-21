@@ -16,9 +16,6 @@ const LeftPanel = ({
             <div className="menu-bars">
                 {
                     isConnected && <div className="menu-bar menu-bar-wallet">
-                        <i
-                            className="fa fa-wallet"
-                            style={{ color: "#e6a71e", width: "24px", height: "24px", marginTop: "-16px", marginLeft: "20px" }} />
                         <div className="menu-bar-value menu-bar-value-wallet">{`${curAcount.toString().substr(0, 6)}...${curAcount.toString().substr(38, 41)}`}</div>
                     </div>
                 }

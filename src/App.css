@@ -993,7 +993,7 @@ div.barn-action {
 }
 
 .menu-bar-wallet {
-  background-image: url(./assets/img/static/menu-bar.png);
+  background-image: url(./assets/img/static/wallet-bar.png);
 }
 
 .menu-bar-value {
@@ -1042,15 +1042,13 @@ div.barn-action {
   background-image: url(./assets/img/static/minus.png);
 }
 
-.menu-fixed-left .fa,
-.menu-fixed-right .fa {
+.fa {
   font-size: x-large;
   font-weight: bolder;
   width: 100%;
   height: 100%;
   text-align: center;
   vertical-align: middle;
-  line-height: 2;
   text-decoration: none;
   color: #fff;
 }
@@ -1675,17 +1673,10 @@ div.barn-action {
   margin-left: 10px;
 }
 
-.panels {
-  width: 240px;
-  position: relative;
-  padding: 0px 5px !important;
-}
-
 .panel {
   width: 100%;
   height: 32px;
-  /* background-color: #00000070; */
-  background: url(./assets/img/static/right-panel.png);
+  background: url(./assets/img/static/right-panel.png) no-repeat;
   margin-bottom: 10px;
   text-align: left;
   padding-left: 15px;
@@ -1806,11 +1797,6 @@ table.table {
   z-index: 4;
 }
 
-.menu-fixed-right .menu-btns {
-  display: block;
-  margin-left: 1px;
-}
-
 .radio-picker {
   display: flex;
 }
@@ -1828,15 +1814,9 @@ table.table {
     width: 70px;
   }
 
-  .panels {
-    width: 100%;
-    position: relative;
-    padding: 0px 5px !important;
-  }
-
   .panel {
-    padding-left: 1px;
-    padding-right: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
     font-size: 14px;
   }
 
@@ -1885,7 +1865,7 @@ table.table {
   }
 
   .menu-fixed-right {
-    width: 50%;
+    width: 38%;
     right: 5px;
     top: 100px;
   }
@@ -1938,151 +1918,3 @@ table.table {
     display: block;
   }
 }
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-/* @media only screen and (min-width: 600px) {
-
-  .section-open,
-  .trees {
-    background-position: top;
-    background-size: cover;
-  }
-
-  .menu-fixed-left .menu-btns {
-    display: flex;
-    margin-left: 0px;
-  }
-
-  .menu-fixed-right .menu-btns {
-    display: flex;
-    margin-left: 0px;
-  }
-
-  .logo {
-    position: relative;
-    width: 100%;
-    height: 60px;
-    margin-bottom: 10px;
-    background-size: contain;
-  }
-
-  .logo-desktop {
-    display: none;
-  }
-
-  .logo {
-    display: block;
-  }
-
-
-  .alert {
-    width: 95%;
-    z-index: 5;
-    bottom: 0;
-  }
-} */
-
-/* Medium devices (landscape tablets, 768px and up) */
-/* @media only screen and (min-width: 768px) {
-
-  .section-open,
-  .trees {
-    background-position: top;
-    background-size: cover;
-  }
-
-  .menu-btns {
-    justify-content: space-between;
-  }
-
-  .menu-fixed-right .menu-btns {
-    display: block;
-    margin-left: 15px;
-  }
-
-  .menu-fixed-right {
-    width: 250px;
-  }
-
-  .menu-fixed-right .menu-btns {
-    display: block;
-    margin-left: 15px;
-  }
-
-  .menu-fixed-right {
-    width: 250px;
-  }
-
-  .logo-desktop {
-    display: none;
-  }
-
-  .logo {
-    display: block;
-  }
-
-  .collect-action {
-    left: 45%;
-  }
-
-
-  .collect-action.collect-desktop {
-    display: block;
-  }
-
-  .collect-action.collect-mobile {
-    display: none;
-  }
-
-
-  .alert {
-    width: auto;
-    z-index: 5;
-    bottom: 0;
-  }
-
-  .promotional-video {
-    top: 13%;
-    width: 81%;
-    left: 9%;
-
-  }
-
-  div.login-action {
-    bottom: 43%;
-  }
-
-} */
-
-/* Large devices (laptops/desktops, 992px and up) */
-/* @media only screen and (min-width: 992px) {
-
-  .section-open,
-  .trees {
-    background-position: bottom;
-  }
-
-  .logo-desktop {
-    display: block;
-  }
-
-  .logo {
-    display: none;
-  }
-
-  div.login-action {
-    bottom: 10%;
-    left: 50%;
-  }
-
-
-  .promotional-video {
-    top: 32%;
-    width: 32%;
-    left: 34%;
-  }
-
-} */
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-/* @media only screen and (min-width: 1200px) {} */
