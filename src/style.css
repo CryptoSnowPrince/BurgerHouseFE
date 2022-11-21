@@ -345,14 +345,16 @@
     position: absolute;
     display: flex;
     flex-direction: row;
-    right: 40px;
-    bottom: 22px;
-    z-index: 8;
+    right: 97px;
+    bottom: 15px;
+    z-index: 0;
 }
 
-.table {
-    width: 60px;
-    background-image: url(./assets/img/table.png);
+.counter-table {
+    width: 50px;
+    height: 26px;
+    background: url(./assets/img/static/kitchen-table.png) no-repeat;
+    background-size: contain;
 }
 
 .delivery-man {
@@ -361,7 +363,7 @@
     height: 59px;
     width: 68px;
     position: absolute;
-    bottom:-2px;
+    bottom: -2px;
     z-index: 0;
 }
 
@@ -443,4 +445,18 @@
 
 .delivery-man-19 {
     background-image: url(./assets/img/animations/delivery/19.png);
+}
+
+
+/* Extra small devices (phones, 800px and down) */
+@media only screen and (max-width: 800px) {
+    .tables {
+        right: 35px;
+        bottom: 12px;
+    }
+
+    .counter-table {
+        width: 42px;
+        height: 21px;
+    }
 }

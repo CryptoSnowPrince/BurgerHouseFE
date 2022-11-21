@@ -219,8 +219,10 @@ input.form-input {
 }
 
 .btn-floor {
-  margin-top: 50px;
-  margin-right: -620px;
+  position: absolute;
+  width: 102px;
+  left: 580px;
+  top: 60px;
 }
 
 button:hover,
@@ -399,6 +401,17 @@ button:hover,
   background: url(./assets/img/static/counter.png) no-repeat;
   background-size: contain;
   background-position-x: 81px;
+}
+
+.counter-in-house {
+  position: absolute;
+  height: 40px;
+  width: 60px;
+  background: url(./assets/img/static/counter-table.png) no-repeat;
+  background-size: contain;
+  right: 362px;
+  bottom: 17px;
+  z-index: 0;
 }
 
 .parking-manager {
@@ -1476,10 +1489,6 @@ div.farm-coin {
   border: 5px #F6931C solid;
 }
 
-table.table {
-  background: #fff;
-}
-
 .btn-close {
   background-image: url(./assets/img/popup-btn-close.png);
   background-size: contain;
@@ -1550,6 +1559,13 @@ table.table {
 
 /* Extra small devices (phones, 800px and down) */
 @media only screen and (max-width: 800px) {
+
+  .counter-in-house {
+    height: 28px;
+    width: 42px;
+    right: 217px;
+    bottom: 12px;
+  }
 
   .level-text {
     font-size: 14px;
@@ -1636,11 +1652,10 @@ table.table {
     background-position-x: 27px;
   }
 
-
   .btn-floor {
-    margin-top: 30px;
-    margin-right: -420px;
     width: 80px;
+    left: 355px;
+    top: 30px;
   }
 
   .menu-bars {
@@ -1662,7 +1677,6 @@ table.table {
   }
 
   .menu-fixed-left {
-    top: 100px;
     width: 45%;
   }
 
@@ -1696,7 +1710,6 @@ table.table {
   .menu-fixed-right {
     width: 38%;
     right: 5px;
-    top: 100px;
   }
 
   .logo {
@@ -1704,9 +1717,11 @@ table.table {
   }
 
   .logo-desktop {
-    background-size: contain;
-    position: sticky;
+    width: 100%;
     height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 
   .collect-action {
