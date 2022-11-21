@@ -358,12 +358,11 @@
 .delivery-man {
     background-size: auto 100%;
     background-repeat: no-repeat;
-    height: 55px;
-    width: 620px;
+    height: 59px;
+    width: 68px;
     position: absolute;
     bottom:-2px;
-    left:60px;
-    z-index: -20;
+    z-index: 0;
 }
 
 .delivery-man-0 {

@@ -9,7 +9,7 @@ const DeliveryMan = ({ nSpeed }) => {
     useEffect(() => {
         const intervalId1 = setInterval(() => {
             setStep(prev => prev >= 19 ? 0 : prev + 1);
-            setWalk(prev => prev > window.innerWidth ? 60 : prev + nSpeed);
+            setWalk(prev => prev > window.innerWidth ? window.innerWidth / 2 : prev + nSpeed);
         }, 60);
 
         return () => {
@@ -20,7 +20,9 @@ const DeliveryMan = ({ nSpeed }) => {
     return (
         <div ref={bike}
             className={`delivery-man delivery-man-${step}`}
-            style={{ left: `${walk}px` }}>
+            // style={{ left: `${walk}px` }}
+            style={{ left: window.innerWidth / 2 }}
+        >
         </div>
     )
 }

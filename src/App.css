@@ -7,18 +7,30 @@
   width: 100%;
   height: 100%;
   background:
-    url(./assets/img/cloud.png),
-    url(./assets/img/cloud1.png),
-    url(./assets/img/cloud.png),
-    url(./assets/img/cloud1.png),
-    url(./assets/img/cloud.png),
-    url(./assets/img/cloud1.png),
-    url(./assets/img/cloud.png),
-    url(./assets/img/cloud1.png),
-    url(./assets/img/cloud.png),
-    url(./assets/img/cloud1.png);
+    url(./assets/img/static/cloud.png),
+    url(./assets/img/static/cloud.png),
+    url(./assets/img/static/cloud.png),
+    url(./assets/img/static/cloud.png),
+    url(./assets/img/static/cloud.png),
+    url(./assets/img/static/cloud.png),
+    url(./assets/img/static/cloud.png),
+    url(./assets/img/static/cloud.png),
+    url(./assets/img/static/cloud.png),
+    url(./assets/img/static/cloud.png),
+    url(./assets/img/static/cloud.png),
+    url(./assets/img/static/cloud.png),
+    url(./assets/img/static/cloud.png),
+    url(./assets/img/static/cloud.png),
+    url(./assets/img/static/cloud.png),
+    url(./assets/img/static/cloud.png);
 
   background-size:
+    650px,
+    600px,
+    450px,
+    430px,
+    450px,
+    600px,
     650px,
     600px,
     450px,
@@ -30,73 +42,58 @@
     450px,
     400px;
   animation: wind 30s linear infinite;
-  z-index: -1;
+  z-index: 0;
   background-repeat: no-repeat;
 }
 
 @keyframes wind {
   0% {
     background-position:
-      2000px 000px,
-      2200px 150px,
+      2000px 10px,
+      4000px 10px,
       2400px 350px,
-      2000px 500px,
-      2400px 740px,
+      4400px 350px,
+      2800px 500px,
+      4800px 500px,
+      3000px 740px,
+      5000px 740px,
       2600px 980px,
+      4600px 980px,
       2200px 1130px,
+      4200px 1130px,
       2800px 1350px,
-      2300px 1600px,
-      2500px 1850px;
+      4800px 1350px,
+      3200px 1600px,
+      5200px 1850px;
   }
 
   100% {
     background-position:
+      -3000px 120px,
       -1000px 120px,
-      -800px 100px,
-      -600px 250px,
-      -1000px 650px,
-      -600px 800px,
-      -400px 790px,
-      -800px 1230px,
+      -2600px 100px,
+      -600px 100px,
+      -2200px 250px,
+      -200px 250px,
+      -200px 650px,
+      -2px 650px,
+      -2400px 800px,
+      -400px 800px,
+      -2800px 790px,
+      -800px 790px,
+      -2200px 1230px,
       -200px 1150px,
-      -700px 1700px,
-      -500px 1680px;
+      -1800px 1700px,
+      -100px 1680px;
   }
 }
 
-.floor-0-background {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-repeat: repeat-x;
-  background-position-y: bottom;
-  background-image: url(./assets/img/static/background-footer.png);
-  z-index: 0;
-  overflow: hidden;
-}
-
-.floor-kitchen {
-  background-image: url(./assets/img/floor-kitchen.png);
-  background-repeat: no-repeat;
-  height: 100%;
-  width: 430px;
-  background-size: contain;
-  position: absolute;
-  right: 0
-}
-
 body {
-  background: url(./assets/img/static/background.png) repeat-x;
+  background-color: #55caef;
 }
 
 .section-bg {
   background: #64A542;
-}
-
-.section-open {
-  background-size: contain;
-  background-position: bottom;
 }
 
 #slider {
@@ -119,23 +116,11 @@ body {
   background-position: bottom;
 }
 
-
 .fence-l {
   position: relative;
   background-repeat: repeat-y;
   width: 100px;
   height: 90%;
-}
-
-.ranch {
-  position: relative;
-  padding: 0px;
-  /* min-height: 500px;
-  height: 100%; */
-}
-
-.ranch div {
-  padding: 0px;
 }
 
 #header {
@@ -187,10 +172,11 @@ div.login-action {
 .get-money {
   position: relative;
   width: 100%;
-  height: 152px;
+  height: 146px;
   background: url(./assets/img/static/road.png) no-repeat;
   justify-content: center;
   display: flex;
+  overflow: hidden;
 }
 
 .footer-btn {
@@ -232,11 +218,6 @@ input.form-input {
 
 .alert-message-warn-progress {
   background: #f00
-}
-
-.barn-grey-100 {
-  width: 100% !important;
-  top: 0px;
 }
 
 .btn-red {
@@ -288,7 +269,11 @@ button:hover,
 }
 
 .house {
+  background: url(./assets/img/static/background.png) repeat-x;
+  background-position: bottom;
   position: relative;
+  width: 100%;
+  overflow: hidden;
 }
 
 .popup-upgrade-cover {
@@ -396,23 +381,8 @@ button:hover,
   display: initial;
 }
 
-.barn div {
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center bottom;
-  overflow: hidden;
-  text-align: center;
-  height: 90px;
-}
-
 .level-text {
   font-weight: bold;
-}
-
-.barn .barn-grey-0:hover,
-.barn button:hover {
-  cursor: pointer;
-  transform: scale(1.1);
 }
 
 .chef {
@@ -424,102 +394,41 @@ button:hover,
   z-index: 7;
 }
 
-.floor_kitchen {
+.floor_house {
   position: relative;
   width: 100%;
   height: 100%;
+  justify-content: center;
+  display: flex;
 }
 
 .mt-60 {
   margin-top: 60px;
 }
 
+.roof {
+  position: relative;
+  width: 100%;
+  height: 177px;
+  background: url(./assets/img/static/roof.png) no-repeat;
+  background-position: center;
+}
+
+.floor-0 {
+  position: relative;
+  width: 100%;
+  height: 269px;
+  left: -2px;
+  background: url(./assets/img/static/floor0.png) no-repeat;
+  background-position: center;
+}
+
 .barn {
   position: relative;
   width: 100%;
-  height: 200px;
-}
-
-.home {
-  position: absolute;
-  top: 0;
-  left: calc(50% - 370px);
-  width: 320px;
-  height: 220px !important;
-  z-index: 9;
-}
-
-.floor-0-parking-pos {
-  background-image: url(./assets/img/parking-pos.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: bottom;
-  height: 160px;
-  /* margin-right: 410px; */
-  position: absolute;
-  width: 140px;
-  /* margin: 0 auto; */
-  /* margin-right: 810px; */
-  /* transform: translate(50%); */
-  left: 50%;
-  bottom: 0px;
-  margin-left: -280px;
-}
-
-.floor-0-parking-pos-bar {
-  font-family: LilitaOne, sans-serif !important;
-  font-weight: 500 !important;
-  position: absolute;
-  /* bottom: 123px; */
-  /* left: -234px; */
-  width: 90px;
-  height: 21px;
-  box-sizing: border-box;
-  font-size: 15px;
-  padding-top: 2px;
-  text-shadow: -1px -1px 0 #000, 0 -1px 0 #000, 1px -1px 0 #000, 1px 0 0 #000, 1px 1px 0 #000, 0 1px 0 #000, -1px 1px 0 #000, -1px 0 0 #000, 0 1.5px 0 #00000090;
-  background-color: #ff000080;
-  border-radius: 2px;
-  /* display: none; */
-  /* margin-right: 410px; */
-  position: absolute;
-}
-
-.floor-0-parking-pos-bar-icon {
-  display: inline-block;
-  background-image: url(./assets/img/floor-0-icon.png);
-  background-size: contain;
-  background-repeat: no-repeat;
+  height: 252px;
+  background: url(./assets/img/static/floor.png) no-repeat;
   background-position: center;
-  width: 18px;
-  height: 14px;
-  transform: translate(-1px, 2px)
-}
-
-.floor-0-brick-wall {
-  position: absolute;
-  left: 0;
-  /* transform: translate(-50%); */
-  bottom: 0;
-  background-image: url(./assets/img/floor-0-block.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: bottom;
-  height: 42px;
-  width: 115px;
-}
-
-.floor-0-roof {
-  position: absolute;
-  /* left: -191px; */
-  /* transform: translate(-50%); */
-  bottom: 77px;
-  background-image: url(./assets/img/floor-0-roof.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: bottom;
-  height: 42px;
-  width: 113px;
 }
 
 .parking-manager {
@@ -694,67 +603,6 @@ button:hover,
   background-image: url(./assets/img/animations/parking-manager/39.png);
 }
 
-
-
-
-
-
-
-
-.kitchen {
-  position: absolute;
-  top: 0;
-  left: calc(50% - 225px);
-  width: 450px;
-  height: 200px !important;
-  background-image: url(./assets/img/floor-kitchen.png);
-  z-index: 5;
-}
-
-.home-1 {
-  background-image: url(./assets/img/house1.png);
-}
-
-.home-2 {
-  background-image: url(./assets/img/house2.png);
-}
-
-.home-3 {
-  background-image: url(./assets/img/house3.png);
-}
-
-.home-4 {
-  background-image: url(./assets/img/house4.png);
-}
-
-.home-5 {
-  background-image: url(./assets/img/house5.png);
-}
-
-.home-6 {
-  background-image: url(./assets/img/house6.png);
-}
-
-.home-7 {
-  background-image: url(./assets/img/house7.png);
-}
-
-.home-8 {
-  background-image: url(./assets/img/house8.png);
-}
-
-.barns {
-  /* transform: translate(-50%, calc(-50% + 10px)); */
-  position: relative;
-  overflow: hidden;
-  text-align: center;
-  z-index: 2;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  bottom: -124px;
-}
-
 .barn-btn-add>div:first-child,
 .barn-btn-upgrade>div:first-child {
   position: relative;
@@ -905,16 +753,6 @@ div.barn-action {
   top: 76%;
   height: 500px;
   z-index: 1;
-}
-
-.trees {
-  /* background: url(./assets/img/trees.png) no-repeat; */
-  width: 100%;
-  /* background-repeat: repeat-x; */
-  /* background-size: contain;
-  background-position: top; */
-  height: 78vh;
-  z-index: 0;
 }
 
 .alert-warning {
@@ -1689,12 +1527,6 @@ div.barn-action {
   margin-top: 17px;
 }
 
-.barns.transactions {
-  top: 52%;
-  color: #c6a63f;
-  text-shadow: 0em 0.08em #000, 0.031em 0.074em #000, 0.057em 0.057em #000, 0.074em 0.031em #000, 0.08em 0em #000, 0.074em -0.031em #000, 0.057em -0.057em #000, 0.031em -0.074em #000, 0em -0.08em #000, -0.031em -0.074em #000, -0.057em -0.057em #000, -0.074em -0.031em #000, -0.08em 0em #000, -0.074em 0.031em #000, -0.057em 0.057em #000, -0.031em 0.074em #000;
-}
-
 .popup-transactions .popup-buy-text-container {
   display: flex;
   justify-content: space-between;
@@ -1805,13 +1637,6 @@ table.table {
     font-size: 14px;
   }
 
-  .section-open,
-  .trees {
-    background-position: top;
-    background-size: cover;
-    top: 120px;
-  }
-
   .menu-bar {
     width: 160px;
     margin: 0 auto 6px
@@ -1875,10 +1700,6 @@ table.table {
 
   .collect-action.collect-mobile {
     display: block;
-  }
-
-  .trees {
-    height: 668px;
   }
 
   .alert {

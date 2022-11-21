@@ -29,6 +29,7 @@ import SellCash from "../components/popups/sellCash";
 import CollectMoney from "../components/popups/collectMoney";
 import UpgradeLevel from "../components/popups/upgradeLevel";
 import Referral from "../components/popups/referral";
+import Floor0 from "../components/floor0";
 
 const web3Modal = web3ModalSetup();
 
@@ -507,41 +508,37 @@ const Home = () => {
   return (
     <>
       <ToastContainer />
-      <div className="section-open">
-        <div className="logo-desktop" />
-        <LeftPanel
-          isConnected={isConnected}
-          curAcount={curAcount}
-          coins={enableValue() ? houseInfo.coins : "--"}
-          cash={enableValue() ? houseInfo.cash : "--"}
-          yieldValue={enableValue() ? `+ ${houseInfo.yield}` : "--"}
-          setShowBuyCoins={setShowBuyCoins}
-          setShowGetBNB={setShowGetBNB}
-          setShowReferral={setShowReferral}
-        // logoutOfWeb3Modal={logoutOfWeb3Modal}
-        />
-        <RightPanel
-          allHousesLength={allHousesLength}
-          totalInvested={totalInvested}
-          totalUpgrades={totalUpgrades}
-          partners={enableValue() ? houseInfo.refs : 0}
-        />
-        <div className="ranch trees">
-          <div className="house">
-            <div className="barns">
-              <div id="cloud-intro" />
-              {[8, 7, 6, 5, 4, 3, 2, 1].map((value) => ( // value = 8, 7, 6, 5, 4, 3, 2, 1
-                <House key={value} id={value} houseInfo={houseInfo} isConnected={isConnected} price={price} setUpgradeLevel={setUpgradeLevel} enableValue={enableValue} />
-              ))}
-            </div >
-          </div>
-          <Footer
-            isConnected={isConnected}
-            setShowGetMoney={setShowGetMoney}
-            loadWeb3Modal={loadWeb3Modal}
-          />
-        </div >
-      </div >
+      <div className="logo-desktop" />
+      <LeftPanel
+        isConnected={isConnected}
+        curAcount={curAcount}
+        coins={enableValue() ? houseInfo.coins : "--"}
+        cash={enableValue() ? houseInfo.cash : "--"}
+        yieldValue={enableValue() ? `+ ${houseInfo.yield}` : "--"}
+        setShowBuyCoins={setShowBuyCoins}
+        setShowGetBNB={setShowGetBNB}
+        setShowReferral={setShowReferral}
+      // logoutOfWeb3Modal={logoutOfWeb3Modal}
+      />
+      <RightPanel
+        allHousesLength={allHousesLength}
+        totalInvested={totalInvested}
+        totalUpgrades={totalUpgrades}
+        partners={enableValue() ? houseInfo.refs : 0}
+      />
+      <div className="house">
+        <div id="cloud-intro" />
+        <div className="roof" />
+        {[8, 7, 6, 5, 4, 3, 2, 1].map((value) => ( // value = 8, 7, 6, 5, 4, 3, 2, 1
+          <House key={value} id={value} houseInfo={houseInfo} isConnected={isConnected} price={price} setUpgradeLevel={setUpgradeLevel} enableValue={enableValue} />
+        ))}
+        <Floor0 />
+      </div>
+      <Footer
+        isConnected={isConnected}
+        setShowGetMoney={setShowGetMoney}
+        loadWeb3Modal={loadWeb3Modal}
+      />
 
       <BuyCoins
         GAS_AMOUNT={GAS_AMOUNT}
