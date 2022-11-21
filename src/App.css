@@ -946,17 +946,6 @@ div.barn-action {
   display: block;
 }
 
-.menu-fixed-mmm {
-  position: fixed;
-  left: 15px;
-  top: 30px;
-  color: #fff;
-  width: 250px;
-  z-index: 4;
-  display: block;
-  align-items: center;
-}
-
 .menu-btns {
   display: flex;
   justify-content: center;
@@ -965,21 +954,10 @@ div.barn-action {
   width: 70px;
 }
 
-.menu-fixed-left .menu-btn,
-.menu-fixed-left .menu-btn-chicken,
-.menu-fixed-left .menu-btn-rabbit,
-.menu-fixed-left .menu-btn-hog,
-.menu-fixed-left .menu-btn-sheep,
-.menu-fixed-left .menu-btn-red {
-  display: block;
-  margin-bottom: 1px;
-}
-
 .menu-btn {
-  width: 52px;
+  width: 78px;
   height: 54px;
   background-color: transparent;
-  background-image: url(./assets/img/menu-btn.png);
   background-size: contain;
   background-repeat: no-repeat;
   transition: transform 75ms linear;
@@ -988,20 +966,39 @@ div.barn-action {
   color: #fff;
 }
 
+.telegram {
+  background-image: url(./assets/img/static/telegram.png);
+}
+
+.referral {
+  background-image: url(./assets/img/static/referral.png);
+}
+
 .menu-bar {
   position: relative;
   width: 250px;
   height: 35px;
   margin: 0 auto 10px;
-  background-image: url(./assets/img/menu-bar.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }
 
+.menu-bar-coin {
+  background-image: url(./assets/img/static/coins-bar.png);
+}
+
+.menu-bar-money {
+  background-image: url(./assets/img/static/cash-bar.png);
+}
+
+.menu-bar-wallet {
+  background-image: url(./assets/img/static/menu-bar.png);
+}
+
 .menu-bar-value {
   color: #000;
-  top: 2px;
+  top: 4px;
   font-size: 19px;
   position: absolute;
   left: 50%;
@@ -1021,56 +1018,28 @@ div.barn-action {
   background-image: none;
 }
 
-.menu-bar-money {
-  position: relative;
-  width: 50px;
-  height: 32px;
-  background-image: url(./assets/img/cash.png);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  left: 19px;
-  top: 0;
-}
-
-.menu-bar-coin {
-  position: relative;
-  width: 50px;
-  height: 32px;
-  background-image: url(./assets/img/coin.png);
-  background-size: 50%;
-  background-repeat: no-repeat;
-  background-position: center;
-  left: 19px;
-  top: 0;
-}
-
-.menu-bar-btn-plus {
+.menu-bar-btn {
   background: transparent;
   border: 0;
   position: absolute;
   width: 27px;
-  height: 33px;
-  background-image: url(./assets/img/plus.png);
+  height: 32px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  right: 23px;
-  top: -1px;
+  right: 18px;
+  top: 1px;
   transition: transform 75ms linear;
   transition: linear;
   cursor: pointer;
 }
 
-.menu-bar-wallet {
-  position: relative;
-  width: 50px;
-  height: 32px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  left: 19px;
-  top: 0;
+.plus {
+  background-image: url(./assets/img/static/plus.png);
+}
+
+.minus {
+  background-image: url(./assets/img/static/minus.png);
 }
 
 .menu-fixed-left .fa,
@@ -1185,22 +1154,6 @@ div.barn-action {
   height: 60px;
   margin-bottom: 10px;
   background-size: contain;
-}
-
-.menu-bar-btn-minus {
-  background: transparent;
-  border: 0;
-  position: absolute;
-  width: 27px;
-  height: 33px;
-  background-image: url(./assets/img/minuse.png);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  right: 23px;
-  top: -1px;
-  transition: transform 75ms linear;
-  cursor: pointer;
 }
 
 .fc-add {
@@ -1840,10 +1793,6 @@ table.table {
   display: flex;
 }
 
-.ls-bar .menu-bar-btn-minus {
-  right: 55px;
-}
-
 .but-buttons {
   display: inline-flex;
 }
@@ -1916,14 +1865,7 @@ table.table {
     width: 70px;
   }
 
-  .menu-bar-wallet,
-  .menu-bar-coin,
-  .menu-bar-money {
-    left: 2px
-  }
-
-  .menu-bar-btn-minus,
-  .menu-bar-btn-plus {
+  .menu-bar-btn {
     right: 5px;
     height: 25px;
     margin-top: 5px;

@@ -518,7 +518,7 @@ const Home = () => {
           setShowBuyCoins={setShowBuyCoins}
           setShowGetBNB={setShowGetBNB}
           setShowReferral={setShowReferral}
-          logoutOfWeb3Modal={logoutOfWeb3Modal}
+          // logoutOfWeb3Modal={logoutOfWeb3Modal}
         />
         <RightPanel
           allHousesLength={allHousesLength}
@@ -531,7 +531,7 @@ const Home = () => {
             <div className="barns">
               <div id="cloud-intro" />
               {[8, 7, 6, 5, 4, 3, 2, 1].map((value) => ( // value = 8, 7, 6, 5, 4, 3, 2, 1
-                <House id={value} key={value} houseInfo={houseInfo} isConnected={isConnected} price={price} setUpgradeLevel={setUpgradeLevel} enableValue={enableValue} />
+                <House key={value} id={value} houseInfo={houseInfo} isConnected={isConnected} price={price} setUpgradeLevel={setUpgradeLevel} enableValue={enableValue} />
               ))}
             </div >
             <Footer
