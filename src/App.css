@@ -221,7 +221,7 @@ input.form-input {
 }
 
 .btn-red {
-  background: url(./assets/img/btn_red.png) no-repeat;
+  background: url(./assets/img/static/red-button.png) no-repeat;
   cursor: pointer;
   border: none;
   background-size: contain;
@@ -231,8 +231,8 @@ input.form-input {
   font-size: 19px;
   line-height: initial;
   color: ivory;
-  min-width: 102px;
-  min-height: 60px;
+  width: 102px;
+  height: 55px;
   justify-content: center;
   align-items: center;
   margin: 2px;
@@ -240,28 +240,12 @@ input.form-input {
   text-decoration: none;
 }
 
-.btn-upgrade {
-  background: url(./assets/img/btn-upgrade.png) no-repeat;
-  cursor: pointer;
-  border: none;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  padding: 10px 20px;
-  font-size: 19px;
-  line-height: initial;
-  color: ivory;
-  min-width: 115px;
-  min-height: 60px;
-  justify-content: center;
-  align-items: center;
-  margin: 2px;
-  text-decoration: none;
-  display: flex;
+.btn-floor {
+  margin-top: 110px;
+  margin-left: 48%;
 }
 
 button:hover,
-.btn-upgrade:hover,
 .btn-red:hover,
 .btn-green:hover {
   transform: scale(.97);
@@ -397,9 +381,11 @@ button:hover,
 .floor_house {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 252px;
   justify-content: center;
   display: flex;
+  background: url(./assets/img/static/floor.png) no-repeat;
+  background-position: center;
 }
 
 .mt-60 {
@@ -420,14 +406,6 @@ button:hover,
   height: 269px;
   left: -2px;
   background: url(./assets/img/static/floor0.png) no-repeat;
-  background-position: center;
-}
-
-.barn {
-  position: relative;
-  width: 100%;
-  height: 252px;
-  background: url(./assets/img/static/floor.png) no-repeat;
   background-position: center;
 }
 
@@ -603,19 +581,6 @@ button:hover,
   background-image: url(./assets/img/animations/parking-manager/39.png);
 }
 
-.barn-btn-add>div:first-child,
-.barn-btn-upgrade>div:first-child {
-  position: relative;
-  width: 20px;
-  height: 20px;
-  left: calc(50% - 36px);
-  top: calc(50% - 2px);
-  transform: translate(-50%, -50%);
-  background-image: url(./assets/img/coin.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
 .popup-sell-header {
   text-align: center;
   margin-top: 15px;
@@ -708,7 +673,7 @@ button:hover,
 }
 
 .popup-sell-btn-destroy {
-  background-image: url(./assets/img/btn_red.png);
+  background-image: url(./assets/img/static/red-button.png);
   margin-top: 5px;
 }
 
@@ -732,27 +697,6 @@ div.farm-coin {
   height: auto;
   margin-bottom: 2px;
   margin-right: 5px;
-}
-
-.btn-upgrade .farm-cash,
-.btn-upgrade .farm-coin {
-  margin-left: -15px;
-}
-
-div.barn-action {
-  position: relative;
-  display: flex;
-  justify-content: center;
-}
-
-.land {
-  width: 100%;
-  background-color: #90e763;
-  height: 113px;
-  position: relative;
-  top: 76%;
-  height: 500px;
-  z-index: 1;
 }
 
 .alert-warning {
@@ -956,8 +900,7 @@ div.barn-action {
 }
 
 .logo-desktop,
-.logo,
-.logo-barn {
+.logo {
   position: relative;
   width: 100%;
   height: 200px;
@@ -967,14 +910,6 @@ div.barn-action {
   background-position: center;
   top: 0px;
   z-index: 2;
-}
-
-.logo-barn {
-  position: relative;
-  width: 100%;
-  height: 60px;
-  margin-bottom: 10px;
-  background-size: contain;
 }
 
 .fc-add {
@@ -1242,8 +1177,7 @@ div.barn-action {
 }
 
 .popup-wrapper .btn-red,
-.popup-wrapper .btn-green,
-.popup-wrapper .btn-upgrade {
+.popup-wrapper .btn-green {
   display: initial;
 }
 

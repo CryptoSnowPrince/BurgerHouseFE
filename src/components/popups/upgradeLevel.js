@@ -69,13 +69,13 @@ const UpgradeLevel = ({
                         {enableValue() && upgradeLevel > 0 ? (
                             parseInt(houseInfo.levels[upgradeLevel - 1]) < 5 ?
                                 (
-                                    <div className="farm-coin" style={{ fontWeight: "bold", marginLeft: "-12px", paddingLeft: "30px", paddingTop: "2px" }}>
+                                    <div className="farm-coin" style={{ fontWeight: "bold", paddingLeft: "30px", paddingTop: "2px" }}>
                                         {price[parseInt(houseInfo.levels[upgradeLevel - 1])][upgradeLevel - 1]}
                                     </div>
                                 )
                                 :
                                 (
-                                    <div style={{ marginLeft: "-24px", fontWeight: "bold", fontSize: "16px" }}>TOP LEVEL</div>
+                                    <div style={{ fontWeight: "bold", fontSize: "16px", color: "yellow" }}>TOP LEVEL</div>
                                 )
                         )
                             : (<div>--</div>)}
