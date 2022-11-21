@@ -33,6 +33,7 @@ const LeftPanel = ({
             </div>
             <div className="menu-btns">
                 <button className="menu-btn referral"
+                    style={{ marginBottom: "12px" }}
                     onClick={() => setShowReferral(true)}
                     data-bs-placement="right"
                     data-bs-toggle="tooltip"
