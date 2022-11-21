@@ -1,9 +1,9 @@
 import React from 'react';
 
-import ParkingManager from "./parkingManager";
-import DeliveryMan from "./deliveryMan";
+import ParkingManager from "./animations/parkingManager";
+import DeliveryMan from "./animations/deliveryMan";
 
-const Footer = (props) => {
+const Footer = ({ isConnected, setShowGetMoney, loadWeb3Modal }) => {
     return (
         <div className='footer'>
             <div class="floor-0-background" style={{ overflow: "hidden" }} >
@@ -16,14 +16,14 @@ const Footer = (props) => {
             </div>
             <div className="bg-ground-my-bottom"></div>
             <div className="get-money">
-                {props.isConnected ?
+                {isConnected ?
                     <button type="button" className="btn-green"
                         style={{ fontWeight: "bold" }}
-                        onClick={() => props.setShowGetMoney(true)}>
+                        onClick={() => setShowGetMoney(true)}>
                         Get Money
                     </button> :
                     <button type="button" className="btn-green btn-login" style={{ fontWeight: "bold" }}
-                        onClick={props.loadWeb3Modal}>
+                        onClick={loadWeb3Modal}>
                         Connect
                     </button>
                 }

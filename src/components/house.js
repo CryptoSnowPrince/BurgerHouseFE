@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Chef from './chef';
+import Chef from './animations/chef';
 
-const House = ({ id = 0, houseInfo, price, tableCount = 3, setUpgradeLevel, enableValue }) => {
+const House = ({ id = 0, houseInfo, isConnected, price, tableCount = 3, setUpgradeLevel, enableValue }) => {
     const [visible1, setVisible1] = useState(false);
     const [visible2, setVisible2] = useState(false);
     const [visible3, setVisible3] = useState(false);
@@ -46,6 +46,7 @@ const House = ({ id = 0, houseInfo, price, tableCount = 3, setUpgradeLevel, enab
 
             <div className="barn-action">
                 <button className="btn-red btn-buy-barn"
+                    disabled={!isConnected}
                     onClick={() => setUpgradeLevel(id + 1)}>
                     {enableValue() && parseInt(houseInfo.levels[id]) === 5 ? (
                         <div className="level-text" style={{ color: "yellow" }}>Top Level</div>
@@ -53,7 +54,7 @@ const House = ({ id = 0, houseInfo, price, tableCount = 3, setUpgradeLevel, enab
                         <>
                             <div className="farm-coin" >&nbsp;</div>
                             <div className="level-text">
-                                {enableValue() ? price[parseInt(houseInfo.levels[id + 1])][id] : price[0][id - 1]}
+                                {/* {enableValue() ? price[parseInt(houseInfo.levels[id + 1])][id] : price[0][id - 1]} */}
                             </div>
                         </>
                     )}

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+
 const DeliveryMan = ({ nSpeed }) => {
     const [step, setStep] = useState(0);
     const [walk, setWalk] = useState(0);
