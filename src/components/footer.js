@@ -5,8 +5,8 @@ import DeliveryMan from "./animations/deliveryMan";
 
 const Footer = ({ isConnected, setShowGetMoney, loadWeb3Modal }) => {
     return (
-        <div className='footer'>
-            <div className="floor-0-background" style={{ overflow: "hidden" }} >
+        <>
+            <div className="footer floor-0-background">
                 <div className="floor-0-parking-pos">
                     <ParkingManager />
                     <div className="floor-0-brick-wall"></div>
@@ -14,21 +14,19 @@ const Footer = ({ isConnected, setShowGetMoney, loadWeb3Modal }) => {
                     <DeliveryMan nSpeed={5} />
                 </div>
             </div>
-            <div className="bg-ground-my-bottom"></div>
             <div className="get-money">
                 {isConnected ?
-                    <button type="button" className="btn-green"
-                        style={{ fontWeight: "bold" }}
+                    <button type="button" className="footer-btn btn-green"
                         onClick={() => setShowGetMoney(true)}>
                         Get Money
                     </button> :
-                    <button type="button" className="btn-green btn-login" style={{ fontWeight: "bold" }}
+                    <button type="button" className="footer-btn btn-green"
                         onClick={loadWeb3Modal}>
-                        Connect
+                        CONNECT
                     </button>
                 }
             </div>
-        </div>
+        </>
     )
 }
 export default Footer;

@@ -67,29 +67,13 @@
 .floor-0-background {
   position: relative;
   width: 100%;
-  bottom: -161px;
-  background-size: auto 100%;
+  height: 100%;
+  background-size: cover;
   background-repeat: repeat-x;
-  background-position-x: bottom;
   background-position-y: bottom;
-  height: 160px;
-  background-image: url(./assets/img/city-front.png );
-  z-index: 10;
+  background-image: url(./assets/img/static/background-footer.png);
+  z-index: 0;
   overflow: hidden;
-}
-
-.bg-ground-my-bottom {
-  position: absolute;
-  width: 100%;
-  bottom: 0px;
-  left: 50%;
-  transform: translate(-50%);
-  background-size: auto 100%;
-  background-repeat: repeat-x;
-  background-position-x: bottom;
-  background-position-y: bottom;
-  height: 100px;
-  background-image: url(./assets/img/land.png );
 }
 
 .floor-kitchen {
@@ -103,7 +87,7 @@
 }
 
 body {
-  background: url(./assets/img/background.png) repeat-x;
+  background: url(./assets/img/static/background.png) repeat-x;
 }
 
 .section-bg {
@@ -113,13 +97,6 @@ body {
 .section-open {
   background-size: contain;
   background-position: bottom;
-}
-
-.section-open-logout {
-  background: url(./assets/img/background-logout.png) no-repeat;
-  width: 100%;
-  background-size: cover;
-  background-position: top;
 }
 
 #slider {
@@ -187,7 +164,7 @@ div.login-action {
 }
 
 .btn-green {
-  background: url(./assets/img/btn_green.png) no-repeat;
+  background: url(./assets/img/static/green-button.png) no-repeat;
   cursor: pointer;
   border: none;
   background-size: contain;
@@ -209,9 +186,17 @@ div.login-action {
 
 .get-money {
   position: relative;
+  width: 100%;
+  height: 152px;
+  background: url(./assets/img/static/road.png) no-repeat;
   justify-content: center;
   display: flex;
-  margin-top: 181px;
+}
+
+.footer-btn {
+  height: 50px;
+  font-weight: bold;
+  margin-top: 50px;
 }
 
 input.form-input {
@@ -856,7 +841,7 @@ button:hover,
   text-align: center;
   background-color: transparent;
   border: none;
-  background-image: url(./assets/img/btn_green.png);
+  background-image: url(./assets/img/static/green-button.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -1206,7 +1191,7 @@ div.barn-action {
   text-align: center;
   background-color: transparent;
   border: none;
-  background-image: url(./assets/img/btn_green.png);
+  background-image: url(./assets/img/static/green-button.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

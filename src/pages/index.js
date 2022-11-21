@@ -518,7 +518,7 @@ const Home = () => {
           setShowBuyCoins={setShowBuyCoins}
           setShowGetBNB={setShowGetBNB}
           setShowReferral={setShowReferral}
-          // logoutOfWeb3Modal={logoutOfWeb3Modal}
+        // logoutOfWeb3Modal={logoutOfWeb3Modal}
         />
         <RightPanel
           allHousesLength={allHousesLength}
@@ -534,14 +534,13 @@ const Home = () => {
                 <House key={value} id={value} houseInfo={houseInfo} isConnected={isConnected} price={price} setUpgradeLevel={setUpgradeLevel} enableValue={enableValue} />
               ))}
             </div >
-            <Footer
-              isConnected={isConnected}
-              setShowGetMoney={setShowGetMoney}
-              loadWeb3Modal={loadWeb3Modal}
-            />
           </div>
+          <Footer
+            isConnected={isConnected}
+            setShowGetMoney={setShowGetMoney}
+            loadWeb3Modal={loadWeb3Modal}
+          />
         </div >
-
       </div >
 
       <BuyCoins
