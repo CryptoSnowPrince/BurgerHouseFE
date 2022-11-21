@@ -139,7 +139,7 @@ const Home = () => {
     }
     setIsConnected(false);
 
-    window.location.reload();
+    // window.location.reload();
   };
 
   const loadWeb3Modal = useCallback(async () => {
@@ -163,14 +163,14 @@ const Home = () => {
     setIsConnected(true);
 
     provider.on("chainChanged", (chainId) => {
-      console.log(`chain changed to ${chainId}! updating providers`);
+      // console.log(`chain changed to ${chainId}! updating providers`);
       setAlertMessage({ type: ALERT_ERROR, message: 'Wrong Network! Please switch to Binance Smart Chain!' })
       setInjectedProvider(web3Provider);
       logoutOfWeb3Modal();
     });
 
     provider.on("accountsChanged", () => {
-      console.log(`curAcount changed!`);
+      // console.log(`curAcount changed!`);
       setAlertMessage({ type: ALERT_WARN, message: 'Current Account Changed!' })
       setInjectedProvider(web3Provider);
       logoutOfWeb3Modal();
@@ -178,7 +178,7 @@ const Home = () => {
 
     // Subscribe to session disconnection
     provider.on("disconnect", (code, reason) => {
-      console.log(code, reason);
+      // console.log(code, reason);
       logoutOfWeb3Modal();
     });
     // eslint-disable-next-line
@@ -254,7 +254,7 @@ const Home = () => {
   }
 
   const sellHouse = async () => {
-    console.log('[PRINCE](sellHouse)')
+    // console.log('[PRINCE](sellHouse)')
     try {
       if (pendingTx) {
         setAlertMessage({ type: ALERT_WARN, message: "Pending..." })
@@ -271,17 +271,17 @@ const Home = () => {
         await burgerHouseContract.methods.sellHouse().send({
           from: curAcount,
         }).then((txHash) => {
-          console.log(txHash)
+          // console.log(txHash)
           const txHashString = `${txHash.transactionHash}`
           const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
           setAlertMessage({ type: ALERT_SUCCESS, message: `Sell House Success! txHash is ${msgString}` });
         }).catch((err) => {
-          console.log(err)
+          // console.log(err)
           setAlertMessage({ type: ALERT_ERROR, message: `Sell House Fail! Reason: ${err.message}` });
         });
       }
       else {
-        console.log("connect Wallet");
+        // console.log("connect Wallet");
       }
       setPendingTx(false)
     } catch (e) {
@@ -291,7 +291,7 @@ const Home = () => {
   }
 
   const withdrawMoney = async () => {
-    console.log('[PRINCE](withdrawMoney)')
+    // console.log('[PRINCE](withdrawMoney)')
     try {
       if (pendingTx) {
         setAlertMessage({ type: ALERT_WARN, message: "Pending..." })
@@ -303,17 +303,17 @@ const Home = () => {
         await burgerHouseContract.methods.withdrawMoney().send({
           from: curAcount,
         }).then((txHash) => {
-          console.log(txHash)
+          // console.log(txHash)
           const txHashString = `${txHash.transactionHash}`
           const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
           setAlertMessage({ type: ALERT_SUCCESS, message: `Withdraw Money Success! txHash is ${msgString}` });
         }).catch((err) => {
-          console.log(err)
+          // console.log(err)
           setAlertMessage({ type: ALERT_ERROR, message: `Withdraw Money Fail! Reason: ${err.message}` });
         });
       }
       else {
-        console.log("connect Wallet");
+        // console.log("connect Wallet");
       }
       setPendingTx(false)
     } catch (e) {
@@ -323,7 +323,7 @@ const Home = () => {
   }
 
   const upgradeHouse = async (e, houseId) => {
-    console.log('[PRINCE](upgradeHouse)', e, houseId)
+    // console.log('[PRINCE](upgradeHouse)', e, houseId)
     try {
       e.preventDefault();
       if (pendingTx) {
@@ -343,17 +343,17 @@ const Home = () => {
         await burgerHouseContract.methods.upgradeHouse(houseId).send({
           from: curAcount,
         }).then((txHash) => {
-          console.log(txHash)
+          // console.log(txHash)
           const txHashString = `${txHash.transactionHash}`
           const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
           setAlertMessage({ type: ALERT_SUCCESS, message: `House Upgrade Success! txHash is ${msgString}` });
         }).catch((err) => {
-          console.log(err)
+          // console.log(err)
           setAlertMessage({ type: ALERT_ERROR, message: `House Upgrade Fail! Reason: ${err.message}` });
         });
       }
       else {
-        console.log("connect Wallet");
+        // console.log("connect Wallet");
       }
       setPendingTx(false)
     } catch (e) {
@@ -363,7 +363,7 @@ const Home = () => {
   }
 
   const addCoins = async (e) => {
-    console.log('[PRINCE](addCoins)', e)
+    // console.log('[PRINCE](addCoins)', e)
     try {
       e.preventDefault();
       if (pendingTx) {
@@ -382,23 +382,23 @@ const Home = () => {
         referrer = isAddress(referrer, MAINNET) ? referrer : ADMIN_ACCOUNT
         referrer = referrer === curAcount ? ADMIN_ACCOUNT1 : referrer
 
-        console.log('[PRINCE](addCoins): ', referrer, bnbInputValue)
+        // console.log('[PRINCE](addCoins): ', referrer, bnbInputValue)
 
         await burgerHouseContract.methods.addCoins(referrer).send({
           from: curAcount,
           value: web3NoAccount.utils.toWei(bnbInputValue, 'ether')
         }).then((txHash) => {
-          console.log(txHash)
+          // console.log(txHash)
           const txHashString = `${txHash.transactionHash}`
           const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
           setAlertMessage({ type: ALERT_SUCCESS, message: `Purchase Success! txHash is ${msgString}` });
         }).catch((err) => {
-          console.log(err)
+          // console.log(err)
           setAlertMessage({ type: ALERT_ERROR, message: `Purchase Fail! Reason: ${err.message}` });
         });
       }
       else {
-        console.log("connect Wallet");
+        // console.log("connect Wallet");
       }
       setPendingTx(false)
     } catch (e) {
@@ -408,7 +408,7 @@ const Home = () => {
   }
 
   const collectMoney = async (e) => {
-    console.log('[PRINCE](collectMoney)', e)
+    // console.log('[PRINCE](collectMoney)', e)
     try {
       e.preventDefault();
       if (pendingTx) {
@@ -421,17 +421,17 @@ const Home = () => {
         await burgerHouseContract.methods.collectMoney().send({
           from: curAcount,
         }).then((txHash) => {
-          console.log(txHash)
+          // console.log(txHash)
           const txHashString = `${txHash.transactionHash}`
           const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
           setAlertMessage({ type: ALERT_SUCCESS, message: `Collect Money Success! txHash is ${msgString}` });
         }).catch((err) => {
-          console.log(err)
+          // console.log(err)
           setAlertMessage({ type: ALERT_ERROR, message: `Collect Money Fail! Reason: ${err.message}` });
         });
       }
       else {
-        console.log("connect Wallet");
+        // console.log("connect Wallet");
       }
       setPendingTx(false)
     } catch (e) {
@@ -440,11 +440,11 @@ const Home = () => {
     }
   }
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setAlertMessage({ type: ALERT_EMPTY, message: "" })
-  }
+  }, [setAlertMessage])
 
-  const notifySuccess = () =>
+  const notifySuccess = useCallback(() => {
     toast.success(alertMessage.message, {
       position: ALERT_POSITION,
       autoClose: ALERT_DELAY,
@@ -455,8 +455,9 @@ const Home = () => {
       onClose: handleClose,
       className: 'alert-message-success'
     });
+  }, [alertMessage.message, handleClose]);
 
-  const notifyError = () => {
+  const notifyError = useCallback(() => {
     toast.error(alertMessage.message, {
       position: ALERT_POSITION,
       autoClose: ALERT_DELAY,
@@ -467,9 +468,9 @@ const Home = () => {
       onClose: handleClose,
       className: 'alert-message-error'
     });
-  };
+  }, [alertMessage.message, handleClose]);
 
-  const notifyWarn = () => {
+  const notifyWarn = useCallback(() => {
     toast.warn(alertMessage.message, {
       position: ALERT_POSITION,
       autoClose: ALERT_DELAY,
@@ -481,7 +482,7 @@ const Home = () => {
       className: 'alert-message-warn',
       progressClassName: 'alert-message-warn-progress'
     });
-  };
+  }, [alertMessage.message, handleClose]);
 
   useEffect(() => {
     switch (alertMessage.type) {
@@ -501,7 +502,7 @@ const Home = () => {
         return;
     }
 
-  }, [alertMessage])
+  }, [alertMessage, notifyError, notifyWarn, notifySuccess, handleClose])
 
   return (
     <>
