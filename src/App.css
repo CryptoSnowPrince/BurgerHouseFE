@@ -1525,13 +1525,6 @@ div.farm-coin {
   left: 34%;
 }
 
-.modal .alert,
-.popup-box .alert,
-.popup-box-1 .alert {
-  position: inherit;
-}
-
-
 .head-details {
   display: flex;
 }
@@ -1734,14 +1727,6 @@ div.farm-coin {
 
   .collect-action.collect-mobile {
     display: block;
-  }
-
-  .alert {
-    width: 95%;
-    z-index: 5;
-    bottom: 0;
-    min-height: 100px;
-    padding: 10px !important;
   }
 
   .promotional-video {
