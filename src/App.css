@@ -17,11 +17,6 @@
     url(./assets/img/static/cloud.png),
     url(./assets/img/static/cloud.png),
     url(./assets/img/static/cloud.png),
-    url(./assets/img/static/cloud.png),
-    url(./assets/img/static/cloud.png),
-    url(./assets/img/static/cloud.png),
-    url(./assets/img/static/cloud.png),
-    url(./assets/img/static/cloud.png),
     url(./assets/img/static/cloud.png);
 
   background-size:
@@ -35,11 +30,6 @@
     600px,
     450px,
     430px,
-    450px,
-    600px,
-    550px,
-    500px,
-    450px,
     400px;
   animation: wind 30s linear infinite;
   z-index: 0;
@@ -58,13 +48,8 @@
       3000px 740px,
       5000px 740px,
       2600px 980px,
-      4600px 980px,
-      2200px 1130px,
-      4200px 1130px,
-      2800px 1350px,
-      4800px 1350px,
-      3200px 1600px,
-      5200px 1850px;
+      2200px 830px,
+      4200px 830px;
   }
 
   100% {
@@ -78,13 +63,8 @@
       -200px 650px,
       -2px 650px,
       -2400px 800px,
-      -400px 800px,
       -2800px 790px,
-      -800px 790px,
-      -2200px 1230px,
-      -200px 1150px,
-      -1800px 1700px,
-      -100px 1680px;
+      -800px 790px;
   }
 }
 
@@ -227,7 +207,6 @@ input.form-input {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  padding: 10px 10px;
   font-size: 19px;
   line-height: initial;
   color: ivory;
@@ -235,14 +214,13 @@ input.form-input {
   height: 55px;
   justify-content: center;
   align-items: center;
-  margin: 2px;
   display: flex;
   text-decoration: none;
 }
 
 .btn-floor {
-  margin-top: 110px;
-  margin-left: 48%;
+  margin-top: 60px;
+  margin-right: -600px;
 }
 
 button:hover,
@@ -367,6 +345,7 @@ button:hover,
 
 .level-text {
   font-weight: bold;
+  font-size: 17px;
 }
 
 .chef {
@@ -378,35 +357,40 @@ button:hover,
   z-index: 7;
 }
 
+.roof,
+.floor-0,
+.floor_house {
+  width: 600px;
+}
+
 .floor_house {
   position: relative;
-  width: 100%;
-  height: 252px;
+  height: 160px;
   justify-content: center;
   display: flex;
   background: url(./assets/img/static/floor.png) no-repeat;
   background-position: center;
-}
-
-.mt-60 {
-  margin-top: 60px;
+  background-size: contain;
+  margin: 0 auto;
 }
 
 .roof {
   position: relative;
-  width: 100%;
-  height: 177px;
+  height: 111px;
   background: url(./assets/img/static/roof.png) no-repeat;
   background-position: center;
+  background-size: contain;
+  margin: 0 auto;
 }
 
 .floor-0 {
   position: relative;
-  width: 100%;
-  height: 269px;
-  left: -2px;
+  height: 169px;
+  left: -3px;
   background: url(./assets/img/static/floor0.png) no-repeat;
   background-position: center;
+  background-size: contain;
+  margin: 0 auto;
 }
 
 .parking-manager {
@@ -885,7 +869,7 @@ div.farm-coin {
   width: 80px;
   height: 10px;
   right: 23px;
-  top: 13px;
+  top: 10px;
   text-align: center;
   font-size: 15px;
   font-weight: bold;
@@ -1558,6 +1542,92 @@ table.table {
 
 /* Extra small devices (phones, 800px and down) */
 @media only screen and (max-width: 800px) {
+
+  .level-text {
+    font-size: 14px;
+  }
+
+  #cloud-intro {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background:
+      url(./assets/img/static/cloud.png),
+      url(./assets/img/static/cloud.png),
+      url(./assets/img/static/cloud.png),
+      url(./assets/img/static/cloud.png),
+      url(./assets/img/static/cloud.png),
+      url(./assets/img/static/cloud.png),
+      url(./assets/img/static/cloud.png),
+      url(./assets/img/static/cloud.png),
+      url(./assets/img/static/cloud.png);
+
+    background-size:
+      350px,
+      400px,
+      350px,
+      330px,
+      250px,
+      300px,
+      350px,
+      230px,
+      200px;
+    animation: wind 30s linear infinite;
+    z-index: 0;
+    background-repeat: no-repeat;
+  }
+
+  @keyframes wind {
+    0% {
+      background-position:
+        1000px 10px,
+        3000px 10px,
+        1400px 250px,
+        3400px 250px,
+        1800px 350px,
+        3000px 350px,
+        1600px 440px,
+        2000px 440px,
+        2600px 580px;
+    }
+
+    100% {
+      background-position:
+        -2000px 30px,
+        -200px 30px,
+        -1600px 200px,
+        -400px 200px,
+        -1200px 300px,
+        -300px 300px,
+        -200px 460px,
+        -200px 460px,
+        -300px 600px;
+    }
+  }
+
+  .roof,
+  .floor-0,
+  .floor_house {
+    width: 350px;
+    height: 110px;
+    left: -45px;
+  }
+
+  .roof {
+    height: 76px;
+  }
+
+  .floor-0 {
+    height: 116px;
+    left: -3px;
+  }
+
+  .btn-floor {
+    margin-top: 30px;
+    margin-right: -420px;
+    width: 80px;
+  }
+
   .menu-bars {
     display: flex;
     justify-content: center;

@@ -43,7 +43,7 @@ const House = ({ id, houseInfo, isConnected, price, setUpgradeLevel, enableValue
                 disabled={!isConnected}
                 onClick={() => setUpgradeLevel(id)}>
                 {enableValue() && parseInt(houseInfo.levels[id - 1]) === 5 ? (
-                    <div className="level-text" style={{ color: "yellow", fontSize: "17px" }}>Top Level</div>
+                    <div className="level-text" style={{ color: "yellow" }}>Top Level</div>
                 ) : (
                     <>
                         <div className="farm-coin" >&nbsp;</div>
