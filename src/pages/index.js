@@ -530,8 +530,8 @@ const Home = () => {
           <div className="house">
             <div className="barns">
               <div id="cloud-intro" />
-              {[8, 7, 6, 5, 4, 3, 2, 1].map((key) => ( // key = 8, 7, 6, 5, 4, 3, 2, 1
-                <House id={key} houseInfo={houseInfo} isConnected={isConnected} price={price} setUpgradeLevel={setUpgradeLevel} enableValue={enableValue} />
+              {[8, 7, 6, 5, 4, 3, 2, 1].map((value) => ( // value = 8, 7, 6, 5, 4, 3, 2, 1
+                <House id={value} key={value} houseInfo={houseInfo} isConnected={isConnected} price={price} setUpgradeLevel={setUpgradeLevel} enableValue={enableValue} />
               ))}
             </div >
             <Footer

@@ -6,11 +6,11 @@ import DeliveryMan from "./animations/deliveryMan";
 const Footer = ({ isConnected, setShowGetMoney, loadWeb3Modal }) => {
     return (
         <div className='footer'>
-            <div class="floor-0-background" style={{ overflow: "hidden" }} >
-                <div class="floor-0-parking-pos">
+            <div className="floor-0-background" style={{ overflow: "hidden" }} >
+                <div className="floor-0-parking-pos">
                     <ParkingManager />
-                    <div class="floor-0-brick-wall"></div>
-                    <div class="floor-0-roof"></div>
+                    <div className="floor-0-brick-wall"></div>
+                    <div className="floor-0-roof"></div>
                     <DeliveryMan nSpeed={5} />
                 </div>
             </div>

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Chef from './animations/chef';
 
-const House = ({ id, houseInfo, isConnected, price, setUpgradeLevel, enableValue }) => {
+const House = ({ id, key, houseInfo, isConnected, price, setUpgradeLevel, enableValue }) => {
+    // console.log('[PRINCE](value)(id, key)', id, key)
     const [visible1, setVisible1] = useState(false);
     const [visible2, setVisible2] = useState(false);
     const [visible3, setVisible3] = useState(false);

@@ -35,7 +35,7 @@ const BuyCoins = ({
                 </div>
                 <div className="popup-buy-input-wrapper">
                     <input style={{ fontSize: "20px" }} name="coin" className="popup-buy-input popup-buy-input-coin"
-                        type="number" inputmode="decimal" placeholder="0.0" min="0"
+                        type="number" inputMode="decimal" placeholder="0.0" min="0"
                         value={bnbInputValue}
                         onChange={(e) => {
                             setBnbInputValue(e.target.value)
@@ -54,7 +54,7 @@ const BuyCoins = ({
                 </div>
                 <div className="popup-buy-input-wrapper">
                     <input style={{ fontSize: "20px" }} className="popup-buy-input popup-buy-input-cash"
-                        type="number" inputmode="decimal" placeholder="0" min="0"
+                        type="number" inputMode="decimal" placeholder="0" min="0"
                         value={coinInputValue}
                         onChange={(e) => {
                             setCoinInputValue(parseInt(e.target.value))

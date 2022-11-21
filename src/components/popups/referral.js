@@ -15,7 +15,7 @@ const Referral = ({
             <div className="popup-box-1">
                 <div className="popup-partners-header">Your link</div>
                 <div className="popup-partners-input-wrapper">
-                    <input className="popup-partners-input" readonly="readonly" value={refLink} />
+                    <input className="popup-partners-input" readOnly="readOnly" value={refLink} />
                 </div>
                 <button type="button"
                     className="popup-partners-btn-copy"
