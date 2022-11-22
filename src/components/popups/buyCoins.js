@@ -2,12 +2,12 @@ import React from 'react';
 
 const BuyCoins = ({
     GAS_AMOUNT,
-    BNB_PRICE,
+    BUSD_PRICE,
     COIN_PRICE,
     isConnected,
     userBalance,
-    bnbInputValue,
-    setBnbInputValue,
+    busdInputValue,
+    setBusdInputValue,
     coinInputValue,
     setCoinInputValue,
     showBuyCoins,
@@ -22,13 +22,13 @@ const BuyCoins = ({
                 <div className="popup-buy-text-container">
                     <div className="popup-buy-text-ticker">
                         <div className="popup-buy-currency-icon"></div>
-                        BNB
+                        BUSD
                     </div>
                     <div className="popup-buy-text-balance" style={{ fontWeight: "bold" }}
                         onClick={() => {
-                            const bnbVaule = (parseFloat(userBalance) - GAS_AMOUNT).toFixed(4)
-                            setBnbInputValue(bnbVaule)
-                            setCoinInputValue(parseInt(parseFloat(bnbVaule) * BNB_PRICE))
+                            const busdVaule = (parseFloat(userBalance) - GAS_AMOUNT).toFixed(4)
+                            setBusdInputValue(busdVaule)
+                            setCoinInputValue(parseInt(parseFloat(busdVaule) * BUSD_PRICE))
                         }}>
                         Balance: {parseFloat(userBalance).toFixed(3)}
                     </div>
@@ -36,10 +36,10 @@ const BuyCoins = ({
                 <div className="popup-buy-input-wrapper">
                     <input style={{ fontSize: "20px" }} name="coin" className="popup-buy-input popup-buy-input-coin"
                         type="number" inputMode="decimal" placeholder="0.0" min="0"
-                        value={bnbInputValue}
+                        value={busdInputValue}
                         onChange={(e) => {
-                            setBnbInputValue(e.target.value)
-                            setCoinInputValue(parseInt(parseFloat(e.target.value) * BNB_PRICE))
+                            setBusdInputValue(e.target.value)
+                            setCoinInputValue(parseInt(parseFloat(e.target.value) * BUSD_PRICE))
                         }}
                     />
                 </div>
@@ -58,12 +58,12 @@ const BuyCoins = ({
                         value={coinInputValue}
                         onChange={(e) => {
                             setCoinInputValue(parseInt(e.target.value))
-                            setBnbInputValue((parseInt(e.target.value) / BNB_PRICE).toFixed(5))
+                            setBusdInputValue((parseInt(e.target.value) / BUSD_PRICE).toFixed(5))
                         }}
                     />
                 </div>
                 <div className="popup-buy-text-ticker" style={{ marginTop: "16px" }}>
-                    {COIN_PRICE} BNB For 1 COIN
+                    {COIN_PRICE} BUSD For 1 COIN
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: "20px" }}>
                     <button className="btn-green" style={{ fontWeight: "bold" }}

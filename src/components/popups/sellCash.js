@@ -2,19 +2,19 @@ import React from 'react';
 
 const SellCash = ({
     isConnected,
-    showGetBNB,
+    showGetBUSD,
     cash,
-    cashAsBNB,
+    cashAsBUSD,
     withdrawMoney,
     sellHouse,
-    setShowGetBNB,
+    setShowGetBUSD,
 }) => {
     return (
-        <div className="popup-wrapper popup-sell sell-cash" style={{ display: showGetBNB && isConnected ? "block" : "none" }}>
+        <div className="popup-wrapper popup-sell sell-cash" style={{ display: showGetBUSD && isConnected ? "block" : "none" }}>
             <div className="popup-box-1">
-                <div className="popup-sell-header">Get BNB</div>
+                <div className="popup-sell-header">Get BUSD</div>
                 <div className="popup-sell-rate-text">
-                    0.00002 BNB For 100 <div className="popup-sell-rate-money-icon" />
+                    0.00002 BUSD For 100 <div className="popup-sell-rate-money-icon" />
                 </div>
                 <div className="popup-sell-figure"></div>
                 <div className="popup-sell-description">
@@ -25,13 +25,13 @@ const SellCash = ({
                     </span>
                     {` for `}
                     <span className="popup-sell-currency-value">
-                        {cashAsBNB}BNB
+                        {cashAsBUSD}BUSD
                     </span>
                 </div>
                 <button type="button" className="popup-sell-btn-swap" onClick={() => withdrawMoney()}>Exchange</button>
                 <button type="button" className="popup-sell-btn-destroy" onClick={() => sellHouse()}>Sell House</button>
             </div>
-            <button type="button" className="popup-btn-close" onClick={() => setShowGetBNB(false)} />
+            <button type="button" className="popup-btn-close" onClick={() => setShowGetBUSD(false)} />
         </div>
     )
 }

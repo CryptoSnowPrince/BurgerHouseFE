@@ -10,7 +10,7 @@ import {
   ADMIN_ACCOUNT1,
   REF_PREFIX,
   COIN_PRICE,
-  BNB_PRICE,
+  BUSD_PRICE,
   GAS_AMOUNT,
   CASH_PRICE,
   REFERRAL_CASH,
@@ -106,7 +106,7 @@ const Home = () => {
 
   const [refLink, setRefLink] = useState(`${REF_PREFIX}0x0000000000000000000000000000000000000000`);
   const [coinInputValue, setCoinInputValue] = useState('')
-  const [bnbInputValue, setBnbInputValue] = useState('')
+  const [busdInputValue, setBusdInputValue] = useState('')
 
   const [userBalance, setUserBalance] = useState('');
   const [houseInfo, setHouseInfo] = useState({});
@@ -118,7 +118,7 @@ const Home = () => {
   const [blockTimestamp, setBlockTimestamp] = useState(0)
 
   const [showBuyCoins, setShowBuyCoins] = useState(false)
-  const [showGetBNB, setShowGetBNB] = useState(false)
+  const [showGetBUSD, setShowGetBUSD] = useState(false)
   const [showGetMoney, setShowGetMoney] = useState(false)
   const [upgradeLevel, setUpgradeLevel] = useState(0)
   const [showReferral, setShowReferral] = useState(false)
@@ -380,8 +380,8 @@ const Home = () => {
         return
       }
 
-      if (parseFloat(bnbInputValue) <= 0) {
-        setAlertMessage({ type: ALERT_WARN, message: "Please input BNB value..." })
+      if (parseFloat(busdInputValue) <= 0) {
+        setAlertMessage({ type: ALERT_WARN, message: "Please input BUSD value..." })
         return
       }
 
@@ -391,11 +391,11 @@ const Home = () => {
         referrer = isAddress(referrer, MAINNET) ? referrer : ADMIN_ACCOUNT
         referrer = referrer === curAcount ? ADMIN_ACCOUNT1 : referrer
 
-        // console.log('[PRINCE](addCoins): ', referrer, bnbInputValue)
+        // console.log('[PRINCE](addCoins): ', referrer, busdInputValue)
 
         await burgerHouseContract.methods.addCoins(referrer).send({
           from: curAcount,
-          value: web3NoAccount.utils.toWei(bnbInputValue, 'ether')
+          value: web3NoAccount.utils.toWei(busdInputValue, 'ether')
         }).then((txHash) => {
           // console.log(txHash)
           const txHashString = `${txHash.transactionHash}`
@@ -524,7 +524,7 @@ const Home = () => {
         cash={enableValue() ? houseInfo.cash : "--"}
         yieldValue={enableValue() ? `+ ${houseInfo.yield}` : "--"}
         setShowBuyCoins={setShowBuyCoins}
-        setShowGetBNB={setShowGetBNB}
+        setShowGetBUSD={setShowGetBUSD}
         setShowReferral={setShowReferral}
       // logoutOfWeb3Modal={logoutOfWeb3Modal}
       />
@@ -557,12 +557,12 @@ const Home = () => {
 
       <BuyCoins
         GAS_AMOUNT={GAS_AMOUNT}
-        BNB_PRICE={BNB_PRICE}
+        BUSD_PRICE={BUSD_PRICE}
         COIN_PRICE={COIN_PRICE}
         isConnected={isConnected}
         userBalance={userBalance}
-        bnbInputValue={bnbInputValue}
-        setBnbInputValue={setBnbInputValue}
+        busdInputValue={busdInputValue}
+        setBusdInputValue={setBusdInputValue}
         coinInputValue={coinInputValue}
         setCoinInputValue={setCoinInputValue}
         showBuyCoins={showBuyCoins}
@@ -573,12 +573,12 @@ const Home = () => {
 
       <SellCash
         isConnected={isConnected}
-        showGetBNB={showGetBNB}
+        showGetBUSD={showGetBUSD}
         cash={enableValue() ? `${houseInfo.cash} ` : `0 `}
-        cashAsBNB={enableValue() ? `${houseInfo.cash * CASH_PRICE} ` : `0 `}
+        cashAsBUSD={enableValue() ? `${houseInfo.cash * CASH_PRICE} ` : `0 `}
         withdrawMoney={withdrawMoney}
         sellHouse={sellHouse}
-        setShowGetBNB={setShowGetBNB}
+        setShowGetBUSD={setShowGetBUSD}
       />
 
       <CollectMoney

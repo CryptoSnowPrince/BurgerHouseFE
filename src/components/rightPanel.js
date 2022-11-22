@@ -9,7 +9,7 @@ const RightPanel = ({ allHousesLength, totalInvested, totalUpgrades, partners })
             </div>
             <div className="panel">
                 <div className="panel-left">Total Deposits</div>
-                <div className="panel-right panel-towers-value">{`${totalInvested} BNB`}</div>
+                <div className="panel-right panel-towers-value">{`${totalInvested} BUSD`}</div>
             </div>
             <div className="panel">
                 <div className="panel-left">Total Upgrades</div>

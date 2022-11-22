@@ -7,7 +7,7 @@ const LeftPanel = ({
     cash,
     yieldValue,
     setShowBuyCoins,
-    setShowGetBNB,
+    setShowGetBUSD,
     setShowReferral,
     /* logoutOfWeb3Modal */
 }) => {
@@ -25,7 +25,7 @@ const LeftPanel = ({
                 </div>
                 <div className="menu-bar menu-bar-money">
                     <div className="menu-bar-value">{cash}</div>
-                    <button type="button" className="menu-bar-btn minus" disabled={!isConnected} onClick={() => setShowGetBNB(true)} />
+                    <button type="button" className="menu-bar-btn minus" disabled={!isConnected} onClick={() => setShowGetBUSD(true)} />
                 </div>
                 <div className="menu-bar menu-bar-without-background">
                     <div className="menu-bar-value">{yieldValue}/h</div>
