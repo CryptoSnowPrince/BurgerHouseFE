@@ -1,7 +1,28 @@
 import React, { useState } from 'react';
 
+const getCoinRef = (_refLevel) => {
+    if (_refLevel < 2) {
+        return 7;
+    }
+    if (_refLevel < 3) {
+        return 3;
+    }
+    return 2;
+}
+
+const getCashRef = (_refLevel) => {
+    if (_refLevel < 2) {
+        return 3;
+    }
+    if (_refLevel < 3) {
+        return 2;
+    }
+    return 1;
+}
+
 const Referral = ({
     showReferral,
+    refLevel,
     refLink,
     refCoins,
     refCash,
@@ -32,8 +53,8 @@ const Referral = ({
                     Copy
                 </button>
                 <div className="popup-partners-description">
-                    Get <span>7%</span>
-                    <div className="popup-partners-coin-icon" />{` and `}<span>3%</span>
+                    Get <span>{getCoinRef(refLevel)}%</span>
+                    <div className="popup-partners-coin-icon" />{` and `}<span>{getCashRef(refLevel)}%</span>
                     <div className="popup-partners-money-icon" />{` from each deposit of your partner.`}
                 </div>
                 <div className="popup-partners-header" style={{ marginTop: "15px" }}>Referral statistics</div>

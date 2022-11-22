@@ -610,6 +610,7 @@ const Home = () => {
       <Referral
         showReferral={showReferral}
         refLink={refLink}
+        refLevel={enableValue() ? parseInt(houseInfo.refLevel) : 0}
         refCoins={enableValue() ? `+ ${parseInt(houseInfo.refCoins * REFERRAL_COIN / DENOMINATOR)}` : `+ 0`}
         refCash={enableValue() ? `+ ${parseInt(houseInfo.refCoins * 100 * REFERRAL_CASH / DENOMINATOR)}` : `+ 0`}
         refs={enableValue() ? `+ ${houseInfo.refs}` : `+ 0`}
