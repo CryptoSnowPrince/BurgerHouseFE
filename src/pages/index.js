@@ -13,8 +13,6 @@ import {
   COIN_PRICE,
   BUSD_PRICE,
   CASH_PRICE,
-  REFERRAL_CASH,
-  REFERRAL_COIN,
   DENOMINATOR,
   ALERT_DELAY,
   ALERT_POSITION,
@@ -31,6 +29,8 @@ import UpgradeLevel from "../components/popups/upgradeLevel";
 import Referral from "../components/popups/referral";
 import Floor0 from "../components/floor0";
 import Elevator from "../components/animations/elevator";
+
+import { getCoinRef, getCashRef } from "../utils/util";
 
 const web3Modal = web3ModalSetup();
 
@@ -611,8 +611,12 @@ const Home = () => {
         showReferral={showReferral}
         refLink={refLink}
         refLevel={enableValue() ? parseInt(houseInfo.refLevel) : 0}
-        refCoins={enableValue() ? `+ ${parseInt(houseInfo.refCoins * REFERRAL_COIN / DENOMINATOR)}` : `+ 0`}
-        refCash={enableValue() ? `+ ${parseInt(houseInfo.refCoins * 100 * REFERRAL_CASH / DENOMINATOR)}` : `+ 0`}
+        refCoins={enableValue() ?
+          `+ ${parseInt(houseInfo.refCoins * 100 * getCoinRef(enableValue() ? parseInt(houseInfo.refLevel) : 0) / DENOMINATOR)}` :
+          `+ 0`}
+        refCash={enableValue() ?
+          `+ ${parseInt(houseInfo.refCoins * getCashRef(enableValue() ? parseInt(houseInfo.refLevel) : 0))}` :
+          `+ 0`}
         refs={enableValue() ? `+ ${houseInfo.refs}` : `+ 0`}
         setShowReferral={setShowReferral}
       />

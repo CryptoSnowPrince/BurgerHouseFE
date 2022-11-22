@@ -7,8 +7,6 @@ export const COIN_PRICE = 0.005; // 1 coin = 0.005 BUSD
 export const BUSD_PRICE = 200;	// 1 BUSD = 200 coin
 export const CASH_PRICE = 0.00005; // 100 cash = 0.005 BUSD
 
-export const REFERRAL_COIN = 700;
-export const REFERRAL_CASH = 300;
 export const DEV_FEE = 400;
 export const DEV_COIN_FEE = 500;
 export const DEV_CASH_FEE = 500;
