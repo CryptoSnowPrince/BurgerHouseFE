@@ -14,7 +14,7 @@ const SellCash = ({
             <div className="popup-box-1">
                 <div className="popup-sell-header">Get BUSD</div>
                 <div className="popup-sell-rate-text">
-                    0.00002 BUSD For 100 <div className="popup-sell-rate-money-icon" />
+                    0.005 BUSD For 100 <div className="popup-sell-rate-money-icon" />
                 </div>
                 <div className="popup-sell-figure"></div>
                 <div className="popup-sell-description">

@@ -7,12 +7,14 @@ const BuyCoins = ({
     busdBalance,
     busdInputValue,
     setBusdInputValue,
+    userApprovedAmount,
     coinInputValue,
     setCoinInputValue,
     showBuyCoins,
     setShowBuyCoins,
     pendingTx,
     addCoins,
+    approve
 }) => {
     return (
         <div className="popup-wrapper popup-buy popup-exchange buy-coins" style={{ display: showBuyCoins && isConnected ? "block" : "none" }}>
@@ -25,7 +27,7 @@ const BuyCoins = ({
                     </div>
                     <div className="popup-buy-text-balance" style={{ fontWeight: "bold" }}
                         onClick={() => {
-                            const busdValue = parseFloat(busdBalance).toFixed(4)
+                            const busdValue = parseFloat(busdBalance).toFixed(3)
                             setBusdInputValue(busdValue)
                             setCoinInputValue(parseInt(parseFloat(busdValue) * BUSD_PRICE))
                         }}>
@@ -67,13 +69,21 @@ const BuyCoins = ({
                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: "20px" }}>
                     <button className="btn-green" style={{ fontWeight: "bold" }}
                         disabled={pendingTx || !isConnected}
-                        onClick={addCoins}>
-                        Buy
+                        onClick={
+                            Number.isNaN(parseFloat(busdInputValue)) ||
+                                parseFloat(userApprovedAmount) >= parseFloat(busdInputValue) ?
+                                addCoins : approve
+                        }
+                    >
+                        {
+                            Number.isNaN(parseFloat(busdInputValue)) ||
+                                parseFloat(userApprovedAmount) >= parseFloat(busdInputValue) ? 'BUY' : 'APPROVE'
+                        }
                     </button>
                 </div>
             </div>
             <button type="button" className="popup-btn-close popup-btn-close-3" onClick={() => setShowBuyCoins(false)} />
-        </div>
+        </div >
     )
 }
 export default BuyCoins;

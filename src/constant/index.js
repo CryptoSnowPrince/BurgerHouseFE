@@ -13,7 +13,6 @@ export const DEV_CASH_FEE = 500;
 export const LIMIT_INCOME = 15000;
 export const DENOMINATOR = 10000;
 
-export const GAS_AMOUNT = 0.0005;
 export const ALERT_DELAY = 5000;
 export const ALERT_POSITION = 'top-center';
 

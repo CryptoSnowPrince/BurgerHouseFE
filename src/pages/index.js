@@ -5,6 +5,7 @@ import Web3 from "web3";
 import {
   getBurgerHouseContract,
   getBUSDContract,
+  BurgerHouse,
   RPC_URL,
   MAINNET,
   ADMIN_ACCOUNT,
@@ -95,6 +96,7 @@ const Home = () => {
   const newReferral = parameters.get('ref');
 
   const [burgerHouseContract, setBurgerHouseContract] = useState();
+  const [busdContract, setBusdContract] = useState();
 
   const [web3, setWeb3] = useState();
   const [isConnected, setIsConnected] = useState(false);
@@ -110,6 +112,7 @@ const Home = () => {
   const [busdInputValue, setBusdInputValue] = useState('')
 
   const [busdBalance, setBUSDBalance] = useState('');
+  const [userApprovedAmount, setUserApprovedAmount] = useState('');
   const [houseInfo, setHouseInfo] = useState({});
 
   const [allHousesLength, setAllHousesLength] = useState(0)
@@ -169,6 +172,7 @@ const Home = () => {
 
     setWeb3(web3Provider);
     setBurgerHouseContract(getBurgerHouseContract(web3Provider));
+    setBusdContract(getBUSDContract(web3Provider));
     setCurAcount(acc);
     setIsConnected(true);
 
@@ -225,6 +229,8 @@ const Home = () => {
         if (curAcount) {
           const _userBalance = await busdNoAccount.methods.balanceOf(curAcount).call();
           setBUSDBalance(web3NoAccount.utils.fromWei(_userBalance))
+          const _approvedAmount = await busdNoAccount.methods.allowance(curAcount, BurgerHouse).call();
+          setUserApprovedAmount(web3NoAccount.utils.fromWei(_approvedAmount));
           const refLink = `${REF_PREFIX}${curAcount}`;
           setRefLink(refLink);
         }
@@ -372,6 +378,47 @@ const Home = () => {
     }
   }
 
+  const approve = async (e) => {
+    // console.log('[PRINCE](approve)', e)
+    try {
+      e.preventDefault();
+      if (pendingTx) {
+        setAlertMessage({ type: ALERT_WARN, message: "Pending..." })
+        return
+      }
+
+      if (parseFloat(busdInputValue) <= 0) {
+        setAlertMessage({ type: ALERT_WARN, message: "Please input BUSD value..." })
+        return
+      }
+
+      setPendingTx(true)
+      if (isConnected && busdContract) {
+        await busdContract.methods.approve(
+          BurgerHouse,
+          "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        ).send({
+          from: curAcount
+        }).then((txHash) => {
+          // console.log(txHash)
+          const txHashString = `${txHash.transactionHash}`
+          const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
+          setAlertMessage({ type: ALERT_SUCCESS, message: `Approve Success! txHash is ${msgString}` });
+        }).catch((err) => {
+          // console.log(err)
+          setAlertMessage({ type: ALERT_ERROR, message: `Approve Fail! Reason: ${err.message}` });
+        });
+      }
+      else {
+        // console.log("connect Wallet");
+      }
+      setPendingTx(false)
+    } catch (e) {
+      console.log('approve: ', e)
+      setPendingTx(false)
+    }
+  }
+
   const addCoins = async (e) => {
     // console.log('[PRINCE](addCoins)', e)
     try {
@@ -394,9 +441,11 @@ const Home = () => {
 
         // console.log('[PRINCE](addCoins): ', referrer, busdInputValue)
 
-        await burgerHouseContract.methods.addCoins(referrer).send({
-          from: curAcount,
-          value: web3NoAccount.utils.toWei(busdInputValue, 'ether')
+        await burgerHouseContract.methods.addCoins(
+          referrer,
+          web3NoAccount.utils.toWei(busdInputValue, 'ether')
+        ).send({
+          from: curAcount
         }).then((txHash) => {
           // console.log(txHash)
           const txHashString = `${txHash.transactionHash}`
@@ -563,12 +612,14 @@ const Home = () => {
         busdBalance={busdBalance}
         busdInputValue={busdInputValue}
         setBusdInputValue={setBusdInputValue}
+        userApprovedAmount={userApprovedAmount}
         coinInputValue={coinInputValue}
         setCoinInputValue={setCoinInputValue}
         showBuyCoins={showBuyCoins}
         setShowBuyCoins={setShowBuyCoins}
         pendingTx={pendingTx}
         addCoins={addCoins}
+        approve={approve}
       />
 
       <SellCash
