@@ -28,7 +28,7 @@ const LeftPanel = ({
                     <button type="button" className="menu-bar-btn minus" disabled={!isConnected} onClick={() => setShowGetBUSD(true)} />
                 </div>
                 <div className="menu-bar menu-bar-without-background">
-                    <div className="menu-bar-value">{yieldValue}/h</div>
+                    <div className="menu-bar-value">{parseInt(yieldValue)/10}/h</div>
                 </div>
             </div>
             <div className="menu-btns">
