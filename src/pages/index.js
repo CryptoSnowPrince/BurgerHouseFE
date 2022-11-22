@@ -649,7 +649,7 @@ const Home = () => {
         addedLevel={enableValue() && upgradeLevel > 0 && parseInt(houseInfo.levels[upgradeLevel - 1]) < 5 ? `+ 1` : ` + 0`}
         profit={`${enableValue() && upgradeLevel > 0 ? getHouseprofit(houseInfo.levels[upgradeLevel - 1], upgradeLevel - 1) : 0} / Hour`}
         addedProfit={`+ ${enableValue() && upgradeLevel > 0 && parseInt(houseInfo.levels[upgradeLevel - 1]) < 5 ? yieldValues[houseInfo.levels[upgradeLevel - 1]][upgradeLevel - 1] : 0}`}
-        totalProfit={`${enableValue() ? houseInfo.yield : 0} / Hour`}
+        totalProfit={`${enableValue() ? houseInfo.yield / 10 : 0} / Hour`}
         disabled={pendingTx || !isConnected || upgradeLevel <= 0 || (enableValue() && upgradeLevel > 0 && parseInt(houseInfo.levels[upgradeLevel - 1]) === 5)}
         upgradeHouse={upgradeHouse}
         enableValue={enableValue}
