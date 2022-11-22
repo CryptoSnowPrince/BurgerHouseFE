@@ -1,6 +1,19 @@
 [
     {
         "inputs": [],
+        "name": "BUSD",
+        "outputs": [
+            {
+                "internalType": "contract IERC20",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
         "name": "CASH_PRICE",
         "outputs": [
             {
@@ -92,12 +105,12 @@
     },
     {
         "inputs": [],
-        "name": "REFERRAL_CASH",
+        "name": "LOCK_LEVEL",
         "outputs": [
             {
-                "internalType": "uint256",
+                "internalType": "uint8",
                 "name": "",
-                "type": "uint256"
+                "type": "uint8"
             }
         ],
         "stateMutability": "view",
@@ -105,7 +118,7 @@
     },
     {
         "inputs": [],
-        "name": "REFERRAL_COIN",
+        "name": "LOCK_TIME",
         "outputs": [
             {
                 "internalType": "uint256",
@@ -122,11 +135,16 @@
                 "internalType": "address",
                 "name": "_ref",
                 "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_amount",
+                "type": "uint256"
             }
         ],
         "name": "addCoins",
         "outputs": [],
-        "stateMutability": "payable",
+        "stateMutability": "nonpayable",
         "type": "function"
     },
     {
@@ -293,6 +311,11 @@
                         "type": "uint256"
                     },
                     {
+                        "internalType": "uint256",
+                        "name": "goldTimestamp",
+                        "type": "uint256"
+                    },
+                    {
                         "internalType": "address",
                         "name": "ref",
                         "type": "address"
@@ -306,6 +329,11 @@
                         "internalType": "uint256",
                         "name": "refCoins",
                         "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint8",
+                        "name": "refLevel",
+                        "type": "uint8"
                     },
                     {
                         "internalType": "uint8[8]",
