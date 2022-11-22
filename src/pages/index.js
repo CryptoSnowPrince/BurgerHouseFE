@@ -264,7 +264,7 @@ const Home = () => {
 
   const pendingCash = () => {
     if (enableValue()) {
-      return pendingHours() * houseInfo.yield + parseInt(houseInfo.burger);
+      return pendingHours() * houseInfo.yield / 10 + parseInt(houseInfo.burger);
     }
     return 0;
   }
