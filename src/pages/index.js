@@ -4,6 +4,7 @@ import web3ModalSetup from "./../helpers/web3ModalSetup";
 import Web3 from "web3";
 import {
   getBurgerHouseContract,
+  getBUSDContract,
   RPC_URL,
   MAINNET,
   ADMIN_ACCOUNT,
@@ -11,7 +12,6 @@ import {
   REF_PREFIX,
   COIN_PRICE,
   BUSD_PRICE,
-  GAS_AMOUNT,
   CASH_PRICE,
   REFERRAL_CASH,
   REFERRAL_COIN,
@@ -38,6 +38,7 @@ const httpProvider = new Web3.providers.HttpProvider(RPC_URL)
 const web3NoAccount = new Web3(httpProvider)
 const isAddress = web3NoAccount.utils.isAddress
 const contractNoAccount = getBurgerHouseContract(web3NoAccount)
+const busdNoAccount = getBUSDContract(web3NoAccount)
 
 const HEIGHT_PC = 1290;
 const HEIGHT_MOBILE = 880;
@@ -108,7 +109,7 @@ const Home = () => {
   const [coinInputValue, setCoinInputValue] = useState('')
   const [busdInputValue, setBusdInputValue] = useState('')
 
-  const [userBalance, setUserBalance] = useState('');
+  const [busdBalance, setBUSDBalance] = useState('');
   const [houseInfo, setHouseInfo] = useState({});
 
   const [allHousesLength, setAllHousesLength] = useState(0)
@@ -222,8 +223,8 @@ const Home = () => {
         setAllHousesLength(_allHousesLength)
 
         if (curAcount) {
-          const _userBalance = await web3NoAccount.eth.getBalance(curAcount)
-          setUserBalance(web3NoAccount.utils.fromWei(_userBalance))
+          const _userBalance = await busdNoAccount.methods.balanceOf(curAcount).call();
+          setBUSDBalance(web3NoAccount.utils.fromWei(_userBalance))
           const refLink = `${REF_PREFIX}${curAcount}`;
           setRefLink(refLink);
         }
@@ -556,11 +557,10 @@ const Home = () => {
       />
 
       <BuyCoins
-        GAS_AMOUNT={GAS_AMOUNT}
         BUSD_PRICE={BUSD_PRICE}
         COIN_PRICE={COIN_PRICE}
         isConnected={isConnected}
-        userBalance={userBalance}
+        busdBalance={busdBalance}
         busdInputValue={busdInputValue}
         setBusdInputValue={setBusdInputValue}
         coinInputValue={coinInputValue}

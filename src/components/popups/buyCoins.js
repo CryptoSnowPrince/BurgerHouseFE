@@ -1,11 +1,10 @@
 import React from 'react';
 
 const BuyCoins = ({
-    GAS_AMOUNT,
     BUSD_PRICE,
     COIN_PRICE,
     isConnected,
-    userBalance,
+    busdBalance,
     busdInputValue,
     setBusdInputValue,
     coinInputValue,
@@ -26,11 +25,11 @@ const BuyCoins = ({
                     </div>
                     <div className="popup-buy-text-balance" style={{ fontWeight: "bold" }}
                         onClick={() => {
-                            const busdVaule = (parseFloat(userBalance) - GAS_AMOUNT).toFixed(4)
-                            setBusdInputValue(busdVaule)
-                            setCoinInputValue(parseInt(parseFloat(busdVaule) * BUSD_PRICE))
+                            const busdValue = parseFloat(busdBalance).toFixed(4)
+                            setBusdInputValue(busdValue)
+                            setCoinInputValue(parseInt(parseFloat(busdValue) * BUSD_PRICE))
                         }}>
-                        Balance: {parseFloat(userBalance).toFixed(3)}
+                        Balance: {parseFloat(busdBalance).toFixed(3)}
                     </div>
                 </div>
                 <div className="popup-buy-input-wrapper">
