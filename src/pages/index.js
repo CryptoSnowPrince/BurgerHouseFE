@@ -515,8 +515,8 @@ const Home = () => {
 
   return (
     <>
+      <br />
       <ToastContainer />
-      <div className="logo-desktop" />
       <LeftPanel
         isConnected={isConnected}
         curAcount={curAcount}

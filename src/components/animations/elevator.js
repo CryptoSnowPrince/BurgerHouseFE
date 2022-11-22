@@ -23,9 +23,10 @@ const Elevator = ({ height, ropHeight, ropBottom }) => {
                     height: `${ropHeight - delta}px`
                 }}
             />
-            {/* <div className='counter'>
-                <ParkingManager />
-            </div> */}
+            <div className='counter'>
+                {/* <ParkingManager /> */}
+            </div>
+            <div className="logo-desktop" />
         </>
     )
 }
