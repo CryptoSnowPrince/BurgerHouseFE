@@ -1410,16 +1410,38 @@ div.farm-coin {
   width: 25px;
   height: 72px;
   left: calc(50% - 185px);
-  bottom: 0px;
+  bottom: 2px;
   animation: moveX 1s steps(4) infinite;
 }
-@keyframes moveX{
-  from{background-position-x:0px;}
-  to{background-position-x:-100px;}
+
+@keyframes moveX {
+  from {
+    background-position-x: 0px;
+  }
+
+  to {
+    background-position-x: -100px;
+  }
 }
 
 /* Extra small devices (phones, 800px and down) */
 @media only screen and (max-width: 800px) {
+  .counter-boy {
+    width: 15px;
+    height: 43px;
+    left: calc(50% - 105px);
+  }
+
+  @keyframes moveX {
+    from {
+      background-position-x: 0px;
+    }
+
+    to {
+      background-position-x: -60px;
+    }
+  }
+
   .lift-bar {
     height: 718px;
     left: calc(50% - 92px);
