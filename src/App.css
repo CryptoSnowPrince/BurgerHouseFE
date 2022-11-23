@@ -1680,9 +1680,15 @@ div.farm-coin {
   }
 
   .btn-floor {
-    width: 80px;
-    left: 355px;
-    top: 30px;
+    width: 68px;
+    left: 265px;
+    top: 14px;
+  }
+
+  div.farm-coin {
+    width: 15px;
+    margin-left: 1px;
+    margin-right: 1px;
   }
 
   .menu-bars {
