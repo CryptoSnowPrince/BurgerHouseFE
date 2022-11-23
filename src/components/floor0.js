@@ -1,6 +1,5 @@
 import React from 'react';
 
-import ParkingManager from "./animations/parkingManager";
 import DeliveryMan from "./animations/deliveryMan";
 
 const Floor0 = () => {

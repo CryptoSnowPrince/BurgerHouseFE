@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+import CounterBoy from "./counterBoy";
+
 const Elevator = ({ height, ropHeight, ropBottom }) => {
     const [step, setStep] = useState(0);
 
@@ -14,7 +16,7 @@ const Elevator = ({ height, ropHeight, ropBottom }) => {
 
     return (
         <>
-            <div className="lift"
+            {/* <div className="lift"
                 style={{ bottom: `${delta}px` }}
             />
             <div className='lift-bar'
@@ -22,10 +24,9 @@ const Elevator = ({ height, ropHeight, ropBottom }) => {
                     bottom: `${delta + ropBottom}px`,
                     height: `${ropHeight - delta}px`
                 }}
-            />
-            <div className='counter'>
-                {/* <ParkingManager /> */}
-            </div>
+            /> */}
+            <CounterBoy />
+            <div className='counter' />
             <div className="logo-desktop" />
         </>
     )
