@@ -19,9 +19,9 @@ const DeliveryMan = ({ nSpeed }) => {
 
     return (
         <div ref={bike}
-            className={`delivery-man delivery-man-${step}`}
+            className="delivery-man"
             // style={{ left: `${walk}px` }}
-            style={{ left: window.innerWidth / 2 }}
+            // style={{ left: window.innerWidth / 2 }}
         >
         </div>
     )

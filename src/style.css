@@ -358,95 +358,27 @@
 }
 
 .delivery-man {
+    background-image: url(./assets/img/static/delivery-boy.png);
     background-size: auto 100%;
     background-repeat: no-repeat;
-    height: 59px;
-    width: 68px;
+    width: 75px;
+    height: 60px;
     position: absolute;
-    bottom: -2px;
+    bottom: -1px;
     z-index: 0;
+    left: 100px;
+    animation: moveDeliveryBoy 10s linear infinite;
 }
 
-.delivery-man-0 {
-    background-image: url(./assets/img/animations/delivery/0.png);
-}
+@keyframes moveDeliveryBoy {
+    from {
+        left: 100px;
+    }
 
-.delivery-man-1 {
-    background-image: url(./assets/img/animations/delivery/1.png);
+    to {
+        left: 1500px;
+    }
 }
-
-.delivery-man-2 {
-    background-image: url(./assets/img/animations/delivery/2.png);
-}
-
-.delivery-man-3 {
-    background-image: url(./assets/img/animations/delivery/3.png);
-}
-
-.delivery-man-4 {
-    background-image: url(./assets/img/animations/delivery/4.png);
-}
-
-.delivery-man-5 {
-    background-image: url(./assets/img/animations/delivery/5.png);
-}
-
-.delivery-man-6 {
-    background-image: url(./assets/img/animations/delivery/6.png);
-}
-
-.delivery-man-7 {
-    background-image: url(./assets/img/animations/delivery/7.png);
-}
-
-.delivery-man-8 {
-    background-image: url(./assets/img/animations/delivery/8.png);
-}
-
-.delivery-man-9 {
-    background-image: url(./assets/img/animations/delivery/9.png);
-}
-
-.delivery-man-10 {
-    background-image: url(./assets/img/animations/delivery/10.png);
-}
-
-.delivery-man-11 {
-    background-image: url(./assets/img/animations/delivery/11.png);
-}
-
-.delivery-man-12 {
-    background-image: url(./assets/img/animations/delivery/12.png);
-}
-
-.delivery-man-13 {
-    background-image: url(./assets/img/animations/delivery/13.png);
-}
-
-.delivery-man-14 {
-    background-image: url(./assets/img/animations/delivery/14.png);
-}
-
-.delivery-man-15 {
-    background-image: url(./assets/img/animations/delivery/15.png);
-}
-
-.delivery-man-16 {
-    background-image: url(./assets/img/animations/delivery/16.png);
-}
-
-.delivery-man-17 {
-    background-image: url(./assets/img/animations/delivery/17.png);
-}
-
-.delivery-man-18 {
-    background-image: url(./assets/img/animations/delivery/18.png);
-}
-
-.delivery-man-19 {
-    background-image: url(./assets/img/animations/delivery/19.png);
-}
-
 
 /* Extra small devices (phones, 800px and down) */
 @media only screen and (max-width: 800px) {
@@ -458,5 +390,22 @@
     .counter-table {
         width: 34px;
         height: 17px;
+    }
+
+    .delivery-man {
+        width: 40px;
+        height: 32px;
+        left: 27px;
+        animation: moveDeliveryBoy 7s linear infinite;
+    }
+
+    @keyframes moveDeliveryBoy {
+        from {
+            left: 27px;
+        }
+
+        to {
+            left: 800px;
+        }
     }
 }
