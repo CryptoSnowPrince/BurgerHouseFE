@@ -1690,13 +1690,15 @@ div.farm-coin {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    width: 70px;
+    margin: 0px auto;
+    width: 200px;
   }
 
   .panel {
     padding-left: 5px;
     padding-right: 5px;
     font-size: 14px;
+    margin-bottom: 5px;
   }
 
   .menu-bar {
@@ -1705,15 +1707,19 @@ div.farm-coin {
   }
 
   .menu-fixed-left {
-    width: 45%;
+    width: 85%;
+    position: relative;
+    margin: 0px auto;
+    left: 0px;
+    top: 0px;
   }
 
   .menu-btns {
     display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin-left: 0px;
-    width: 70px;
+    justify-content: space-between;
+    flex-direction: row;
+    margin: 0px auto;
+    width: 200px;
   }
 
   .menu-bar-btn {
@@ -1736,8 +1742,11 @@ div.farm-coin {
   }
 
   .menu-fixed-right {
-    width: 38%;
-    right: 5px;
+    width: 200px;
+    right: 0px;
+    position: relative;
+    margin: 0px auto;
+    margin-bottom: 50px;
   }
 
   .logo-desktop {
