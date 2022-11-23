@@ -42,11 +42,11 @@ const contractNoAccount = getBurgerHouseContract(web3NoAccount)
 const busdNoAccount = getBUSDContract(web3NoAccount)
 
 const HEIGHT_PC = 1290;
-const HEIGHT_MOBILE = 880;
+const HEIGHT_MOBILE = 687;
 const ROP_BOTTOM_PC = 101;
 const ROP_HEIGHT_PC = 1350;
-const ROP_BOTTOM_MOBILE = 69;
-const ROP_HEIGHT_MOBILE = 927;
+const ROP_BOTTOM_MOBILE = 52;
+const ROP_HEIGHT_MOBILE = 718;
 
 const priceINT =
   [

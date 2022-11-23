@@ -451,12 +451,12 @@
 /* Extra small devices (phones, 800px and down) */
 @media only screen and (max-width: 800px) {
     .tables {
-        right: 35px;
-        bottom: 12px;
+        right: 27px;
+        bottom: 10px;
     }
 
     .counter-table {
-        width: 42px;
-        height: 21px;
+        width: 34px;
+        height: 17px;
     }
 }

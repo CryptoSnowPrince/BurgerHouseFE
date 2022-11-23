@@ -1577,22 +1577,22 @@ div.farm-coin {
 /* Extra small devices (phones, 800px and down) */
 @media only screen and (max-width: 800px) {
   .lift-bar {
-    height: 927px;
-    left: calc(50% - 163px);
-    bottom: 69px;
+    height: 718px;
+    left: calc(50% - 92px);
+    bottom: 52px;
   }
 
   .lift {
-    width: 48px;
-    height: 70px;
-    left: calc(50% - 182px);
+    width: 38px;
+    height: 53px;
+    left: calc(50% - 107px);
   }
 
   .counter-in-house {
-    height: 28px;
-    width: 42px;
-    right: 217px;
-    bottom: 12px;
+    height: 20px;
+    width: 25px;
+    right: 174px;
+    bottom: 10px;
   }
 
   .level-text {
@@ -1660,24 +1660,23 @@ div.farm-coin {
   .roof,
   .floor-0,
   .floor_house {
-    width: 350px;
-    height: 110px;
-    left: -45px;
+    width: 270px;
+    height: 85px;
   }
 
   .roof {
-    height: 76px;
+    height: 60px;
   }
 
   .floor-0 {
-    height: 116px;
-    left: -47px;
+    height: 90px;
+    left: -1px;
   }
 
   .counter {
-    width: 78px;
-    height: 105px;
-    left: calc(50% - 198px);
+    width: 60px;
+    height: 82px;
+    left: calc(50% - 118px);
   }
 
   .btn-floor {
@@ -1750,10 +1749,10 @@ div.farm-coin {
   }
 
   .logo-desktop {
-    width: 98px;
-    height: 70px;
-    left: calc(50% - 68px);
-    bottom: 54px;
+    width: 75px;
+    height: 55px;
+    left: calc(50% - 25px);
+    bottom: 44px;
   }
 
   .collect-action {
