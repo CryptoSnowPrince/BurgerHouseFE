@@ -1407,10 +1407,10 @@ div.farm-coin {
   background: url(./assets/img/static/counter-boy.png) no-repeat;
   background-size: cover;
   z-index: 2;
-  width: 25px;
-  height: 72px;
-  left: calc(50% - 185px);
-  bottom: 2px;
+  width: 50px;
+  height: 75px;
+  left: calc(50% - 202px);
+  bottom: 16px;
   animation: moveX 1s steps(4) infinite;
 }
 
@@ -1420,16 +1420,17 @@ div.farm-coin {
   }
 
   to {
-    background-position-x: -100px;
+    background-position-x: -200px;
   }
 }
 
 /* Extra small devices (phones, 800px and down) */
 @media only screen and (max-width: 800px) {
   .counter-boy {
-    width: 15px;
-    height: 43px;
-    left: calc(50% - 105px);
+    width: 28px;
+    height: 42px;
+    left: calc(50% - 108px);
+    bottom: 7px;
   }
 
   @keyframes moveX {
@@ -1438,7 +1439,7 @@ div.farm-coin {
     }
 
     to {
-      background-position-x: -60px;
+      background-position-x: -112px;
     }
   }
 
