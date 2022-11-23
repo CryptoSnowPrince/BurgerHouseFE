@@ -1,30 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import CounterBoy from "./counterBoy";
 
-const Elevator = ({ height, ropHeight, ropBottom }) => {
-    const [step, setStep] = useState(0);
-
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            setStep(prev => prev + 5)
-        }, 60);
-        return () => clearInterval(intervalId);
-    }, [height]);
-
-    const delta = parseInt((step / height) % 2) === 1 ? height * 2 - step % (height * 2) : step % height
-
+const Elevator = () => {
     return (
         <>
-            {/* <div className="lift"
-                style={{ bottom: `${delta}px` }}
-            />
-            <div className='lift-bar'
-                style={{
-                    bottom: `${delta + ropBottom}px`,
-                    height: `${ropHeight - delta}px`
-                }}
-            /> */}
+            <div className="lift" />
+            <div className='lift-bar' />
             <CounterBoy />
             <div className='counter' />
             <div className="logo-desktop" />

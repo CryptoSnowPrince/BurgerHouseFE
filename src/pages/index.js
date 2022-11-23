@@ -588,11 +588,7 @@ const Home = () => {
         {/* <div id="cloud-intro" /> */}
         <div className="roof" />
         <div className="floors">
-          <Elevator
-            height={isMobile ? HEIGHT_MOBILE : HEIGHT_PC}
-            ropBottom={isMobile ? ROP_BOTTOM_MOBILE : ROP_BOTTOM_PC}
-            ropHeight={isMobile ? ROP_HEIGHT_MOBILE : ROP_HEIGHT_PC}
-          />
+          <Elevator />
           {[8, 7, 6, 5, 4, 3, 2, 1].map((value) => ( // value = 8, 7, 6, 5, 4, 3, 2, 1
             <House key={value} id={value} houseInfo={houseInfo} isConnected={isConnected} price={price} setUpgradeLevel={setUpgradeLevel} enableValue={enableValue} />
           ))}

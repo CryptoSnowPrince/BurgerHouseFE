@@ -1379,16 +1379,67 @@ div.farm-coin {
   left: calc(50% - 201px);
   bottom: 0px;
   z-index: 2;
+  animation: moveLift 20s linear infinite;
+}
+
+@keyframes moveLift {
+  0% {
+    bottom: 0px;
+  }
+
+  48% {
+    bottom: 1290px;
+  }
+
+  50% {
+    bottom: 1290px;
+  }
+
+  95% {
+    bottom: 0px;
+  }
+
+  100% {
+    bottom: 0px;
+  }
 }
 
 .lift-bar {
   position: absolute;
   background: url(./assets/img/static/rope.png) repeat-y;
   width: 9px;
-  height: 1350px;
   left: calc(50% - 170px);
   bottom: 101px;
+  height: 1350px;
   z-index: 2;
+  animation: moveLiftBar 20s linear infinite;
+}
+
+@keyframes moveLiftBar {
+  0% {
+    bottom: 101px;
+    height: 1350px;
+  }
+
+  48% {
+    bottom: 1391px;
+    height: 60px;
+  }
+
+  50% {
+    bottom: 1391px;
+    height: 60px;
+  }
+
+  95% {
+    bottom: 101px;
+    height: 1350px;
+  }
+
+  100% {
+    bottom: 101px;
+    height: 1350px;
+  }
 }
 
 .counter {
@@ -1444,15 +1495,64 @@ div.farm-coin {
   }
 
   .lift-bar {
-    height: 718px;
     left: calc(50% - 92px);
     bottom: 52px;
+    height: 718px;
+  }
+
+  @keyframes moveLiftBar {
+    0% {
+      bottom: 52px;
+      height: 718px;
+    }
+
+    48% {
+      bottom: 739px;
+      height: 31px;
+    }
+
+    50% {
+      bottom: 739px;
+      height: 31px;
+    }
+
+    95% {
+      bottom: 52px;
+      height: 718px;
+    }
+
+    100% {
+      bottom: 52px;
+      height: 718px;
+    }
   }
 
   .lift {
     width: 38px;
     height: 53px;
     left: calc(50% - 107px);
+  }
+
+  @keyframes moveLift {
+    0% {
+      bottom: 0px;
+    }
+
+    48% {
+      bottom: 687px;
+    }
+
+    50% {
+      bottom: 687px;
+    }
+
+    95% {
+      bottom: 0px;
+    }
+
+    100% {
+      bottom: 0px;
+    }
   }
 
   .counter-in-house {
