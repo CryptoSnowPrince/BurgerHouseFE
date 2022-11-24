@@ -352,12 +352,11 @@ button:hover,
 }
 
 .chef {
-  height: 100px;
-  width: calc(50% + 160px);
   position: absolute;
+  height: 100px;
+  width: 80%;
   bottom: 5px;
-  right: 30px;
-  z-index: 7;
+  z-index: 0;
 }
 
 .roof,

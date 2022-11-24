@@ -82,8 +82,6 @@ const ALERT_WARN = "warning"
 const ALERT_ERROR = "error"
 
 const Home = () => {
-  const isMobile = window.matchMedia("only screen and (max-width: 800px)").matches;
-
   const queryString = window.location.search;
   const parameters = new URLSearchParams(queryString);
   const newReferral = parameters.get('ref');

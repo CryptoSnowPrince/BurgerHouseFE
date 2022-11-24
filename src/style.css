@@ -28,26 +28,6 @@
 
 }
 
-.chef-1-cooking {
-    right: 38px
-}
-
-.chef-2-cooking {
-    right: 91px
-}
-
-.chef-3-cooking {
-    right: 144px
-}
-
-.chef-4-cooking {
-    right: 197px
-}
-
-.chef-5-cooking {
-    right: 250px
-}
-
 .chef-walk-with-pizza {
     position: absolute;
     background-repeat: no-repeat;
@@ -272,6 +252,23 @@
 
 /* Extra small devices (phones, 800px and down) */
 @media only screen and (max-width: 800px) {
+    .chef-cooking {
+        bottom: 8px;
+        width: 30px;
+        height: 54px;
+    }
+
+    @keyframes moveChefCooking {
+        0% {
+            background-position-x: 0px;
+        }
+
+        100% {
+            background-position-x: -360px;
+        }
+
+    }
+
     .tables {
         right: 27px;
         bottom: 10px;

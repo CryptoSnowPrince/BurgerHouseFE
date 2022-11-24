@@ -3,6 +3,7 @@ import Chef from './animations/chef';
 
 const House = ({ id, houseInfo, isConnected, price, setUpgradeLevel, enableValue }) => {
     // console.log('[PRINCE](value)(id)', id)
+
     const [visible1, setVisible1] = useState(false);
     const [visible2, setVisible2] = useState(false);
     const [visible3, setVisible3] = useState(false);
@@ -10,15 +11,15 @@ const House = ({ id, houseInfo, isConnected, price, setUpgradeLevel, enableValue
     useEffect(() => {
         const intervalId1 = setInterval(() => {
             setVisible1(true);
-        }, Math.floor(Math.random() * 3000));
+        }, Math.floor(Math.random() * 2500));
 
         const intervalId2 = setInterval(() => {
             setVisible2(true);
-        }, Math.floor(Math.random() * 10000) + 4000);
+        }, Math.floor(Math.random() * 2500) + 2600);
 
         const intervalId3 = setInterval(() => {
             setVisible3(true);
-        }, Math.floor(Math.random() * 7000) + 2000);
+        }, Math.floor(Math.random() * 2500) + 5200);
 
         return () => {
             clearInterval(intervalId1);

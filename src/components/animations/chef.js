@@ -3,8 +3,8 @@ import ChefCook from './chefCook';
 import ChefWalk from './chefWalk';
 import ChefWalkWithPizza from './chefWalkWithPizza';
 
-const Chef = (props) => {
-    const totalTime = props.cookingTime + props.workTime + props.backTime;
+const Chef = ({ chefId, cookingTime, workTime, backTime }) => {
+    const totalTime = cookingTime + workTime + backTime;
     const [step, setStep] = useState(0);
 
     useEffect(() => {
@@ -16,17 +16,17 @@ const Chef = (props) => {
 
     return (
         <div className='chef'>
-            <ChefCook chefId={props.chefId} />
+            <ChefCook chefId={chefId} />
             {/* {
-                (step <= props.cookingTime) && (<ChefCook chefId={props.chefId} />)
+                (step <= cookingTime) && (<ChefCook chefId={chefId} />)
             } */}
             {/* {
-                (props.cookingTime < step && step <= (props.cookingTime + props.workTime)) &&
-                (<ChefWalkWithPizza chefId={props.chefId} />)
+                (cookingTime < step && step <= (cookingTime + workTime)) &&
+                (<ChefWalkWithPizza chefId={chefId} />)
             }
             {
-                ((props.cookingTime + props.workTime) < step && step <= totalTime) &&
-                (<ChefWalk chefId={props.chefId} />)
+                ((cookingTime + workTime) < step && step <= totalTime) &&
+                (<ChefWalk chefId={chefId} />)
             } */}
         </div>
     )
