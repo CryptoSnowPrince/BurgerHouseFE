@@ -15,7 +15,7 @@ const ChefWalkWithBurger = ({ chefId, startPos, endPos, delta, walkTime }) => {
     return () => {
       clearInterval(intervalId1);
     };
-  }, []);
+  }, [distance, step]);
 
   return (
     <div

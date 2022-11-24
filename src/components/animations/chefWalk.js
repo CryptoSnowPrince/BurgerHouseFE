@@ -15,7 +15,7 @@ const ChefWalk = ({ chefId, startPos, endPos, delta, backTime }) => {
     return () => {
       clearInterval(intervalId1);
     };
-  }, []);
+  }, [distance, step]);
 
   return (
     <div

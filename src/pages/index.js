@@ -576,7 +576,7 @@ const Home = () => {
         partners={enableValue() ? houseInfo.refs : 0}
       />
       <div className="house">
-        {/* <div id="cloud-intro" /> */}
+        <div id="cloud-intro" />
         <div className="roof" />
         <div className="floors">
           <Elevator />
