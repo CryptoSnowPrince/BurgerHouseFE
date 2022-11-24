@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const ChefWalk = ({ chefId, startPos, delta }) => {
+const ChefWalkWithBurger = ({ chefId, startPos, delta }) => {
   const [walk, setWalk] = useState(0);
 
   useEffect(() => {
@@ -15,12 +15,10 @@ const ChefWalk = ({ chefId, startPos, delta }) => {
 
   return (
     <div
-      className="chef-walk"
+      className="chef-walk-with-burger"
       style={{ right: `${startPos - chefId * delta}px` }}
-    // style={{ right: `${LENTGH - walk}px` }}
-    >
-    </div>
+    // style={{ right: `${walk + LENGTH}px` }}
+    />
   )
 }
-
-export default ChefWalk;
+export default ChefWalkWithBurger;
