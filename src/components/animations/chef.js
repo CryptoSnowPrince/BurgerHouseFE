@@ -16,17 +16,18 @@ const Chef = (props) => {
 
     return (
         <div className='chef'>
-            {
+            <ChefCook chefId={props.chefId} />
+            {/* {
                 (step <= props.cookingTime) && (<ChefCook chefId={props.chefId} />)
-            }
-            {
+            } */}
+            {/* {
                 (props.cookingTime < step && step <= (props.cookingTime + props.workTime)) &&
                 (<ChefWalkWithPizza chefId={props.chefId} />)
             }
             {
                 ((props.cookingTime + props.workTime) < step && step <= totalTime) &&
                 (<ChefWalk chefId={props.chefId} />)
-            }
+            } */}
         </div>
     )
 }

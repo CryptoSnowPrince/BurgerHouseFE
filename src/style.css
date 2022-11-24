@@ -9,12 +9,23 @@
 
 .chef-cooking {
     position: absolute;
-    bottom: 20px;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: top;
-    height: 37px;
-    width: 51px;
+    background-image: url(./assets/img/static/chef-cook.png);
+    background-size: cover;
+    bottom: 17px;
+    width: 40px;
+    height: 72px;
+    animation: moveChefCooking 1s steps(12) alternate infinite;
+}
+
+@keyframes moveChefCooking {
+    0% {
+        background-position-x: 0px;
+    }
+
+    100% {
+        background-position-x: -480px;
+    }
+
 }
 
 .chef-1-cooking {
@@ -36,127 +47,6 @@
 .chef-5-cooking {
     right: 250px
 }
-
-.chef-cooking-0 {
-    background-image: url(./assets/img/animations/cook/0.png);
-}
-
-.chef-cooking-1 {
-    background-image: url(./assets/img/animations/cook/1.png);
-}
-
-.chef-cooking-2 {
-    background-image: url(./assets/img/animations/cook/2.png);
-}
-
-.chef-cooking-3 {
-    background-image: url(./assets/img/animations/cook/3.png);
-}
-
-.chef-cooking-4 {
-    background-image: url(./assets/img/animations/cook/4.png);
-}
-
-.chef-cooking-5 {
-    background-image: url(./assets/img/animations/cook/5.png);
-}
-
-.chef-cooking-6 {
-    background-image: url(./assets/img/animations/cook/6.png);
-}
-
-.chef-cooking-7 {
-    background-image: url(./assets/img/animations/cook/7.png);
-}
-
-.chef-cooking-8 {
-    background-image: url(./assets/img/animations/cook/8.png);
-}
-
-.chef-cooking-9 {
-    background-image: url(./assets/img/animations/cook/9.png);
-}
-
-.chef-cooking-10 {
-    background-image: url(./assets/img/animations/cook/10.png);
-}
-
-.chef-cooking-11 {
-    background-image: url(./assets/img/animations/cook/11.png);
-}
-
-.chef-cooking-12 {
-    background-image: url(./assets/img/animations/cook/12.png);
-}
-
-.chef-cooking-13 {
-    background-image: url(./assets/img/animations/cook/13.png);
-}
-
-.chef-cooking-14 {
-    background-image: url(./assets/img/animations/cook/14.png);
-}
-
-.chef-cooking-15 {
-    background-image: url(./assets/img/animations/cook/15.png);
-}
-
-.chef-cooking-16 {
-    background-image: url(./assets/img/animations/cook/16.png);
-}
-
-.chef-cooking-17 {
-    background-image: url(./assets/img/animations/cook/17.png);
-}
-
-.chef-cooking-18 {
-    background-image: url(./assets/img/animations/cook/18.png);
-}
-
-.chef-cooking-19 {
-    background-image: url(./assets/img/animations/cook/19.png);
-}
-
-.chef-cooking-20 {
-    background-image: url(./assets/img/animations/cook/20.png);
-}
-
-.chef-cooking-21 {
-    background-image: url(./assets/img/animations/cook/21.png);
-}
-
-.chef-cooking-22 {
-    background-image: url(./assets/img/animations/cook/22.png);
-}
-
-.chef-cooking-23 {
-    background-image: url(./assets/img/animations/cook/23.png);
-}
-
-.chef-cooking-24 {
-    background-image: url(./assets/img/animations/cook/24.png);
-}
-
-.chef-cooking-25 {
-    background-image: url(./assets/img/animations/cook/25.png);
-}
-
-.chef-cooking-26 {
-    background-image: url(./assets/img/animations/cook/26.png);
-}
-
-.chef-cooking-27 {
-    background-image: url(./assets/img/animations/cook/27.png);
-}
-
-.chef-cooking-28 {
-    background-image: url(./assets/img/animations/cook/28.png);
-}
-
-.chef-cooking-29 {
-    background-image: url(./assets/img/animations/cook/29.png);
-}
-
 
 .chef-walk-with-pizza {
     position: absolute;
