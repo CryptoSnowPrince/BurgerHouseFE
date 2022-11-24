@@ -1452,15 +1452,36 @@ div.farm-coin {
   bottom: -2px;
 }
 
+.counter-boy-in-house {
+  position: absolute;
+  background: url(./assets/img/static/counter-boy.png) no-repeat;
+  background-size: cover;
+  width: 34px;
+  height: 34px;
+  left: 185px;
+  bottom: 37px;
+  animation: moveCounterBoyInHouse 1s steps(4) infinite;
+}
+
+@keyframes moveCounterBoyInHouse {
+  from {
+    background-position-x: 0px;
+  }
+
+  to {
+    background-position-x: -136px;
+  }
+}
+
 .counter-boy {
   position: absolute;
   background: url(./assets/img/static/counter-boy.png) no-repeat;
   background-size: cover;
   z-index: 2;
   width: 50px;
-  height: 75px;
+  height: 50px;
   left: calc(50% - 202px);
-  bottom: 14px;
+  bottom: 39px;
   animation: moveX 1s steps(4) infinite;
 }
 
@@ -1476,11 +1497,28 @@ div.farm-coin {
 
 /* Extra small devices (phones, 800px and down) */
 @media only screen and (max-width: 800px) {
+  .counter-boy-in-house {
+    width: 25px;
+    height: 25px;
+    left: 71px;
+    bottom: 18px;
+  }
+
+  @keyframes moveCounterBoyInHouse {
+    from {
+      background-position-x: 0px;
+    }
+
+    to {
+      background-position-x: -100px;
+    }
+  }
+
   .counter-boy {
     width: 28px;
-    height: 42px;
+    height: 28px;
     left: calc(50% - 108px);
-    bottom: 7px;
+    bottom: 21px;
   }
 
   @keyframes moveX {

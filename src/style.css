@@ -11,9 +11,9 @@
     position: absolute;
     background-image: url(./assets/img/static/chef-cook.png);
     background-size: cover;
-    bottom: 17px;
-    width: 40px;
-    height: 72px;
+    bottom: 18px;
+    width: 35px;
+    height: 63px;
     animation: moveChefCooking 1s steps(12) alternate infinite;
 }
 
@@ -23,7 +23,7 @@
     }
 
     100% {
-        background-position-x: -480px;
+        background-position-x: -420px;
     }
 
 }
@@ -253,9 +253,9 @@
 /* Extra small devices (phones, 800px and down) */
 @media only screen and (max-width: 800px) {
     .chef-cooking {
-        bottom: 8px;
-        width: 30px;
-        height: 54px;
+        bottom: 9px;
+        width: 25px;
+        height: 45px;
     }
 
     @keyframes moveChefCooking {
@@ -264,7 +264,7 @@
         }
 
         100% {
-            background-position-x: -360px;
+            background-position-x: -300px;
         }
 
     }
