@@ -31,11 +31,11 @@ const House = ({ id, houseInfo, isConnected, price, setUpgradeLevel, enableValue
     return (
         <div className='floor_house' id={`house${id}`}>
             <div className='counter-boy-in-house' />
+            {visible1 && (id > 6) && <Chef className="chef-1" chefId={1} cookingTime={2000} walkTime={2500} backTime={2000} />}
+            {visible1 && (id > 4) && <Chef className="chef-2" chefId={2} cookingTime={2000} walkTime={3500} backTime={3000} />}
+            {visible2 && (id > 2) && <Chef className="chef-3" chefId={3} cookingTime={2000} walkTime={4500} backTime={4000} />}
+            {visible3 && <Chef className="chef-4" chefId={4} cookingTime={2000} walkTime={5500} backTime={5000} />}
             <div className='counter-in-house' />
-            {visible1 && (id > 6) && <Chef className="chef-1" chefId={1} cookingTime={1000} workTime={3000} backTime={3000} />}
-            {visible1 && (id > 4) && <Chef className="chef-2" chefId={2} cookingTime={1000} workTime={5000} backTime={6000} />}
-            {visible2 && (id > 2) && <Chef className="chef-3" chefId={3} cookingTime={1000} workTime={7000} backTime={8000} />}
-            {visible3 && <Chef className="chef-4" chefId={4} cookingTime={2000} workTime={9000} backTime={10000} />}
             <div className='tables'>
                 {(id > 6) && <div className='counter-table table1'></div>}
                 {(id > 4) && <div className='counter-table table2'></div>}

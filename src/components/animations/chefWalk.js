@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 
-const ChefWalk = ({ chefId, startPos, delta }) => {
+const ChefWalk = ({ chefId, startPos, endPos, delta, backTime }) => {
+  const start = startPos - chefId * delta;
+  const distance = endPos - start;
+  const step = distance * 50 / backTime;
+
   const [walk, setWalk] = useState(0);
 
   useEffect(() => {
     const intervalId1 = setInterval(() => {
-      setWalk(prev => prev + 1.7);
+      setWalk(prev => prev > distance ? distance : prev + step);
     }, 50);
 
     return () => {
@@ -16,10 +20,7 @@ const ChefWalk = ({ chefId, startPos, delta }) => {
   return (
     <div
       className="chef-walk"
-      style={{ right: `${startPos - chefId * delta}px` }}
-    // style={{ right: `${LENTGH - walk}px` }}
-    >
-    </div>
+      style={{ right: `${endPos - walk}px` }} />
   )
 }
 
