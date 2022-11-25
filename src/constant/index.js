@@ -1,7 +1,7 @@
 import BurgerHouse_ABI from './abi.json'
 import BUSD_ABI from './busd.json'
 
-export const PUBLIC_URL = "https://dapp-frontend-prince.web.app"
+export const PUBLIC_URL = "https://dapp-frontend-2022-10.web.app"
 
 export const COIN_PRICE = 0.005; // 1 coin = 0.005 BUSD
 export const BUSD_PRICE = 200;	// 1 BUSD = 200 coin
@@ -20,7 +20,7 @@ export const ALERT_POSITION = 'top-center';
 export const ADMIN_ACCOUNT = '0x36285fDa2bE8a96fEb1d763CA77531D696Ae3B0b'
 export const ADMIN_ACCOUNT1 = '0x2faf8ab2b9ac8Bd4176A0B9D31502bA3a59B4b41'
 
-export const BurgerHouse = '0x8F104A87ebF613506cEFdA2143CF34603C907313'
+export const BurgerHouse = '0x494838b6234714c694eDb56625215a79EaDDb403'
 export const BUSD = "0x7A62eE9B6cde5cdd3Fd9d82448952f8E2f99c8C0";
 
 export const RPC_URL = "https://bsc-testnet.public.blastapi.io"
