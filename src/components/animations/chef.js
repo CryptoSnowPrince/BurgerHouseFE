@@ -30,15 +30,15 @@ const Chef = ({ chefId, cookingTime, walkTime, backTime }) => {
     return (
         <div className='chef'>
             {
-                (step <= cookingTime) && (<ChefCook chefId={chefId} startPos={startPos} delta={delta} />)
-            }
-            {
                 (cookingTime < step && step <= (cookingTime + walkTime)) &&
                 (<ChefWalkWithBurger chefId={chefId} startPos={startPos} endPos={endPos} delta={delta} walkTime={walkTime} />)
             }
             {
                 ((cookingTime + walkTime) < step && step <= totalTime) &&
                 (<ChefWalk chefId={chefId} startPos={startPos} endPos={endPos} delta={delta} backTime={backTime} />)
+            }
+            {
+                (step <= cookingTime) && (<ChefCook chefId={chefId} startPos={startPos} delta={delta} />)
             }
         </div>
     )
