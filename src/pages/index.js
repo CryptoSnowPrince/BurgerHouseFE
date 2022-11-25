@@ -260,43 +260,6 @@ const Home = () => {
     return 0;
   }
 
-  const sellHouse = async () => {
-    // console.log('[PRINCE](sellHouse)')
-    try {
-      if (pendingTx) {
-        setAlertMessage({ type: ALERT_WARN, message: "Pending..." })
-        return
-      }
-
-      if (!enableValue() || houseInfo.timestamp <= 0) {
-        setAlertMessage({ type: ALERT_WARN, message: `User is not registered!` });
-        return;
-      }
-
-      setPendingTx(true)
-      if (isConnected && burgerHouseContract) {
-        await burgerHouseContract.methods.sellHouse().send({
-          from: curAcount,
-        }).then((txHash) => {
-          // console.log(txHash)
-          const txHashString = `${txHash.transactionHash}`
-          const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
-          setAlertMessage({ type: ALERT_SUCCESS, message: `Sell House Success! txHash is ${msgString}` });
-        }).catch((err) => {
-          // console.log(err)
-          setAlertMessage({ type: ALERT_ERROR, message: `Sell House Fail! Reason: ${err.message}` });
-        });
-      }
-      else {
-        // console.log("connect Wallet");
-      }
-      setPendingTx(false)
-    } catch (e) {
-      console.log('sellHouse: ', e)
-      setPendingTx(false)
-    }
-  }
-
   const withdrawMoney = async () => {
     // console.log('[PRINCE](withdrawMoney)')
     try {
@@ -615,7 +578,6 @@ const Home = () => {
         cash={enableValue() ? `${houseInfo.cash} ` : `0 `}
         cashAsBUSD={enableValue() ? `${houseInfo.cash * CASH_PRICE} ` : `0 `}
         withdrawMoney={withdrawMoney}
-        sellHouse={sellHouse}
         setShowGetBUSD={setShowGetBUSD}
       />
 

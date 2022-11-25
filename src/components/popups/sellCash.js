@@ -6,7 +6,6 @@ const SellCash = ({
     cash,
     cashAsBUSD,
     withdrawMoney,
-    sellHouse,
     setShowGetBUSD,
 }) => {
     return (
@@ -29,7 +28,6 @@ const SellCash = ({
                     </span>
                 </div>
                 <button type="button" className="popup-sell-btn-swap" onClick={() => withdrawMoney()}>Exchange</button>
-                <button type="button" className="popup-sell-btn-destroy" onClick={() => sellHouse()}>Sell House</button>
             </div>
             <button type="button" className="popup-btn-close" onClick={() => setShowGetBUSD(false)} />
         </div>

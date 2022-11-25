@@ -200,13 +200,6 @@
         "type": "function"
     },
     {
-        "inputs": [],
-        "name": "sellHouse",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
         "inputs": [
             {
                 "internalType": "address",
