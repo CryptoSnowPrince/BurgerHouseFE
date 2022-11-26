@@ -20,7 +20,8 @@ const ChefWalk = ({ chefId, startPos, endPos, delta, backTime }) => {
   return (
     <div
       className="chef-walk"
-      style={{ right: `${endPos - walk}px` }} />
+      style={{ right: `${endPos - walk}px` }}
+    />
   )
 }
 

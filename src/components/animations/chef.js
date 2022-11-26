@@ -4,11 +4,11 @@ import ChefWalk from './chefWalk';
 import ChefWalkWithBurger from './chefWalkWithBurger';
 
 const START_POS_PC = 240;
-const START_POS_MOBILE = 136;
+const START_POS_MOBILE = 113;
 const END_POS_PC = 270;
 const END_POS_MOBILE = 120;
 const DELTA_PC = 50;
-const DELTA_MOBILE = 34;
+const DELTA_MOBILE = 28;
 
 const Chef = ({ chefId, cookingTime, walkTime, backTime }) => {
     const isMobile = window.matchMedia("only screen and (max-width: 800px)").matches;

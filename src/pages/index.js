@@ -544,7 +544,13 @@ const Home = () => {
         <div className="floors">
           <Elevator />
           {[8, 7, 6, 5, 4, 3, 2, 1].map((value) => ( // value = 8, 7, 6, 5, 4, 3, 2, 1
-            <House key={value} id={value} houseInfo={houseInfo} isConnected={isConnected} price={price} setUpgradeLevel={setUpgradeLevel} enableValue={enableValue} />
+            <House
+              key={value}
+              houseLevel={enableValue() ? parseInt(houseInfo.levels[value - 1]) : 0}
+              id={value}
+              isConnected={isConnected}
+              price={price}
+              setUpgradeLevel={setUpgradeLevel} />
           ))}
           <Floor0 />
         </div>
