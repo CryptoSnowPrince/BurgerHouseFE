@@ -35,11 +35,17 @@ const Referral = ({
                     Copy
                 </button>
                 <div className="popup-partners-description">
-                    Get <span>{getCoinRef(refLevel)}%</span>
-                    <div className="popup-partners-coin-icon" />{` and `}<span>{getCashRef(refLevel)}%</span>
+                    1st Level: Get <span>7%</span>
+                    <div className="popup-partners-coin-icon" />{` and `}<span>3%</span>
+                    <div className="popup-partners-money-icon" />
+                    2nd Level: Get <span>3%</span>
+                    <div className="popup-partners-coin-icon" />{` and `}<span>2%</span>
+                    <div className="popup-partners-money-icon" />
+                    3rd Level: Get <span>2%</span>
+                    <div className="popup-partners-coin-icon" />{` and `}<span>1%</span>
                     <div className="popup-partners-money-icon" />{` from each deposit of your partner.`}
                 </div>
-                <div className="popup-partners-header" style={{ marginTop: "15px" }}>Referral statistics</div>
+                <div className="popup-partners-header" style={{ marginTop: "5px" }}>Referral statistics</div>
                 <div className="popup-partners-coins-bar">
                     <div className="popup-partners-coins-bar-icon" />
                     <div className="popup-partners-coins-bar-text">

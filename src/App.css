@@ -759,14 +759,15 @@ div.farm-coin {
   text-shadow: 0em 0.1em #000, 0.038em 0.092em #000, 0.071em 0.071em #000, 0.092em 0.038em #000, 0.1em 0em #000, 0.092em -0.038em #000, 0.071em -0.071em #000, 0.038em -0.092em #000, 0em -0.1em #000, -0.038em -0.092em #000, -0.071em -0.071em #000, -0.092em -0.038em #000, -0.1em 0em #000, -0.092em 0.038em #000, -0.071em 0.071em #000, -0.038em 0.092em #000;
   text-align: center;
   width: 300px;
-  margin: 12px auto 0;
+  margin: 5px auto 0;
+  margin-top: 0;
   font-size: 16px;
   font-weight: bold;
 }
 
 .popup-partners-header {
   text-align: center;
-  margin-top: 40px;
+  margin-top: 20px;
   font-size: 20px;
   font-weight: bold;
   color: #fdf611;
@@ -793,7 +794,7 @@ div.farm-coin {
   background-position: center;
   margin: 0 auto;
   width: 80px;
-  height: 50px;
+  height: 35px;
   color: #fff;
   font-size: 19px;
   font-weight: bold;
