@@ -6,7 +6,7 @@ import ChefWalkWithBurger from './chefWalkWithBurger';
 const START_POS_PC = 240;
 const START_POS_MOBILE = 113;
 const END_POS_PC = 270;
-const END_POS_MOBILE = 120;
+const END_POS_MOBILE = 125;
 const DELTA_PC = 50;
 const DELTA_MOBILE = 28;
 
