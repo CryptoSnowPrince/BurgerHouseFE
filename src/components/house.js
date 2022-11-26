@@ -45,10 +45,10 @@ const House = ({ id, houseLevel, isConnected, price, setUpgradeLevel }) => {
             <div className='counter-in-house' />
             <div className='tables'>
                 {(houseLevel > 0 || !isConnected) && <div className='counter-table table5' />}
-                {visible4 && (houseLevel > 1 || (!isConnected && id > 2)) && <div className='counter-table table4' />}
-                {visible3 && (houseLevel > 2 || (!isConnected && id > 4)) && <div className='counter-table table3' />}
-                {visible2 && (houseLevel > 3 || (!isConnected && id > 6)) && <div className='counter-table table2' />}
-                {visible1 && (houseLevel > 4 || (!isConnected && id > 7)) && <div className='counter-table table1' />}
+                {(houseLevel > 1 || (!isConnected && id > 2)) && <div className='counter-table table4' />}
+                {(houseLevel > 2 || (!isConnected && id > 4)) && <div className='counter-table table3' />}
+                {(houseLevel > 3 || (!isConnected && id > 6)) && <div className='counter-table table2' />}
+                {(houseLevel > 4 || (!isConnected && id > 7)) && <div className='counter-table table1' />}
             </div>
             <button className="btn-red btn-floor"
                 disabled={!isConnected}
