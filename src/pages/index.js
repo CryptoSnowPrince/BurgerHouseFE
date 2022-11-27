@@ -309,7 +309,7 @@ const Home = () => {
         return
       }
 
-      if (upgradeLevel > 2 && parseInt(houseInfo.levels[upgradeLevel - 2]) < 5) {
+      if (upgradeLevel > 1 && parseInt(houseInfo.levels[upgradeLevel - 2]) < 5) {
         setAlertMessage({ type: ALERT_WARN, message: "Please upgrade your all houses to top level before purchasing this house!" })
         return
       }
