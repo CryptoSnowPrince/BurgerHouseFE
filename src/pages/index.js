@@ -239,7 +239,7 @@ const Home = () => {
   }, [isConnected, web3, burgerHouseContract, refetch, curAcount]);
 
   const enableValue = () => {
-    return (houseInfo && Object.keys(houseInfo).length > 0)
+    return (isConnected && houseInfo && Object.keys(houseInfo).length > 0)
   }
 
   const pendingHours = () => {
@@ -253,12 +253,12 @@ const Home = () => {
     return 0;
   }
 
-  const pendingCash = () => {
-    if (enableValue()) {
-      return pendingHours() * houseInfo.yield / 10 + parseInt(houseInfo.burger);
-    }
-    return 0;
-  }
+  // const pendingCash = () => {
+  //   if (enableValue()) {
+  //     return pendingHours() * houseInfo.yield / 10 + parseInt(houseInfo.burger);
+  //   }
+  //   return 0;
+  // }
 
   const withdrawMoney = async () => {
     // console.log('[PRINCE](withdrawMoney)')
@@ -591,7 +591,8 @@ const Home = () => {
         isConnected={isConnected}
         showGetMoney={showGetMoney}
         pendingHours={pendingHours}
-        pendingCash={pendingCash}
+        // pendingCash={pendingCash}
+        yieldValue={enableValue() ? `+ ${houseInfo.yield / 10}` : "--"}
         pendingTx={pendingTx}
         collectMoney={collectMoney}
         setShowGetMoney={setShowGetMoney}
@@ -616,7 +617,7 @@ const Home = () => {
       <Referral
         showReferral={showReferral}
         refLink={refLink}
-        refLevel={enableValue() ? parseInt(houseInfo.refLevel) : 0}
+        // refLevel={enableValue() ? parseInt(houseInfo.refLevel) : 0}
         refCoins={enableValue() ?
           `+ ${parseInt(houseInfo.refCoins * 100 * getCoinRef(enableValue() ? parseInt(houseInfo.refLevel) : 0) / DENOMINATOR)}` :
           `+ 0`}
