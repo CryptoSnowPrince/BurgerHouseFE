@@ -440,7 +440,7 @@ button:hover,
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  margin: -35px auto 0;
+  margin: 0px auto;
   width: 225px;
   height: 225px;
 }
@@ -452,7 +452,7 @@ button:hover,
   width: 300px;
   font-size: 17px;
   font-weight: bold;
-  margin: -45px auto 0;
+  margin: -5px auto 0;
 }
 
 .popup-sell-description span {
@@ -483,7 +483,7 @@ button:hover,
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  margin: 15px auto 0;
+  margin: 0 auto;
   width: 102px;
   height: 55px;
   color: #fff;
@@ -1224,7 +1224,7 @@ div.farm-coin {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  margin: -30px auto 0;
+  margin: -20px auto 0;
   width: 300px;
   height: 42px;
   display: flex;

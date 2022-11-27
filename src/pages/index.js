@@ -382,7 +382,7 @@ const Home = () => {
         return
       }
 
-      if (parseFloat(busdInputValue) <= 0) {
+      if (parseFloat(busdInputValue) <= 0 || Number.isNaN(parseFloat(busdInputValue))) {
         setAlertMessage({ type: ALERT_WARN, message: "Please input BUSD value..." })
         return
       }
@@ -427,6 +427,11 @@ const Home = () => {
       if (pendingTx) {
         setAlertMessage({ type: ALERT_WARN, message: "Pending..." })
         return
+      }
+
+      if (!enableValue() || parseInt(houseInfo.yield) === 0) {
+        setAlertMessage({ type: ALERT_WARN, message: "Please purchase your house to collect money!" })
+        return;
       }
 
       setPendingTx(true)
@@ -546,6 +551,7 @@ const Home = () => {
           {[8, 7, 6, 5, 4, 3, 2, 1].map((value) => ( // value = 8, 7, 6, 5, 4, 3, 2, 1
             <House
               key={value}
+              timer={enableValue() && value >= 6 ? (blockTimestamp - houseInfo.goldTimestamp) : 0}
               houseLevel={enableValue() ? parseInt(houseInfo.levels[value - 1]) : 0}
               id={value}
               isConnected={isConnected}
