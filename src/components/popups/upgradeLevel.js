@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const UpgradeLevel = ({
     isConnected,
     upgradeLevel,
+    timer,
     level,
     addedLevel,
     profit,
@@ -10,11 +11,22 @@ const UpgradeLevel = ({
     totalProfit,
     disabled,
     upgradeHouse,
-    enableValue,
-    houseInfo,
+    enabled,
     setUpgradeLevel,
     price,
 }) => {
+    const [blink, setBlink] = useState(true);
+
+    useEffect(() => {
+        const intervalId1 = setInterval(() => {
+            setBlink(prev => !prev);
+        }, 500);
+
+        return () => {
+            clearInterval(intervalId1);
+        };
+    }, []);
+
     return (
         <div className="popup-wrapper popup-upgrade upgrade-level" style={{ display: upgradeLevel > 0 && isConnected ? "block" : "none" }}>
             <div className="popup-box-2">
@@ -55,23 +67,35 @@ const UpgradeLevel = ({
                 </div>
                 <div className="popup-upgrade-info-text">
                     {`House ${upgradeLevel} - `}
-                    {enableValue() && upgradeLevel > 0 ?
+                    {enabled ?
                         (
-                            parseInt(houseInfo.levels[upgradeLevel - 1]) < 5 ?
-                                `Upgrade to Level ${parseInt(houseInfo.levels[upgradeLevel - 1]) + 1}` :
+                            parseInt(level) < 5 ?
+                                `Upgrade to Level ${parseInt(level) + 1}` :
                                 `Top Level !!!`
                         ) : `Upgrade to Level 1`}
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <button className="btn-red btn-upgrade"
                         disabled={disabled}
-                        onClick={(e) => upgradeHouse(e, upgradeLevel - 1)}>
-                        {enableValue() && upgradeLevel > 0 ? (
-                            parseInt(houseInfo.levels[upgradeLevel - 1]) < 5 ?
+                        onClick={(e) => upgradeHouse(e)}>
+                        {enabled ? (
+                            parseInt(level) < 5 ?
                                 (
-                                    <div className="farm-coin" style={{ fontWeight: "bold", paddingLeft: "30px", paddingTop: "2px" }}>
-                                        {price[parseInt(houseInfo.levels[upgradeLevel - 1])][upgradeLevel - 1]}
-                                    </div>
+                                    timer !== "" ?
+                                        <>
+                                            <div className="popup-time-icon" />
+                                            <div className="level-text" style={{width: "60px", marginLeft: "0px"}}>
+                                                {/* {blink ? timer : timer.replace(":", " ")} */}
+                                                {timer}
+                                            </div>
+                                        </>
+                                        :
+                                        <>
+                                            <div className="farm-coin" >&nbsp;</div>
+                                            <div className="level-text">
+                                                {price[parseInt(level)][upgradeLevel - 1]}
+                                            </div>
+                                        </>
                                 )
                                 :
                                 (

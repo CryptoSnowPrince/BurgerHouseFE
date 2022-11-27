@@ -17,6 +17,7 @@ import {
   DENOMINATOR,
   ALERT_DELAY,
   ALERT_POSITION,
+  LOCK_TIME,
 } from "../constant";
 
 import House from "../components/house";
@@ -31,7 +32,7 @@ import Referral from "../components/popups/referral";
 import Floor0 from "../components/floor0";
 import Elevator from "../components/animations/elevator";
 
-import { getCoinRef, getCashRef } from "../utils/util";
+import { getCoinRef, getCashRef, secondsToTimes, secondsToTime } from "../utils/util";
 
 const web3Modal = web3ModalSetup();
 
@@ -292,8 +293,8 @@ const Home = () => {
     }
   }
 
-  const upgradeHouse = async (e, houseId) => {
-    // console.log('[PRINCE](upgradeHouse)', e, houseId)
+  const upgradeHouse = async (e) => {
+    // console.log('[PRINCE](upgradeHouse)', e)
     try {
       e.preventDefault();
       if (pendingTx) {
@@ -308,9 +309,19 @@ const Home = () => {
         return
       }
 
+      if (upgradeLevel > 2 && parseInt(houseInfo.levels[upgradeLevel - 2]) < 5) {
+        setAlertMessage({ type: ALERT_WARN, message: "Please upgrade your all houses to top level before purchasing this house!" })
+        return
+      }
+
+      if (upgradeLevel >= 6 && parseInt(houseInfo.levels[upgradeLevel - 1]) < 1 && parseInt(blockTimestamp - houseInfo.goldTimestamp) < LOCK_TIME) {
+        setAlertMessage({ type: ALERT_WARN, message: `Please wait for ${secondsToTimes(parseInt(blockTimestamp - houseInfo.goldTimestamp))} to upgrade house!` })
+        return
+      }
+
       setPendingTx(true)
       if (isConnected && burgerHouseContract) {
-        await burgerHouseContract.methods.upgradeHouse(houseId).send({
+        await burgerHouseContract.methods.upgradeHouse(upgradeLevel - 1).send({
           from: curAcount,
         }).then((txHash) => {
           // console.log(txHash)
@@ -551,7 +562,6 @@ const Home = () => {
           {[8, 7, 6, 5, 4, 3, 2, 1].map((value) => ( // value = 8, 7, 6, 5, 4, 3, 2, 1
             <House
               key={value}
-              timer={enableValue() && value >= 6 ? (blockTimestamp - houseInfo.goldTimestamp) : 0}
               houseLevel={enableValue() ? parseInt(houseInfo.levels[value - 1]) : 0}
               id={value}
               isConnected={isConnected}
@@ -607,15 +617,27 @@ const Home = () => {
       <UpgradeLevel
         isConnected={isConnected}
         upgradeLevel={upgradeLevel}
+        timer={
+          upgradeLevel >= 6 && parseInt(houseInfo.levels[upgradeLevel - 1]) < 1 &&
+            parseInt(houseInfo.levels[upgradeLevel - 2]) === 5 &&
+            parseInt(blockTimestamp - houseInfo.goldTimestamp) < LOCK_TIME ?
+            secondsToTime(parseInt(blockTimestamp - houseInfo.goldTimestamp)) : ""
+        }
         level={enableValue() && upgradeLevel > 0 ? houseInfo.levels[upgradeLevel - 1] : 0}
         addedLevel={enableValue() && upgradeLevel > 0 && parseInt(houseInfo.levels[upgradeLevel - 1]) < 5 ? `+ 1` : ` + 0`}
-        profit={`${enableValue() && upgradeLevel > 0 ? getHouseprofit(houseInfo.levels[upgradeLevel - 1], upgradeLevel - 1) : 0} / Hour`}
-        addedProfit={`+ ${enableValue() && upgradeLevel > 0 && parseInt(houseInfo.levels[upgradeLevel - 1]) < 5 ? yieldValues[houseInfo.levels[upgradeLevel - 1]][upgradeLevel - 1] : 0}`}
+        profit={
+          `${enableValue() && upgradeLevel > 0 ?
+            getHouseprofit(houseInfo.levels[upgradeLevel - 1], upgradeLevel - 1) : 0} / Hour`
+        }
+        addedProfit={
+          `+ ${enableValue() && upgradeLevel > 0 && parseInt(houseInfo.levels[upgradeLevel - 1]) < 5 ?
+            yieldValues[houseInfo.levels[upgradeLevel - 1]][upgradeLevel - 1] : 0}`
+        }
         totalProfit={`${enableValue() ? houseInfo.yield / 10 : 0} / Hour`}
-        disabled={pendingTx || !isConnected || upgradeLevel <= 0 || (enableValue() && upgradeLevel > 0 && parseInt(houseInfo.levels[upgradeLevel - 1]) === 5)}
+        disabled={pendingTx || !isConnected || upgradeLevel <= 0 ||
+          (enableValue() && upgradeLevel > 0 && parseInt(houseInfo.levels[upgradeLevel - 1]) === 5)}
         upgradeHouse={upgradeHouse}
-        enableValue={enableValue}
-        houseInfo={houseInfo}
+        enabled={enableValue() && upgradeLevel > 0}
         setUpgradeLevel={setUpgradeLevel}
         price={price}
       />

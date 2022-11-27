@@ -6,6 +6,7 @@ export const PUBLIC_URL = "https://dapp-frontend-2022-10.web.app"
 export const COIN_PRICE = 0.005; // 1 coin = 0.005 BUSD
 export const BUSD_PRICE = 200;	// 1 BUSD = 200 coin
 export const CASH_PRICE = 0.00005; // 100 cash = 0.005 BUSD
+export const LOCK_TIME = 3600 * 24 * 7; // Lock time = 7 days
 
 export const DEV_FEE = 400;
 export const DEV_COIN_FEE = 500;
