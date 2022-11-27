@@ -562,6 +562,10 @@ div.farm-coin {
   background-image: url(./assets/img/static/telegram.png);
 }
 
+.faq {
+  background-image: url(./assets/img/static/faq.png);
+}
+
 .referral {
   background-image: url(./assets/img/static/referral.png);
 }
@@ -1730,10 +1734,10 @@ div.farm-coin {
 
   .menu-btns {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-direction: row;
     margin: 0px auto;
-    width: 200px;
+    width: 250px;
   }
 
   .menu-bar-btn {
