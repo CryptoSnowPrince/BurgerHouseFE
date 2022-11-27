@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+// import React, { useEffect, useState } from 'react';
 
 const UpgradeLevel = ({
     isConnected,
@@ -15,17 +16,17 @@ const UpgradeLevel = ({
     setUpgradeLevel,
     price,
 }) => {
-    const [blink, setBlink] = useState(true);
+    // const [blink, setBlink] = useState(true);
 
-    useEffect(() => {
-        const intervalId1 = setInterval(() => {
-            setBlink(prev => !prev);
-        }, 500);
+    // useEffect(() => {
+    //     const intervalId1 = setInterval(() => {
+    //         setBlink(prev => !prev);
+    //     }, 500);
 
-        return () => {
-            clearInterval(intervalId1);
-        };
-    }, []);
+    //     return () => {
+    //         clearInterval(intervalId1);
+    //     };
+    // }, []);
 
     return (
         <div className="popup-wrapper popup-upgrade upgrade-level" style={{ display: upgradeLevel > 0 && isConnected ? "block" : "none" }}>
@@ -84,7 +85,7 @@ const UpgradeLevel = ({
                                     timer !== "" ?
                                         <>
                                             <div className="popup-time-icon" />
-                                            <div className="level-text" style={{width: "60px", marginLeft: "0px"}}>
+                                            <div className="level-text" style={{ width: "60px", marginLeft: "0px" }}>
                                                 {/* {blink ? timer : timer.replace(":", " ")} */}
                                                 {timer}
                                             </div>
