@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 
-// import { getCoinRef, getCashRef } from '../../utils/util';
-
 const Referral = ({
     showReferral,
-    // refLevel,
     refLink,
     refCoins,
     refCash,

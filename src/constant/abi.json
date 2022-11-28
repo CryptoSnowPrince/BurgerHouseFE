@@ -320,13 +320,23 @@
                     },
                     {
                         "internalType": "uint256",
+                        "name": "refs2",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "refs3",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
                         "name": "refCoins",
                         "type": "uint256"
                     },
                     {
-                        "internalType": "uint8",
-                        "name": "refLevel",
-                        "type": "uint8"
+                        "internalType": "uint256",
+                        "name": "refCash",
+                        "type": "uint256"
                     },
                     {
                         "internalType": "uint8[8]",
