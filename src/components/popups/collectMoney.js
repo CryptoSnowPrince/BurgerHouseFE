@@ -4,8 +4,8 @@ const CollectMoney = ({
     isConnected,
     showGetMoney,
     pendingHours,
-    // pendingCash,
-    yieldValue,
+    pendingCash,
+    // yieldValue,
     pendingTx,
     collectMoney,
     setShowGetMoney,
@@ -24,8 +24,8 @@ const CollectMoney = ({
                 <div className="popup-profit-figure" />
                 <div className="popup-profit-money-bar">
                     <div className="popup-profit-money-bar-icon" />
-                    {/* <div className="popup-profit-money-bar-text">{pendingCash()}</div> */}
-                    <div className="popup-profit-money-bar-text">{`${yieldValue}/h`}</div>
+                    <div className="popup-profit-money-bar-text">{pendingCash()}</div>
+                    {/* <div className="popup-profit-money-bar-text">{`${yieldValue}/h`}</div> */}
                 </div>
                 <button type="button" className="btn-green" style={{ marginTop: "5px", fontWeight: "bold" }}
                     disabled={pendingTx || !isConnected}

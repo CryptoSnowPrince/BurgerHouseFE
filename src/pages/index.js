@@ -254,12 +254,12 @@ const Home = () => {
     return 0;
   }
 
-  // const pendingCash = () => {
-  //   if (enableValue()) {
-  //     return pendingHours() * houseInfo.yield / 10 + parseInt(houseInfo.burger);
-  //   }
-  //   return 0;
-  // }
+  const pendingCash = () => {
+    if (enableValue()) {
+      return pendingHours() * houseInfo.yield / 10 + parseInt(houseInfo.burger);
+    }
+    return 0;
+  }
 
   const withdrawMoney = async () => {
     // console.log('[PRINCE](withdrawMoney)')
@@ -607,8 +607,8 @@ const Home = () => {
         isConnected={isConnected}
         showGetMoney={showGetMoney}
         pendingHours={pendingHours}
-        // pendingCash={pendingCash}
-        yieldValue={enableValue() ? `+ ${houseInfo.yield / 10}` : "--"}
+        pendingCash={pendingCash}
+        // yieldValue={enableValue() ? `+ ${houseInfo.yield / 10}` : "--"}
         pendingTx={pendingTx}
         collectMoney={collectMoney}
         setShowGetMoney={setShowGetMoney}
@@ -621,7 +621,7 @@ const Home = () => {
           upgradeLevel >= 6 && parseInt(houseInfo.levels[upgradeLevel - 1]) < 1 &&
             parseInt(houseInfo.levels[upgradeLevel - 2]) === 5 &&
             parseInt(blockTimestamp - houseInfo.goldTimestamp) < LOCK_TIME ?
-            secondsToTime(parseInt(blockTimestamp - houseInfo.goldTimestamp)) : ""
+            secondsToTime(parseInt(houseInfo.goldTimestamp) + parseInt(LOCK_TIME) - parseInt(blockTimestamp)) : ""
         }
         level={enableValue() && upgradeLevel > 0 ? houseInfo.levels[upgradeLevel - 1] : 0}
         addedLevel={enableValue() && upgradeLevel > 0 && parseInt(houseInfo.levels[upgradeLevel - 1]) < 5 ? `+ 1` : ` + 0`}
