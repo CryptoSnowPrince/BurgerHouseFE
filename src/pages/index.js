@@ -552,7 +552,7 @@ const Home = () => {
         allHousesLength={allHousesLength}
         totalInvested={totalInvested}
         totalUpgrades={totalUpgrades}
-        partners={enableValue() ? houseInfo.refs : 0}
+        partners={enableValue() ? `${parseInt(houseInfo.refs) + parseInt(houseInfo.refs2) + parseInt(houseInfo.refs3)}` : `0`}
       />
       <div className="house">
         <div id="cloud-intro" />
