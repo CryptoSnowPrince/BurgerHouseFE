@@ -144,7 +144,7 @@ const Home = () => {
     }
     setIsConnected(false);
 
-    // window.location.reload();
+    window.location.reload();
   };
 
   const loadWeb3Modal = useCallback(async () => {
