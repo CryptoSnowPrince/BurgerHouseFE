@@ -22,8 +22,8 @@ const Chef = ({ chefId, cookingTime, walkTime, backTime }) => {
 
     useEffect(() => {
         const intervalId = setInterval(() => {
-            setStep(prev => prev >= totalTime - 1000 ? 0 : prev + 1000);
-        }, 1000);
+            setStep(prev => prev >= totalTime - 100 ? 0 : prev + 100);
+        }, 100);
         return () => clearInterval(intervalId);
     }, [totalTime]);
 

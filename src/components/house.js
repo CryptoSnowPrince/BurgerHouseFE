@@ -34,14 +34,17 @@ const House = ({ id, houseLevel, isConnected, price, setUpgradeLevel }) => {
         };
     }, []);
 
+    const deltaTime = id * 100;
+    const cookingTime = 2000 - deltaTime;
+
     return (
         <div className='floor_house' id={`house${id}`}>
             <div className='counter-boy-in-house' />
-            {(houseLevel > 0 || !isConnected) && <Chef className="chef-5" chefId={4} cookingTime={2000} walkTime={5500} backTime={5000} />}
-            {visible4 && (houseLevel > 1 || (!isConnected && id > 2)) && <Chef className="chef-4" chefId={3} cookingTime={2000} walkTime={4500} backTime={4000} />}
-            {visible3 && (houseLevel > 2 || (!isConnected && id > 4)) && <Chef className="chef-3" chefId={2} cookingTime={2000} walkTime={3500} backTime={3000} />}
-            {visible2 && (houseLevel > 3 || (!isConnected && id > 6)) && <Chef className="chef-2" chefId={1} cookingTime={2000} walkTime={2500} backTime={2000} />}
-            {visible1 && (houseLevel > 4 || (!isConnected && id > 7)) && <Chef className="chef-1" chefId={0} cookingTime={2000} walkTime={1500} backTime={1000} />}
+            {(houseLevel > 0 || !isConnected) && <Chef className="chef-5" chefId={4} cookingTime={cookingTime} walkTime={5500 - deltaTime} backTime={5000 - deltaTime} />}
+            {visible4 && (houseLevel > 1 || (!isConnected && id > 2)) && <Chef className="chef-4" chefId={3} cookingTime={cookingTime} walkTime={4500 - deltaTime} backTime={4000 - deltaTime} />}
+            {visible3 && (houseLevel > 2 || (!isConnected && id > 4)) && <Chef className="chef-3" chefId={2} cookingTime={cookingTime} walkTime={3500 - deltaTime} backTime={3000 - deltaTime} />}
+            {visible2 && (houseLevel > 3 || (!isConnected && id > 6)) && <Chef className="chef-2" chefId={1} cookingTime={cookingTime} walkTime={2500 - deltaTime} backTime={2000 - deltaTime} />}
+            {visible1 && (houseLevel > 4 || (!isConnected && id > 7)) && <Chef className="chef-1" chefId={0} cookingTime={cookingTime} walkTime={1500 - deltaTime} backTime={1000 - deltaTime} />}
             <div className='counter-in-house' />
             <div className='tables'>
                 {(houseLevel > 0 || !isConnected) && <div className='counter-table table5' />}
