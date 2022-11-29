@@ -243,6 +243,17 @@ const Home = () => {
     return (isConnected && houseInfo && Object.keys(houseInfo).length > 0)
   }
 
+  const openedHouseId = () => {
+    if (enableValue()) {
+      for (var i = 0; i < 7; i++) {
+        if (houseInfo.levels[i] < 1) {
+          return i;
+        }
+      }
+    }
+    return 8;
+  }
+
   const pendingHours = () => {
     if (enableValue()) {
       var hrs = parseInt((blockTimestamp - houseInfo.timestamp) / 3600)
@@ -558,7 +569,7 @@ const Home = () => {
         <div id="cloud-intro" />
         <div className="roof" />
         <div className="floors">
-          <Elevator />
+          <Elevator openedHouseId={openedHouseId()} />
           {[8, 7, 6, 5, 4, 3, 2, 1].map((value) => ( // value = 8, 7, 6, 5, 4, 3, 2, 1
             <House
               key={value}
@@ -568,7 +579,7 @@ const Home = () => {
               price={price}
               setUpgradeLevel={setUpgradeLevel} />
           ))}
-          <Floor0 />
+          <Floor0 showDeliveryMan={!enableValue() || parseInt(houseInfo.levels[0]) > 0} />
         </div>
       </div>
       <Footer

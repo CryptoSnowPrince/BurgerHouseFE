@@ -67,3 +67,4 @@ node_modules/
 firebase.json
 .firebaserc
 build/
+build.zip

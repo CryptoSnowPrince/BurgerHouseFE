@@ -2,11 +2,12 @@ import React from 'react';
 
 import CounterBoy from "./counterBoy";
 
-const Elevator = () => {
+const Elevator = ({ openedHouseId }) => {
+    console.log('[PRINCE](openedHouseId):', openedHouseId)
     return (
         <>
-            <div className="lift" />
-            <div className='lift-bar' />
+            <div className={`lift lift-${openedHouseId}`} />
+            <div className={`lift-bar lift-bar-${openedHouseId}`} />
             <CounterBoy />
             <div className='counter' />
             <div className="logo-desktop" />
