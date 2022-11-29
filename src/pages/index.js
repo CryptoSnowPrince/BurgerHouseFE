@@ -326,7 +326,7 @@ const Home = () => {
       }
 
       if (upgradeLevel >= 6 && parseInt(houseInfo.levels[upgradeLevel - 1]) < 1 && parseInt(blockTimestamp - houseInfo.goldTimestamp) < LOCK_TIME) {
-        setAlertMessage({ type: ALERT_WARN, message: `Please wait for ${secondsToTimes(parseInt(blockTimestamp - houseInfo.goldTimestamp))} to upgrade house!` })
+        setAlertMessage({ type: ALERT_WARN, message: `Please wait for ${secondsToTimes(parseInt(houseInfo.goldTimestamp) + parseInt(LOCK_TIME) - parseInt(blockTimestamp))} to upgrade house!` })
         return
       }
 
