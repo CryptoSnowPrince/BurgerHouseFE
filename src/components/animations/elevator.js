@@ -3,7 +3,6 @@ import React from 'react';
 import CounterBoy from "./counterBoy";
 
 const Elevator = ({ openedHouseId }) => {
-    console.log('[PRINCE](openedHouseId):', openedHouseId)
     return (
         <>
             <div className={`lift lift-${openedHouseId}`} />
