@@ -1861,26 +1861,566 @@ div.farm-coin {
   bottom: 101px;
   height: 1350px;
   z-index: 2;
-  animation: moveLiftBar 20s linear infinite;
 }
 
-@keyframes moveLiftBar {
+.lift-bar-1 {
+  animation: moveLiftBar1 7s linear infinite;
+}
+
+@keyframes moveLiftBar1 {
   0% {
     bottom: 101px;
     height: 1350px;
   }
 
-  48% {
-    bottom: 1391px;
-    height: 60px;
+  5% {
+    bottom: 101px;
+    height: 1350px;
+  }
+
+  35% {
+    bottom: 271px;
+    height: 1180px;
+  }
+
+  60% {
+    bottom: 271px;
+    height: 1180px;
+  }
+
+  85% {
+    bottom: 101px;
+    height: 1350px;
+  }
+
+  100% {
+    bottom: 101px;
+    height: 1350px;
+  }
+}
+
+.lift-bar-2 {
+  animation: moveLiftBar2 8s linear infinite;
+}
+
+@keyframes moveLiftBar2 {
+  0% {
+    bottom: 101px;
+    height: 1350px;
+  }
+
+  5% {
+    bottom: 101px;
+    height: 1350px;
+  }
+
+  35% {
+    bottom: 431px;
+    height: 1020px;
   }
 
   50% {
+    bottom: 431px;
+    height: 1020px;
+  }
+
+  65% {
+    bottom: 271px;
+    height: 1180px;
+  }
+
+  80% {
+    bottom: 271px;
+    height: 1180px;
+  }
+
+  95% {
+    bottom: 101px;
+    height: 1350px;
+  }
+
+  100% {
+    bottom: 101px;
+    height: 1350px;
+  }
+}
+
+.lift-bar-3 {
+  animation: moveLiftBar3 11s linear infinite;
+}
+
+@keyframes moveLiftBar3 {
+  0% {
+    bottom: 101px;
+    height: 1350px;
+  }
+
+  4% {
+    bottom: 101px;
+    height: 1350px;
+  }
+
+  30% {
+    bottom: 591px;
+    height: 860px;
+  }
+
+  41% {
+    bottom: 591px;
+    height: 860px;
+  }
+
+  52% {
+    bottom: 431px;
+    height: 1020px;
+  }
+
+  63% {
+    bottom: 431px;
+    height: 1020px;
+  }
+
+  74% {
+    bottom: 271px;
+    height: 1180px;
+  }
+
+  85% {
+    bottom: 271px;
+    height: 1180px;
+  }
+
+  96% {
+    bottom: 101px;
+    height: 1350px;
+  }
+
+  100% {
+    bottom: 101px;
+    height: 1350px;
+  }
+}
+
+.lift-bar-4 {
+  animation: moveLiftBar4 14s linear infinite;
+}
+
+@keyframes moveLiftBar4 {
+  0% {
+    bottom: 101px;
+    height: 1350px;
+  }
+
+  4% {
+    bottom: 101px;
+    height: 1350px;
+  }
+
+  34% {
+    bottom: 751px;
+    height: 700px;
+  }
+
+  41% {
+    bottom: 751px;
+    height: 700px;
+  }
+
+  49% {
+    bottom: 591px;
+    height: 860px;
+  }
+
+  56% {
+    bottom: 591px;
+    height: 860px;
+  }
+
+  64% {
+    bottom: 431px;
+    height: 1020px;
+  }
+
+  71% {
+    bottom: 431px;
+    height: 1020px;
+  }
+
+  79% {
+    bottom: 271px;
+    height: 1180px;
+  }
+
+  86% {
+    bottom: 271px;
+    height: 1180px;
+  }
+
+  94% {
+    bottom: 101px;
+    height: 1350px;
+  }
+
+  100% {
+    bottom: 101px;
+    height: 1350px;
+  }
+}
+
+.lift-bar-5 {
+  animation: moveLiftBar5 16s linear infinite;
+}
+
+@keyframes moveLiftBar5 {
+  0% {
+    bottom: 101px;
+    height: 1350px;
+  }
+
+  2% {
+    bottom: 101px;
+    height: 1350px;
+  }
+
+  35% {
+    bottom: 911px;
+    height: 540px;
+  }
+
+  41% {
+    bottom: 911px;
+    height: 540px;
+  }
+
+  47% {
+    bottom: 751px;
+    height: 700px;
+  }
+
+  53% {
+    bottom: 751px;
+    height: 700px;
+  }
+
+  59% {
+    bottom: 591px;
+    height: 860px;
+  }
+
+  65% {
+    bottom: 591px;
+    height: 860px;
+  }
+
+  71% {
+    bottom: 431px;
+    height: 1020px;
+  }
+
+  77% {
+    bottom: 431px;
+    height: 1020px;
+  }
+
+  83% {
+    bottom: 271px;
+    height: 1180px;
+  }
+
+  89% {
+    bottom: 271px;
+    height: 1180px;
+  }
+
+  95% {
+    bottom: 101px;
+    height: 1350px;
+  }
+
+  100% {
+    bottom: 101px;
+    height: 1350px;
+  }
+}
+
+.lift-bar-6 {
+  animation: moveLiftBar6 20s linear infinite;
+}
+
+@keyframes moveLiftBar6 {
+  0% {
+    bottom: 101px;
+    height: 1350px;
+  }
+
+  2% {
+    bottom: 101px;
+    height: 1350px;
+  }
+
+  35% {
+    bottom: 1071px;
+    height: 380px;
+  }
+
+  40% {
+    bottom: 1071px;
+    height: 380px;
+  }
+
+  45% {
+    bottom: 911px;
+    height: 540px;
+  }
+
+  50% {
+    bottom: 911px;
+    height: 540px;
+  }
+
+  55% {
+    bottom: 751px;
+    height: 700px;
+  }
+
+  60% {
+    bottom: 751px;
+    height: 700px;
+  }
+
+  65% {
+    bottom: 591px;
+    height: 860px;
+  }
+
+  70% {
+    bottom: 591px;
+    height: 860px;
+  }
+
+  75% {
+    bottom: 431px;
+    height: 1020px;
+  }
+
+  80% {
+    bottom: 431px;
+    height: 1020px;
+  }
+
+  85% {
+    bottom: 271px;
+    height: 1180px;
+  }
+
+  90% {
+    bottom: 271px;
+    height: 1180px;
+  }
+
+  95% {
+    bottom: 101px;
+    height: 1350px;
+  }
+
+  100% {
+    bottom: 101px;
+    height: 1350px;
+  }
+}
+
+.lift-bar-7 {
+  animation: moveLiftBar7 24s linear infinite;
+}
+
+@keyframes moveLiftBar7 {
+  0% {
+    bottom: 101px;
+    height: 1350px;
+  }
+
+  2% {
+    bottom: 101px;
+    height: 1350px;
+  }
+
+  34% {
+    bottom: 1231px;
+    height: 220px;
+  }
+
+  38% {
+    bottom: 1231px;
+    height: 220px;
+  }
+
+  43% {
+    bottom: 1071px;
+    height: 380px;
+  }
+
+  47% {
+    bottom: 1071px;
+    height: 380px;
+  }
+
+  52% {
+    bottom: 911px;
+    height: 540px;
+  }
+
+  56% {
+    bottom: 911px;
+    height: 540px;
+  }
+
+  61% {
+    bottom: 751px;
+    height: 700px;
+  }
+
+  65% {
+    bottom: 751px;
+    height: 700px;
+  }
+
+  70% {
+    bottom: 591px;
+    height: 860px;
+  }
+
+  74% {
+    bottom: 591px;
+    height: 860px;
+  }
+
+  79% {
+    bottom: 431px;
+    height: 1020px;
+  }
+
+  83% {
+    bottom: 431px;
+    height: 1020px;
+  }
+
+  88% {
+    bottom: 271px;
+    height: 1180px;
+  }
+
+  92% {
+    bottom: 271px;
+    height: 1180px;
+  }
+
+  97% {
+    bottom: 101px;
+    height: 1350px;
+  }
+
+  100% {
+    bottom: 101px;
+    height: 1350px;
+  }
+}
+
+.lift-bar-8 {
+  animation: moveLiftBar8 28s linear infinite;
+}
+
+@keyframes moveLiftBar8 {
+  0% {
+    bottom: 101px;
+    height: 1350px;
+  }
+
+  2% {
+    bottom: 101px;
+    height: 1350px;
+  }
+
+  25% {
     bottom: 1391px;
     height: 60px;
   }
 
-  95% {
+  29% {
+    bottom: 1391px;
+    height: 60px;
+  }
+
+  34% {
+    bottom: 1231px;
+    height: 220px;
+  }
+
+  38% {
+    bottom: 1231px;
+    height: 220px;
+  }
+
+  43% {
+    bottom: 1071px;
+    height: 380px;
+  }
+
+  47% {
+    bottom: 1071px;
+    height: 380px;
+  }
+
+  52% {
+    bottom: 911px;
+    height: 540px;
+  }
+
+  56% {
+    bottom: 911px;
+    height: 540px;
+  }
+
+  61% {
+    bottom: 751px;
+    height: 700px;
+  }
+
+  65% {
+    bottom: 751px;
+    height: 700px;
+  }
+
+  70% {
+    bottom: 591px;
+    height: 860px;
+  }
+
+  74% {
+    bottom: 591px;
+    height: 860px;
+  }
+
+  79% {
+    bottom: 431px;
+    height: 1020px;
+  }
+
+  83% {
+    bottom: 431px;
+    height: 1020px;
+  }
+
+  88% {
+    bottom: 271px;
+    height: 1180px;
+  }
+
+  92% {
+    bottom: 271px;
+    height: 1180px;
+  }
+
+  97% {
     bottom: 101px;
     height: 1350px;
   }
