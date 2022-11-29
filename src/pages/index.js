@@ -256,8 +256,8 @@ const Home = () => {
 
   const pendingHours = () => {
     if (enableValue()) {
-      var hrs = parseInt((blockTimestamp - houseInfo.timestamp) / 3600)
-      if (hrs + houseInfo.hrs > 24) {
+      var hrs = Math.floor((blockTimestamp - houseInfo.timestamp) / 3600)
+      if (hrs + parseInt(houseInfo.hrs) > 24) {
         hrs = 24 - houseInfo.hrs;
       }
       return hrs;
