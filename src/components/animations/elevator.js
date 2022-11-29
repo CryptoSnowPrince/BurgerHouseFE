@@ -7,7 +7,7 @@ const Elevator = ({ openedHouseId }) => {
     return (
         <>
             {/* <div className={`lift lift-${openedHouseId}`} /> */}
-            <div className={`lift lift-${8}`} />
+            <div className={`lift lift-${0}`} />
             {/* <div className={`lift-bar lift-bar-${openedHouseId}`} /> */}
             <CounterBoy />
             <div className='counter' />
