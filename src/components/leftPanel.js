@@ -38,7 +38,7 @@ const LeftPanel = ({
                     data-bs-placement="right"
                     data-bs-toggle="tooltip"
                     title="Partners" />
-                <a href="https://t.me/red1ones" target="_blank" rel="noreferrer" style={{ marginBottom: "8px" }}>
+                <a href="https://t.me/burgerhouseofficial" target="_blank" rel="noreferrer" style={{ marginBottom: "8px" }}>
                     <button className="menu-btn telegram" data-bs-placement="right" data-bs-toggle="tooltip" title="Telegram">
                     </button>
                 </a>
