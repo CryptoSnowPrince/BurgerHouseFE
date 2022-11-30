@@ -29,7 +29,7 @@ const ComingSoon = ({
                     Burger House is coming to you!
                 </div>
                 <div className="popup-coming-soon-timer">
-                    {secondsToHMS(countTime)}
+                    {secondsToHMS(countTime > 864000 ? 864000 : countTime)}
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: "5px" }}>
                     <button className="btn-green" style={{ fontWeight: "bold" }}
