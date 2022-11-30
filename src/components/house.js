@@ -31,8 +31,12 @@ const House = ({ id, houseLevel, isConnected, price, setUpgradeLevel }) => {
             clearInterval(intervalId2);
             clearInterval(intervalId3);
             clearInterval(intervalId4);
+            setVisible1(false);
+            setVisible2(false);
+            setVisible3(false);
+            setVisible4(false);
         };
-    }, []);
+    }, [isConnected]);
 
     const deltaTime = id * 100;
     const cookingTime = 2000 - deltaTime;
