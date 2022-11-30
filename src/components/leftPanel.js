@@ -39,13 +39,10 @@ const LeftPanel = ({
                     data-bs-toggle="tooltip"
                     title="Partners" />
                 <a href="https://t.me/burgerhouseofficial" target="_blank" rel="noreferrer" style={{ marginBottom: "8px" }}>
-                    <button className="menu-btn telegram" data-bs-placement="right" data-bs-toggle="tooltip" title="Telegram">
-                    </button>
+                    <button className="menu-btn telegram" data-bs-placement="right" data-bs-toggle="tooltip" title="Telegram" />
                 </a>
                 <a href={`${process.env.PUBLIC_URL}/doc/faq.pdf`} target="_blank" rel="noreferrer">
-                    <button className="menu-btn faq" data-bs-placement="right" data-bs-toggle="tooltip" title="Help">
-                        <i className="fa fa-question" style={{marginTop: "11px", marginLeft: "-5px"}}/>
-                    </button>
+                    <button className="menu-btn faq" data-bs-placement="right" data-bs-toggle="tooltip" title="Help" />
                 </a>
                 {/* {
                     isConnected &&

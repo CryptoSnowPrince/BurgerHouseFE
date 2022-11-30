@@ -31,3 +31,25 @@ export const secondsToTime = (seconds) => {
 
     return `0H : 0M`
 }
+
+export const secondsToHMS = (seconds) => {
+    if (seconds > 0) {
+        // Calculating the days, hours, minutes and seconds left
+        const timeDays = Math.floor(seconds / (60 * 60 * 24))
+        const timeHours = Math.floor((seconds % (60 * 60 * 24)) / (60 * 60))
+        const timeMinutes = Math.floor((seconds % (60 * 60)) / 60)
+        const timeSeconds = seconds % 60
+
+        if (timeDays > 0) {
+            return `${timeDays} D : ${timeHours} H`
+        } else if (timeHours > 0) {
+            return `${timeHours} H : ${timeMinutes} M`
+        } else if (timeMinutes > 0) {
+            return `${timeMinutes} M : ${timeSeconds} S`
+        } else {
+            return `${timeSeconds} S`
+        }
+    }
+
+    return `0 H : 0 M`
+}

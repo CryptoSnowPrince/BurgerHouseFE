@@ -16,6 +16,7 @@ export const LIMIT_INCOME = 15000;
 
 export const ALERT_DELAY = 5000;
 export const ALERT_POSITION = 'top-center';
+export const LAUNCH_TIME = 1670166000;
 
 // BSC TESTNET
 export const ADMIN_ACCOUNT = '0x36285fDa2bE8a96fEb1d763CA77531D696Ae3B0b'

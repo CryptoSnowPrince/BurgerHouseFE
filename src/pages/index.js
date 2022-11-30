@@ -18,6 +18,7 @@ import {
   ALERT_DELAY,
   ALERT_POSITION,
   LOCK_TIME,
+  LAUNCH_TIME,
 } from "../constant";
 
 import House from "../components/house";
@@ -31,6 +32,7 @@ import UpgradeLevel from "../components/popups/upgradeLevel";
 import Referral from "../components/popups/referral";
 import Floor0 from "../components/floor0";
 import Elevator from "../components/animations/elevator";
+import ComingSoon from "../components/popups/comingSoon";
 
 import { secondsToTimes, secondsToTime } from "../utils/util";
 
@@ -118,6 +120,7 @@ const Home = () => {
   const [showGetMoney, setShowGetMoney] = useState(false)
   const [upgradeLevel, setUpgradeLevel] = useState(0)
   const [showReferral, setShowReferral] = useState(false)
+  const [isComingSoon, setIsComingSoon] = useState(true)
 
   const [alertMessage, setAlertMessage] = useState({ type: ALERT_EMPTY, message: "" })
 
@@ -660,6 +663,12 @@ const Home = () => {
         refCash={enableValue() ? `+ ${parseInt(houseInfo.refCash)}` : `+ 0`}
         refs={enableValue() ? `+ ${parseInt(houseInfo.refs) + parseInt(houseInfo.refs2) + parseInt(houseInfo.refs3)}` : `+ 0`}
         setShowReferral={setShowReferral}
+      />
+
+      <ComingSoon
+        isComingSoon={isComingSoon}
+        setIsComingSoon={setIsComingSoon}
+        leftTime={LAUNCH_TIME - blockTimestamp}
       />
     </>
   );
