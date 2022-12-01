@@ -57,11 +57,11 @@
       -3000px 120px,
       -1000px 120px,
       -2600px 100px,
-      -600px 100px,
+      -800px 100px,
       -2200px 250px,
-      -200px 250px,
-      -200px 650px,
-      -2px 650px,
+      -700px 250px,
+      -700px 650px,
+      -800px 650px,
       -2400px 800px,
       -2800px 790px,
       -800px 790px;
@@ -3591,14 +3591,14 @@ div.farm-coin {
     100% {
       background-position:
         -2000px 30px,
-        -200px 30px,
+        -600px 30px,
         -1600px 200px,
-        -400px 200px,
+        -700px 200px,
         -1200px 300px,
-        -300px 300px,
-        -200px 460px,
-        -200px 460px,
-        -300px 600px;
+        -700px 300px,
+        -600px 460px,
+        -600px 460px,
+        -700px 600px;
     }
   }
 
