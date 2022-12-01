@@ -450,7 +450,7 @@ button:hover,
   text-shadow: 0em 0.1em #000, 0.038em 0.092em #000, 0.071em 0.071em #000, 0.092em 0.038em #000, 0.1em 0em #000, 0.092em -0.038em #000, 0.071em -0.071em #000, 0.038em -0.092em #000, 0em -0.1em #000, -0.038em -0.092em #000, -0.071em -0.071em #000, -0.092em -0.038em #000, -0.1em 0em #000, -0.092em 0.038em #000, -0.071em 0.071em #000, -0.038em 0.092em #000;
   text-align: center;
   width: 300px;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: bold;
   margin: -5px auto 0;
 }
@@ -921,7 +921,7 @@ div.farm-coin {
   text-align: center;
   margin: 30px auto 0;
   font-weight: bold;
-  font-size: 35px;
+  font-size: 32px;
   color: #8ac63f;
   width: 250px;
   text-shadow: 0em 0.08em #000, 0.031em 0.074em #000, 0.057em 0.057em #000, 0.074em 0.031em #000, 0.08em 0em #000, 0.074em -0.031em #000, 0.057em -0.057em #000, 0.031em -0.074em #000, 0em -0.08em #000, -0.031em -0.074em #000, -0.057em -0.057em #000, -0.074em -0.031em #000, -0.08em 0em #000, -0.074em 0.031em #000, -0.057em 0.057em #000, -0.031em 0.074em #000;

@@ -31,7 +31,7 @@ const ComingSoon = ({
                 <div className="popup-coming-soon-timer">
                     {secondsToHMS(countTime > 864000 ? 0 : countTime)}
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'center', marginTop: "5px" }}>
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop: "2px" }}>
                     <button className="btn-green" style={{ fontWeight: "bold" }}
                         onClick={() => setIsComingSoon(false)}
                     >

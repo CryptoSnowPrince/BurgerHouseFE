@@ -63,10 +63,10 @@ const BuyCoins = ({
                         }}
                     />
                 </div>
-                <div className="popup-buy-text-ticker" style={{ marginTop: "16px" }}>
+                <div className="popup-buy-text-ticker" style={{ marginTop: "10px" }}>
                     {COIN_PRICE} BUSD For 1 COIN
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'center', marginTop: "20px" }}>
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop: "10px" }}>
                     <button className="btn-green" style={{ fontWeight: "bold" }}
                         disabled={pendingTx || !isConnected}
                         onClick={
