@@ -55,7 +55,7 @@
     bottom: 0px;
     width: 34px;
     height: 102px;
-    animation: moveChefWalk s steps(16) alternate infinite;
+    animation: moveChefWalk 1s steps(16) alternate infinite;
 }
 
 @keyframes moveChefWalk {
