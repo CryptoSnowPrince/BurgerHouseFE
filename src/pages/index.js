@@ -137,6 +137,7 @@ const Home = () => {
   }, [newReferral])
 
   const logoutOfWeb3Modal = async () => {
+    alert("logoutOfWeb3Modal");
     web3Modal.clearCachedProvider();
     if (
       injectedProvider &&
@@ -147,32 +148,45 @@ const Home = () => {
     }
     setIsConnected(false);
 
-    window.location.reload();
+    // window.location.reload();
   };
 
   const loadWeb3Modal = useCallback(async () => {
+    alert("loadWeb3Modal");
     // console.log("Connecting Wallet...");
     const provider = await web3Modal.connect();
+    alert("loadWeb3Modal1");
     const web3Provider = new Web3(provider);
+    alert("loadWeb3Modal2");
     setInjectedProvider(web3Provider);
+    alert("loadWeb3Modal3");
     const acc = provider.selectedAddress
       ? provider.selectedAddress
       : provider.accounts[0];
+    alert("loadWeb3Modal4");
 
     const _curChainId = await web3Provider.eth.getChainId();
+    alert("loadWeb3Modal5");
     if (_curChainId !== MAINNET) {
       setAlertMessage({ type: ALERT_ERROR, message: 'Wrong Network! Please switch to Binance Smart Chain!' })
       return;
     }
+    alert("loadWeb3Modal6");
 
     setWeb3(web3Provider);
+    alert("loadWeb3Modal7");
     setBurgerHouseContract(getBurgerHouseContract(web3Provider));
+    alert("loadWeb3Modal8");
     setBusdContract(getBUSDContract(web3Provider));
+    alert("loadWeb3Modal9");
     setCurAcount(acc);
+    alert("loadWeb3Modal10");
     setIsConnected(true);
+    alert("loadWeb3Modal11");
 
     provider.on("chainChanged", (chainId) => {
       // console.log(`chain changed to ${chainId}! updating providers`);
+      alert("loadWeb3Modal chainChanged");
       setAlertMessage({ type: ALERT_ERROR, message: 'Wrong Network! Please switch to Binance Smart Chain!' })
       setInjectedProvider(web3Provider);
       logoutOfWeb3Modal();
@@ -180,6 +194,7 @@ const Home = () => {
 
     provider.on("accountsChanged", () => {
       // console.log(`curAcount changed!`);
+      alert("loadWeb3Modal accountsChanged");
       setAlertMessage({ type: ALERT_WARN, message: 'Current Account Changed!' })
       setInjectedProvider(web3Provider);
       logoutOfWeb3Modal();
@@ -188,6 +203,7 @@ const Home = () => {
     // Subscribe to session disconnection
     provider.on("disconnect", (code, reason) => {
       // console.log(code, reason);
+      alert("loadWeb3Modal accountsChanged");
       logoutOfWeb3Modal();
     });
     // eslint-disable-next-line
