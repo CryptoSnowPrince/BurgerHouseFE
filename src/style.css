@@ -14,7 +14,7 @@
     bottom: 18px;
     width: 35px;
     height: 63px;
-    animation: moveChefCooking 1s steps(12) alternate infinite;
+    animation: moveChefCooking 0.5s steps(12) alternate infinite;
 }
 
 @keyframes moveChefCooking {
@@ -35,7 +35,7 @@
     bottom: -10px;
     width: 55px;
     height: 110px;
-    animation: moveChefWalkBurger 2s steps(16) alternate infinite;
+    animation: moveChefWalkBurger 1s steps(16) alternate infinite;
 }
 
 @keyframes moveChefWalkBurger {
@@ -55,7 +55,7 @@
     bottom: 0px;
     width: 34px;
     height: 102px;
-    animation: moveChefWalk 2s steps(16) alternate infinite;
+    animation: moveChefWalk s steps(16) alternate infinite;
 }
 
 @keyframes moveChefWalk {
