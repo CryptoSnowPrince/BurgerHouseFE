@@ -159,7 +159,6 @@ const Home = () => {
     const web3Provider = new Web3(provider);
     // alert("loadWeb3Modal2");
     setInjectedProvider(web3Provider);
-    // alert("loadWeb3Modal3");
     // alert(JSON.stringify(provider));
     var acc = null;
     try {
@@ -182,15 +181,10 @@ const Home = () => {
     // alert("loadWeb3Modal6");
 
     setWeb3(web3Provider);
-    // alert("loadWeb3Modal7");
     setBurgerHouseContract(getBurgerHouseContract(web3Provider));
-    // alert("loadWeb3Modal8");
     setBusdContract(getBUSDContract(web3Provider));
-    // alert("loadWeb3Modal9");
     setCurAcount(acc);
-    // alert("loadWeb3Modal10");
     setIsConnected(true);
-    // alert("loadWeb3Modal11");
 
     provider.on("chainChanged", (chainId) => {
       // console.log(`chain changed to ${chainId}! updating providers`);

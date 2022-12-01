@@ -9,7 +9,6 @@ dotenv.config();
 **/
 const web3ModalSetup = () =>
   new Web3Modal({
-    // network: "mainnet", // optional
     cacheProvider: true,
     providerOptions: {
       walletconnect: {
