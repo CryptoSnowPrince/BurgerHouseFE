@@ -1,8 +1,6 @@
 import BurgerHouse_ABI from './abi.json'
 import BUSD_ABI from './busd.json'
 
-export const PUBLIC_URL = "https://dapp-frontend-2022-10.web.app"
-
 export const COIN_PRICE = 0.005; // 1 coin = 0.005 BUSD
 export const BUSD_PRICE = 200;	// 1 BUSD = 200 coin
 export const CASH_PRICE = 0.00005; // 100 cash = 0.005 BUSD
@@ -40,7 +38,7 @@ export const BUSD = "0xb7b657071Ad838AEB0096597f071AF981cdD4c9a"; // MockBUSD
 export const RPC_URL = "https://bsc-dataseed1.binance.org"
 export const MAINNET = 56
 
-export const REF_PREFIX = `${PUBLIC_URL}/?ref=`
+export const REF_PREFIX = `${process.env.PUBLIC_URL}/?ref=`
 
 export function getBurgerHouseContract(web3) {
 	return new web3.eth.Contract(BurgerHouse_ABI, BurgerHouse);
