@@ -31,7 +31,7 @@ const BuyCoins = ({
                             setBusdInputValue(busdValue)
                             setCoinInputValue(parseInt(parseFloat(busdValue) * BUSD_PRICE))
                         }}>
-                        {parseFloat(busdBalance).toFixed(2)} BUSD
+                        {parseFloat(busdBalance).toFixed(1)} BUSD
                     </div>
                 </div>
                 <div className="popup-buy-input-wrapper">
