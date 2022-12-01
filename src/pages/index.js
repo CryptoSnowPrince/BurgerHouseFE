@@ -400,21 +400,22 @@ const Home = () => {
             BurgerHouse1,
             "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
           ).send({ from: curAcount })
+        } else {
+          await busdContract.methods.approve(
+            BurgerHouse,
+            "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          ).send({
+            from: curAcount
+          }).then((txHash) => {
+            // console.log(txHash)
+            const txHashString = `${txHash.transactionHash}`
+            const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
+            setAlertMessage({ type: ALERT_SUCCESS, message: `Approve Success! txHash is ${msgString}` });
+          }).catch((err) => {
+            // console.log(err)
+            setAlertMessage({ type: ALERT_ERROR, message: `Approve Fail! Reason: ${err.message}` });
+          });
         }
-        await busdContract.methods.approve(
-          BurgerHouse,
-          "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-        ).send({
-          from: curAcount
-        }).then((txHash) => {
-          // console.log(txHash)
-          const txHashString = `${txHash.transactionHash}`
-          const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
-          setAlertMessage({ type: ALERT_SUCCESS, message: `Approve Success! txHash is ${msgString}` });
-        }).catch((err) => {
-          // console.log(err)
-          setAlertMessage({ type: ALERT_ERROR, message: `Approve Fail! Reason: ${err.message}` });
-        });
       }
       else {
         // console.log("connect Wallet");
