@@ -148,8 +148,7 @@ const Home = () => {
     }
     // alert(`loadWeb3Modal4 ${acc}`);
 
-    const _curChainId = await web3Provider.eth.getChainId();
-    // alert("loadWeb3Modal5");
+    // const _curChainId = await web3Provider.eth.getChainId();
     // if (_curChainId !== MAINNET) {
     //   setAlertMessage({ type: ALERT_ERROR, message: 'Wrong Network! Please switch to Binance Smart Chain!' })
     //   return;
