@@ -6,7 +6,7 @@ import {
 
 const UpgradeLevel = ({
     isConnected,
-    upgradeLevel,
+    upgradeLevelofHouse,
     timer,
     level,
     addedLevel,
@@ -31,9 +31,9 @@ const UpgradeLevel = ({
     // }, []);
 
     return (
-        <div className="popup-wrapper popup-upgrade upgrade-level" style={{ display: upgradeLevel > 0 && isConnected ? "block" : "none" }}>
+        <div className="popup-wrapper popup-upgrade upgrade-level" style={{ display: upgradeLevelofHouse > 0 && isConnected ? "block" : "none" }}>
             <div className="popup-box-2">
-                <div className="popup-upgrade-header">House {upgradeLevel}</div>
+                <div className="popup-upgrade-header">House {upgradeLevelofHouse}</div>
                 <div className="popup-upgrade-cover" />
                 <div className="popup-upgrade-box">
                     <div className="popup-upgrade-mini-box">
@@ -69,7 +69,7 @@ const UpgradeLevel = ({
                     </div>
                 </div>
                 <div className="popup-upgrade-info-text">
-                    {`House ${upgradeLevel} - `}
+                    {`House ${upgradeLevelofHouse} - `}
                     {enabled ?
                         (
                             parseInt(level) < 5 ?
@@ -95,7 +95,7 @@ const UpgradeLevel = ({
                                         <>
                                             <div className="farm-coin" >&nbsp;</div>
                                             <div className="level-text">
-                                                {price[parseInt(level)][upgradeLevel - 1]}
+                                                {price[parseInt(level)][upgradeLevelofHouse - 1]}
                                             </div>
                                         </>
                                 )
