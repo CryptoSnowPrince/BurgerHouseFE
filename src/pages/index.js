@@ -572,6 +572,7 @@ const Home = () => {
         setShowBuyCoins={setShowBuyCoins}
         setShowGetBUSD={setShowGetBUSD}
         setShowReferral={setShowReferral}
+        setAlertMessage={setAlertMessage}
       // logoutOfWeb3Modal={logoutOfWeb3Modal}
       />
       <RightPanel

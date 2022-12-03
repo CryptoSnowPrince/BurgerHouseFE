@@ -1,4 +1,8 @@
 import React from 'react';
+import {
+    ALERT_WARN,
+    ALERT_CONNECT_WALLET,
+} from "../constant";
 
 const LeftPanel = ({
     isConnected,
@@ -9,6 +13,7 @@ const LeftPanel = ({
     setShowBuyCoins,
     setShowGetBUSD,
     setShowReferral,
+    setAlertMessage,
     /* logoutOfWeb3Modal */
 }) => {
     return (
@@ -21,11 +26,25 @@ const LeftPanel = ({
                 }
                 <div className="menu-bar menu-bar-coin">
                     <div className="menu-bar-value">{coins}</div>
-                    <button type="button" className="menu-bar-btn plus" disabled={!isConnected} onClick={() => setShowBuyCoins(true)} />
+                    <button type="button" className="menu-bar-btn plus"
+                        onClick={() => {
+                            if (isConnected) {
+                                setShowBuyCoins(true)
+                            } else {
+                                setAlertMessage({ type: ALERT_WARN, message: ALERT_CONNECT_WALLET })
+                            }
+                        }} />
                 </div>
                 <div className="menu-bar menu-bar-money">
                     <div className="menu-bar-value">{cash}</div>
-                    <button type="button" className="menu-bar-btn minus" disabled={!isConnected} onClick={() => setShowGetBUSD(true)} />
+                    <button type="button" className="menu-bar-btn minus"
+                        onClick={() => {
+                            if (isConnected) {
+                                setShowGetBUSD(true)
+                            } else {
+                                setAlertMessage({ type: ALERT_WARN, message: ALERT_CONNECT_WALLET })
+                            }
+                        }} />
                 </div>
                 <div className="menu-bar menu-bar-without-background">
                     <div className="menu-bar-value">{yieldValue}/h</div>
