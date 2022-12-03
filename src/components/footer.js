@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const Footer = ({ isConnected, setShowGetMoney, loadWeb3Modal }) => {
+
+    useEffect(() => {
+        window.scrollTo(0, 10000)
+    }, [])
+
     return (
         <>
             <div className="footer get-money">
