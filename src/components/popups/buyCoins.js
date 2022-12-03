@@ -1,8 +1,10 @@
 import React from 'react';
+import {
+    COIN_PRICE,
+    BUSD_PRICE,
+} from "../../constant";
 
 const BuyCoins = ({
-    BUSD_PRICE,
-    COIN_PRICE,
     isConnected,
     busdBalance,
     busdInputValue,

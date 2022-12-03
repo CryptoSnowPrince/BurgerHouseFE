@@ -1,5 +1,8 @@
 import React from 'react';
 // import React, { useEffect, useState } from 'react';
+import {
+    price,
+} from "../../constant";
 
 const UpgradeLevel = ({
     isConnected,
@@ -14,7 +17,6 @@ const UpgradeLevel = ({
     upgradeHouse,
     enabled,
     setUpgradeLevel,
-    price,
 }) => {
     // const [blink, setBlink] = useState(true);
 

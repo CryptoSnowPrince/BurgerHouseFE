@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Chef from './animations/chef';
+import {
+    ALERT_WARN,
+    ALERT_CONNECT_WALLET,
+    price,
+} from "../constant";
 
-const House = ({ id, houseLevel, isConnected, price, setUpgradeLevel }) => {
+const House = ({ id, houseLevel, isConnected, setAlertMessage, setUpgradeLevel }) => {
     // console.log('[PRINCE](value)(id)', id)
 
     const [visible1, setVisible1] = useState(false);
@@ -58,8 +63,13 @@ const House = ({ id, houseLevel, isConnected, price, setUpgradeLevel }) => {
                 {(houseLevel > 4 || (!isConnected && id > 7)) && <div className='counter-table table1' />}
             </div>
             <button className="btn-red btn-floor"
-                disabled={!isConnected}
-                onClick={() => setUpgradeLevel(id)}>
+                onClick={() => {
+                    if (isConnected) {
+                        setUpgradeLevel(id)
+                    } else {
+                        setAlertMessage({ type: ALERT_WARN, message: ALERT_CONNECT_WALLET })
+                    }
+                }}>
                 {houseLevel === 5 ? (
                     <div className="level-text" style={{ color: "yellow" }}>Top Level</div>
                 ) : (

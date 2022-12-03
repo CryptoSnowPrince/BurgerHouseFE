@@ -5,7 +5,6 @@ const CollectMoney = ({
     showGetMoney,
     pendingHours,
     pendingCash,
-    // yieldValue,
     pendingTx,
     collectMoney,
     setShowGetMoney,

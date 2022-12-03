@@ -20,6 +20,13 @@ import {
   ALERT_POSITION,
   LOCK_TIME,
   LAUNCH_TIME,
+  ALERT_EMPTY,
+  ALERT_SUCCESS,
+  ALERT_WARN,
+  ALERT_ERROR,
+  priceINT,
+  price,
+  yieldValues,
 } from "../constant";
 
 import House from "../components/house";
@@ -45,33 +52,6 @@ const isAddress = web3NoAccount.utils.isAddress
 const contractNoAccount = getBurgerHouseContract(web3NoAccount)
 const busdNoAccount = getBUSDContract(web3NoAccount)
 
-const priceINT =
-  [
-    [500, 1500, 4500, 13500, 40500, 120000, 365000, 1000000],
-    [625, 1800, 5600, 16800, 50600, 150000, 456000, 1200000],
-    [780, 2300, 7000, 21000, 63200, 187000, 570000, 1560000],
-    [970, 3000, 8700, 26000, 79000, 235000, 713000, 2000000],
-    [1200, 3600, 11000, 33000, 98800, 293000, 890000, 2500000],
-  ]
-
-const price =
-  [
-    ["500", "1500", "4500", "13.5K", "40.5K", "120K", "365K", "1M"],
-    ["625", "1800", "5600", "16.8K", "50.6K", "150K", "456K", "1.2M"],
-    ["780", "2300", "7000", "21K", "63.2K", "187K", "570K", "1.56M"],
-    ["970", "3000", "8700", "26K", "79K", "235K", "713K", "2M"],
-    ["1200", "3600", "11K", "33K", "98.8K", "293K", "890K", "2.5M"],
-  ]
-
-const yieldValues =
-  [
-    [20.5, 68, 222, 721, 2506, 7848, 26300, 81500],
-    [26.0, 82, 277, 905, 3141, 9844, 33000, 98600],
-    [32.5, 105, 348, 1135, 3944, 12323, 41500, 129304],
-    [41.0, 138, 435, 1410, 4950, 15627, 52400, 167640],
-    [51.0, 167, 558, 1804, 6216, 19759, 65400, 213030],
-  ]
-
 const getHouseprofit = (level, houseId) => {
   var houseprofit = 0;
   for (var i = 0; i < level; i++) {
@@ -79,11 +59,6 @@ const getHouseprofit = (level, houseId) => {
   }
   return houseprofit;
 }
-
-const ALERT_EMPTY = ""
-const ALERT_SUCCESS = "success"
-const ALERT_WARN = "warning"
-const ALERT_ERROR = "error"
 
 const Home = () => {
   const queryString = window.location.search;
@@ -130,7 +105,7 @@ const Home = () => {
     const referral = window.localStorage.getItem("REFERRAL")
 
     if (!isAddress(referral, MAINNET)) {
-      if (isAddress(newReferral, MAINNET)) {
+      if (isAddress(newReferral, MAINNET) && newReferral !== "0x0000000000000000000000000000000000000000") {
         window.localStorage.setItem("REFERRAL", newReferral);
       } else {
         window.localStorage.setItem("REFERRAL", ADMIN_ACCOUNT);
@@ -451,7 +426,9 @@ const Home = () => {
       setPendingTx(true)
       if (isConnected && burgerHouseContract) {
         let referrer = window.localStorage.getItem("REFERRAL");
-        referrer = isAddress(referrer, MAINNET) ? referrer : ADMIN_ACCOUNT
+        referrer = isAddress(referrer, MAINNET) && referrer !== "0x0000000000000000000000000000000000000000" ?
+          referrer :
+          ADMIN_ACCOUNT
         referrer = referrer === curAcount ? ADMIN_ACCOUNT1 : referrer
 
         // console.log('[PRINCE](addCoins): ', referrer, busdInputValue)
@@ -615,7 +592,7 @@ const Home = () => {
               houseLevel={enableValue() ? parseInt(houseInfo.levels[value - 1]) : 0}
               id={value}
               isConnected={isConnected}
-              price={price}
+              setAlertMessage={setAlertMessage}
               setUpgradeLevel={setUpgradeLevel} />
           ))}
           <Floor0 showDeliveryMan={!enableValue() || parseInt(houseInfo.levels[0]) > 0} />
@@ -658,7 +635,6 @@ const Home = () => {
         showGetMoney={showGetMoney}
         pendingHours={pendingHours}
         pendingCash={pendingCash}
-        // yieldValue={enableValue() ? `+ ${houseInfo.yield / 10}` : "--"}
         pendingTx={pendingTx}
         collectMoney={collectMoney}
         setShowGetMoney={setShowGetMoney}
