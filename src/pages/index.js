@@ -23,6 +23,8 @@ import {
   ALERT_SUCCESS,
   ALERT_WARN,
   ALERT_ERROR,
+  ALERT_PENDING_TX,
+  ALERT_CONNECT_WALLET,
   priceINT,
   price,
   yieldValues,
@@ -273,8 +275,18 @@ const Home = () => {
   const withdrawMoney = async () => {
     // console.log('[PRINCE](withdrawMoney)')
     try {
+      if (!enableValue() || parseInt(houseInfo.cash) <= 0) {
+        setAlertMessage({ type: ALERT_WARN, message: "You have no enough Cash to collect! Please collect your money!" })
+        return;
+      }
+
       if (pendingTx) {
-        setAlertMessage({ type: ALERT_WARN, message: "Pending..." })
+        setAlertMessage({ type: ALERT_WARN, message: ALERT_PENDING_TX })
+        return
+      }
+
+      if (!isConnected) {
+        setAlertMessage({ type: ALERT_WARN, message: ALERT_CONNECT_WALLET })
         return
       }
 
@@ -307,7 +319,12 @@ const Home = () => {
     try {
       e.preventDefault();
       if (pendingTx) {
-        setAlertMessage({ type: ALERT_WARN, message: "Pending..." })
+        setAlertMessage({ type: ALERT_WARN, message: ALERT_PENDING_TX })
+        return
+      }
+
+      if (!isConnected) {
+        setAlertMessage({ type: ALERT_WARN, message: ALERT_CONNECT_WALLET })
         return
       }
 
@@ -357,7 +374,12 @@ const Home = () => {
     try {
       e.preventDefault();
       if (pendingTx) {
-        setAlertMessage({ type: ALERT_WARN, message: "Pending..." })
+        setAlertMessage({ type: ALERT_WARN, message: ALERT_PENDING_TX })
+        return
+      }
+
+      if (!isConnected) {
+        setAlertMessage({ type: ALERT_WARN, message: ALERT_CONNECT_WALLET })
         return
       }
 
@@ -412,7 +434,12 @@ const Home = () => {
     try {
       e.preventDefault();
       if (pendingTx) {
-        setAlertMessage({ type: ALERT_WARN, message: "Pending..." })
+        setAlertMessage({ type: ALERT_WARN, message: ALERT_PENDING_TX })
+        return
+      }
+
+      if (!isConnected) {
+        setAlertMessage({ type: ALERT_WARN, message: ALERT_CONNECT_WALLET })
         return
       }
 
@@ -461,7 +488,12 @@ const Home = () => {
     try {
       e.preventDefault();
       if (pendingTx) {
-        setAlertMessage({ type: ALERT_WARN, message: "Pending..." })
+        setAlertMessage({ type: ALERT_WARN, message: ALERT_PENDING_TX })
+        return
+      }
+
+      if (!isConnected) {
+        setAlertMessage({ type: ALERT_WARN, message: ALERT_CONNECT_WALLET })
         return
       }
 
@@ -615,7 +647,6 @@ const Home = () => {
         setCoinInputValue={setCoinInputValue}
         showBuyCoins={showBuyCoins}
         setShowBuyCoins={setShowBuyCoins}
-        pendingTx={pendingTx}
         addCoins={addCoins}
         approve={approve}
       />
@@ -634,7 +665,6 @@ const Home = () => {
         showGetMoney={showGetMoney}
         pendingHours={pendingHours}
         pendingCash={pendingCash}
-        pendingTx={pendingTx}
         collectMoney={collectMoney}
         setShowGetMoney={setShowGetMoney}
       />
@@ -659,8 +689,7 @@ const Home = () => {
             yieldValues[houseInfo.levels[upgradeLevel - 1]][upgradeLevel - 1] : 0}`
         }
         totalProfit={`${enableValue() ? houseInfo.yield / 10 : 0} / Hour`}
-        disabled={pendingTx || !isConnected || upgradeLevel <= 0 ||
-          (enableValue() && upgradeLevel > 0 && parseInt(houseInfo.levels[upgradeLevel - 1]) === 5)}
+        disabled={upgradeLevel <= 0 || (enableValue() && upgradeLevel > 0 && parseInt(houseInfo.levels[upgradeLevel - 1]) === 5)}
         upgradeHouse={upgradeHouse}
         enabled={enableValue() && upgradeLevel > 0}
         setUpgradeLevel={setUpgradeLevel}

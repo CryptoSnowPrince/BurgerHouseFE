@@ -5,7 +5,6 @@ const CollectMoney = ({
     showGetMoney,
     pendingHours,
     pendingCash,
-    pendingTx,
     collectMoney,
     setShowGetMoney,
 }) => {
@@ -26,7 +25,6 @@ const CollectMoney = ({
                     <div className="popup-profit-money-bar-text">{pendingCash()}</div>
                 </div>
                 <button type="button" className="btn-green" style={{ marginTop: "2px", fontWeight: "bold" }}
-                    disabled={pendingTx || !isConnected}
                     onClick={(e) => collectMoney(e)}
                 >
                     Collect

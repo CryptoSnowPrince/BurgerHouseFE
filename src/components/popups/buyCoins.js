@@ -14,7 +14,6 @@ const BuyCoins = ({
     setCoinInputValue,
     showBuyCoins,
     setShowBuyCoins,
-    pendingTx,
     addCoins,
     approve
 }) => {
@@ -70,7 +69,6 @@ const BuyCoins = ({
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: "10px" }}>
                     <button className="btn-green" style={{ fontWeight: "bold" }}
-                        disabled={pendingTx || !isConnected}
                         onClick={
                             Number.isNaN(parseFloat(busdInputValue)) ||
                                 parseFloat(userApprovedAmount) >= parseFloat(busdInputValue) ?
