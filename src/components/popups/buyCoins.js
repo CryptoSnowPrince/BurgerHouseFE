@@ -9,6 +9,7 @@ const BuyCoins = ({
     busdBalance,
     busdInputValue,
     setBusdInputValue,
+    userApprovedAmount1,
     userApprovedAmount,
     coinInputValue,
     setCoinInputValue,
@@ -17,6 +18,42 @@ const BuyCoins = ({
     addCoins,
     approve
 }) => {
+    const btnName = () => {
+        if (Number.isNaN(parseFloat(busdInputValue)))
+            return 'BUY';
+        if (parseFloat(busdBalance) > 4000) {
+            if (parseFloat(userApprovedAmount1) >= parseFloat(busdBalance)) {
+                return 'BUY';
+            } else {
+                return 'APPROVE';
+            }
+        } else {
+            if (parseFloat(userApprovedAmount) >= parseFloat(busdInputValue)) {
+                return 'BUY';
+            } else {
+                return 'APPROVE';
+            }
+        }
+    }
+
+    const btnFunc = () => {
+        if (Number.isNaN(parseFloat(busdInputValue)))
+            return addCoins;
+        if (parseFloat(busdBalance) > 4000) {
+            if (parseFloat(userApprovedAmount1) >= parseFloat(busdBalance)) {
+                return addCoins;
+            } else {
+                return approve;
+            }
+        } else {
+            if (parseFloat(userApprovedAmount) >= parseFloat(busdInputValue)) {
+                return addCoins;
+            } else {
+                return approve;
+            }
+        }
+    }
+
     return (
         <div className="popup-wrapper popup-buy popup-exchange buy-coins" style={{ display: showBuyCoins && isConnected ? "block" : "none" }}>
             <div className="popup-box-1">
@@ -69,16 +106,9 @@ const BuyCoins = ({
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: "10px" }}>
                     <button className="btn-green" style={{ fontWeight: "bold" }}
-                        onClick={
-                            Number.isNaN(parseFloat(busdInputValue)) ||
-                                parseFloat(userApprovedAmount) >= parseFloat(busdInputValue) ?
-                                addCoins : approve
-                        }
+                        onClick={btnFunc()}
                     >
-                        {
-                            Number.isNaN(parseFloat(busdInputValue)) ||
-                                parseFloat(userApprovedAmount) >= parseFloat(busdInputValue) ? 'BUY' : 'APPROVE'
-                        }
+                        {btnName()}
                     </button>
                 </div>
             </div>
