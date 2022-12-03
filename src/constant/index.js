@@ -22,8 +22,8 @@ export const LAUNCH_TIME = 1670166000;
 export const ADMIN_ACCOUNT = '0x36285fDa2bE8a96fEb1d763CA77531D696Ae3B0b'
 export const ADMIN_ACCOUNT1 = '0x2faf8ab2b9ac8Bd4176A0B9D31502bA3a59B4b41'
 
-export const BurgerHouse1 = '0x40CFa8f3D97D3e3eC59BD0d966E98612DEe6cA3b'
-export const BurgerHouse = '0x547E3cc6DA1aCdc476CD4a0F03B798071f86a320'
+export const BurgerHouse1 = '0xA27F758a5091264AE06b2088789E6c7E6a401c8a'
+export const BurgerHouse = '0xA27F758a5091264AE06b2088789E6c7E6a401c8a'
 export const BUSD = "0x7A62eE9B6cde5cdd3Fd9d82448952f8E2f99c8C0";
 
 export const RPC_URL = "https://bsc-testnet.public.blastapi.io"

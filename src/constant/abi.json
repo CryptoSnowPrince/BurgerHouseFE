@@ -1,16 +1,24 @@
 [
     {
-        "inputs": [],
-        "name": "BUSD",
-        "outputs": [
+        "inputs": [
             {
                 "internalType": "contract IERC20",
-                "name": "",
+                "name": "_asset",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "_devWallet",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "_devDeployer",
                 "type": "address"
             }
         ],
-        "stateMutability": "view",
-        "type": "function"
+        "stateMutability": "nonpayable",
+        "type": "constructor"
     },
     {
         "inputs": [],
@@ -79,12 +87,38 @@
     },
     {
         "inputs": [],
+        "name": "DEV_DEPLOYER",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
         "name": "DEV_FEE",
         "outputs": [
             {
                 "internalType": "uint256",
                 "name": "",
                 "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "DEV_WALLET",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
             }
         ],
         "stateMutability": "view",
@@ -181,6 +215,19 @@
     },
     {
         "inputs": [],
+        "name": "asset",
+        "outputs": [
+            {
+                "internalType": "contract IERC20",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
         "name": "collectMoney",
         "outputs": [],
         "stateMutability": "nonpayable",
@@ -201,7 +248,7 @@
     },
     {
         "inputs": [],
-        "name": "manager",
+        "name": "migrator",
         "outputs": [
             {
                 "internalType": "address",
@@ -210,6 +257,24 @@
             }
         ],
         "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "dev1",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "dev2",
+                "type": "address"
+            }
+        ],
+        "name": "setDEVs",
+        "outputs": [],
+        "stateMutability": "nonpayable",
         "type": "function"
     },
     {
@@ -223,11 +288,21 @@
         "inputs": [
             {
                 "internalType": "address",
-                "name": "_manager",
+                "name": "_migrator",
                 "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "_caller",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_migrate",
+                "type": "uint256"
             }
         ],
-        "name": "setManager",
+        "name": "setMigrator",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
