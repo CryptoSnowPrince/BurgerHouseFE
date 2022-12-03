@@ -23,6 +23,7 @@ export const ALERT_SUCCESS = "success"
 export const ALERT_WARN = "warning"
 export const ALERT_ERROR = "error"
 
+export const ALERT_NOT_LAUNCH = "Please wait until project is launched!"
 export const ALERT_CONNECT_WALLET = "Please connect wallet to Binance Smart Chain!"
 export const ALERT_PENDING_TX = "Pending... Please wait for a few seconds!"
 

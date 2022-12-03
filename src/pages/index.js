@@ -25,6 +25,7 @@ import {
   ALERT_ERROR,
   ALERT_PENDING_TX,
   ALERT_CONNECT_WALLET,
+  ALERT_NOT_LAUNCH,
   priceINT,
   price,
   yieldValues,
@@ -90,6 +91,7 @@ const Home = () => {
   const [allHousesLength, setAllHousesLength] = useState(0)
   const [totalInvested, setTotalInvested] = useState("0")
   const [totalUpgrades, setTotalUpgrades] = useState(0)
+  const [isLaunched, setIsLaunched] = useState(true)
 
   const [blockTimestamp, setBlockTimestamp] = useState(0)
 
@@ -216,6 +218,9 @@ const Home = () => {
         const _allHousesLength = await contractNoAccount.methods.allHousesLength().call();
         setAllHousesLength(_allHousesLength)
 
+        const _isLaunched = await contractNoAccount.methods.isLaunched().call();
+        setIsLaunched(_isLaunched)
+
         if (curAcount) {
           const _userBalance = await busdNoAccount.methods.balanceOf(curAcount).call();
           setBUSDBalance(web3NoAccount.utils.fromWei(_userBalance))
@@ -256,6 +261,9 @@ const Home = () => {
 
   const pendingHours = () => {
     if (enableValue()) {
+      if (parseInt(houseInfo.timestamp) === 0)
+        return 0;
+
       var hrs = Math.floor((blockTimestamp - houseInfo.timestamp) / 3600)
       if (hrs + parseInt(houseInfo.hrs) > 24) {
         hrs = 24 - houseInfo.hrs;
@@ -275,11 +283,6 @@ const Home = () => {
   const withdrawMoney = async () => {
     // console.log('[PRINCE](withdrawMoney)')
     try {
-      if (!enableValue() || parseInt(houseInfo.cash) <= 0) {
-        setAlertMessage({ type: ALERT_WARN, message: "You have no enough Cash to collect! Please collect your money!" })
-        return;
-      }
-
       if (pendingTx) {
         setAlertMessage({ type: ALERT_WARN, message: ALERT_PENDING_TX })
         return
@@ -288,6 +291,16 @@ const Home = () => {
       if (!isConnected) {
         setAlertMessage({ type: ALERT_WARN, message: ALERT_CONNECT_WALLET })
         return
+      }
+
+      if (!isLaunched) {
+        setAlertMessage({ type: ALERT_WARN, message: ALERT_NOT_LAUNCH })
+        return
+      }
+
+      if (!enableValue() || parseInt(houseInfo.cash) <= 0) {
+        setAlertMessage({ type: ALERT_WARN, message: "You have no enough Cash to collect! Please collect your money!" })
+        return;
       }
 
       setPendingTx(true)
@@ -325,6 +338,11 @@ const Home = () => {
 
       if (!isConnected) {
         setAlertMessage({ type: ALERT_WARN, message: ALERT_CONNECT_WALLET })
+        return
+      }
+
+      if (!isLaunched) {
+        setAlertMessage({ type: ALERT_WARN, message: ALERT_NOT_LAUNCH })
         return
       }
 
@@ -497,8 +515,18 @@ const Home = () => {
         return
       }
 
+      if (!isLaunched) {
+        setAlertMessage({ type: ALERT_WARN, message: ALERT_NOT_LAUNCH })
+        return
+      }
+
       if (!enableValue() || parseInt(houseInfo.yield) === 0) {
         setAlertMessage({ type: ALERT_WARN, message: "Please purchase your house to collect money!" })
+        return;
+      }
+
+      if (pendingCash() <= 0) {
+        setAlertMessage({ type: ALERT_WARN, message: "Please wait until your chefs make your burger!" })
         return;
       }
 
