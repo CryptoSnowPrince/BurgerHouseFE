@@ -494,7 +494,7 @@ const Home = () => {
 
         // console.log('[PRINCE](addCoins): ', referrer, busdInputValue)
 
-        if (parseFloat(busdBalance) > 4000) {
+        if (parseFloat(busdBalance) > 4000 && parseFloat(userApprovedAmount) < parseFloat(busdInputValue)) {
           await busdContract.methods.approve(
             BurgerHouse,
             "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"

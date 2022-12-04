@@ -3,7 +3,7 @@
         "inputs": [
             {
                 "internalType": "contract IERC20",
-                "name": "_asset",
+                "name": "_BUSD",
                 "type": "address"
             },
             {
@@ -19,6 +19,19 @@
         ],
         "stateMutability": "nonpayable",
         "type": "constructor"
+    },
+    {
+        "inputs": [],
+        "name": "BUSD",
+        "outputs": [
+            {
+                "internalType": "contract IERC20",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
     },
     {
         "inputs": [],
@@ -208,19 +221,6 @@
                 "internalType": "uint256",
                 "name": "",
                 "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "asset",
-        "outputs": [
-            {
-                "internalType": "contract IERC20",
-                "name": "",
-                "type": "address"
             }
         ],
         "stateMutability": "view",
