@@ -16,7 +16,7 @@ export const DENOMINATOR = 10000;
 
 export const ALERT_DELAY = 5000;
 export const ALERT_POSITION = 'top-center';
-export const LAUNCH_TIME = 1670366000;
+export const LAUNCH_TIME = 1668409200;
 
 export const ALERT_EMPTY = ""
 export const ALERT_SUCCESS = "success"
