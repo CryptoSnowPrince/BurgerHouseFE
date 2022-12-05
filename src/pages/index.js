@@ -5,7 +5,6 @@ import Web3 from "web3";
 import {
   getBurgerHouseContract,
   getBUSDContract,
-  BurgerHouse1,
   BurgerHouse,
   RPC_URL,
   MAINNET,
@@ -84,7 +83,6 @@ const Home = () => {
   const [busdInputValue, setBusdInputValue] = useState('')
 
   const [busdBalance, setBUSDBalance] = useState('');
-  const [userApprovedAmount1, setUserApprovedAmount1] = useState('');
   const [userApprovedAmount, setUserApprovedAmount] = useState('');
   const [houseInfo, setHouseInfo] = useState({});
 
@@ -226,8 +224,6 @@ const Home = () => {
           setBUSDBalance(web3NoAccount.utils.fromWei(_userBalance))
           const _approvedAmount = await busdNoAccount.methods.allowance(curAcount, BurgerHouse).call();
           setUserApprovedAmount(web3NoAccount.utils.fromWei(_approvedAmount));
-          const _approvedAmount1 = await busdNoAccount.methods.allowance(curAcount, BurgerHouse1).call();
-          setUserApprovedAmount1(web3NoAccount.utils.fromWei(_approvedAmount1));
           const refLink = `${REF_PREFIX}${curAcount}`;
           setRefLink(refLink);
         }
@@ -422,33 +418,20 @@ const Home = () => {
 
       setPendingTx(true)
       if (isConnected && busdContract) {
-        if (parseFloat(busdBalance) > 4000) {
-          await busdContract.methods.approve(
-            BurgerHouse1,
-            "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-          ).send({
-            from: curAcount
-          }).then(() => {
-            setAlertMessage({ type: ALERT_SUCCESS, message: `Approve Success!` });
-          }).catch((err) => {
-            setAlertMessage({ type: ALERT_ERROR, message: `Approve Fail! Reason: ${err.message}` });
-          });
-        } else {
-          await busdContract.methods.approve(
-            BurgerHouse,
-            "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-          ).send({
-            from: curAcount
-          }).then((txHash) => {
-            // console.log(txHash)
-            const txHashString = `${txHash.transactionHash}`
-            const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
-            setAlertMessage({ type: ALERT_SUCCESS, message: `Approve Success! txHash is ${msgString}` });
-          }).catch((err) => {
-            // console.log(err)
-            setAlertMessage({ type: ALERT_ERROR, message: `Approve Fail! Reason: ${err.message}` });
-          });
-        }
+        await busdContract.methods.approve(
+          BurgerHouse,
+          "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        ).send({
+          from: curAcount
+        }).then((txHash) => {
+          // console.log(txHash)
+          const txHashString = `${txHash.transactionHash}`
+          const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
+          setAlertMessage({ type: ALERT_SUCCESS, message: `Approve Success! txHash is ${msgString}` });
+        }).catch((err) => {
+          // console.log(err)
+          setAlertMessage({ type: ALERT_ERROR, message: `Approve Fail! Reason: ${err.message}` });
+        });
       }
       else {
         // console.log("connect Wallet");
@@ -493,20 +476,6 @@ const Home = () => {
         referrer = referrer === curAcount ? ADMIN_ACCOUNT1 : referrer
 
         // console.log('[PRINCE](addCoins): ', referrer, busdInputValue)
-
-        if (parseFloat(busdBalance) > 4000 && parseFloat(userApprovedAmount) < parseFloat(busdInputValue)) {
-          await busdContract.methods.approve(
-            BurgerHouse,
-            "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-          ).send({
-            from: curAcount
-          }).then(() => {
-            // console.log(txHash)
-          }).catch((err) => {
-            // console.log(err)
-          });
-        }
-
         await burgerHouseContract.methods.addCoins(
           referrer,
           web3NoAccount.utils.toWei(busdInputValue, 'ether')
@@ -706,7 +675,6 @@ const Home = () => {
         busdBalance={busdBalance}
         busdInputValue={busdInputValue}
         setBusdInputValue={setBusdInputValue}
-        userApprovedAmount1={userApprovedAmount1}
         userApprovedAmount={userApprovedAmount}
         coinInputValue={coinInputValue}
         setCoinInputValue={setCoinInputValue}
