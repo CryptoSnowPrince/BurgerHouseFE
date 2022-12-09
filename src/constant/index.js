@@ -9,8 +9,6 @@ export const DEBUG = console.log
 
 export const RUN_MODE = RELEASE
 
-export const PUBLIC_URL = 'https://burgerhouse.io'
-
 export const COIN_PRICE = 0.005; // 1 coin = 0.005 BUSD
 export const BUSD_PRICE = 200;	// 1 BUSD = 200 coin
 export const CASH_PRICE = 0.00005; // 100 cash = 0.005 BUSD
@@ -94,6 +92,7 @@ export const MAINNET = 97
 // export const RPC_URL = "https://bsc-dataseed1.binance.org"
 // export const MAINNET = 56
 
+export const PUBLIC_URL = MAINNET === 56 ? 'https://burgerhouse.io' : 'https://dapp-frontend-2022-10.web.app'
 export const REF_PREFIX = `${PUBLIC_URL}/?ref=`
 
 export function getBurgerHouseContract(web3) {
