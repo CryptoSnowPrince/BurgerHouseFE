@@ -3,11 +3,12 @@ import Chef from './animations/chef';
 import {
     ALERT_WARN,
     ALERT_CONNECT_WALLET,
+    RUN_MODE,
     price,
 } from "../constant";
 
 const House = ({ id, houseLevel, isConnected, setAlertMessage, setUpgradeLevel }) => {
-    // console.log('[PRINCE](value)(id)', id)
+    RUN_MODE('[PRINCE](value)(id)', id)
 
     const [visible1, setVisible1] = useState(false);
     const [visible2, setVisible2] = useState(false);

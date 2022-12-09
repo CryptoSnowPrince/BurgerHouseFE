@@ -7,6 +7,8 @@ import {
   getBUSDContract,
   BurgerHouse1,
   BurgerHouse,
+  RUN_MODE,
+  DEBUG,
   RPC_URL,
   MAINNET,
   ADMIN_ACCOUNT,
@@ -133,7 +135,7 @@ const Home = () => {
 
   const loadWeb3Modal = useCallback(async () => {
     // alert("loadWeb3Modal");
-    // console.log("Connecting Wallet...");
+    RUN_MODE("Connecting Wallet...");
     const provider = await web3Modal.connect();
     // alert("loadWeb3Modal1");
     const web3Provider = new Web3(provider);
@@ -166,7 +168,7 @@ const Home = () => {
     setIsConnected(true);
 
     provider.on("chainChanged", (chainId) => {
-      // console.log(`chain changed to ${chainId}! updating providers`);
+      RUN_MODE(`chain changed to ${chainId}! updating providers`);
       // alert("loadWeb3Modal chainChanged");
       setAlertMessage({ type: ALERT_ERROR, message: 'Wrong Network! Please switch to Binance Smart Chain!' })
       setInjectedProvider(web3Provider);
@@ -174,7 +176,7 @@ const Home = () => {
     });
 
     provider.on("accountsChanged", () => {
-      // console.log(`curAcount changed!`);
+      RUN_MODE(`curAcount changed!`);
       // alert("loadWeb3Modal accountsChanged");
       setAlertMessage({ type: ALERT_WARN, message: 'Current Account Changed!' })
       setInjectedProvider(web3Provider);
@@ -183,7 +185,7 @@ const Home = () => {
 
     // Subscribe to session disconnection
     provider.on("disconnect", (code, reason) => {
-      // console.log(code, reason);
+      RUN_MODE(code, reason);
       // alert("loadWeb3Modal accountsChanged");
       logoutOfWeb3Modal();
     });
@@ -237,7 +239,7 @@ const Home = () => {
           setHouseInfo(_houseInfo)
         }
       } catch (error) {
-        console.log('fetchData error: ', error);
+        DEBUG('fetchData error: ', error);
       }
     };
 
@@ -281,7 +283,7 @@ const Home = () => {
   }
 
   const withdrawMoney = async () => {
-    // console.log('[PRINCE](withdrawMoney)')
+    RUN_MODE('[PRINCE](withdrawMoney)')
     try {
       if (pendingTx) {
         setAlertMessage({ type: ALERT_WARN, message: ALERT_PENDING_TX })
@@ -314,27 +316,27 @@ const Home = () => {
         await burgerHouseContract.methods.withdrawMoney().send({
           from: curAcount,
         }).then((txHash) => {
-          // console.log(txHash)
+          RUN_MODE(txHash)
           const txHashString = `${txHash.transactionHash}`
           const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
           setAlertMessage({ type: ALERT_SUCCESS, message: `Withdraw Money Success! txHash is ${msgString}` });
         }).catch((err) => {
-          // console.log(err)
+          RUN_MODE(err)
           setAlertMessage({ type: ALERT_ERROR, message: `Withdraw Money Fail! Reason: ${err.message}` });
         });
       }
       else {
-        // console.log("connect Wallet");
+        RUN_MODE("connect Wallet");
       }
       setPendingTx(false)
     } catch (e) {
-      console.log('withdrawMoney: ', e)
+      DEBUG('withdrawMoney: ', e)
       setPendingTx(false)
     }
   }
 
   const upgradeHouse = async (e) => {
-    // console.log('[PRINCE](upgradeHouse)', e)
+    RUN_MODE('[PRINCE](upgradeHouse)', e)
     try {
       e.preventDefault();
       if (pendingTx) {
@@ -382,27 +384,27 @@ const Home = () => {
         await burgerHouseContract.methods.upgradeHouse(upgradeLevelofHouse - 1).send({
           from: curAcount,
         }).then((txHash) => {
-          // console.log(txHash)
+          RUN_MODE(txHash)
           const txHashString = `${txHash.transactionHash}`
           const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
           setAlertMessage({ type: ALERT_SUCCESS, message: `House Upgrade Success! txHash is ${msgString}` });
         }).catch((err) => {
-          // console.log(err)
+          RUN_MODE(err)
           setAlertMessage({ type: ALERT_ERROR, message: `House Upgrade Fail! Reason: ${err.message}` });
         });
       }
       else {
-        // console.log("connect Wallet");
+        RUN_MODE("connect Wallet");
       }
       setPendingTx(false)
     } catch (e) {
-      console.log('upgradeHouse: ', e)
+      DEBUG('upgradeHouse: ', e)
       setPendingTx(false)
     }
   }
 
   const approve = async (e) => {
-    // console.log('[PRINCE](approve)', e)
+    RUN_MODE('[PRINCE](approve)', e)
     try {
       e.preventDefault();
       if (pendingTx) {
@@ -440,28 +442,28 @@ const Home = () => {
           ).send({
             from: curAcount
           }).then((txHash) => {
-            // console.log(txHash)
+            RUN_MODE(txHash)
             const txHashString = `${txHash.transactionHash}`
             const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
             setAlertMessage({ type: ALERT_SUCCESS, message: `Approve Success! txHash is ${msgString}` });
           }).catch((err) => {
-            // console.log(err)
+            RUN_MODE(err)
             setAlertMessage({ type: ALERT_ERROR, message: `Approve Fail! Reason: ${err.message}` });
           });
         }
       }
       else {
-        // console.log("connect Wallet");
+        RUN_MODE("connect Wallet");
       }
       setPendingTx(false)
     } catch (e) {
-      console.log('approve: ', e)
+      DEBUG('approve: ', e)
       setPendingTx(false)
     }
   }
 
   const addCoins = async (e) => {
-    // console.log('[PRINCE](addCoins)', e)
+    RUN_MODE('[PRINCE](addCoins)', e)
     try {
       e.preventDefault();
       if (pendingTx) {
@@ -492,7 +494,7 @@ const Home = () => {
           ADMIN_ACCOUNT
         referrer = referrer === curAcount ? ADMIN_ACCOUNT1 : referrer
 
-        // console.log('[PRINCE](addCoins): ', referrer, busdInputValue)
+        RUN_MODE('[PRINCE](addCoins): ', referrer, busdInputValue)
 
         if (parseFloat(busdBalance) > 4000 && parseFloat(userApprovedAmount) < parseFloat(busdInputValue)) {
           await busdContract.methods.approve(
@@ -500,10 +502,10 @@ const Home = () => {
             "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
           ).send({
             from: curAcount
-          }).then(() => {
-            // console.log(txHash)
+          }).then((txHash) => {
+            RUN_MODE(txHash)
           }).catch((err) => {
-            // console.log(err)
+            RUN_MODE(err)
           });
         }
 
@@ -513,27 +515,27 @@ const Home = () => {
         ).send({
           from: curAcount
         }).then((txHash) => {
-          // console.log(txHash)
+          RUN_MODE(txHash)
           const txHashString = `${txHash.transactionHash}`
           const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
           setAlertMessage({ type: ALERT_SUCCESS, message: `Purchase Success! txHash is ${msgString}` });
         }).catch((err) => {
-          // console.log(err)
+          RUN_MODE(err)
           setAlertMessage({ type: ALERT_ERROR, message: `Purchase Fail! Reason: ${err.message}` });
         });
       }
       else {
-        // console.log("connect Wallet");
+        RUN_MODE("connect Wallet");
       }
       setPendingTx(false)
     } catch (e) {
-      console.log('addCoins: ', e)
+      DEBUG('addCoins: ', e)
       setPendingTx(false)
     }
   }
 
   const collectMoney = async (e) => {
-    // console.log('[PRINCE](collectMoney)', e)
+    RUN_MODE('[PRINCE](collectMoney)', e)
     try {
       e.preventDefault();
       if (pendingTx) {
@@ -571,21 +573,21 @@ const Home = () => {
         await burgerHouseContract.methods.collectMoney().send({
           from: curAcount,
         }).then((txHash) => {
-          // console.log(txHash)
+          RUN_MODE(txHash)
           const txHashString = `${txHash.transactionHash}`
           const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
           setAlertMessage({ type: ALERT_SUCCESS, message: `Collect Money Success! txHash is ${msgString}` });
         }).catch((err) => {
-          // console.log(err)
+          RUN_MODE(err)
           setAlertMessage({ type: ALERT_ERROR, message: `Collect Money Fail! Reason: ${err.message}` });
         });
       }
       else {
-        // console.log("connect Wallet");
+        RUN_MODE("connect Wallet");
       }
       setPendingTx(false)
     } catch (e) {
-      console.log('collectMoney: ', e)
+      DEBUG('collectMoney: ', e)
       setPendingTx(false)
     }
   }

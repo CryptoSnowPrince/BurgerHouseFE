@@ -1,6 +1,14 @@
 import BurgerHouse_ABI from './abi.json'
 import BUSD_ABI from './busd.json'
 
+export function RELEASE(param1, param2, ...param3) {
+	return
+}
+
+export const DEBUG = console.log
+
+export const RUN_MODE = DEBUG
+
 export const PUBLIC_URL = 'https://burgerhouse.io'
 
 export const COIN_PRICE = 0.005; // 1 coin = 0.005 BUSD
