@@ -55,27 +55,27 @@ export const yieldValues =
 	]
 
 // BSC TESTNET
-// export const ADMIN_ACCOUNT1 = '0x36285fDa2bE8a96fEb1d763CA77531D696Ae3B0b'
-// export const ADMIN_ACCOUNT = '0x2faf8ab2b9ac8Bd4176A0B9D31502bA3a59B4b41'
+export const ADMIN_ACCOUNT1 = '0x36285fDa2bE8a96fEb1d763CA77531D696Ae3B0b'
+export const ADMIN_ACCOUNT = '0x2faf8ab2b9ac8Bd4176A0B9D31502bA3a59B4b41'
 
-// export const BurgerHouse1 = '0xe8412FfC47a021C6BED9edC3Eb073bCC04d5127d'
-// export const BurgerHouse = '0xe8412FfC47a021C6BED9edC3Eb073bCC04d5127d'
-// export const BUSD = "0x7A62eE9B6cde5cdd3Fd9d82448952f8E2f99c8C0";
+export const BurgerHouse1 = '0xD9ccCe04A629a37A7293EC06842f0415B20359A4'
+export const BurgerHouse = '0xD9ccCe04A629a37A7293EC06842f0415B20359A4'
+export const BUSD = "0x7A62eE9B6cde5cdd3Fd9d82448952f8E2f99c8C0";
 
-// export const RPC_URL = "https://bsc-testnet.public.blastapi.io"
-// export const MAINNET = 97
+export const RPC_URL = "https://bsc-testnet.public.blastapi.io"
+export const MAINNET = 97
 
 // BSC MAINNET
-export const ADMIN_ACCOUNT1 = '0xc50F0919AB4c2b779387Eb04ab984fee37D70b38'
-export const ADMIN_ACCOUNT = '0x3FE159EB4A3D6FD36248567879A171CE3280A1f9'
+// export const ADMIN_ACCOUNT1 = '0xc50F0919AB4c2b779387Eb04ab984fee37D70b38'
+// export const ADMIN_ACCOUNT = '0x3FE159EB4A3D6FD36248567879A171CE3280A1f9'
 
-export const BurgerHouse1 = '0xB708E77bE1abfc5F3523967E1f46239bb9769BE3'
-export const BurgerHouse = '0xe8412FfC47a021C6BED9edC3Eb073bCC04d5127d'
-// export const BUSD = "0xb7b657071Ad838AEB0096597f071AF981cdD4c9a"; // MockBUSD
-export const BUSD = "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56"; // BUSD
+// export const BurgerHouse1 = '0xB708E77bE1abfc5F3523967E1f46239bb9769BE3'
+// export const BurgerHouse = '0xe8412FfC47a021C6BED9edC3Eb073bCC04d5127d'
+// // export const BUSD = "0xb7b657071Ad838AEB0096597f071AF981cdD4c9a"; // MockBUSD
+// export const BUSD = "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56"; // BUSD
 
-export const RPC_URL = "https://bsc-dataseed1.binance.org"
-export const MAINNET = 56
+// export const RPC_URL = "https://bsc-dataseed1.binance.org"
+// export const MAINNET = 56
 
 export const REF_PREFIX = `${PUBLIC_URL}/?ref=`
 
