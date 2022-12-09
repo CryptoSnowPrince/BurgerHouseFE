@@ -386,6 +386,11 @@ const Home = () => {
         return
       }
 
+      if (houseLevel(houseId) === 5) {
+        setAlertMessage({ type: ALERT_WARN, message: `Congratulation! You already reached top level!` })
+        return
+      }
+
       setPendingTx(true)
       if (isConnected && burgerHouseContract) {
         await burgerHouseContract.methods.upgradeHouse(houseLevel(houseId) + 5 * (houseId - 1)).send({
@@ -756,7 +761,7 @@ const Home = () => {
         profit={`${enableValue() && houseId > 0 ? getHouseprofit(houseLevel(houseId), houseId) : 0} / Hour`}
         addedProfit={`+ ${houseLevel(houseId) < 5 ? yieldValues[(houseId - 1) * 5 + houseLevel(houseId)] : 0}`}
         totalProfit={`${enableValue() ? houseYield / 10 : 0} / Hour`}
-        disabled={houseId <= 0 || houseLevel(houseId) === 5}
+        disabled={houseId <= 0}
         upgradeHouse={upgradeHouse}
         enabled={enableValue() && houseId > 0}
         setHouseId={setHouseId}
