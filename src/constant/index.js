@@ -7,7 +7,7 @@ export function RELEASE(param1, param2, ...param3) {
 
 export const DEBUG = console.log
 
-export const RUN_MODE = DEBUG
+export const RUN_MODE = RELEASE
 
 export const PUBLIC_URL = 'https://burgerhouse.io'
 
