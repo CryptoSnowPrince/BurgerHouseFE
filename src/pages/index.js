@@ -29,7 +29,6 @@ import {
   ALERT_CONNECT_WALLET,
   ALERT_NOT_LAUNCH,
   priceINT,
-  price,
   yieldValues,
 } from "../constant";
 
@@ -56,10 +55,10 @@ const isAddress = web3NoAccount.utils.isAddress
 const contractNoAccount = getBurgerHouseContract(web3NoAccount)
 const busdNoAccount = getBUSDContract(web3NoAccount)
 
-const getHouseprofit = (level, houseId) => {
+const getHouseprofit = (_level, _houseId) => {
   var houseprofit = 0;
-  for (var i = 0; i < level; i++) {
-    houseprofit += yieldValues[i][houseId]
+  for (var i = 0; i < _level; i++) {
+    houseprofit += yieldValues[(_houseId - 1) * 5 + i]
   }
   return houseprofit;
 }
@@ -89,6 +88,8 @@ const Home = () => {
   const [userApprovedAmount1, setUserApprovedAmount1] = useState('');
   const [userApprovedAmount, setUserApprovedAmount] = useState('');
   const [houseInfo, setHouseInfo] = useState({});
+  const [houseYield, setHouseYield] = useState('');
+  const [pendingBurgers, setPendingBurgers] = useState('');
 
   const [allHousesLength, setAllHousesLength] = useState(0)
   const [totalInvested, setTotalInvested] = useState("0")
@@ -100,7 +101,7 @@ const Home = () => {
   const [showBuyCoins, setShowBuyCoins] = useState(false)
   const [showGetBUSD, setShowGetBUSD] = useState(false)
   const [showGetMoney, setShowGetMoney] = useState(false)
-  const [upgradeLevelofHouse, setUpgradeLevel] = useState(0)
+  const [houseId, setHouseId] = useState(0)
   const [showReferral, setShowReferral] = useState(false)
   const [isComingSoon, setIsComingSoon] = useState(true)
 
@@ -230,13 +231,14 @@ const Home = () => {
           setUserApprovedAmount(web3NoAccount.utils.fromWei(_approvedAmount));
           const _approvedAmount1 = await busdNoAccount.methods.allowance(curAcount, BurgerHouse1).call();
           setUserApprovedAmount1(web3NoAccount.utils.fromWei(_approvedAmount1));
-          const refLink = `${REF_PREFIX}${curAcount}`;
-          setRefLink(refLink);
-        }
-
-        if (isConnected && burgerHouseContract && curAcount) {
+          const _pendingBurgers = await contractNoAccount.methods.getPendingBurgers(curAcount).call();
+          setPendingBurgers(_pendingBurgers)
+          const _houseYield = await contractNoAccount.methods.getHouseYield(curAcount).call();
+          setHouseYield(_houseYield)
           const _houseInfo = await contractNoAccount.methods.viewHouse(curAcount).call();
           setHouseInfo(_houseInfo)
+          const refLink = `${REF_PREFIX}${curAcount}`;
+          setRefLink(refLink);
         }
       } catch (error) {
         DEBUG('fetchData error: ', error);
@@ -250,34 +252,39 @@ const Home = () => {
     return (isConnected && houseInfo && Object.keys(houseInfo).length > 0)
   }
 
+  const numberOfChefs = () => {
+    return enableValue() ? houseInfo.chefStarttimes.length : 0
+  }
+
+  const houseLevel = (houseId) => {
+    if (enableValue() && houseId > 0) {
+      if (numberOfChefs() < 5 * (houseId - 1)) return 0;
+      return (numberOfChefs() - 5 * (houseId - 1)) > 5 ? 5 : (numberOfChefs() - 5 * (houseId - 1))
+    }
+    return 0;
+  }
+
   const openedHouseId = () => {
     if (enableValue()) {
-      for (var i = 0; i < 7; i++) {
-        if (houseInfo.levels[i] < 1) {
-          return i;
-        }
-      }
+      return Math.ceil(numberOfChefs() / 5)
     }
     return 8;
   }
 
   const pendingHours = () => {
     if (enableValue()) {
-      if (parseInt(houseInfo.timestamp) === 0)
+      if (parseInt(houseInfo.lastTime) === 0)
         return 0;
 
-      var hrs = Math.floor((blockTimestamp - houseInfo.timestamp) / 3600)
-      if (hrs + parseInt(houseInfo.hrs) > 24) {
-        hrs = 24 - houseInfo.hrs;
-      }
-      return hrs;
+      const delta = Math.floor((blockTimestamp - houseInfo.lastTime) / 3600)
+      return delta > 24 ? 24 : delta;
     }
     return 0;
   }
 
   const pendingCash = () => {
     if (enableValue()) {
-      return pendingHours() * houseInfo.yield / 10 + parseInt(houseInfo.burger);
+      return pendingBurgers;
     }
     return 0;
   }
@@ -354,34 +361,34 @@ const Home = () => {
         return
       }
 
-      if (!enableValue() || parseInt(houseInfo.blockTimestamp) === 0) {
+      if (!enableValue() || parseInt(houseInfo.startTime) === 0) {
         setAlertMessage({ type: ALERT_WARN, message: "You is not registered yet! Please purchase your coin to play game." })
         return;
       }
 
-      if (parseInt(houseInfo.coins) < priceINT[parseInt(houseInfo.levels[upgradeLevelofHouse - 1])][upgradeLevelofHouse - 1]) {
+      if (parseInt(houseInfo.coins) < priceINT[houseLevel(houseId) + 5 * (houseId - 1)]) {
         setAlertMessage({ type: ALERT_WARN, message: "Insufficient Coins! Please Purchase Coins!" })
         return
       }
 
-      if (upgradeLevelofHouse > 8) {
+      if (houseId > 8) {
         setAlertMessage({ type: ALERT_WARN, message: "Invalid house! Max 8 floors." })
         return
       }
 
-      if (upgradeLevelofHouse > 1 && parseInt(houseInfo.levels[upgradeLevelofHouse - 2]) < 5) {
+      if (houseId > 1 && houseLevel(houseId - 1) < 5) {
         setAlertMessage({ type: ALERT_WARN, message: "Please upgrade your all houses to top level before purchasing this house!" })
         return
       }
 
-      if (upgradeLevelofHouse >= 6 && parseInt(houseInfo.levels[upgradeLevelofHouse - 1]) < 1 && parseInt(blockTimestamp - houseInfo.goldTimestamp) < LOCK_TIME) {
-        setAlertMessage({ type: ALERT_WARN, message: `Please wait for ${secondsToTimes(parseInt(houseInfo.goldTimestamp) + parseInt(LOCK_TIME) - parseInt(blockTimestamp))} to upgrade house!` })
+      if (houseId >= 6 && houseLevel(houseId) < 1 && parseInt(blockTimestamp - houseInfo.lockTime) < LOCK_TIME) {
+        setAlertMessage({ type: ALERT_WARN, message: `Please wait for ${secondsToTimes(parseInt(houseInfo.lockTime) + parseInt(LOCK_TIME) - parseInt(blockTimestamp))} to upgrade house!` })
         return
       }
 
       setPendingTx(true)
       if (isConnected && burgerHouseContract) {
-        await burgerHouseContract.methods.upgradeHouse(upgradeLevelofHouse - 1).send({
+        await burgerHouseContract.methods.upgradeHouse(houseLevel(houseId) + 5 * (houseId - 1)).send({
           from: curAcount,
         }).then((txHash) => {
           RUN_MODE(txHash)
@@ -553,12 +560,12 @@ const Home = () => {
         return
       }
 
-      if (!enableValue() || parseInt(houseInfo.blockTimestamp) === 0) {
+      if (!enableValue() || parseInt(houseInfo.startTime) === 0) {
         setAlertMessage({ type: ALERT_WARN, message: "You is not registered yet! Please purchase your coin to play game." })
         return;
       }
 
-      if (parseInt(houseInfo.yield) === 0) {
+      if (parseInt(houseYield) === 0) {
         setAlertMessage({ type: ALERT_WARN, message: "Please purchase your house to collect money!" })
         return;
       }
@@ -665,7 +672,7 @@ const Home = () => {
         curAcount={curAcount}
         coins={enableValue() ? houseInfo.coins : "--"}
         cash={enableValue() ? houseInfo.cash : "--"}
-        yieldValue={enableValue() ? `+ ${houseInfo.yield / 10}` : "--"}
+        yieldValue={enableValue() ? `+ ${houseYield / 10}` : "--"}
         setShowBuyCoins={setShowBuyCoins}
         setShowGetBUSD={setShowGetBUSD}
         setShowReferral={setShowReferral}
@@ -686,13 +693,13 @@ const Home = () => {
           {[8, 7, 6, 5, 4, 3, 2, 1].map((value) => ( // value = 8, 7, 6, 5, 4, 3, 2, 1
             <House
               key={value}
-              houseLevel={enableValue() ? parseInt(houseInfo.levels[value - 1]) : 0}
+              houseLevel={houseLevel(value)}
               id={value}
               isConnected={isConnected}
               setAlertMessage={setAlertMessage}
-              setUpgradeLevel={setUpgradeLevel} />
+              setHouseId={setHouseId} />
           ))}
-          <Floor0 showDeliveryMan={!enableValue() || parseInt(houseInfo.levels[0]) > 0} />
+          <Floor0 showDeliveryMan={!enableValue() || numberOfChefs() > 0} />
         </div>
       </div>
       <Footer
@@ -738,29 +745,21 @@ const Home = () => {
 
       <UpgradeLevel
         isConnected={isConnected}
-        upgradeLevelofHouse={upgradeLevelofHouse}
+        houseId={houseId}
         timer={
-          upgradeLevelofHouse >= 6 && parseInt(houseInfo.levels[upgradeLevelofHouse - 1]) < 1 &&
-            parseInt(houseInfo.levels[upgradeLevelofHouse - 2]) === 5 &&
-            parseInt(blockTimestamp - houseInfo.goldTimestamp) < LOCK_TIME ?
-            secondsToTime(parseInt(houseInfo.goldTimestamp) + parseInt(LOCK_TIME) - parseInt(blockTimestamp)) : ""
+          (numberOfChefs() === 25 || numberOfChefs() === 30 || numberOfChefs() === 35) &&
+            parseInt(blockTimestamp - houseInfo.lockTime) < LOCK_TIME ?
+            secondsToTime(parseInt(houseInfo.lockTime) + parseInt(LOCK_TIME) - parseInt(blockTimestamp)) : ""
         }
-        level={enableValue() && upgradeLevelofHouse > 0 ? houseInfo.levels[upgradeLevelofHouse - 1] : 0}
-        addedLevel={enableValue() && upgradeLevelofHouse > 0 && parseInt(houseInfo.levels[upgradeLevelofHouse - 1]) < 5 ? `+ 1` : ` + 0`}
-        profit={
-          `${enableValue() && upgradeLevelofHouse > 0 ?
-            getHouseprofit(houseInfo.levels[upgradeLevelofHouse - 1], upgradeLevelofHouse - 1) : 0} / Hour`
-        }
-        addedProfit={
-          `+ ${enableValue() && upgradeLevelofHouse > 0 && parseInt(houseInfo.levels[upgradeLevelofHouse - 1]) < 5 ?
-            yieldValues[houseInfo.levels[upgradeLevelofHouse - 1]][upgradeLevelofHouse - 1] : 0}`
-        }
-        totalProfit={`${enableValue() ? houseInfo.yield / 10 : 0} / Hour`}
-        disabled={upgradeLevelofHouse <= 0 || (enableValue() && upgradeLevelofHouse > 0 && parseInt(houseInfo.levels[upgradeLevelofHouse - 1]) === 5)}
+        level={houseLevel(houseId)}
+        addedLevel={houseLevel(houseId) < 5 ? `+ 1` : ` + 0`}
+        profit={`${enableValue() && houseId > 0 ? getHouseprofit(houseLevel(houseId), houseId) : 0} / Hour`}
+        addedProfit={`+ ${houseLevel(houseId) < 5 ? yieldValues[(houseId - 1) * 5 + houseLevel(houseId)] : 0}`}
+        totalProfit={`${enableValue() ? houseYield / 10 : 0} / Hour`}
+        disabled={houseId <= 0 || houseLevel(houseId) === 5}
         upgradeHouse={upgradeHouse}
-        enabled={enableValue() && upgradeLevelofHouse > 0}
-        setUpgradeLevel={setUpgradeLevel}
-        price={price}
+        enabled={enableValue() && houseId > 0}
+        setHouseId={setHouseId}
       />
 
       <Referral

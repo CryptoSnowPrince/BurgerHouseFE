@@ -6,7 +6,7 @@ import {
     price,
 } from "../constant";
 
-const House = ({ id, houseLevel, isConnected, setAlertMessage, setUpgradeLevel }) => {
+const House = ({ id, houseLevel, isConnected, setAlertMessage, setHouseId }) => {
     const [visible1, setVisible1] = useState(false);
     const [visible2, setVisible2] = useState(false);
     const [visible3, setVisible3] = useState(false);
@@ -63,7 +63,7 @@ const House = ({ id, houseLevel, isConnected, setAlertMessage, setUpgradeLevel }
             <button className="btn-red btn-floor"
                 onClick={() => {
                     if (isConnected) {
-                        setUpgradeLevel(id)
+                        setHouseId(id)
                     } else {
                         setAlertMessage({ type: ALERT_WARN, message: ALERT_CONNECT_WALLET })
                     }
@@ -74,7 +74,7 @@ const House = ({ id, houseLevel, isConnected, setAlertMessage, setUpgradeLevel }
                     <>
                         <div className="farm-coin" >&nbsp;</div>
                         <div className="level-text">
-                            {price[houseLevel][id - 1]}
+                            {price[houseLevel + 5 * (id - 1)]}
                         </div>
                     </>
                 )}

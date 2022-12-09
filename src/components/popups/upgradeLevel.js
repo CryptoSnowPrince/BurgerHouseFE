@@ -1,12 +1,10 @@
 import React from 'react';
 // import React, { useEffect, useState } from 'react';
-import {
-    price,
-} from "../../constant";
+import { price } from "../../constant";
 
 const UpgradeLevel = ({
     isConnected,
-    upgradeLevelofHouse,
+    houseId,
     timer,
     level,
     addedLevel,
@@ -16,7 +14,7 @@ const UpgradeLevel = ({
     disabled,
     upgradeHouse,
     enabled,
-    setUpgradeLevel,
+    setHouseId,
 }) => {
     // const [blink, setBlink] = useState(true);
 
@@ -31,9 +29,9 @@ const UpgradeLevel = ({
     // }, []);
 
     return (
-        <div className="popup-wrapper popup-upgrade upgrade-level" style={{ display: upgradeLevelofHouse > 0 && isConnected ? "block" : "none" }}>
+        <div className="popup-wrapper popup-upgrade upgrade-level" style={{ display: houseId > 0 && isConnected ? "block" : "none" }}>
             <div className="popup-box-2">
-                <div className="popup-upgrade-header">House {upgradeLevelofHouse}</div>
+                <div className="popup-upgrade-header">House {houseId}</div>
                 <div className="popup-upgrade-cover" />
                 <div className="popup-upgrade-box">
                     <div className="popup-upgrade-mini-box">
@@ -69,7 +67,7 @@ const UpgradeLevel = ({
                     </div>
                 </div>
                 <div className="popup-upgrade-info-text">
-                    {`House ${upgradeLevelofHouse} - `}
+                    {`House ${houseId} - `}
                     {enabled ?
                         (
                             parseInt(level) < 5 ?
@@ -95,7 +93,7 @@ const UpgradeLevel = ({
                                         <>
                                             <div className="farm-coin" >&nbsp;</div>
                                             <div className="level-text">
-                                                {price[parseInt(level)][upgradeLevelofHouse - 1]}
+                                                {price[level + 5 * (houseId - 1)]}
                                             </div>
                                         </>
                                 )
@@ -110,7 +108,7 @@ const UpgradeLevel = ({
             </div>
             <button type="button" className="popup-btn-close"
                 style={{ marginTop: "-12px", marginLeft: "35px" }}
-                onClick={() => setUpgradeLevel(0)} />
+                onClick={() => setHouseId(0)} />
         </div>
     )
 }
