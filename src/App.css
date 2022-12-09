@@ -351,6 +351,11 @@ button:hover,
   font-size: 17px;
 }
 
+.level-text-pop-up {
+  font-weight: bold;
+  font-size: 17px;
+}
+
 .chef {
   position: absolute;
   height: 100px;
@@ -3541,7 +3546,7 @@ div.farm-coin {
   }
 
   .level-text {
-    font-size: 14px;
+    font-size: 12px;
   }
 
   #cloud-intro {

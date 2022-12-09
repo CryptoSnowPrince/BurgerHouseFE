@@ -85,14 +85,14 @@ const UpgradeLevel = ({
                                     timer !== "" ?
                                         <>
                                             <div className="popup-time-icon" />
-                                            <div className="level-text" style={{ marginLeft: "1px" }}>
+                                            <div className="level-text-top-level" style={{ marginLeft: "1px" }}>
                                                 {timer}
                                             </div>
                                         </>
                                         :
                                         <>
                                             <div className="farm-coin" >&nbsp;</div>
-                                            <div className="level-text">
+                                            <div className="level-text-top-level">
                                                 {price[level + 5 * (houseId - 1)]}
                                             </div>
                                         </>
