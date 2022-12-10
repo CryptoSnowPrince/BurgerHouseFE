@@ -85,7 +85,7 @@ const UpgradeLevel = ({
                                     timer !== "" ?
                                         <>
                                             <div className="popup-time-icon" />
-                                            <div className="level-text-pop-up" style={{ marginLeft: "1px" }}>
+                                            <div className="level-text-pop-up-timer" style={{ marginLeft: "1px" }}>
                                                 {timer}
                                             </div>
                                         </>

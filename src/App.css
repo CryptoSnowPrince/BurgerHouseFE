@@ -356,6 +356,11 @@ button:hover,
   font-size: 17px;
 }
 
+.level-text-pop-up-timer {
+  font-weight: bold;
+  font-size: 15px;
+}
+
 .chef {
   position: absolute;
   height: 100px;
