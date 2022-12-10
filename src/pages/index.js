@@ -277,6 +277,8 @@ const Home = () => {
         return 0;
 
       const delta = Math.floor((blockTimestamp - houseInfo.lastTime) / 3600)
+      if (delta <= 0)
+        return 0;
       return delta > 24 ? 24 : delta;
     }
     return 0;

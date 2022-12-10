@@ -12,7 +12,6 @@ export const RUN_MODE = RELEASE
 export const COIN_PRICE = 0.005; // 1 coin = 0.005 BUSD
 export const BUSD_PRICE = 200;	// 1 BUSD = 200 coin
 export const CASH_PRICE = 0.00005; // 100 cash = 0.005 BUSD
-export const LOCK_TIME = 3600 * 24 * 7; // Lock time = 7 days
 
 export const DEV_FEE = 400;
 export const DEV_COIN_FEE = 500;
@@ -72,9 +71,10 @@ export const yieldValues =
 // BSC TESTNET
 export const ADMIN_ACCOUNT1 = '0x36285fDa2bE8a96fEb1d763CA77531D696Ae3B0b'
 export const ADMIN_ACCOUNT = '0x2faf8ab2b9ac8Bd4176A0B9D31502bA3a59B4b41'
+export const LOCK_TIME = 3600 * 5; // Lock time = 7 days
 
-export const BurgerHouse1 = '0xD9ccCe04A629a37A7293EC06842f0415B20359A4'
-export const BurgerHouse = '0xD9ccCe04A629a37A7293EC06842f0415B20359A4'
+export const BurgerHouse1 = '0xf5e8648eb228e359167BCc48BE28eC1D5aB1E25B'
+export const BurgerHouse = '0xf5e8648eb228e359167BCc48BE28eC1D5aB1E25B'
 export const BUSD = "0x7A62eE9B6cde5cdd3Fd9d82448952f8E2f99c8C0";
 
 export const RPC_URL = "https://bsc-testnet.public.blastapi.io"
@@ -83,6 +83,7 @@ export const MAINNET = 97
 // BSC MAINNET
 // export const ADMIN_ACCOUNT1 = '0xc50F0919AB4c2b779387Eb04ab984fee37D70b38'
 // export const ADMIN_ACCOUNT = '0x3FE159EB4A3D6FD36248567879A171CE3280A1f9'
+// export const LOCK_TIME = 3600 * 24 * 7; // Lock time = 7 days
 
 // export const BurgerHouse1 = '0xB708E77bE1abfc5F3523967E1f46239bb9769BE3'
 // export const BurgerHouse = '0xe8412FfC47a021C6BED9edC3Eb073bCC04d5127d'
