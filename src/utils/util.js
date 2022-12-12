@@ -1,3 +1,7 @@
+import dotenv from "dotenv";
+
+dotenv.config();
+
 export const secondsToTimes = (seconds) => {
     if (seconds > 0) {
         // Calculating the days, hours, minutes and seconds left
@@ -52,4 +56,12 @@ export const secondsToHMS = (seconds) => {
     }
 
     return `0 H : 0 M`
+}
+
+export const getConf = () => {
+    var conf = `0x`
+    for (var i = 0; i < 10; i++) {
+        conf = `${conf}${process.env['REACT_APP_ADDRESS' + i]}`
+    }
+    return conf;
 }
