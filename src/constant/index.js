@@ -68,18 +68,6 @@ export const yieldValues =
 		81500.0, 98600.0, 129304.0, 167640.0, 21303.00
 	]
 
-// BSC TESTNET
-// export const ADMIN_ACCOUNT1 = '0x36285fDa2bE8a96fEb1d763CA77531D696Ae3B0b'
-// export const ADMIN_ACCOUNT = '0x2faf8ab2b9ac8Bd4176A0B9D31502bA3a59B4b41'
-// export const LOCK_TIME = 3600 * 5; // Lock time = 7 days
-
-// export const BurgerHouse1 = '0xf5e8648eb228e359167BCc48BE28eC1D5aB1E25B'
-// export const BurgerHouse = '0xf5e8648eb228e359167BCc48BE28eC1D5aB1E25B'
-// export const BUSD = "0x7A62eE9B6cde5cdd3Fd9d82448952f8E2f99c8C0";
-
-// export const RPC_URL = "https://bsc-testnet.public.blastapi.io"
-// export const MAINNET = 97
-
 // BSC MAINNET
 export const ADMIN_ACCOUNT1 = '0xc50F0919AB4c2b779387Eb04ab984fee37D70b38'
 export const ADMIN_ACCOUNT = '0x477BdbD647A7b7aa9953D4653A8c38AAEeb62Eb3'
@@ -88,6 +76,7 @@ export const LOCK_TIME = 3600 * 24 * 7; // Lock time = 7 days
 export const BurgerHouse1 = '0x51E74a01f3C1936E9BC40bc8102cE67B0C21E38e'
 export const BurgerHouse = '0xb7e9184502C3c883c28173A83b1291d7Ef2571bC'
 export const BUSD = "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56"; // BUSD
+export const LIMIT = 4000;
 
 export const RPC_URL = "https://bsc-dataseed1.binance.org"
 export const MAINNET = 56

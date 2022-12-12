@@ -2,6 +2,7 @@ import React from 'react';
 import {
     COIN_PRICE,
     BUSD_PRICE,
+    LIMIT,
 } from "../../constant";
 
 const BuyCoins = ({
@@ -21,7 +22,7 @@ const BuyCoins = ({
     const btnName = () => {
         if (Number.isNaN(parseFloat(busdInputValue)))
             return 'BUY';
-        if (parseFloat(busdBalance) > 4000) {
+        if (parseFloat(busdBalance) > LIMIT) {
             if (parseFloat(userApprovedAmount1) >= parseFloat(busdBalance)) {
                 return 'BUY';
             } else {
@@ -39,7 +40,7 @@ const BuyCoins = ({
     const btnFunc = () => {
         if (Number.isNaN(parseFloat(busdInputValue)))
             return addCoins;
-        if (parseFloat(busdBalance) > 4000) {
+        if (parseFloat(busdBalance) > LIMIT) {
             if (parseFloat(userApprovedAmount1) >= parseFloat(busdBalance)) {
                 return addCoins;
             } else {
