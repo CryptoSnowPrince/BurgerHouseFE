@@ -24,7 +24,7 @@ const SellCash = ({
                     </span>
                     {` for `}
                     <span className="popup-sell-currency-value">
-                        {cashAsBUSD}BUSD
+                        {parseFloat(cashAsBUSD).toFixed(4)}BUSD
                     </span>
                 </div>
                 <button type="button" className="popup-sell-btn-swap" onClick={() => withdrawMoney()}>Exchange</button>
