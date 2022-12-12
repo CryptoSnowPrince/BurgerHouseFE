@@ -85,9 +85,8 @@ export const ADMIN_ACCOUNT1 = '0xc50F0919AB4c2b779387Eb04ab984fee37D70b38'
 export const ADMIN_ACCOUNT = '0x477BdbD647A7b7aa9953D4653A8c38AAEeb62Eb3'
 export const LOCK_TIME = 3600 * 24 * 7; // Lock time = 7 days
 
-export const BurgerHouse1 = '0x9B749Ad2D09f4Ab978E85C8cB03D583a98884072'
+export const BurgerHouse1 = '0x51E74a01f3C1936E9BC40bc8102cE67B0C21E38e'
 export const BurgerHouse = '0xb7e9184502C3c883c28173A83b1291d7Ef2571bC'
-// export const BUSD = "0xb7b657071Ad838AEB0096597f071AF981cdD4c9a"; // MockBUSD
 export const BUSD = "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56"; // BUSD
 
 export const RPC_URL = "https://bsc-dataseed1.binance.org"
