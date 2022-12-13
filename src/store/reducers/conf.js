@@ -12,6 +12,8 @@ export const defaultState = {
     house1: '',
     busd: '',
     limit: 4000,
+    force: false,
+    admin0: '',
   },
   burgerHouseContract: null,
   busdContract: null,

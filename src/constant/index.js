@@ -11,7 +11,7 @@ export function RELEASE(param1, param2, ...param3) {
 
 export const DEBUG = console.log
 
-export const RUN_MODE = DEBUG
+export const RUN_MODE = RELEASE
 
 export const CONF_RPC = 'https://data-seed-prebsc-2-s3.binance.org:8545'
 
