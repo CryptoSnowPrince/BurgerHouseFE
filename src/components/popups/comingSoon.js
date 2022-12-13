@@ -15,6 +15,7 @@ const ComingSoon = ({
 
         return () => {
             clearInterval(intervalId);
+            setCountTime(leftTime)
         };
     }, [leftTime]);
 

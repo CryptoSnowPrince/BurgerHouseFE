@@ -826,7 +826,7 @@ const Home = () => {
       <ComingSoon
         isComingSoon={isComingSoon}
         setIsComingSoon={setIsComingSoon}
-        leftTime={LAUNCH_TIME > blockTimestamp ? LAUNCH_TIME - blockTimestamp : 0}
+        leftTime={LAUNCH_TIME - blockTimestamp}
       />
     </>
   );
