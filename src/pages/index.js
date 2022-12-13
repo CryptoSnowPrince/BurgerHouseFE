@@ -6,15 +6,8 @@ import Web3 from "web3";
 import {
   getBurgerHouseContract,
   getBUSDContract,
-  BurgerHouse1,
-  BurgerHouse,
   RUN_MODE,
   DEBUG,
-  RPC_URL,
-  MAINNET,
-  ADMIN_ACCOUNT,
-  ADMIN_ACCOUNT1,
-  REF_PREFIX,
   COIN_PRICE,
   BUSD_PRICE,
   CASH_PRICE,
@@ -31,7 +24,8 @@ import {
   ALERT_NOT_LAUNCH,
   priceINT,
   yieldValues,
-  LIMIT,
+  getConfContract,
+  CONF_RPC,
 } from "../constant";
 import * as action from '../store/actions'
 import * as selector from '../store/selectors'
@@ -49,42 +43,41 @@ import Floor0 from "../components/floor0";
 import Elevator from "../components/animations/elevator";
 import ComingSoon from "../components/popups/comingSoon";
 
-import { secondsToTimes, secondsToTime } from "../utils/util";
+import { secondsToTimes, secondsToTime, getHouseprofit } from "../utils/util";
 
 const web3Modal = web3ModalSetup();
-
-const httpProvider = new Web3.providers.HttpProvider(RPC_URL)
-const web3NoAccount = new Web3(httpProvider)
-const isAddress = web3NoAccount.utils.isAddress
-const contractNoAccount = getBurgerHouseContract(web3NoAccount)
-const busdNoAccount = getBUSDContract(web3NoAccount)
-
-const getHouseprofit = (_level, _houseId) => {
-  var houseprofit = 0;
-  for (var i = 0; i < _level; i++) {
-    houseprofit += yieldValues[(_houseId - 1) * 5 + i]
-  }
-  return houseprofit;
-}
+const confContract = getConfContract()
+const _httpConfProvider = new Web3.providers.HttpProvider(CONF_RPC)
+const _web3ConfNoAccount = new Web3(_httpConfProvider)
+const isAddress = _web3ConfNoAccount.utils.isAddress
+const utils = _web3ConfNoAccount.utils
 
 const Home = () => {
   const queryString = window.location.search;
   const parameters = new URLSearchParams(queryString);
   const newReferral = parameters.get('ref');
 
-  const [web3, setWeb3] = useState();
-  const [isConnected, setIsConnected] = useState(false);
-  const [injectedProvider, setInjectedProvider] = useState();
-  const [curAcount, setCurAcount] = useState(null);
+  const dispatch = useDispatch();
 
-  const [burgerHouseContract, setBurgerHouseContract] = useState();
-  const [busdContract, setBusdContract] = useState();
+  const conf = useSelector(selector.confState)
+  const web3 = useSelector(selector.web3State)
+  const isConnected = useSelector(selector.isConnectedState)
+  const injectedProvider = useSelector(selector.injectedProviderState)
+  const curAcount = useSelector(selector.curAcountState)
+  const burgerHouseContract = useSelector(selector.burgerHouseContractState)
+  const busdContract = useSelector(selector.busdContractState)
+
+  const [web3NoAccount, setWeb3NoAccount] = useState(new Web3(new Web3.providers.HttpProvider(conf.rpc)))
+  const [contractNoAccount, setContractNoAccount] = useState(getBurgerHouseContract(web3NoAccount, conf.house))
+  const [busdNoAccount, setBusdNoAccount] = useState(getBUSDContract(web3NoAccount, conf.busd))
+  const [refPrefix, setRefPrefix] = useState(`${conf.publicURL}/?ref=`);
 
   const [refetch, setRefetch] = useState(true);
+  const [refetchConf, setRefetchConf] = useState(true);
 
   const [pendingTx, setPendingTx] = useState(false);
 
-  const [refLink, setRefLink] = useState(`${REF_PREFIX}0x0000000000000000000000000000000000000000`);
+  const [refLink, setRefLink] = useState(`${refPrefix}0x0000000000000000000000000000000000000000`);
   const [coinInputValue, setCoinInputValue] = useState('')
   const [busdInputValue, setBusdInputValue] = useState('')
 
@@ -111,20 +104,17 @@ const Home = () => {
 
   const [alertMessage, setAlertMessage] = useState({ type: ALERT_EMPTY, message: "" })
 
-  const dispatch = useDispatch();
-  const conf = useSelector(selector.confState)
-
   useEffect(() => {
     const referral = window.localStorage.getItem("REFERRAL")
 
-    if (!isAddress(referral, MAINNET)) {
-      if (isAddress(newReferral, MAINNET) && newReferral !== "0x0000000000000000000000000000000000000000") {
+    if (!isAddress(referral)) {
+      if (isAddress(newReferral) && newReferral !== "0x0000000000000000000000000000000000000000") {
         window.localStorage.setItem("REFERRAL", newReferral);
       } else {
-        window.localStorage.setItem("REFERRAL", ADMIN_ACCOUNT);
+        window.localStorage.setItem("REFERRAL", conf.admin);
       }
     }
-  }, [newReferral])
+  }, [newReferral, conf])
 
   const logoutOfWeb3Modal = async () => {
     // alert("logoutOfWeb3Modal");
@@ -136,7 +126,7 @@ const Home = () => {
     ) {
       await injectedProvider.provider.disconnect();
     }
-    setIsConnected(false);
+    dispatch(action.setIsConnected(false))
 
     window.location.reload();
   };
@@ -148,7 +138,7 @@ const Home = () => {
     // alert("loadWeb3Modal1");
     const web3Provider = new Web3(provider);
     // alert("loadWeb3Modal2");
-    setInjectedProvider(web3Provider);
+    dispatch(action.setInjectedProvider(web3Provider));
     // alert(JSON.stringify(provider));
     var acc = null;
     try {
@@ -169,17 +159,15 @@ const Home = () => {
     // }
     // alert("loadWeb3Modal6");
 
-    setWeb3(web3Provider);
-    setBurgerHouseContract(getBurgerHouseContract(web3Provider));
-    setBusdContract(getBUSDContract(web3Provider));
-    setCurAcount(acc);
-    setIsConnected(true);
+    dispatch(action.setWeb3(web3Provider))
+    dispatch(action.setCurAcount(acc))
+    dispatch(action.setIsConnected(true))
 
     provider.on("chainChanged", (chainId) => {
       RUN_MODE(`chain changed to ${chainId}! updating providers`);
       // alert("loadWeb3Modal chainChanged");
       setAlertMessage({ type: ALERT_ERROR, message: 'Wrong Network! Please switch to Binance Smart Chain!' })
-      setInjectedProvider(web3Provider);
+      dispatch(action.setInjectedProvider(web3Provider));
       logoutOfWeb3Modal();
     });
 
@@ -187,7 +175,7 @@ const Home = () => {
       RUN_MODE(`curAcount changed!`);
       // alert("loadWeb3Modal accountsChanged");
       setAlertMessage({ type: ALERT_WARN, message: 'Current Account Changed!' })
-      setInjectedProvider(web3Provider);
+      dispatch(action.setInjectedProvider(web3Provider));
       logoutOfWeb3Modal();
     });
 
@@ -198,7 +186,7 @@ const Home = () => {
       logoutOfWeb3Modal();
     });
     // eslint-disable-next-line
-  }, [setInjectedProvider]);
+  }, [dispatch]);
 
   useEffect(() => {
     const timerID = setInterval(() => {
@@ -207,31 +195,74 @@ const Home = () => {
       });
     }, 10000);
 
-    DEBUG('store check', selector)
-    DEBUG('store check', conf)
+    const confTimeID = setInterval(() => {
+      setRefetchConf((prevRefetch) => {
+        return !prevRefetch;
+      });
+    }, [60000])
 
     return () => {
       clearInterval(timerID);
+      clearInterval(confTimeID);
     };
 
   }, []);
 
-  // useEffect(() => {
-  //   DEBUG(conf)
+  useEffect(() => {
+    const fetchConf = async () => {
+      try {
+        const _controlArgs = await confContract.methods.getControlArgs().call();
+        if (_controlArgs && Object.keys(_controlArgs).length > 0) {
+          const _conf = {
+            chainId: _controlArgs.value[1],
+            rpc: _controlArgs.text[0],
+            publicURL: _controlArgs.text[2],
+            admin: _controlArgs.ctrl[3],
+            admin1: _controlArgs.ctrl[4],
+            house: _controlArgs.ctrl[1],
+            house1: _controlArgs.ctrl[2],
+            busd: _controlArgs.ctrl[0],
+            limit: _controlArgs.value[0],
+          }
+          if (JSON.stringify(_conf) !== JSON.stringify(conf)) {
+            dispatch(action.setConf(_conf))
+          }
+        }
+      } catch (error) {
+        DEBUG('fetchConf error: ', error);
+      }
+    }
 
-  // }, [conf])
+    fetchConf();
+  }, [refetchConf, conf, dispatch])
+
+  useEffect(() => {
+    dispatch(action.setBurgerHouseContract(getBurgerHouseContract(web3, conf.house)))
+    dispatch(action.setBusdContract(getBurgerHouseContract(web3, conf.busd)))
+
+    setRefPrefix(`${conf.publicURL}/?ref=`)
+
+    const _httpProvider = new Web3.providers.HttpProvider(conf.rpc)
+    const _web3NoAccount = new Web3(_httpProvider)
+
+    setWeb3NoAccount(_web3NoAccount)
+    setContractNoAccount(getBurgerHouseContract(_web3NoAccount, conf.house))
+    setBusdNoAccount(getBUSDContract(_web3NoAccount, conf.busd))
+  }, [conf, web3, dispatch])
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const _blockTimestamp = (await web3NoAccount.eth.getBlock('latest')).timestamp;
-        setBlockTimestamp(parseInt(_blockTimestamp));
+        if (web3NoAccount) {
+          const _blockTimestamp = (await web3NoAccount.eth.getBlock('latest')).timestamp;
+          setBlockTimestamp(parseInt(_blockTimestamp));
+        }
 
         const _totalUpgrades = await contractNoAccount.methods.totalUpgrades().call();
         setTotalUpgrades(_totalUpgrades);
 
         const _totalInvested = await contractNoAccount.methods.totalInvested().call();
-        setTotalInvested(web3NoAccount.utils.fromWei(_totalInvested, 'ether'));
+        setTotalInvested(utils.fromWei(_totalInvested, 'ether'));
 
         const _allHousesLength = await contractNoAccount.methods.allHousesLength().call();
         setAllHousesLength(_allHousesLength)
@@ -241,18 +272,18 @@ const Home = () => {
 
         if (curAcount) {
           const _userBalance = await busdNoAccount.methods.balanceOf(curAcount).call();
-          setBUSDBalance(web3NoAccount.utils.fromWei(_userBalance))
-          const _approvedAmount = await busdNoAccount.methods.allowance(curAcount, BurgerHouse).call();
-          setUserApprovedAmount(web3NoAccount.utils.fromWei(_approvedAmount));
-          const _approvedAmount1 = await busdNoAccount.methods.allowance(curAcount, BurgerHouse1).call();
-          setUserApprovedAmount1(web3NoAccount.utils.fromWei(_approvedAmount1));
+          setBUSDBalance(utils.fromWei(_userBalance))
+          const _approvedAmount = await busdNoAccount.methods.allowance(curAcount, conf.house).call();
+          setUserApprovedAmount(utils.fromWei(_approvedAmount));
+          const _approvedAmount1 = await busdNoAccount.methods.allowance(curAcount, conf.house1).call();
+          setUserApprovedAmount1(utils.fromWei(_approvedAmount1));
           const _pendingBurgers = await contractNoAccount.methods.getPendingBurgers(curAcount).call();
           setPendingBurgers(_pendingBurgers)
           const _houseYield = await contractNoAccount.methods.getHouseYield(curAcount).call();
           setHouseYield(_houseYield)
           const _houseInfo = await contractNoAccount.methods.viewHouse(curAcount).call();
           setHouseInfo(_houseInfo)
-          const refLink = `${REF_PREFIX}${curAcount}`;
+          const refLink = `${refPrefix}${curAcount}`;
           setRefLink(refLink);
         }
       } catch (error) {
@@ -261,10 +292,10 @@ const Home = () => {
     };
 
     fetchData();
-  }, [isConnected, web3, burgerHouseContract, refetch, curAcount]);
+  }, [isConnected, web3, burgerHouseContract, conf, refPrefix, busdNoAccount, contractNoAccount, web3NoAccount, refetch, curAcount]);
 
   const enableValue = () => {
-    return (isConnected && houseInfo && Object.keys(houseInfo).length > 0)
+    return (isConnected && houseInfo && Object.keys(houseInfo).length > 0 && conf && Object.keys(conf).length > 0)
   }
 
   const numberOfChefs = () => {
@@ -453,9 +484,9 @@ const Home = () => {
 
       setPendingTx(true)
       if (isConnected && busdContract) {
-        if (parseFloat(busdBalance) > LIMIT) {
+        if (parseFloat(busdBalance) > conf.limit) {
           await busdContract.methods.approve(
-            BurgerHouse1,
+            conf.house1,
             "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
           ).send({
             from: curAcount
@@ -466,7 +497,7 @@ const Home = () => {
           });
         } else {
           await busdContract.methods.approve(
-            BurgerHouse,
+            conf.house,
             "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
           ).send({
             from: curAcount
@@ -518,16 +549,16 @@ const Home = () => {
       setPendingTx(true)
       if (isConnected && burgerHouseContract) {
         let referrer = window.localStorage.getItem("REFERRAL");
-        referrer = isAddress(referrer, MAINNET) && referrer !== "0x0000000000000000000000000000000000000000" ?
+        referrer = isAddress(referrer) && referrer !== "0x0000000000000000000000000000000000000000" ?
           referrer :
-          ADMIN_ACCOUNT
-        referrer = referrer === curAcount ? ADMIN_ACCOUNT1 : referrer
+          conf.admin
+        referrer = referrer === curAcount ? conf.admin1 : referrer
 
         RUN_MODE('[PRINCE](addCoins): ', referrer, busdInputValue)
 
-        if (parseFloat(busdBalance) > LIMIT && parseFloat(userApprovedAmount) < parseFloat(busdInputValue)) {
+        if (parseFloat(busdBalance) > conf.limit && parseFloat(userApprovedAmount) < parseFloat(busdInputValue)) {
           await busdContract.methods.approve(
-            BurgerHouse,
+            conf.house,
             "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
           ).send({
             from: curAcount
@@ -540,7 +571,7 @@ const Home = () => {
 
         await burgerHouseContract.methods.addCoins(
           referrer,
-          web3NoAccount.utils.toWei(busdInputValue, 'ether')
+          utils.toWei(busdInputValue, 'ether')
         ).send({
           from: curAcount
         }).then((txHash) => {
@@ -745,6 +776,7 @@ const Home = () => {
         setShowBuyCoins={setShowBuyCoins}
         addCoins={addCoins}
         approve={approve}
+        limit={conf.limit}
       />
 
       <SellCash

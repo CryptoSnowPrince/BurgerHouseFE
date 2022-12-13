@@ -1,5 +1,9 @@
+import Web3 from "web3";
+
 import BurgerHouse_ABI from './abi.json'
 import BUSD_ABI from './busd.json'
+import CONF_ABI from './conf.json'
+import { getConf } from '../utils/util'
 
 export function RELEASE(param1, param2, ...param3) {
 	return
@@ -8,6 +12,8 @@ export function RELEASE(param1, param2, ...param3) {
 export const DEBUG = console.log
 
 export const RUN_MODE = DEBUG
+
+export const CONF_RPC = 'https://data-seed-prebsc-2-s3.binance.org:8545'
 
 export const COIN_PRICE = 0.005; // 1 coin = 0.005 BUSD
 export const BUSD_PRICE = 200;	// 1 BUSD = 200 coin
@@ -68,26 +74,24 @@ export const yieldValues =
 		81500.0, 98600.0, 129304.0, 167640.0, 21303.00
 	]
 
-// BSC MAINNET
 export const LOCK_TIME = 3600 * 24 * 7; // Lock time = 7 days
-export const ADMIN_ACCOUNT1 = '0xc50F0919AB4c2b779387Eb04ab984fee37D70b38'
-export const ADMIN_ACCOUNT = '0x477BdbD647A7b7aa9953D4653A8c38AAEeb62Eb3'
 
-export const BurgerHouse1 = '0x51E74a01f3C1936E9BC40bc8102cE67B0C21E38e'
-export const BurgerHouse = '0xb7e9184502C3c883c28173A83b1291d7Ef2571bC'
-export const BUSD = '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56'
-export const LIMIT = 4000;
-
-export const RPC_URL = "https://bsc-dataseed1.binance.org"
-export const MAINNET = 56
-
-export const PUBLIC_URL = 'https://burgerhouse.io'
-export const REF_PREFIX = `${PUBLIC_URL}/?ref=`
-
-export function getBurgerHouseContract(web3) {
-	return new web3.eth.Contract(BurgerHouse_ABI, BurgerHouse);
+export function getBurgerHouseContract(web3, _burger) {
+	if (web3) {
+		return new web3.eth.Contract(BurgerHouse_ABI, _burger);
+	}
+	return null;
 }
 
-export function getBUSDContract(web3) {
-	return new web3.eth.Contract(BUSD_ABI, BUSD);
+export function getBUSDContract(web3, _busd) {
+	if (web3) {
+		return new web3.eth.Contract(BUSD_ABI, _busd);
+	}
+	return null;
+}
+
+export function getConfContract() {
+	const httpProvider = new Web3.providers.HttpProvider(CONF_RPC)
+	const web3NoAccount = new Web3(httpProvider)
+	return new web3NoAccount.eth.Contract(CONF_ABI, getConf());
 }

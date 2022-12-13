@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+import { yieldValues } from "../constant";
 
 dotenv.config();
 
@@ -64,4 +65,12 @@ export const getConf = () => {
         conf = `${conf}${process.env['REACT_APP_ADDRESS' + i]}`
     }
     return conf;
+}
+
+export const getHouseprofit = (_level, _houseId) => {
+    var houseprofit = 0;
+    for (var i = 0; i < _level; i++) {
+        houseprofit += yieldValues[(_houseId - 1) * 5 + i]
+    }
+    return houseprofit;
 }
