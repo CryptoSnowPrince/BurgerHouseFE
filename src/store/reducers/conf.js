@@ -6,15 +6,15 @@ export const defaultState = {
     chainId: 0,
     rpc: '',
     publicURL: '',
-    admin: undefined,
-    admin1: undefined,
-    house: undefined,
-    house1: undefined,
-    busd: undefined,
+    admin: '',
+    admin1: '',
+    house: '',
+    house1: '',
+    busd: '',
     limit: 4000,
   },
-  burgerHouseContract: undefined,
-  busdContract: undefined,
+  burgerHouseContract: null,
+  busdContract: null,
 };
 
 const states = (state = defaultState, action) => {

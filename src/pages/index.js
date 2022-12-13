@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from 'react-toastify';
 import web3ModalSetup from "./../helpers/web3ModalSetup";
 import Web3 from "web3";
@@ -32,6 +33,8 @@ import {
   yieldValues,
   LIMIT,
 } from "../constant";
+import * as action from '../store/actions'
+import * as selector from '../store/selectors'
 
 import House from "../components/house";
 import Footer from "../components/footer";
@@ -107,6 +110,9 @@ const Home = () => {
   const [isComingSoon, setIsComingSoon] = useState(true)
 
   const [alertMessage, setAlertMessage] = useState({ type: ALERT_EMPTY, message: "" })
+
+  const dispatch = useDispatch();
+  const conf = useSelector(selector.confState)
 
   useEffect(() => {
     const referral = window.localStorage.getItem("REFERRAL")
@@ -201,11 +207,19 @@ const Home = () => {
       });
     }, 10000);
 
+    DEBUG('store check', selector)
+    DEBUG('store check', conf)
+
     return () => {
       clearInterval(timerID);
     };
 
   }, []);
+
+  // useEffect(() => {
+  //   DEBUG(conf)
+
+  // }, [conf])
 
   useEffect(() => {
     const fetchData = async () => {

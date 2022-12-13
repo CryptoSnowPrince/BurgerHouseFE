@@ -7,7 +7,7 @@ export function RELEASE(param1, param2, ...param3) {
 
 export const DEBUG = console.log
 
-export const RUN_MODE = RELEASE
+export const RUN_MODE = DEBUG
 
 export const COIN_PRICE = 0.005; // 1 coin = 0.005 BUSD
 export const BUSD_PRICE = 200;	// 1 BUSD = 200 coin
