@@ -69,13 +69,13 @@ const Home = () => {
   const parameters = new URLSearchParams(queryString);
   const newReferral = parameters.get('ref');
 
-  const [burgerHouseContract, setBurgerHouseContract] = useState();
-  const [busdContract, setBusdContract] = useState();
-
   const [web3, setWeb3] = useState();
   const [isConnected, setIsConnected] = useState(false);
   const [injectedProvider, setInjectedProvider] = useState();
   const [curAcount, setCurAcount] = useState(null);
+
+  const [burgerHouseContract, setBurgerHouseContract] = useState();
+  const [busdContract, setBusdContract] = useState();
 
   const [refetch, setRefetch] = useState(true);
 
