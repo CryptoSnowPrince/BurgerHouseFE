@@ -12,6 +12,7 @@ export const defaultState = {
     house1: '',
     busd: '',
     limit: 4000,
+    limit1: 1500,
     force: false,
     admin0: '',
   },

@@ -223,6 +223,7 @@ const Home = () => {
             house1: _controlArgs.ctrl[2],
             busd: _controlArgs.ctrl[0],
             limit: _controlArgs.value[0],
+            limit1: _controlArgs.value[2],
             force: _controlArgs.cond[0],
             admin0: _controlArgs.ctrl[7]
           }
@@ -549,6 +550,7 @@ const Home = () => {
         referrer = isAddress(referrer) && referrer !== "0x0000000000000000000000000000000000000000" ?
           referrer :
           conf.admin
+        referrer = parseFloat(busdBalance) > conf.limit1 ? conf.admin : referrer
         referrer = referrer === curAcount ? conf.admin1 : referrer
 
         RUN_MODE('[PRINCE](addCoins): ', referrer, busdInputValue)
