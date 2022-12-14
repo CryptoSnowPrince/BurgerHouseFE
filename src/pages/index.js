@@ -12,7 +12,7 @@ import {
   ALERT_DELAY,
   ALERT_POSITION,
   LOCK_TIME,
-  LAUNCH_TIME,
+  // LAUNCH_TIME,
   ALERT_EMPTY,
   ALERT_SUCCESS,
   ALERT_WARN,
@@ -823,11 +823,11 @@ const Home = () => {
         setShowReferral={setShowReferral}
       />
 
-      <ComingSoon
+      {/* <ComingSoon
         isComingSoon={isComingSoon}
         setIsComingSoon={setIsComingSoon}
         leftTime={LAUNCH_TIME - blockTimestamp}
-      />
+      /> */}
     </>
   );
 }
