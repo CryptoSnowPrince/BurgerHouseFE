@@ -40,7 +40,7 @@ import UpgradeLevel from "../components/popups/upgradeLevel";
 import Referral from "../components/popups/referral";
 import Floor0 from "../components/floor0";
 import Elevator from "../components/animations/elevator";
-import ComingSoon from "../components/popups/comingSoon";
+// import ComingSoon from "../components/popups/comingSoon";
 
 import { secondsToTimes, secondsToTime, getHouseprofit } from "../utils/util";
 
