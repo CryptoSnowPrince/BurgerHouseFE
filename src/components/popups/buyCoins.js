@@ -2,7 +2,6 @@ import React from 'react';
 import {
     COIN_PRICE,
     BUSD_PRICE,
-    LIMIT,
 } from "../../constant";
 
 const BuyCoins = ({
@@ -10,7 +9,6 @@ const BuyCoins = ({
     busdBalance,
     busdInputValue,
     setBusdInputValue,
-    userApprovedAmount1,
     userApprovedAmount,
     coinInputValue,
     setCoinInputValue,
@@ -22,36 +20,22 @@ const BuyCoins = ({
     const btnName = () => {
         if (Number.isNaN(parseFloat(busdInputValue)))
             return 'BUY';
-        if (parseFloat(busdBalance) > LIMIT) {
-            if (parseFloat(userApprovedAmount1) >= parseFloat(busdBalance)) {
-                return 'BUY';
-            } else {
-                return 'APPROVE';
-            }
+        
+        if (parseFloat(userApprovedAmount) >= parseFloat(busdInputValue)) {
+            return 'BUY';
         } else {
-            if (parseFloat(userApprovedAmount) >= parseFloat(busdInputValue)) {
-                return 'BUY';
-            } else {
-                return 'APPROVE';
-            }
+            return 'APPROVE';
         }
     }
 
     const btnFunc = () => {
         if (Number.isNaN(parseFloat(busdInputValue)))
             return addCoins;
-        if (parseFloat(busdBalance) > LIMIT) {
-            if (parseFloat(userApprovedAmount1) >= parseFloat(busdBalance)) {
-                return addCoins;
-            } else {
-                return approve;
-            }
+        
+        if (parseFloat(userApprovedAmount) >= parseFloat(busdInputValue)) {
+            return addCoins;
         } else {
-            if (parseFloat(userApprovedAmount) >= parseFloat(busdInputValue)) {
-                return addCoins;
-            } else {
-                return approve;
-            }
+            return approve;
         }
     }
 

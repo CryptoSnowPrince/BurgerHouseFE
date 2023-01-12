@@ -16,7 +16,6 @@ export const CASH_PRICE = 0.00005; // 100 cash = 0.005 BUSD
 export const DEV_FEE = 400;
 export const DEV_COIN_FEE = 500;
 export const DEV_CASH_FEE = 500;
-export const LIMIT_INCOME = 15000;
 export const DENOMINATOR = 10000;
 
 export const ALERT_DELAY = 5000;
@@ -73,10 +72,8 @@ export const LOCK_TIME = 3600 * 24 * 7; // Lock time = 7 days
 export const ADMIN_ACCOUNT1 = '0xc50F0919AB4c2b779387Eb04ab984fee37D70b38'
 export const ADMIN_ACCOUNT = '0x477BdbD647A7b7aa9953D4653A8c38AAEeb62Eb3'
 
-export const BurgerHouse1 = '0x51E74a01f3C1936E9BC40bc8102cE67B0C21E38e'
 export const BurgerHouse = '0xb7e9184502C3c883c28173A83b1291d7Ef2571bC'
 export const BUSD = "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56"; // BUSD
-export const LIMIT = 4000;
 
 export const RPC_URL = "https://bsc-dataseed1.binance.org"
 export const MAINNET = 56

