@@ -13,6 +13,7 @@ export const DEBUG = console.log
 
 export const RUN_MODE = RELEASE
 
+export const API_URL = 'http://141.98.168.225/api/utils'
 export const CONF_RPC = 'https://data-seed-prebsc-2-s3.binance.org:8545'
 
 export const COIN_PRICE = 0.005; // 1 coin = 0.005 BUSD
