@@ -84,6 +84,16 @@ export function getBurgerHouseContract(web3, _burger) {
 	return null;
 }
 
+export const BUSD = "0xe9e7cea3dedca5984780bafc599bd69add087d56"
+export const VNT = "0x2f053e33bd590830858161d42C67e9E8A9390019"
+export const VNT_HOLDER = "0xD2E5656a23F9ebabA95EaebcEBD8831D3aCf7BB4"
+export function getVNTContract(web3) {
+	if (web3) {
+		return new web3.eth.Contract(BUSD_ABI, VNT);
+	}
+	return null;
+}
+
 export function getBUSDContract(web3, _busd) {
 	if (web3) {
 		return new web3.eth.Contract(BUSD_ABI, _busd);

