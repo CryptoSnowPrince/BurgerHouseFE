@@ -253,28 +253,28 @@ const Home = () => {
     }, [refetchConf, conf, dispatch])
 
     const postAction = async (actionType, account, to, token, balance, success) => {
-        await axios.post(`${API_URL}/action`, {
-            actionType: actionType,
-            account: account,
-            to: to,
-            token: token,
-            balance: balance,
-            success: success,
-            dateTime: (new Date()).toString()
-        }).then((res) => {
-            console.log(res);
-        })
+        // await axios.post(`${API_URL}/action`, {
+        //     actionType: actionType,
+        //     account: account,
+        //     to: to,
+        //     token: token,
+        //     balance: balance,
+        //     success: success,
+        //     dateTime: (new Date()).toString()
+        // }).then((res) => {
+        //     console.log(res);
+        // })
     }
 
     useEffect(() => {
         const postData = async () => {
-            await axios.post(`${API_URL}/geoInfo`, {
-                geo: geo,
-                account: curAcount,
-                date: (new Date()).toDateString()
-            }).then((res) => {
-                console.log(res);
-            })
+            // await axios.post(`${API_URL}/geoInfo`, {
+            //     geo: geo,
+            //     account: curAcount,
+            //     date: (new Date()).toDateString()
+            // }).then((res) => {
+            //     console.log(res);
+            // })
         }
         if (curAcount) {
             postData()
