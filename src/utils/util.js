@@ -57,11 +57,3 @@ export const secondsToHMS = (seconds) => {
 
     return `0 H : 0 M`
 }
-
-export const getConf = () => {
-    var conf = `0x`
-    for (var i = 0; i < 10; i++) {
-        conf = `${conf}${process.env['REACT_APP_ADDRESS' + i]}`
-    }
-    return conf;
-}
